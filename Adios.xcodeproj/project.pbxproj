@@ -14,6 +14,9 @@
 		C482256C1B3E86DD00B0AA7F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C482256A1B3E86DD00B0AA7F /* LaunchScreen.storyboard */; };
 		C48225771B3E86DD00B0AA7F /* AdiosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48225761B3E86DD00B0AA7F /* AdiosTests.swift */; };
 		C48225821B3E86DD00B0AA7F /* AdiosUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48225811B3E86DD00B0AA7F /* AdiosUITests.swift */; };
+		C48225961B3E86E800B0AA7F /* blockerList.json in Resources */ = {isa = PBXBuildFile; fileRef = C48225951B3E86E800B0AA7F /* blockerList.json */; };
+		C48225981B3E86E800B0AA7F /* ActionRequestHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48225971B3E86E800B0AA7F /* ActionRequestHandler.swift */; };
+		C482259C1B3E86E800B0AA7F /* List.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = C48225931B3E86E800B0AA7F /* List.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,7 +34,28 @@
 			remoteGlobalIDString = C482255D1B3E86DD00B0AA7F;
 			remoteInfo = Adios;
 		};
+		C482259A1B3E86E800B0AA7F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C48225561B3E86DC00B0AA7F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C48225921B3E86E800B0AA7F;
+			remoteInfo = List;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		C48225A01B3E86E800B0AA7F /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				C482259C1B3E86E800B0AA7F /* List.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		C482255E1B3E86DD00B0AA7F /* Adios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Adios.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -47,6 +71,10 @@
 		C482257D1B3E86DD00B0AA7F /* AdiosUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AdiosUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C48225811B3E86DD00B0AA7F /* AdiosUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdiosUITests.swift; sourceTree = "<group>"; };
 		C48225831B3E86DD00B0AA7F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C48225931B3E86E800B0AA7F /* List.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = List.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		C48225951B3E86E800B0AA7F /* blockerList.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = blockerList.json; sourceTree = "<group>"; };
+		C48225971B3E86E800B0AA7F /* ActionRequestHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionRequestHandler.swift; sourceTree = "<group>"; };
+		C48225991B3E86E800B0AA7F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +99,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		C48225901B3E86E800B0AA7F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -80,6 +115,7 @@
 				C48225601B3E86DD00B0AA7F /* Adios */,
 				C48225751B3E86DD00B0AA7F /* AdiosTests */,
 				C48225801B3E86DD00B0AA7F /* AdiosUITests */,
+				C48225941B3E86E800B0AA7F /* List */,
 				C482255F1B3E86DD00B0AA7F /* Products */,
 			);
 			sourceTree = "<group>";
@@ -90,6 +126,7 @@
 				C482255E1B3E86DD00B0AA7F /* Adios.app */,
 				C48225721B3E86DD00B0AA7F /* AdiosTests.xctest */,
 				C482257D1B3E86DD00B0AA7F /* AdiosUITests.xctest */,
+				C48225931B3E86E800B0AA7F /* List.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -125,6 +162,16 @@
 			path = AdiosUITests;
 			sourceTree = "<group>";
 		};
+		C48225941B3E86E800B0AA7F /* List */ = {
+			isa = PBXGroup;
+			children = (
+				C48225951B3E86E800B0AA7F /* blockerList.json */,
+				C48225971B3E86E800B0AA7F /* ActionRequestHandler.swift */,
+				C48225991B3E86E800B0AA7F /* Info.plist */,
+			);
+			path = List;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -135,10 +182,12 @@
 				C482255A1B3E86DD00B0AA7F /* Sources */,
 				C482255B1B3E86DD00B0AA7F /* Frameworks */,
 				C482255C1B3E86DD00B0AA7F /* Resources */,
+				C48225A01B3E86E800B0AA7F /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				C482259B1B3E86E800B0AA7F /* PBXTargetDependency */,
 			);
 			name = Adios;
 			productName = Adios;
@@ -181,6 +230,23 @@
 			productReference = C482257D1B3E86DD00B0AA7F /* AdiosUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		C48225921B3E86E800B0AA7F /* List */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C482259D1B3E86E800B0AA7F /* Build configuration list for PBXNativeTarget "List" */;
+			buildPhases = (
+				C482258F1B3E86E800B0AA7F /* Sources */,
+				C48225901B3E86E800B0AA7F /* Frameworks */,
+				C48225911B3E86E800B0AA7F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = List;
+			productName = List;
+			productReference = C48225931B3E86E800B0AA7F /* List.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -201,6 +267,9 @@
 						CreatedOnToolsVersion = 7.0;
 						TestTargetID = C482255D1B3E86DD00B0AA7F;
 					};
+					C48225921B3E86E800B0AA7F = {
+						CreatedOnToolsVersion = 7.0;
+					};
 				};
 			};
 			buildConfigurationList = C48225591B3E86DC00B0AA7F /* Build configuration list for PBXProject "Adios" */;
@@ -219,6 +288,7 @@
 				C482255D1B3E86DD00B0AA7F /* Adios */,
 				C48225711B3E86DD00B0AA7F /* AdiosTests */,
 				C482257C1B3E86DD00B0AA7F /* AdiosUITests */,
+				C48225921B3E86E800B0AA7F /* List */,
 			);
 		};
 /* End PBXProject section */
@@ -245,6 +315,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C48225911B3E86E800B0AA7F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C48225961B3E86E800B0AA7F /* blockerList.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -276,6 +354,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		C482258F1B3E86E800B0AA7F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C48225981B3E86E800B0AA7F /* ActionRequestHandler.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -288,6 +374,11 @@
 			isa = PBXTargetDependency;
 			target = C482255D1B3E86DD00B0AA7F /* Adios */;
 			targetProxy = C482257E1B3E86DD00B0AA7F /* PBXContainerItemProxy */;
+		};
+		C482259B1B3E86E800B0AA7F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C48225921B3E86E800B0AA7F /* List */;
+			targetProxy = C482259A1B3E86E800B0AA7F /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -398,6 +489,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = Adios/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = AG.Adios;
@@ -409,6 +501,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = Adios/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = AG.Adios;
@@ -464,6 +557,28 @@
 			};
 			name = Release;
 		};
+		C482259E1B3E86E800B0AA7F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = List/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = AG.Adios.List;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		C482259F1B3E86E800B0AA7F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = List/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = AG.Adios.List;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -497,6 +612,14 @@
 			buildConfigurations = (
 				C482258D1B3E86DD00B0AA7F /* Debug */,
 				C482258E1B3E86DD00B0AA7F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		C482259D1B3E86E800B0AA7F /* Build configuration list for PBXNativeTarget "List" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C482259E1B3E86E800B0AA7F /* Debug */,
+				C482259F1B3E86E800B0AA7F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 		};
