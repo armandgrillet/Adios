@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		C435899D1B4AF54B00855274 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C435899C1B4AF54B00855274 /* CloudKit.framework */; };
+		C43B88711B60272A0085A501 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C435899C1B4AF54B00855274 /* CloudKit.framework */; };
 		C48225621B3E86DD00B0AA7F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48225611B3E86DD00B0AA7F /* AppDelegate.swift */; };
 		C48225641B3E86DD00B0AA7F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48225631B3E86DD00B0AA7F /* ViewController.swift */; };
 		C48225671B3E86DD00B0AA7F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C48225651B3E86DD00B0AA7F /* Main.storyboard */; };
@@ -61,6 +62,7 @@
 /* Begin PBXFileReference section */
 		C435899B1B4AF54800855274 /* List.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = List.entitlements; sourceTree = "<group>"; };
 		C435899C1B4AF54B00855274 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
+		C43B88701B6026C50085A501 /* Adios.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Adios.entitlements; sourceTree = "<group>"; };
 		C482255E1B3E86DD00B0AA7F /* Adios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Adios.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C48225611B3E86DD00B0AA7F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C48225631B3E86DD00B0AA7F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -85,6 +87,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C43B88711B60272A0085A501 /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -113,15 +116,41 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		C48225551B3E86DC00B0AA7F = {
+		C43B886F1B6026720085A501 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				C435899C1B4AF54B00855274 /* CloudKit.framework */,
-				C48225601B3E86DD00B0AA7F /* Adios */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C43B88721B6029E20085A501 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				C43B88701B6026C50085A501 /* Adios.entitlements */,
+				C482256D1B3E86DD00B0AA7F /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		C43B88731B602A040085A501 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				C435899B1B4AF54800855274 /* List.entitlements */,
+				C48225991B3E86E800B0AA7F /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		C48225551B3E86DC00B0AA7F = {
+			isa = PBXGroup;
+			children = (
+				C48225601B3E86DD00B0AA7F /* App */,
+				C48225941B3E86E800B0AA7F /* List */,
 				C48225751B3E86DD00B0AA7F /* AdiosTests */,
 				C48225801B3E86DD00B0AA7F /* AdiosUITests */,
-				C48225941B3E86E800B0AA7F /* List */,
 				C482255F1B3E86DD00B0AA7F /* Products */,
+				C43B886F1B6026720085A501 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -136,7 +165,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		C48225601B3E86DD00B0AA7F /* Adios */ = {
+		C48225601B3E86DD00B0AA7F /* App */ = {
 			isa = PBXGroup;
 			children = (
 				C48225611B3E86DD00B0AA7F /* AppDelegate.swift */,
@@ -144,8 +173,9 @@
 				C48225651B3E86DD00B0AA7F /* Main.storyboard */,
 				C48225681B3E86DD00B0AA7F /* Assets.xcassets */,
 				C482256A1B3E86DD00B0AA7F /* LaunchScreen.storyboard */,
-				C482256D1B3E86DD00B0AA7F /* Info.plist */,
+				C43B88721B6029E20085A501 /* Supporting Files */,
 			);
+			name = App;
 			path = Adios;
 			sourceTree = "<group>";
 		};
@@ -170,10 +200,9 @@
 		C48225941B3E86E800B0AA7F /* List */ = {
 			isa = PBXGroup;
 			children = (
-				C435899B1B4AF54800855274 /* List.entitlements */,
 				C48225951B3E86E800B0AA7F /* blockerList.json */,
 				C48225971B3E86E800B0AA7F /* ActionRequestHandler.swift */,
-				C48225991B3E86E800B0AA7F /* Info.plist */,
+				C43B88731B602A040085A501 /* Supporting Files */,
 			);
 			path = List;
 			sourceTree = "<group>";
@@ -264,6 +293,15 @@
 				TargetAttributes = {
 					C482255D1B3E86DD00B0AA7F = {
 						CreatedOnToolsVersion = 7.0;
+						DevelopmentTeam = BL4CLL95SL;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+							com.apple.iCloud = {
+								enabled = 1;
+							};
+						};
 					};
 					C48225711B3E86DD00B0AA7F = {
 						CreatedOnToolsVersion = 7.0;
@@ -501,11 +539,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Adios/Adios.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = Adios/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = AG.Adios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -513,11 +555,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Adios/Adios.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = Adios/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = AG.Adios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
