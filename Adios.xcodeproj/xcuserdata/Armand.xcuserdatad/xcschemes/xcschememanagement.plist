@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>Action.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>2</integer>
+		</dict>
 		<key>Adios.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -33,6 +38,11 @@
 			<true/>
 		</dict>
 		<key>C48225921B3E86E800B0AA7F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C4F072401B63E90D00B0D794</key>
 		<dict>
 			<key>primary</key>
 			<true/>
