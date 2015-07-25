@@ -22,6 +22,10 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    @IBAction func sendMessageToList(sender: UIButton) {
+        // I need to send a dictionnary
+    }
+    
     @IBAction func reloadBlockerList(sender: UIButton) {
         SFContentBlockerManager.reloadContentBlockerWithIdentifier("AG.Adios.List") { (error: NSError?) -> Void in
             print(error)
