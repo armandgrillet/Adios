@@ -8,10 +8,14 @@
 
 import UIKit
 import MobileCoreServices
+import MMWormhole
 
 class ActionRequestHandler: NSObject, NSExtensionRequestHandling {
 
     func beginRequestWithExtensionContext(context: NSExtensionContext) {
+        let wormhole = MMWormhole(applicationGroupIdentifier: "group.AG.Adios.List", optionalDirectory: "wormhole")
+        wormhole.passMessageObject("titleString", identifier: "messageIdentifier")
+        
         // Standard case, it works.
         let attachment = NSItemProvider(contentsOfURL: NSBundle.mainBundle().URLForResource("blockerList", withExtension: "json"))!
     

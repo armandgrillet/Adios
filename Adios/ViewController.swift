@@ -14,7 +14,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.reloadBlockerList(UIButton())
-        // Do any additional setup after loading the view, typically from a nib.
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("updateInValues"), name: NSUserDefaultsDidChangeNotification, object: nil)
     }
 
     override func didReceiveMemoryWarning() {
@@ -23,13 +23,18 @@ class ViewController: UIViewController {
     }
 
     @IBAction func sendMessageToList(sender: UIButton) {
-        // I need to send a dictionnary
     }
     
     @IBAction func reloadBlockerList(sender: UIButton) {
         SFContentBlockerManager.reloadContentBlockerWithIdentifier("AG.Adios.List") { (error: NSError?) -> Void in
             print(error)
         }
+    }
+    
+    func updateInValues() {
+        let userDefaults = NSUserDefaults(suiteName: "group.AG.Adios.List")!
+        let value: AnyObject! = userDefaults.objectForKey("value")
+        print(value)
     }
 }
 
