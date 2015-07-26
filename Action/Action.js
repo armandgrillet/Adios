@@ -21,6 +21,7 @@ Action.prototype = {
     },
     
     finalize: function(arguments) {
+        alert("yo")
         // This method is run after the native code completes.
         
         // We'll see if the native code has passed us a new background style,
