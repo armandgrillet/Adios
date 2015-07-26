@@ -1,8 +1,8 @@
 //
 //  Action.js
-//  FUCKYOUBITCH
+//  Action
 //
-//  Created by Armand Grillet on 26/07/2015.
+//  Created by Armand Grillet on 25/07/2015.
 //  Copyright © 2015 Armand Grillet. All rights reserved.
 //
 

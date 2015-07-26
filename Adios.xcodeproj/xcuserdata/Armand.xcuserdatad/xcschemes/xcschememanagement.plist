@@ -14,11 +14,6 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
-		<key>FUCKYOUBITCH.xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>10</integer>
-		</dict>
 		<key>List.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -27,11 +22,6 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>C41778E01B6527C20083202A</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>C482255D1B3E86DD00B0AA7F</key>
 		<dict>
 			<key>primary</key>
