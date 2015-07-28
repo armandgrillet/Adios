@@ -55,11 +55,37 @@ class ActionRequestHandler: NSObject, NSExtensionRequestHandling {
         // dictionary to send back with a desired new background color style.
         let url: AnyObject? = javaScriptPreprocessingResults["url"]
         if url == nil ||  url! as! String == "" {
-            // No specific url.
-        } else {
-            print(url)
-            // Specific background color is set? Request replacing it with green.
-            self.doneWithResults(["url": url!])
+                // No specific url.
+        } else if let userDefaults = NSUserDefaults(suiteName: "group.AG.Adios.List") {
+            if let ignoredList = userDefaults.arrayForKey("ignore") as! [String]? {
+                if ignoredList.isEmpty { // The ignored list is empty.
+                    userDefaults.setObject([url!], forKey: "ignore")
+                    userDefaults.synchronize()
+                    self.doneWithResults(["alert": "Rule added to the empty array"])
+                } else { // The ignored list exists
+                    var mutableIgnoredList = ignoredList as [String]
+                    // Let's check if the url is already here
+                    if ignoredList.contains(url! as! String) {
+                        if let indexOfUrl = ignoredList.indexOf(url! as! String) {
+                            mutableIgnoredList.removeAtIndex(indexOfUrl)
+                            userDefaults.setObject(mutableIgnoredList, forKey: "ignore")
+                            userDefaults.synchronize()
+                            self.doneWithResults(["alert": "Rule removed"])
+                        }
+                    } else { // User is adding the url
+                        mutableIgnoredList.append(url! as! String)
+                        userDefaults.setObject(mutableIgnoredList, forKey: "ignore")
+                        userDefaults.synchronize()
+                        self.doneWithResults(["alert": "Rule added"])
+                    }
+                }
+            } else { // The ignored list doesn't exist yet.
+                userDefaults.setObject([url!], forKey: "ignore")
+                userDefaults.synchronize()
+                self.doneWithResults(["alert": "Rule added and array created"])
+            }
+        } else { // Something went wrong
+            self.doneWithResults(["alert": "Something wrong happened"])
         }
     }
     
