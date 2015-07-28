@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C408AF311B66C42E00E246A9 /* ActionRequestHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C408AF301B66C42E00E246A9 /* ActionRequestHandler.swift */; };
+		C408AF331B66C42E00E246A9 /* Action.js in Resources */ = {isa = PBXBuildFile; fileRef = C408AF321B66C42E00E246A9 /* Action.js */; };
+		C408AF371B66C42E00E246A9 /* Action.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = C408AF2E1B66C42E00E246A9 /* Action.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		C435899D1B4AF54B00855274 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C435899C1B4AF54B00855274 /* CloudKit.framework */; };
 		C43B88711B60272A0085A501 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C435899C1B4AF54B00855274 /* CloudKit.framework */; };
 		C48225621B3E86DD00B0AA7F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48225611B3E86DD00B0AA7F /* AppDelegate.swift */; };
@@ -22,6 +25,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		C408AF351B66C42E00E246A9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C48225561B3E86DC00B0AA7F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C408AF2D1B66C42E00E246A9;
+			remoteInfo = Action;
+		};
 		C48225731B3E86DD00B0AA7F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = C48225561B3E86DC00B0AA7F /* Project object */;
@@ -52,6 +62,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
+				C408AF371B66C42E00E246A9 /* Action.appex in Embed App Extensions */,
 				C482259C1B3E86E800B0AA7F /* List.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
@@ -60,9 +71,14 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		C408AF2E1B66C42E00E246A9 /* Action.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = Action.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		C408AF301B66C42E00E246A9 /* ActionRequestHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionRequestHandler.swift; sourceTree = "<group>"; };
+		C408AF321B66C42E00E246A9 /* Action.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = Action.js; sourceTree = "<group>"; };
+		C408AF341B66C42E00E246A9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C435899B1B4AF54800855274 /* List.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = List.entitlements; sourceTree = "<group>"; };
 		C435899C1B4AF54B00855274 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		C43B88701B6026C50085A501 /* Adios.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Adios.entitlements; sourceTree = "<group>"; };
+		C4724A9C1B66CFB800D0B847 /* Action.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Action.entitlements; sourceTree = "<group>"; };
 		C482255E1B3E86DD00B0AA7F /* Adios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Adios.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C48225611B3E86DD00B0AA7F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C48225631B3E86DD00B0AA7F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -83,6 +99,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		C408AF2B1B66C42E00E246A9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C482255B1B3E86DD00B0AA7F /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -116,6 +139,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C408AF2F1B66C42E00E246A9 /* Action */ = {
+			isa = PBXGroup;
+			children = (
+				C4724A9C1B66CFB800D0B847 /* Action.entitlements */,
+				C408AF301B66C42E00E246A9 /* ActionRequestHandler.swift */,
+				C408AF321B66C42E00E246A9 /* Action.js */,
+				C408AF341B66C42E00E246A9 /* Info.plist */,
+			);
+			path = Action;
+			sourceTree = "<group>";
+		};
 		C43B886F1B6026720085A501 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -149,6 +183,7 @@
 				C48225941B3E86E800B0AA7F /* List */,
 				C48225751B3E86DD00B0AA7F /* AdiosTests */,
 				C48225801B3E86DD00B0AA7F /* AdiosUITests */,
+				C408AF2F1B66C42E00E246A9 /* Action */,
 				C482255F1B3E86DD00B0AA7F /* Products */,
 				C43B886F1B6026720085A501 /* Frameworks */,
 			);
@@ -161,6 +196,7 @@
 				C48225721B3E86DD00B0AA7F /* AdiosTests.xctest */,
 				C482257D1B3E86DD00B0AA7F /* AdiosUITests.xctest */,
 				C48225931B3E86E800B0AA7F /* List.appex */,
+				C408AF2E1B66C42E00E246A9 /* Action.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -210,6 +246,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		C408AF2D1B66C42E00E246A9 /* Action */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C408AF3A1B66C42E00E246A9 /* Build configuration list for PBXNativeTarget "Action" */;
+			buildPhases = (
+				C408AF2A1B66C42E00E246A9 /* Sources */,
+				C408AF2B1B66C42E00E246A9 /* Frameworks */,
+				C408AF2C1B66C42E00E246A9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Action;
+			productName = Action;
+			productReference = C408AF2E1B66C42E00E246A9 /* Action.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		C482255D1B3E86DD00B0AA7F /* Adios */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = C48225861B3E86DD00B0AA7F /* Build configuration list for PBXNativeTarget "Adios" */;
@@ -223,6 +276,7 @@
 			);
 			dependencies = (
 				C482259B1B3E86E800B0AA7F /* PBXTargetDependency */,
+				C408AF361B66C42E00E246A9 /* PBXTargetDependency */,
 			);
 			name = Adios;
 			productName = Adios;
@@ -291,6 +345,15 @@
 				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "Armand Grillet";
 				TargetAttributes = {
+					C408AF2D1B66C42E00E246A9 = {
+						CreatedOnToolsVersion = 7.0;
+						DevelopmentTeam = BL4CLL95SL;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
+					};
 					C482255D1B3E86DD00B0AA7F = {
 						CreatedOnToolsVersion = 7.0;
 						DevelopmentTeam = BL4CLL95SL;
@@ -339,11 +402,20 @@
 				C48225711B3E86DD00B0AA7F /* AdiosTests */,
 				C482257C1B3E86DD00B0AA7F /* AdiosUITests */,
 				C48225921B3E86E800B0AA7F /* List */,
+				C408AF2D1B66C42E00E246A9 /* Action */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		C408AF2C1B66C42E00E246A9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C408AF331B66C42E00E246A9 /* Action.js in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C482255C1B3E86DD00B0AA7F /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -379,6 +451,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		C408AF2A1B66C42E00E246A9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C408AF311B66C42E00E246A9 /* ActionRequestHandler.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C482255A1B3E86DD00B0AA7F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -415,6 +495,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		C408AF361B66C42E00E246A9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C408AF2D1B66C42E00E246A9 /* Action */;
+			targetProxy = C408AF351B66C42E00E246A9 /* PBXContainerItemProxy */;
+		};
 		C48225741B3E86DD00B0AA7F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = C482255D1B3E86DD00B0AA7F /* Adios */;
@@ -452,6 +537,34 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		C408AF381B66C42E00E246A9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = Action/Action.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = Action/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = AG.Adios.Action;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		C408AF391B66C42E00E246A9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = Action/Action.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = Action/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = AG.Adios.Action;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
 		C48225841B3E86DD00B0AA7F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -642,6 +755,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		C408AF3A1B66C42E00E246A9 /* Build configuration list for PBXNativeTarget "Action" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C408AF381B66C42E00E246A9 /* Debug */,
+				C408AF391B66C42E00E246A9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		C48225591B3E86DC00B0AA7F /* Build configuration list for PBXProject "Adios" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

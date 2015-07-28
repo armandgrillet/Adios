@@ -15,6 +15,8 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         self.reloadBlockerList(UIButton())
         // Do any additional setup after loading the view, typically from a nib.
+        let defaults = NSUserDefaults(suiteName: "group.AG.Adios.List")
+        
     }
 
     override func didReceiveMemoryWarning() {
