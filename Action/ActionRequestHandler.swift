@@ -8,6 +8,8 @@
 
 import UIKit
 import MobileCoreServices
+import MMWormhole
+import SafariServices
 
 class ActionRequestHandler: NSObject, NSExtensionRequestHandling {
 
@@ -90,30 +92,33 @@ class ActionRequestHandler: NSObject, NSExtensionRequestHandling {
     }
     
     func doneWithResults(resultsForJavaScriptFinalizeArg: [NSObject: AnyObject]?) {
-        if let resultsForJavaScriptFinalize = resultsForJavaScriptFinalizeArg {
-            // Construct an NSExtensionItem of the appropriate type to return our
-            // results dictionary in.
+        SFContentBlockerManager.reloadContentBlockerWithIdentifier("AG.Adios.List") { (error: NSError?) -> Void in
+            print(error)
+            if let resultsForJavaScriptFinalize = resultsForJavaScriptFinalizeArg {
+                // Construct an NSExtensionItem of the appropriate type to return our
+                // results dictionary in.
+                
+                // These will be used as the arguments to the JavaScript finalize()
+                // method.
+                
+                let resultsDictionary = [NSExtensionJavaScriptFinalizeArgumentKey: resultsForJavaScriptFinalize]
+                
+                let resultsProvider = NSItemProvider(item: resultsDictionary, typeIdentifier: String(kUTTypePropertyList))
+                
+                let resultsItem = NSExtensionItem()
+                resultsItem.attachments = [resultsProvider]
+                
+                // Signal that we're complete, returning our results.
+                self.extensionContext!.completeRequestReturningItems([resultsItem], completionHandler: nil)
+            } else {
+                // We still need to signal that we're done even if we have nothing to
+                // pass back.
+                self.extensionContext!.completeRequestReturningItems([], completionHandler: nil)
+            }
             
-            // These will be used as the arguments to the JavaScript finalize()
-            // method.
-            
-            let resultsDictionary = [NSExtensionJavaScriptFinalizeArgumentKey: resultsForJavaScriptFinalize]
-            
-            let resultsProvider = NSItemProvider(item: resultsDictionary, typeIdentifier: String(kUTTypePropertyList))
-            
-            let resultsItem = NSExtensionItem()
-            resultsItem.attachments = [resultsProvider]
-            
-            // Signal that we're complete, returning our results.
-            self.extensionContext!.completeRequestReturningItems([resultsItem], completionHandler: nil)
-        } else {
-            // We still need to signal that we're done even if we have nothing to
-            // pass back.
-            self.extensionContext!.completeRequestReturningItems([], completionHandler: nil)
+            // Don't hold on to this after we finished with it.
+            self.extensionContext = nil
         }
-        
-        // Don't hold on to this after we finished with it.
-        self.extensionContext = nil
     }
 
 }

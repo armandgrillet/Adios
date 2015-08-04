@@ -8,32 +8,24 @@
 
 import UIKit
 import SafariServices
-import Foundation
+import MMWormhole
 
 class ViewController: UIViewController {
-    let defaults = NSUserDefaults(suiteName: "group.AG.Adios.List")!
+    
+    let wormhole = MMWormhole(applicationGroupIdentifier: "group.AG.Adios.List", optionalDirectory: "wormhole")
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view, typically from a nib.
-        
-        print("Hey")
-        
-        defaults.addObserver(self, forKeyPath: "ignore", options: NSKeyValueObservingOptions.New, context: nil)
+        wormhole.listenForMessageWithIdentifier("ignore", listener: { (messageObject) -> Void in
+            if let message: AnyObject = messageObject {
+                print(message)
+            }
+        })
         
         self.reloadBlockerList(UIButton())
     }
-    
-    deinit {
-        print("Deinit")
-        defaults.removeObserver(self, forKeyPath: "ignore")
-    }
-    
-    internal override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
-        print("yo")
-    }
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -43,11 +35,7 @@ class ViewController: UIViewController {
         SFContentBlockerManager.reloadContentBlockerWithIdentifier("AG.Adios.List") { (error: NSError?) -> Void in
             print(error)
         }
-        
-        if let ignoredList = defaults.arrayForKey("ignore") as! [String]? {
-            defaults.setObject(ignoredList, forKey: "ignore")
-            defaults.synchronize()
-        }
+         wormhole.passMessageObject("yo", identifier: "ignore")
     }
 }
 
