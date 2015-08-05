@@ -22,7 +22,7 @@ class ViewController: UIViewController {
         
         defaults.addObserver(self, forKeyPath: "ignore", options: NSKeyValueObservingOptions.New, context: nil)
         
-        self.reloadBlockerList(UIButton())
+        // self.reloadBlockerList(UIButton())
     }
     
     deinit {
