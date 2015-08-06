@@ -13,41 +13,28 @@ import Foundation
 class ViewController: UIViewController {
     let defaults = NSUserDefaults(suiteName: "group.AG.Adios.List")!
     
+    @IBOutlet weak var wheel: UIActivityIndicatorView!
+    @IBOutlet weak var loader: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Do any additional setup after loading the view, typically from a nib.
-        
-        print("Hey")
-        
-        defaults.addObserver(self, forKeyPath: "ignore", options: NSKeyValueObservingOptions.New, context: nil)
-        
-        // self.reloadBlockerList(UIButton())
-    }
-    
-    deinit {
-        print("Deinit")
-        defaults.removeObserver(self, forKeyPath: "ignore")
-    }
-    
-    internal override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
-        print("yo")
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
     @IBAction func reloadBlockerList(sender: UIButton) {
-        SFContentBlockerManager.reloadContentBlockerWithIdentifier("AG.Adios.List") { (error: NSError?) -> Void in
-            print(error)
-        }
-        
-        if let ignoredList = defaults.arrayForKey("ignore") as! [String]? {
-            defaults.setObject(ignoredList, forKey: "ignore")
-            defaults.synchronize()
-        }
+            SFContentBlockerManager.reloadContentBlockerWithIdentifier("AG.Adios.List") { (error: NSError?) -> Void in
+                let realError = error.debugDescription
+                dispatch_async(dispatch_get_main_queue(), {
+                    let alert = UIAlertController(title: "Done", message: realError, preferredStyle: UIAlertControllerStyle.Alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+                    self.presentViewController(alert, animated: true, completion: nil)
+
+                    })
+            }
     }
 }
 
