@@ -8,12 +8,13 @@
 
 import UIKit
 import MobileCoreServices
-import Foundation
 
 class ActionRequestHandler: NSObject, NSExtensionRequestHandling {
 
     func beginRequestWithExtensionContext(context: NSExtensionContext) {
+        // We cannot have multiple attachments nor multiple items, iOS will only read the first one.
         let attachment = NSItemProvider(contentsOfURL: NSBundle.mainBundle().URLForResource("blockerList", withExtension: "json"))!
+    
         let item = NSExtensionItem()
         item.attachments = [attachment]
         

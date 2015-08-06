@@ -1,14 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8164.2" systemVersion="15A243d" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8121.20" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8135.1"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8101.16"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <mutableArray key="HelveticaNeue.ttc">
-            <string>HelveticaNeue</string>
-        </mutableArray>
-    </customFonts>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -23,56 +17,22 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Laq-Dw-1kj">
-                                <rect key="frame" x="229" y="537" width="143" height="43"/>
-                                <animations/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="143" id="8WT-Ff-qCT"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="26"/>
-                                <state key="normal" title="Load Adios">
-                                    <color key="titleColor" red="1" green="0.092578096040000002" blue="0.1144802766" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
+                                <rect key="frame" x="277" y="285" width="47" height="30"/>
+                                <state key="normal" title="Reload"/>
                                 <connections>
                                     <action selector="reloadBlockerList:" destination="BYZ-38-t0r" eventType="touchUpInside" id="DJX-tC-Z1D"/>
                                 </connections>
                             </button>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="You need to activate Adios in Settings/Safari/Content Blocker before touching the button at the bottom of the app!" translatesAutoresizingMaskIntoConstraints="NO" id="mDC-kx-Jm9">
-                                <rect key="frame" x="20" y="28" width="560" height="128"/>
-                                <animations/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="128" id="zAT-bb-OUA"/>
-                                </constraints>
-                                <color key="textColor" red="1" green="0.092578096040000002" blue="0.1144802766" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
                         </subviews>
-                        <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="mDC-kx-Jm9" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="104" id="GXG-AO-EQu"/>
-                            <constraint firstItem="mDC-kx-Jm9" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" symbolic="YES" id="KiE-dS-94Y"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="mDC-kx-Jm9" secondAttribute="trailing" id="U0S-rc-O6L"/>
-                            <constraint firstItem="mDC-kx-Jm9" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="c6u-72-ZYg"/>
-                            <constraint firstAttribute="leadingMargin" secondItem="mDC-kx-Jm9" secondAttribute="leading" id="e49-yF-WJX"/>
-                            <constraint firstItem="Laq-Dw-1kj" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="qRk-0n-Gzt"/>
-                            <constraint firstAttribute="bottom" secondItem="Laq-Dw-1kj" secondAttribute="bottom" constant="20" symbolic="YES" id="y3s-oa-kkY"/>
+                            <constraint firstItem="Laq-Dw-1kj" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="i4X-oY-aUo"/>
+                            <constraint firstItem="Laq-Dw-1kj" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="jby-pU-snS"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="GXG-AO-EQu"/>
-                                <exclude reference="c6u-72-ZYg"/>
-                            </mask>
-                        </variation>
                     </view>
-                    <connections>
-                        <outlet property="loader" destination="Laq-Dw-1kj" id="Hju-DT-l9n"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="455" y="282"/>
         </scene>
     </scenes>
 </document>
