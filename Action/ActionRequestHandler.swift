@@ -47,7 +47,7 @@ class ActionRequestHandler: NSObject, NSExtensionRequestHandling {
         if let url = javaScriptPreprocessingResults["url"] as! String? {
             if url != "" {
                 if let userDefaults = NSUserDefaults(suiteName: "group.AG.Adios") {
-                    if let ignoredList = userDefaults.arrayForKey("ignore") as! [String]? {
+                    if let ignoredList = userDefaults.arrayForKey("whitelist") as! [String]? {
                         if ignoredList.isEmpty { // The ignored list is empty.
                             userDefaults.setObject([url], forKey: "ignore")
                             userDefaults.synchronize()
