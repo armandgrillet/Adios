@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C413E0D51B7BD12500287E27 /* IgnoringRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = C413E0D41B7BD12500287E27 /* IgnoringRule.swift */; };
+		C48B7E811B7A5AD200D58BDA /* Rule.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48B7E801B7A5AD200D58BDA /* Rule.swift */; };
 		C4E2060C1B773F6B00C280DF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E2060B1B773F6B00C280DF /* AppDelegate.swift */; };
 		C4E2060E1B773F6B00C280DF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E2060D1B773F6B00C280DF /* ViewController.swift */; };
 		C4E206111B773F6B00C280DF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C4E2060F1B773F6B00C280DF /* Main.storyboard */; };
@@ -70,6 +72,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		C413E0D41B7BD12500287E27 /* IgnoringRule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IgnoringRule.swift; sourceTree = "<group>"; };
+		C48B7E801B7A5AD200D58BDA /* Rule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Rule.swift; sourceTree = "<group>"; };
 		C4E206081B773F6B00C280DF /* Adios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Adios.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4E2060B1B773F6B00C280DF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C4E2060D1B773F6B00C280DF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -201,6 +205,8 @@
 				C4E206421B77402B00C280DF /* blockerList.json */,
 				C4E206441B77402B00C280DF /* ActionRequestHandler.swift */,
 				C4E206461B77402B00C280DF /* Info.plist */,
+				C48B7E801B7A5AD200D58BDA /* Rule.swift */,
+				C413E0D41B7BD12500287E27 /* IgnoringRule.swift */,
 			);
 			path = ContentBlocker;
 			sourceTree = "<group>";
@@ -453,7 +459,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C413E0D51B7BD12500287E27 /* IgnoringRule.swift in Sources */,
 				C4E206451B77402B00C280DF /* ActionRequestHandler.swift in Sources */,
+				C48B7E811B7A5AD200D58BDA /* Rule.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -752,6 +760,7 @@
 				C4E206321B773F6C00C280DF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		C4E206331B773F6C00C280DF /* Build configuration list for PBXNativeTarget "AdiosTests" */ = {
 			isa = XCConfigurationList;
@@ -760,6 +769,7 @@
 				C4E206351B773F6C00C280DF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		C4E206361B773F6C00C280DF /* Build configuration list for PBXNativeTarget "AdiosUITests" */ = {
 			isa = XCConfigurationList;
@@ -768,6 +778,7 @@
 				C4E206381B773F6C00C280DF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		C4E2064A1B77402B00C280DF /* Build configuration list for PBXNativeTarget "ContentBlocker" */ = {
 			isa = XCConfigurationList;
@@ -776,6 +787,7 @@
 				C4E2064C1B77402B00C280DF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		C4E2065C1B77404300C280DF /* Build configuration list for PBXNativeTarget "Action" */ = {
 			isa = XCConfigurationList;
@@ -784,6 +796,7 @@
 				C4E2065E1B77404300C280DF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

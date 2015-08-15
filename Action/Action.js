@@ -16,7 +16,7 @@ Action.prototype = {
     
     finalize: function(arguments) {
         alert(arguments["alert"]);
-        document.location.reload(true);
+        document.location.reload();
     }
     
 };

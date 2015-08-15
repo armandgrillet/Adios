@@ -47,9 +47,9 @@ class ActionRequestHandler: NSObject, NSExtensionRequestHandling {
         if let url = javaScriptPreprocessingResults["url"] as! String? {
             if url != "" {
                 if let userDefaults = NSUserDefaults(suiteName: "group.AG.Adios") {
-                    if let ignoredList = userDefaults.arrayForKey("ignore") as! [String]? {
+                    if let ignoredList = userDefaults.arrayForKey("whitelist") as! [String]? {
                         if ignoredList.isEmpty { // The ignored list is empty.
-                            userDefaults.setObject([url], forKey: "ignore")
+                            userDefaults.setObject([url], forKey: "whitelist")
                             userDefaults.synchronize()
                             self.doneWithResults(["alert": "\(url) has been added to the whitelist"])
                         } else { // The ignored list exists
@@ -58,19 +58,19 @@ class ActionRequestHandler: NSObject, NSExtensionRequestHandling {
                             if ignoredList.contains(url) {
                                 if let indexOfUrl = ignoredList.indexOf(url) {
                                     mutableIgnoredList.removeAtIndex(indexOfUrl)
-                                    userDefaults.setObject(mutableIgnoredList, forKey: "ignore")
+                                    userDefaults.setObject(mutableIgnoredList, forKey: "whitelist")
                                     userDefaults.synchronize()
                                     self.doneWithResults(["alert": "\(url) removed from the whitelist"])
                                 }
                             } else { // User is adding the url
                                 mutableIgnoredList.append(url)
-                                userDefaults.setObject(mutableIgnoredList, forKey: "ignore")
+                                userDefaults.setObject(mutableIgnoredList, forKey: "whitelist")
                                 userDefaults.synchronize()
                                 self.doneWithResults(["alert": "\(url) added in the whitelist"])
                             }
                         }
                     } else { // The ignored list doesn't exist yet.
-                        userDefaults.setObject([url], forKey: "ignore")
+                        userDefaults.setObject([url], forKey: "whitelist")
                         userDefaults.synchronize()
                         self.doneWithResults(["alert": "\(url) added and whitelist created"])
                     }
