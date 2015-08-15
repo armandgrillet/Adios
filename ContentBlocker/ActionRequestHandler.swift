@@ -21,12 +21,7 @@ class ActionRequestHandler: NSObject, NSExtensionRequestHandling {
             testRule.actionType = "css-display-none"
             testRule.actionSelector = ".testContentBlocker"
             rules += testRule.toString()
-            
-            let testRuleTwo = Rule()
-            testRuleTwo.triggerUrl = "armandfd.gr"
-            testRuleTwo.actionType = "css-display-none"
-            testRuleTwo.actionSelector = ".testContentaBlocker"
-            rules += testRuleTwo.toString()
+            rules += testRule.toString()
             
             // We check which lists the user is following and load them by action types.
             if let followedLists = userDefaults.arrayForKey("followedLists") as! [String]? {
@@ -69,14 +64,13 @@ class ActionRequestHandler: NSObject, NSExtensionRequestHandling {
             
             // Removing the last coma
             if rules.characters.last! == "," {
-                rules.substringToIndex(rules.endIndex.predecessor())
+                rules = rules.substringToIndex(rules.endIndex.predecessor())
             }
             
             rules += "]" // Closing the table to have a good structure
-
+            
             userDefaults.setObject(rules, forKey: "debugRules")
             userDefaults.synchronize()
-            
             
             // Creation the JSON file
             let blockerListPath = NSTemporaryDirectory().stringByAppendingString("blockerList.json")

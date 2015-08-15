@@ -21,25 +21,25 @@ class Rule {
     
     func toString() -> String {
         var stringRule = "{ \"trigger\": { \"url-filter\": \"\(triggerUrl)\""
-        if triggerUrlFilterIsCaseSensitive != nil {
-            stringRule += ",\"url-filter-is-case-sensitive\": \"\(triggerUrlFilterIsCaseSensitive)\""
+        if let displayedTriggerUrlFilterIsCaseSensitive = triggerUrlFilterIsCaseSensitive {
+            stringRule += ",\"url-filter-is-case-sensitive\": \"\(displayedTriggerUrlFilterIsCaseSensitive)\""
         }
-        if triggerResourceType != nil {
-            stringRule += ",\"resource-type\": \(triggerResourceType)"
+        if let displayedTriggerResourceType = triggerResourceType {
+            stringRule += ",\"resource-type\": \(displayedTriggerResourceType)"
         }
-        if triggerLoadType != nil {
-            stringRule += ",\"load-type\": \(triggerLoadType)"
+        if let displayedTriggerLoadType = triggerLoadType {
+            stringRule += ",\"load-type\": \(displayedTriggerLoadType)"
         }
-        if triggerIfDomain != nil {
-            stringRule += ",\"if-domain\": \(triggerIfDomain)"
-        } else if triggerUnlessDomain != nil {
-            stringRule += ",\"unless-domain\": \(triggerUnlessDomain)"
+        if let displayedTriggerIfDomain = triggerIfDomain {
+            stringRule += ",\"if-domain\": \(displayedTriggerIfDomain)"
+        } else if let displayedTriggerUnlessDomain = triggerUnlessDomain {
+            stringRule += ",\"unless-domain\": \(displayedTriggerUnlessDomain)"
         }
         
-        stringRule += "}, { \"action\": {\"type\": \"\(actionType)\""
+        stringRule += "}, \"action\": {\"type\": \"\(actionType)\""
             
-        if actionSelector != nil {
-           stringRule += ",\"selector\": \(actionSelector)"
+        if let displayedActionSelector = actionSelector {
+           stringRule += ",\"selector\": \"\(displayedActionSelector)\""
         }
         
         return stringRule + "}},"
