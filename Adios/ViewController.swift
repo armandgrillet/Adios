@@ -22,7 +22,7 @@ class ViewController: UIViewController {
     }
 
     @IBAction func update(sender: UIButton) {
-        SFContentBlockerManager.reloadContentBlockerWithIdentifier("AG.Adios.List") { (error: NSError?) -> Void in
+        SFContentBlockerManager.reloadContentBlockerWithIdentifier("AG.Adios.ContentBlocker") { (error: NSError?) -> Void in
             print(error)
         }
     }
