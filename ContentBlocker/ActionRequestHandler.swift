@@ -23,11 +23,6 @@ class ActionRequestHandler: NSObject, NSExtensionRequestHandling {
             
             // We check which lists the user is following and load them by action types.
             if let followedLists = userDefaults.arrayForKey("followedLists") as! [String]? {
-                if let list = userDefaults.arrayForKey("EasyPrivacyBlock") as! [Rule]? {
-                    for rule in list {
-                        rules += rule.toString()
-                    }
-                }
                 for followedList in followedLists {
                     if let list = userDefaults.arrayForKey("\(followedList)Block") as! [Rule]? {
                         for rule in list {
@@ -36,11 +31,6 @@ class ActionRequestHandler: NSObject, NSExtensionRequestHandling {
                     }
                 }
                 
-                if let list = userDefaults.arrayForKey("EasyPrivacyBlockCookies") as! [Rule]? {
-                    for rule in list {
-                        rules += rule.toString()
-                    }
-                }
                 for followedList in followedLists {
                     if let list = userDefaults.arrayForKey("\(followedList)BlockCookies") as! [Rule]? {
                         for rule in list {
@@ -49,11 +39,6 @@ class ActionRequestHandler: NSObject, NSExtensionRequestHandling {
                     }
                 }
                 
-                if let list = userDefaults.arrayForKey("EasyPrivacyCSSDisplayNone") as! [Rule]? {
-                    for rule in list {
-                        rules += rule.toString()
-                    }
-                }
                 for followedList in followedLists {
                     if let list = userDefaults.arrayForKey("\(followedList)CSSDisplayNone") as! [Rule]? {
                         for rule in list {

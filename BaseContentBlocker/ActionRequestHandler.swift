@@ -16,24 +16,26 @@ class ActionRequestHandler: NSObject, NSExtensionRequestHandling {
         if let userDefaults = NSUserDefaults(suiteName: "group.AG.Adios") {
             var rules = "[" // We're starting the array
             
-            if let list = userDefaults.arrayForKey("EasyListBlock") as! [Rule]? {
-                for rule in list {
-                    rules += rule.toString()
+            if userDefaults.boolForKey("IsEasyListChosen") {
+                if let list = userDefaults.arrayForKey("EasyListBlock") as! [Rule]? {
+                    for rule in list {
+                        rules += rule.toString()
+                    }
                 }
-            }
-            if let list = userDefaults.arrayForKey("EasyListBlockCookies") as! [Rule]? {
-                for rule in list {
-                    rules += rule.toString()
+                if let list = userDefaults.arrayForKey("EasyListBlockCookies") as! [Rule]? {
+                    for rule in list {
+                        rules += rule.toString()
+                    }
                 }
-            }
-            if let list = userDefaults.arrayForKey("EasyListCSSDisplayNone") as! [Rule]? {
-                for rule in list {
-                    rules += rule.toString()
+                if let list = userDefaults.arrayForKey("EasyListCSSDisplayNone") as! [Rule]? {
+                    for rule in list {
+                        rules += rule.toString()
+                    }
                 }
-            }
-            if let list = userDefaults.arrayForKey("EasyListIgnorePreviousRules") as! [Rule]? {
-                for rule in list {
-                    rules += rule.toString()
+                if let list = userDefaults.arrayForKey("EasyListIgnorePreviousRules") as! [Rule]? {
+                    for rule in list {
+                        rules += rule.toString()
+                    }
                 }
             }
             
