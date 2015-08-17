@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C404E4631B827219006BB98E /* blockerList.json in Resources */ = {isa = PBXBuildFile; fileRef = C404E4621B827219006BB98E /* blockerList.json */; };
+		C404E4651B827219006BB98E /* ActionRequestHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C404E4641B827219006BB98E /* ActionRequestHandler.swift */; };
+		C404E4691B827219006BB98E /* BaseContentBlocker.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = C404E4601B827219006BB98E /* BaseContentBlocker.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		C404E46E1B82723E006BB98E /* Rule.swift in Sources */ = {isa = PBXBuildFile; fileRef = C404E46D1B82723E006BB98E /* Rule.swift */; };
 		C413E0D51B7BD12500287E27 /* IgnoringRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = C413E0D41B7BD12500287E27 /* IgnoringRule.swift */; };
 		C4316F721B80E074004C047F /* AdiosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4316F711B80E074004C047F /* AdiosViewController.swift */; };
 		C4316F741B80E16D004C047F /* InformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4316F731B80E16D004C047F /* InformationViewController.swift */; };
@@ -32,6 +36,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		C404E4671B827219006BB98E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C4E206001B773F6B00C280DF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C404E45F1B827219006BB98E;
+			remoteInfo = BaseContentBlocker;
+		};
 		C4E2061D1B773F6B00C280DF /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = C4E206001B773F6B00C280DF /* Project object */;
@@ -71,6 +82,7 @@
 			files = (
 				C4E2065B1B77404200C280DF /* Action.appex in Embed App Extensions */,
 				C4E206491B77402B00C280DF /* ContentBlocker.appex in Embed App Extensions */,
+				C404E4691B827219006BB98E /* BaseContentBlocker.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -78,6 +90,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		C404E4601B827219006BB98E /* BaseContentBlocker.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = BaseContentBlocker.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		C404E4621B827219006BB98E /* blockerList.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = blockerList.json; sourceTree = "<group>"; };
+		C404E4641B827219006BB98E /* ActionRequestHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionRequestHandler.swift; sourceTree = "<group>"; };
+		C404E4661B827219006BB98E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C404E46D1B82723E006BB98E /* Rule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Rule.swift; sourceTree = "<group>"; };
 		C413E0D41B7BD12500287E27 /* IgnoringRule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IgnoringRule.swift; sourceTree = "<group>"; };
 		C4316F711B80E074004C047F /* AdiosViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdiosViewController.swift; sourceTree = "<group>"; };
 		C4316F731B80E16D004C047F /* InformationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InformationViewController.swift; sourceTree = "<group>"; };
@@ -114,6 +131,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		C404E45D1B827219006BB98E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C4E206051B773F6B00C280DF /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -153,11 +177,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C404E4611B827219006BB98E /* BaseContentBlocker */ = {
+			isa = PBXGroup;
+			children = (
+				C404E4621B827219006BB98E /* blockerList.json */,
+				C404E4641B827219006BB98E /* ActionRequestHandler.swift */,
+				C404E4661B827219006BB98E /* Info.plist */,
+				C404E46D1B82723E006BB98E /* Rule.swift */,
+			);
+			path = BaseContentBlocker;
+			sourceTree = "<group>";
+		};
 		C4E205FF1B773F6B00C280DF = {
 			isa = PBXGroup;
 			children = (
 				C4E2063A1B773F8600C280DF /* CloudKit.framework */,
 				C4E2060A1B773F6B00C280DF /* Adios */,
+				C404E4611B827219006BB98E /* BaseContentBlocker */,
 				C4E206411B77402B00C280DF /* ContentBlocker */,
 				C4E206531B77404200C280DF /* Action */,
 				C4E2061F1B773F6B00C280DF /* AdiosTests */,
@@ -174,6 +210,7 @@
 				C4E206271B773F6B00C280DF /* AdiosUITests.xctest */,
 				C4E206401B77402A00C280DF /* ContentBlocker.appex */,
 				C4E206521B77404200C280DF /* Action.appex */,
+				C404E4601B827219006BB98E /* BaseContentBlocker.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -243,6 +280,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		C404E45F1B827219006BB98E /* BaseContentBlocker */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C404E46C1B827219006BB98E /* Build configuration list for PBXNativeTarget "BaseContentBlocker" */;
+			buildPhases = (
+				C404E45C1B827219006BB98E /* Sources */,
+				C404E45D1B827219006BB98E /* Frameworks */,
+				C404E45E1B827219006BB98E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BaseContentBlocker;
+			productName = BaseContentBlocker;
+			productReference = C404E4601B827219006BB98E /* BaseContentBlocker.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		C4E206071B773F6B00C280DF /* Adios */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = C4E206301B773F6C00C280DF /* Build configuration list for PBXNativeTarget "Adios" */;
@@ -257,6 +311,7 @@
 			dependencies = (
 				C4E206481B77402B00C280DF /* PBXTargetDependency */,
 				C4E2065A1B77404200C280DF /* PBXTargetDependency */,
+				C404E4681B827219006BB98E /* PBXTargetDependency */,
 			);
 			name = Adios;
 			productName = Adios;
@@ -342,6 +397,10 @@
 				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "Armand Grillet";
 				TargetAttributes = {
+					C404E45F1B827219006BB98E = {
+						CreatedOnToolsVersion = 7.0;
+						DevelopmentTeam = BL4CLL95SL;
+					};
 					C4E206071B773F6B00C280DF = {
 						CreatedOnToolsVersion = 7.0;
 						DevelopmentTeam = BL4CLL95SL;
@@ -400,11 +459,20 @@
 				C4E206261B773F6B00C280DF /* AdiosUITests */,
 				C4E2063F1B77402A00C280DF /* ContentBlocker */,
 				C4E206511B77404200C280DF /* Action */,
+				C404E45F1B827219006BB98E /* BaseContentBlocker */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		C404E45E1B827219006BB98E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C404E4631B827219006BB98E /* blockerList.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C4E206061B773F6B00C280DF /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -448,6 +516,15 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		C404E45C1B827219006BB98E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C404E4651B827219006BB98E /* ActionRequestHandler.swift in Sources */,
+				C404E46E1B82723E006BB98E /* Rule.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C4E206041B773F6B00C280DF /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -500,6 +577,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		C404E4681B827219006BB98E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C404E45F1B827219006BB98E /* BaseContentBlocker */;
+			targetProxy = C404E4671B827219006BB98E /* PBXContainerItemProxy */;
+		};
 		C4E2061E1B773F6B00C280DF /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = C4E206071B773F6B00C280DF /* Adios */;
@@ -542,6 +624,32 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		C404E46A1B827219006BB98E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = BaseContentBlocker/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = AG.Adios.BaseContentBlocker;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		C404E46B1B827219006BB98E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = BaseContentBlocker/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = AG.Adios.BaseContentBlocker;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
 		C4E2062E1B773F6C00C280DF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -768,6 +876,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		C404E46C1B827219006BB98E /* Build configuration list for PBXNativeTarget "BaseContentBlocker" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C404E46A1B827219006BB98E /* Debug */,
+				C404E46B1B827219006BB98E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		C4E206031B773F6B00C280DF /* Build configuration list for PBXProject "Adios" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

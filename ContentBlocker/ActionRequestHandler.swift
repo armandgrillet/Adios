@@ -20,16 +20,25 @@ class ActionRequestHandler: NSObject, NSExtensionRequestHandling {
             testRule.triggerUrl = "armand.gr"
             testRule.actionType = "css-display-none"
             testRule.actionSelector = ".testContentBlocker"
-            rules += testRule.toString()
-            rules += testRule.toString()
             
             // We check which lists the user is following and load them by action types.
             if let followedLists = userDefaults.arrayForKey("followedLists") as! [String]? {
+                if let list = userDefaults.arrayForKey("EasyPrivacyBlock") as! [Rule]? {
+                    for rule in list {
+                        rules += rule.toString()
+                    }
+                }
                 for followedList in followedLists {
                     if let list = userDefaults.arrayForKey("\(followedList)Block") as! [Rule]? {
                         for rule in list {
                             rules += rule.toString()
                         }
+                    }
+                }
+                
+                if let list = userDefaults.arrayForKey("EasyPrivacyBlockCookies") as! [Rule]? {
+                    for rule in list {
+                        rules += rule.toString()
                     }
                 }
                 for followedList in followedLists {
@@ -39,19 +48,31 @@ class ActionRequestHandler: NSObject, NSExtensionRequestHandling {
                         }
                     }
                 }
+                
+                if let list = userDefaults.arrayForKey("EasyPrivacyCSSDisplayNone") as! [Rule]? {
+                    for rule in list {
+                        rules += rule.toString()
+                    }
+                }
+                for followedList in followedLists {
+                    if let list = userDefaults.arrayForKey("\(followedList)CSSDisplayNone") as! [Rule]? {
+                        for rule in list {
+                            rules += rule.toString()
+                        }
+                    }
+                }
+                
+                if let list = userDefaults.arrayForKey("EasyPrivacyIgnorePreviousRules") as! [Rule]? {
+                    for rule in list {
+                        rules += rule.toString()
+                    }
+                }
                 for followedList in followedLists {
                     if let list = userDefaults.arrayForKey("\(followedList)IgnorePreviousRules") as! [Rule]? {
                         for rule in list {
                             rules += rule.toString()
                         }
                     }
-                }
-            }
-                
-            // JIC
-            if let list = userDefaults.arrayForKey("Adios") as! [Rule]? {
-                for rule in list {
-                    rules += rule.toString()
                 }
             }
             
@@ -67,25 +88,33 @@ class ActionRequestHandler: NSObject, NSExtensionRequestHandling {
                 rules = rules.substringToIndex(rules.endIndex.predecessor())
             }
             
-            rules += "]" // Closing the table to have a good structure
-            
-            userDefaults.setObject(rules, forKey: "debugRules")
-            userDefaults.synchronize()
-            
-            // Creation the JSON file
-            let blockerListPath = NSTemporaryDirectory().stringByAppendingString("blockerList.json")
-            try! rules.writeToFile(blockerListPath, atomically: true, encoding: NSUTF8StringEncoding)
-            
-            // Loading the JSON file
-            let attachment = NSItemProvider(contentsOfURL: NSURL.fileURLWithPath(blockerListPath))!
-            
-            let item = NSExtensionItem()
-            item.attachments = [attachment]
-            
-            context.completeRequestReturningItems([item], completionHandler: { (Bool) -> Void in
-                try! NSFileManager().removeItemAtPath(blockerListPath) // Removing the list now that it's been used.
-            })
-            
+            if rules != "[" { // Not empty
+                rules += "]" // Closing the table to have a good structure
+                
+                userDefaults.setObject(rules, forKey: "debugRules")
+                userDefaults.synchronize()
+                
+                // Creation the JSON file
+                let blockerListPath = NSTemporaryDirectory().stringByAppendingString("blockerList.json")
+                try! rules.writeToFile(blockerListPath, atomically: true, encoding: NSUTF8StringEncoding)
+                
+                // Loading the JSON file
+                let attachment = NSItemProvider(contentsOfURL: NSURL.fileURLWithPath(blockerListPath))!
+                
+                let item = NSExtensionItem()
+                item.attachments = [attachment]
+                
+                context.completeRequestReturningItems([item], completionHandler: { (Bool) -> Void in
+                    try! NSFileManager().removeItemAtPath(blockerListPath) // Removing the list now that it's been used.
+                })
+            } else { // Blocking just one useless rule
+                let attachment = NSItemProvider(contentsOfURL: NSBundle.mainBundle().URLForResource("blockerList", withExtension: "json"))!
+                
+                let item = NSExtensionItem()
+                item.attachments = [attachment]
+                
+                context.completeRequestReturningItems([item], completionHandler: nil);
+            }
         }
     }
     
