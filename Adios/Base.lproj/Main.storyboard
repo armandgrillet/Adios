@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8173.3" systemVersion="15A243d" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8173.3" systemVersion="15A243d" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="iI1-hR-9en">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8142"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -60,7 +60,289 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="325" y="354"/>
+            <point key="canvasLocation" x="284" y="-443"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="ODK-jf-s6e">
+            <objects>
+                <navigationController id="iI1-hR-9en" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="z7a-sL-2yi">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="Zgf-7s-HLh" kind="relationship" relationship="rootViewController" id="GDt-eH-gAq"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="szU-hM-Cwk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-255" y="1230"/>
+        </scene>
+        <!--Adios-->
+        <scene sceneID="9Tn-Vg-lC6">
+            <objects>
+                <viewController title="Adios" id="Zgf-7s-HLh" customClass="AdiosViewController" customModule="Adios" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="4AJ-Lf-ojz"/>
+                        <viewControllerLayoutGuide type="bottom" id="Vhk-Ae-hhU"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Vyq-Zz-hAe">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WHp-NS-AtP">
+                                <rect key="frame" x="0.0" y="488" width="600" height="63"/>
+                                <animations/>
+                                <color key="backgroundColor" red="1" green="0.092578096040000002" blue="0.1144802766" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="42"/>
+                                <state key="normal" title="Onboarding"/>
+                                <connections>
+                                    <segue destination="UhJ-fC-jbL" kind="presentation" modalPresentationStyle="overFullScreen" modalTransitionStyle="coverVertical" id="nLk-HN-1OD"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="WHp-NS-AtP" secondAttribute="trailing" constant="-20" id="1Q0-fd-CnO"/>
+                            <constraint firstItem="Vhk-Ae-hhU" firstAttribute="top" secondItem="WHp-NS-AtP" secondAttribute="bottom" id="F6P-sZ-Jcj"/>
+                            <constraint firstItem="WHp-NS-AtP" firstAttribute="leading" secondItem="Vyq-Zz-hAe" secondAttribute="leadingMargin" constant="-20" id="l8n-no-Bnl"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Adios" id="Be0-DD-CIq">
+                        <barButtonItem key="rightBarButtonItem" image="InfoOutline" id="cMJ-SP-DUe">
+                            <connections>
+                                <segue destination="q7o-K2-NRX" kind="show" id="U6x-aA-afs"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Yq2-XX-cgL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="560" y="1230"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="brt-du-62V">
+            <objects>
+                <navigationController id="UhJ-fC-jbL" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="V1w-gY-4HX">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="suD-hM-Er7" kind="relationship" relationship="rootViewController" id="7FG-fC-Giv"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="orl-hE-rTS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="560" y="2043"/>
+        </scene>
+        <!--Onboard-->
+        <scene sceneID="m3R-iF-pNn">
+            <objects>
+                <viewController title="Onboard" id="suD-hM-Er7" customClass="MainListViewController" customModule="Adios" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="o2F-7B-2t2"/>
+                        <viewControllerLayoutGuide type="bottom" id="LG9-47-RQb"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="gHC-nT-J1m">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1TZ-Oa-2Oq">
+                                <rect key="frame" x="0.0" y="192" width="600" height="216"/>
+                                <animations/>
+                                <color key="tintColor" red="1" green="0.092578096040000002" blue="0.1144802766" alpha="1" colorSpace="calibratedRGB"/>
+                            </pickerView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2jo-cS-O7k">
+                                <rect key="frame" x="0.0" y="537" width="600" height="63"/>
+                                <animations/>
+                                <color key="backgroundColor" red="1" green="0.092578096040000002" blue="0.1144802766" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="42"/>
+                                <state key="normal" title="Continue"/>
+                                <connections>
+                                    <segue destination="dU6-Tb-OWe" kind="show" id="jml-yW-fap"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LaT-ch-xN4">
+                                <rect key="frame" x="20" y="163" width="560" height="21"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="2jo-cS-O7k" secondAttribute="trailing" constant="-20" id="ElJ-7a-gWP"/>
+                            <constraint firstItem="2jo-cS-O7k" firstAttribute="leading" secondItem="gHC-nT-J1m" secondAttribute="leadingMargin" constant="-20" id="Knw-RG-eqd"/>
+                            <constraint firstItem="1TZ-Oa-2Oq" firstAttribute="centerX" secondItem="gHC-nT-J1m" secondAttribute="centerX" id="Slv-YM-xzB"/>
+                            <constraint firstItem="1TZ-Oa-2Oq" firstAttribute="centerY" secondItem="gHC-nT-J1m" secondAttribute="centerY" id="TnK-Lm-7wm"/>
+                            <constraint firstItem="LG9-47-RQb" firstAttribute="top" secondItem="2jo-cS-O7k" secondAttribute="bottom" id="Y59-ru-a3T"/>
+                            <constraint firstItem="LaT-ch-xN4" firstAttribute="trailing" secondItem="gHC-nT-J1m" secondAttribute="trailingMargin" id="eXP-TA-Wir"/>
+                            <constraint firstItem="1TZ-Oa-2Oq" firstAttribute="top" secondItem="LaT-ch-xN4" secondAttribute="bottom" constant="8" id="kPE-N8-PGE"/>
+                            <constraint firstItem="LaT-ch-xN4" firstAttribute="leading" secondItem="gHC-nT-J1m" secondAttribute="leadingMargin" id="oDB-OJ-qlF"/>
+                            <constraint firstItem="1TZ-Oa-2Oq" firstAttribute="leading" secondItem="gHC-nT-J1m" secondAttribute="leadingMargin" constant="-20" id="ph5-ZE-fUs"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="1TZ-Oa-2Oq" secondAttribute="trailing" constant="-20" id="rth-xz-MPP"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Adios - configuration (1/3)" id="vOv-lW-18T"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OtR-Qw-sE8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1323" y="2043"/>
+        </scene>
+        <!--Adios - configuration (2/3)-->
+        <scene sceneID="GVH-E0-rQz">
+            <objects>
+                <viewController id="dU6-Tb-OWe" customClass="SecondListViewController" customModule="Adios" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="EQw-1p-2eT"/>
+                        <viewControllerLayoutGuide type="bottom" id="Y5M-c7-F3R"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="0it-Xx-kbt">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hAI-WK-QWw">
+                                <rect key="frame" x="0.0" y="537" width="600" height="63"/>
+                                <animations/>
+                                <color key="backgroundColor" red="1" green="0.092578096040000002" blue="0.1144802766" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="42"/>
+                                <state key="normal" title="Continue"/>
+                                <connections>
+                                    <segue destination="yvo-86-s2z" kind="show" id="xWg-Jp-Zbk"/>
+                                </connections>
+                            </button>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bu0-yI-PxZ">
+                                <rect key="frame" x="0.0" y="192" width="600" height="216"/>
+                                <animations/>
+                                <color key="tintColor" red="1" green="0.092578096040000002" blue="0.1144802766" alpha="1" colorSpace="calibratedRGB"/>
+                            </pickerView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="caq-Yr-v8W">
+                                <rect key="frame" x="20" y="163" width="560" height="21"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="Bu0-yI-PxZ" secondAttribute="trailing" constant="-20" id="5IU-Ok-DFx"/>
+                            <constraint firstItem="Y5M-c7-F3R" firstAttribute="top" secondItem="hAI-WK-QWw" secondAttribute="bottom" id="7aV-Tj-Q2x"/>
+                            <constraint firstItem="hAI-WK-QWw" firstAttribute="leading" secondItem="0it-Xx-kbt" secondAttribute="leadingMargin" constant="-20" id="Aa8-gn-18u"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="hAI-WK-QWw" secondAttribute="trailing" constant="-20" id="EHR-TT-GyT"/>
+                            <constraint firstItem="caq-Yr-v8W" firstAttribute="trailing" secondItem="0it-Xx-kbt" secondAttribute="trailingMargin" id="RLO-71-KJx"/>
+                            <constraint firstItem="Bu0-yI-PxZ" firstAttribute="top" secondItem="caq-Yr-v8W" secondAttribute="bottom" constant="8" id="cWO-fJ-Ax5"/>
+                            <constraint firstItem="caq-Yr-v8W" firstAttribute="leading" secondItem="0it-Xx-kbt" secondAttribute="leadingMargin" id="hSZ-YE-V8c"/>
+                            <constraint firstItem="Bu0-yI-PxZ" firstAttribute="leading" secondItem="0it-Xx-kbt" secondAttribute="leadingMargin" constant="-20" id="lfT-O9-43n"/>
+                            <constraint firstItem="Bu0-yI-PxZ" firstAttribute="centerY" secondItem="0it-Xx-kbt" secondAttribute="centerY" id="luA-AI-MlP"/>
+                            <constraint firstItem="Bu0-yI-PxZ" firstAttribute="centerX" secondItem="0it-Xx-kbt" secondAttribute="centerX" id="vcv-Va-slm"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Adios - configuration (2/3)" id="tsU-wB-ji0"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PMY-I6-fzy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2046" y="2043"/>
+        </scene>
+        <!--Adios - configuration (3/3)-->
+        <scene sceneID="aTw-Ld-F5e">
+            <objects>
+                <viewController id="yvo-86-s2z" customClass="SocialViewController" customModule="Adios" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="29S-K4-cXa"/>
+                        <viewControllerLayoutGuide type="bottom" id="qNY-HV-0Hr"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="oFH-W7-7L9">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hIM-01-Ax3">
+                                <rect key="frame" x="0.0" y="537" width="600" height="63"/>
+                                <animations/>
+                                <color key="backgroundColor" red="1" green="0.092578096040000002" blue="0.1144802766" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="42"/>
+                                <state key="normal" title="Apply"/>
+                                <connections>
+                                    <segue destination="w34-Gh-7Xl" kind="custom" animates="NO" id="7DU-R6-mSw"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="hIM-01-Ax3" firstAttribute="leading" secondItem="oFH-W7-7L9" secondAttribute="leadingMargin" constant="-20" id="91i-sS-JAO"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="hIM-01-Ax3" secondAttribute="trailing" constant="-20" id="f3V-Bh-hW2"/>
+                            <constraint firstItem="qNY-HV-0Hr" firstAttribute="top" secondItem="hIM-01-Ax3" secondAttribute="bottom" id="kzd-he-CHj"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Adios - configuration (3/3)" id="vJj-pk-1f0"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="P2z-To-qGd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2788" y="2043"/>
+        </scene>
+        <!--Loading View Controller-->
+        <scene sceneID="vt7-7f-KvK">
+            <objects>
+                <viewController id="w34-Gh-7Xl" customClass="LoadingViewController" customModule="Adios" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="mZF-fb-Gld"/>
+                        <viewControllerLayoutGuide type="bottom" id="jUU-kE-VSG"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="aau-lL-jms">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Ik-af-QL0">
+                                <rect key="frame" x="0.0" y="537" width="600" height="63"/>
+                                <animations/>
+                                <color key="backgroundColor" red="1" green="0.092578096040000002" blue="0.1144802766" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="42"/>
+                                <state key="normal" title="Loading..."/>
+                            </button>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="9Ik-af-QL0" secondAttribute="trailing" constant="-20" id="9gW-1p-FeF"/>
+                            <constraint firstItem="jUU-kE-VSG" firstAttribute="top" secondItem="9Ik-af-QL0" secondAttribute="bottom" id="Cms-Ex-twT"/>
+                            <constraint firstItem="9Ik-af-QL0" firstAttribute="leading" secondItem="aau-lL-jms" secondAttribute="leadingMargin" constant="-20" id="eFO-c3-zRf"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2Qu-RI-UDE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3656" y="2043"/>
+        </scene>
+        <!--Information-->
+        <scene sceneID="Fdi-Vb-Mpa">
+            <objects>
+                <viewController title="Information" id="q7o-K2-NRX" customClass="InformationViewController" customModule="Adios" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="BvP-sw-Wdv"/>
+                        <viewControllerLayoutGuide type="bottom" id="gjn-tL-uiV"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="nb5-GQ-ECO">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rXd-W8-pIX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1323" y="1230"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="InfoOutline" width="24" height="24"/>
+    </resources>
 </document>

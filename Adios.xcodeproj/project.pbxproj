@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		C413E0D51B7BD12500287E27 /* IgnoringRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = C413E0D41B7BD12500287E27 /* IgnoringRule.swift */; };
+		C4316F721B80E074004C047F /* AdiosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4316F711B80E074004C047F /* AdiosViewController.swift */; };
+		C4316F741B80E16D004C047F /* InformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4316F731B80E16D004C047F /* InformationViewController.swift */; };
 		C48B7E811B7A5AD200D58BDA /* Rule.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48B7E801B7A5AD200D58BDA /* Rule.swift */; };
 		C4E2060C1B773F6B00C280DF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E2060B1B773F6B00C280DF /* AppDelegate.swift */; };
 		C4E2060E1B773F6B00C280DF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E2060D1B773F6B00C280DF /* ViewController.swift */; };
@@ -23,6 +25,10 @@
 		C4E206551B77404200C280DF /* ActionRequestHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E206541B77404200C280DF /* ActionRequestHandler.swift */; };
 		C4E206571B77404200C280DF /* Action.js in Resources */ = {isa = PBXBuildFile; fileRef = C4E206561B77404200C280DF /* Action.js */; };
 		C4E2065B1B77404200C280DF /* Action.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = C4E206521B77404200C280DF /* Action.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		C4E6C6161B81F19800F1411F /* MainListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E6C6151B81F19800F1411F /* MainListViewController.swift */; };
+		C4E6C6181B81F1A800F1411F /* SecondListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E6C6171B81F1A800F1411F /* SecondListViewController.swift */; };
+		C4E6C61A1B81F1C100F1411F /* SocialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E6C6191B81F1C100F1411F /* SocialViewController.swift */; };
+		C4E6C61C1B81F1F500F1411F /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E6C61B1B81F1F500F1411F /* LoadingViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +79,8 @@
 
 /* Begin PBXFileReference section */
 		C413E0D41B7BD12500287E27 /* IgnoringRule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IgnoringRule.swift; sourceTree = "<group>"; };
+		C4316F711B80E074004C047F /* AdiosViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdiosViewController.swift; sourceTree = "<group>"; };
+		C4316F731B80E16D004C047F /* InformationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InformationViewController.swift; sourceTree = "<group>"; };
 		C48B7E801B7A5AD200D58BDA /* Rule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Rule.swift; sourceTree = "<group>"; };
 		C4E206081B773F6B00C280DF /* Adios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Adios.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4E2060B1B773F6B00C280DF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -99,6 +107,10 @@
 		C4E206581B77404200C280DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C4E2065F1B7740BA00C280DF /* ContentBlocker.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = ContentBlocker.entitlements; sourceTree = "<group>"; };
 		C4E206601B7740D300C280DF /* Action.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Action.entitlements; sourceTree = "<group>"; };
+		C4E6C6151B81F19800F1411F /* MainListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainListViewController.swift; sourceTree = "<group>"; };
+		C4E6C6171B81F1A800F1411F /* SecondListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondListViewController.swift; sourceTree = "<group>"; };
+		C4E6C6191B81F1C100F1411F /* SocialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialViewController.swift; sourceTree = "<group>"; };
+		C4E6C61B1B81F1F500F1411F /* LoadingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -176,6 +188,12 @@
 				C4E206121B773F6B00C280DF /* Assets.xcassets */,
 				C4E206141B773F6B00C280DF /* LaunchScreen.storyboard */,
 				C4E206171B773F6B00C280DF /* Info.plist */,
+				C4316F711B80E074004C047F /* AdiosViewController.swift */,
+				C4316F731B80E16D004C047F /* InformationViewController.swift */,
+				C4E6C6151B81F19800F1411F /* MainListViewController.swift */,
+				C4E6C6171B81F1A800F1411F /* SecondListViewController.swift */,
+				C4E6C6191B81F1C100F1411F /* SocialViewController.swift */,
+				C4E6C61B1B81F1F500F1411F /* LoadingViewController.swift */,
 			);
 			path = Adios;
 			sourceTree = "<group>";
@@ -435,7 +453,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				C4E2060E1B773F6B00C280DF /* ViewController.swift in Sources */,
+				C4316F721B80E074004C047F /* AdiosViewController.swift in Sources */,
+				C4E6C61A1B81F1C100F1411F /* SocialViewController.swift in Sources */,
+				C4E6C61C1B81F1F500F1411F /* LoadingViewController.swift in Sources */,
 				C4E2060C1B773F6B00C280DF /* AppDelegate.swift in Sources */,
+				C4E6C6161B81F19800F1411F /* MainListViewController.swift in Sources */,
+				C4E6C6181B81F1A800F1411F /* SecondListViewController.swift in Sources */,
+				C4316F741B80E16D004C047F /* InformationViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
