@@ -40,7 +40,7 @@ class ActionRequestHandler: NSObject, NSExtensionRequestHandling {
             }
             
             // JIC
-            if let list = userDefaults.arrayForKey("Adios") as! [Rule]? {
+            if let list = userDefaults.arrayForKey("AdiosList") as! [Rule]? {
                 for rule in list {
                     rules += rule.toString()
                 }

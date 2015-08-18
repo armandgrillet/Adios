@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8173.3" systemVersion="15A243d" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="iI1-hR-9en">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8173.3" systemVersion="15A243d" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="OeH-Wu-i87">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8142"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -84,6 +84,49 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="szU-hM-Cwk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-255" y="1230"/>
+        </scene>
+        <!--Cloud Kit View Controller-->
+        <scene sceneID="8da-QK-cTd">
+            <objects>
+                <viewController id="OeH-Wu-i87" customClass="CloudKitViewController" customModule="Adios" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="LLJ-XR-HgC"/>
+                        <viewControllerLayoutGuide type="bottom" id="BGv-Rw-TKp"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="e96-t0-LFf">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="avO-Yu-lU5">
+                                <rect key="frame" x="284" y="285" width="32" height="30"/>
+                                <animations/>
+                                <state key="normal" title="CKN"/>
+                                <connections>
+                                    <action selector="askForNotifications:" destination="OeH-Wu-i87" eventType="touchUpInside" id="Vj3-t1-eKE"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DSf-3D-OJw">
+                                <rect key="frame" x="277" y="570" width="46" height="30"/>
+                                <animations/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="checkCloudKit:" destination="OeH-Wu-i87" eventType="touchUpInside" id="8Nm-T1-qax"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="DSf-3D-OJw" firstAttribute="centerX" secondItem="e96-t0-LFf" secondAttribute="centerX" id="QEO-4F-Adi"/>
+                            <constraint firstItem="avO-Yu-lU5" firstAttribute="centerX" secondItem="e96-t0-LFf" secondAttribute="centerX" id="hNP-a1-ZAe"/>
+                            <constraint firstItem="avO-Yu-lU5" firstAttribute="centerY" secondItem="e96-t0-LFf" secondAttribute="centerY" id="kRZ-wQ-Cpl"/>
+                            <constraint firstItem="BGv-Rw-TKp" firstAttribute="top" secondItem="DSf-3D-OJw" secondAttribute="bottom" id="rxh-d0-rXY"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OSs-pF-PBH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="560" y="588"/>
         </scene>
         <!--Adios-->
         <scene sceneID="9Tn-Vg-lC6">

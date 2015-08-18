@@ -12,6 +12,9 @@
 		C404E4691B827219006BB98E /* BaseContentBlocker.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = C404E4601B827219006BB98E /* BaseContentBlocker.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		C404E46E1B82723E006BB98E /* Rule.swift in Sources */ = {isa = PBXBuildFile; fileRef = C404E46D1B82723E006BB98E /* Rule.swift */; };
 		C413E0D51B7BD12500287E27 /* IgnoringRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = C413E0D41B7BD12500287E27 /* IgnoringRule.swift */; };
+		C41CA5C41B832660000255F3 /* SubscriptionsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41CA5C31B832660000255F3 /* SubscriptionsManager.swift */; };
+		C41CA5C61B8330F2000255F3 /* CloudKitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41CA5C51B8330F2000255F3 /* CloudKitViewController.swift */; };
+		C41CA5C81B833293000255F3 /* DownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41CA5C71B833293000255F3 /* DownloadManager.swift */; };
 		C4316F721B80E074004C047F /* AdiosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4316F711B80E074004C047F /* AdiosViewController.swift */; };
 		C4316F741B80E16D004C047F /* InformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4316F731B80E16D004C047F /* InformationViewController.swift */; };
 		C48B7E811B7A5AD200D58BDA /* Rule.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48B7E801B7A5AD200D58BDA /* Rule.swift */; };
@@ -96,6 +99,9 @@
 		C404E4661B827219006BB98E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C404E46D1B82723E006BB98E /* Rule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Rule.swift; sourceTree = "<group>"; };
 		C413E0D41B7BD12500287E27 /* IgnoringRule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IgnoringRule.swift; sourceTree = "<group>"; };
+		C41CA5C31B832660000255F3 /* SubscriptionsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubscriptionsManager.swift; sourceTree = "<group>"; };
+		C41CA5C51B8330F2000255F3 /* CloudKitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloudKitViewController.swift; sourceTree = "<group>"; };
+		C41CA5C71B833293000255F3 /* DownloadManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadManager.swift; sourceTree = "<group>"; };
 		C4316F711B80E074004C047F /* AdiosViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdiosViewController.swift; sourceTree = "<group>"; };
 		C4316F731B80E16D004C047F /* InformationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InformationViewController.swift; sourceTree = "<group>"; };
 		C48B7E801B7A5AD200D58BDA /* Rule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Rule.swift; sourceTree = "<group>"; };
@@ -221,6 +227,15 @@
 			name = Views;
 			sourceTree = "<group>";
 		};
+		C41CA5C21B832616000255F3 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				C41CA5C31B832660000255F3 /* SubscriptionsManager.swift */,
+				C41CA5C71B833293000255F3 /* DownloadManager.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
 		C4E205FF1B773F6B00C280DF = {
 			isa = PBXGroup;
 			children = (
@@ -252,8 +267,10 @@
 			isa = PBXGroup;
 			children = (
 				C4E2060B1B773F6B00C280DF /* AppDelegate.swift */,
+				C41CA5C51B8330F2000255F3 /* CloudKitViewController.swift */,
 				C41CA5C11B831BE6000255F3 /* Views */,
 				C41CA5BF1B831B91000255F3 /* View Controllers */,
+				C41CA5C21B832616000255F3 /* Models */,
 				C41CA5C01B831BD5000255F3 /* Supporting Files */,
 			);
 			path = Adios;
@@ -432,6 +449,9 @@
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
 							};
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
 							com.apple.iCloud = {
 								enabled = 1;
 							};
@@ -554,10 +574,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				C4E2060E1B773F6B00C280DF /* ViewController.swift in Sources */,
+				C41CA5C81B833293000255F3 /* DownloadManager.swift in Sources */,
 				C4316F721B80E074004C047F /* AdiosViewController.swift in Sources */,
 				C4E6C61A1B81F1C100F1411F /* SocialViewController.swift in Sources */,
+				C41CA5C61B8330F2000255F3 /* CloudKitViewController.swift in Sources */,
 				C4E6C61C1B81F1F500F1411F /* LoadingViewController.swift in Sources */,
 				C4E2060C1B773F6B00C280DF /* AppDelegate.swift in Sources */,
+				C41CA5C41B832660000255F3 /* SubscriptionsManager.swift in Sources */,
 				C4E6C6161B81F19800F1411F /* MainListViewController.swift in Sources */,
 				C4E6C6181B81F1A800F1411F /* SecondListViewController.swift in Sources */,
 				C4316F741B80E16D004C047F /* InformationViewController.swift in Sources */,
