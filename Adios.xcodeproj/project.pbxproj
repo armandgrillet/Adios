@@ -188,6 +188,39 @@
 			path = BaseContentBlocker;
 			sourceTree = "<group>";
 		};
+		C41CA5BF1B831B91000255F3 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				C4E2060D1B773F6B00C280DF /* ViewController.swift */,
+				C4316F711B80E074004C047F /* AdiosViewController.swift */,
+				C4316F731B80E16D004C047F /* InformationViewController.swift */,
+				C4E6C6151B81F19800F1411F /* MainListViewController.swift */,
+				C4E6C6171B81F1A800F1411F /* SecondListViewController.swift */,
+				C4E6C6191B81F1C100F1411F /* SocialViewController.swift */,
+				C4E6C61B1B81F1F500F1411F /* LoadingViewController.swift */,
+			);
+			name = "View Controllers";
+			sourceTree = "<group>";
+		};
+		C41CA5C01B831BD5000255F3 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				C4E206391B773F8200C280DF /* Adios.entitlements */,
+				C4E206121B773F6B00C280DF /* Assets.xcassets */,
+				C4E206171B773F6B00C280DF /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		C41CA5C11B831BE6000255F3 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				C4E2060F1B773F6B00C280DF /* Main.storyboard */,
+				C4E206141B773F6B00C280DF /* LaunchScreen.storyboard */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
 		C4E205FF1B773F6B00C280DF = {
 			isa = PBXGroup;
 			children = (
@@ -218,19 +251,10 @@
 		C4E2060A1B773F6B00C280DF /* Adios */ = {
 			isa = PBXGroup;
 			children = (
-				C4E206391B773F8200C280DF /* Adios.entitlements */,
 				C4E2060B1B773F6B00C280DF /* AppDelegate.swift */,
-				C4E2060D1B773F6B00C280DF /* ViewController.swift */,
-				C4E2060F1B773F6B00C280DF /* Main.storyboard */,
-				C4E206121B773F6B00C280DF /* Assets.xcassets */,
-				C4E206141B773F6B00C280DF /* LaunchScreen.storyboard */,
-				C4E206171B773F6B00C280DF /* Info.plist */,
-				C4316F711B80E074004C047F /* AdiosViewController.swift */,
-				C4316F731B80E16D004C047F /* InformationViewController.swift */,
-				C4E6C6151B81F19800F1411F /* MainListViewController.swift */,
-				C4E6C6171B81F1A800F1411F /* SecondListViewController.swift */,
-				C4E6C6191B81F1C100F1411F /* SocialViewController.swift */,
-				C4E6C61B1B81F1F500F1411F /* LoadingViewController.swift */,
+				C41CA5C11B831BE6000255F3 /* Views */,
+				C41CA5BF1B831B91000255F3 /* View Controllers */,
+				C41CA5C01B831BD5000255F3 /* Supporting Files */,
 			);
 			path = Adios;
 			sourceTree = "<group>";
@@ -883,6 +907,7 @@
 				C404E46B1B827219006BB98E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		C4E206031B773F6B00C280DF /* Build configuration list for PBXProject "Adios" */ = {
 			isa = XCConfigurationList;

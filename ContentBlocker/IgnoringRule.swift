@@ -11,7 +11,7 @@ import Foundation
 class IgnoringRule: Rule {
     init(domain: String) {
         super.init()
-        self.triggerUrl = domain
+        self.triggerUrlFilter = domain
         self.actionType = "ignore-previous-rules"
     }
 }

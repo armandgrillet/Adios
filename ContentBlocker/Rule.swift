@@ -9,7 +9,7 @@
 import Foundation
 
 class Rule {
-    var triggerUrl: String = ""
+    var triggerUrlFilter: String = ""
     var triggerUrlFilterIsCaseSensitive: Bool?
     var triggerResourceType: [String]?
     var triggerLoadType: [String]?
@@ -20,7 +20,7 @@ class Rule {
     var actionSelector: String?
     
     func toString() -> String {
-        var stringRule = "{ \"trigger\": { \"url-filter\": \"\(triggerUrl)\""
+        var stringRule = "{ \"trigger\": { \"url-filter\": \"\(triggerUrlFilter)\""
         if let displayedTriggerUrlFilterIsCaseSensitive = triggerUrlFilterIsCaseSensitive {
             stringRule += ",\"url-filter-is-case-sensitive\": \"\(displayedTriggerUrlFilterIsCaseSensitive)\""
         }

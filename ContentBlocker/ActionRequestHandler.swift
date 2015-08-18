@@ -17,7 +17,7 @@ class ActionRequestHandler: NSObject, NSExtensionRequestHandling {
             var rules = "[" // We're starting the array
             
             let testRule = Rule()
-            testRule.triggerUrl = "armand.gr"
+            testRule.triggerUrlFilter = "armand.gr"
             testRule.actionType = "css-display-none"
             testRule.actionSelector = ".testContentBlocker"
             
