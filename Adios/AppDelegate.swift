@@ -11,7 +11,7 @@ import CloudKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
+    let subscriptionsManager = SubscriptionsManager()
     var window: UIWindow?
 
 
@@ -22,7 +22,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject], fetchCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
-        // let cloudKitNotification = CKNotification(fromRemoteNotificationDictionary: userInfo as! [String: NSObject])
+        subscriptionsManager.didReceiveNotification(userInfo)
+        completionHandler(.NoData) // Not sure about that
     }
 
     func applicationWillResignActive(application: UIApplication) {

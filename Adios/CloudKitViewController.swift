@@ -23,7 +23,7 @@ class CloudKitViewController: UIViewController {
     }
     
     @IBAction func checkCloudKit(sender: UIButton) {
-        downloadManager.downloadRulesFromList("AdiosList")
+        downloadManager.downloadRulesFromList("AdiosList", nextLists: [])
     }
     
     @IBAction func askForNotifications(sender: UIButton) {

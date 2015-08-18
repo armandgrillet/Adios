@@ -15,6 +15,8 @@
 		C41CA5C41B832660000255F3 /* SubscriptionsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41CA5C31B832660000255F3 /* SubscriptionsManager.swift */; };
 		C41CA5C61B8330F2000255F3 /* CloudKitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41CA5C51B8330F2000255F3 /* CloudKitViewController.swift */; };
 		C41CA5C81B833293000255F3 /* DownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41CA5C71B833293000255F3 /* DownloadManager.swift */; };
+		C41CA5CA1B839FCE000255F3 /* Rule.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41CA5C91B839FCE000255F3 /* Rule.swift */; };
+		C41CA5CC1B83A149000255F3 /* ListsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41CA5CB1B83A149000255F3 /* ListsManager.swift */; };
 		C4316F721B80E074004C047F /* AdiosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4316F711B80E074004C047F /* AdiosViewController.swift */; };
 		C4316F741B80E16D004C047F /* InformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4316F731B80E16D004C047F /* InformationViewController.swift */; };
 		C48B7E811B7A5AD200D58BDA /* Rule.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48B7E801B7A5AD200D58BDA /* Rule.swift */; };
@@ -102,6 +104,8 @@
 		C41CA5C31B832660000255F3 /* SubscriptionsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubscriptionsManager.swift; sourceTree = "<group>"; };
 		C41CA5C51B8330F2000255F3 /* CloudKitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloudKitViewController.swift; sourceTree = "<group>"; };
 		C41CA5C71B833293000255F3 /* DownloadManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadManager.swift; sourceTree = "<group>"; };
+		C41CA5C91B839FCE000255F3 /* Rule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Rule.swift; sourceTree = "<group>"; };
+		C41CA5CB1B83A149000255F3 /* ListsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListsManager.swift; sourceTree = "<group>"; };
 		C4316F711B80E074004C047F /* AdiosViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdiosViewController.swift; sourceTree = "<group>"; };
 		C4316F731B80E16D004C047F /* InformationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InformationViewController.swift; sourceTree = "<group>"; };
 		C48B7E801B7A5AD200D58BDA /* Rule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Rule.swift; sourceTree = "<group>"; };
@@ -232,6 +236,8 @@
 			children = (
 				C41CA5C31B832660000255F3 /* SubscriptionsManager.swift */,
 				C41CA5C71B833293000255F3 /* DownloadManager.swift */,
+				C41CA5C91B839FCE000255F3 /* Rule.swift */,
+				C41CA5CB1B83A149000255F3 /* ListsManager.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -582,8 +588,10 @@
 				C4E2060C1B773F6B00C280DF /* AppDelegate.swift in Sources */,
 				C41CA5C41B832660000255F3 /* SubscriptionsManager.swift in Sources */,
 				C4E6C6161B81F19800F1411F /* MainListViewController.swift in Sources */,
+				C41CA5CA1B839FCE000255F3 /* Rule.swift in Sources */,
 				C4E6C6181B81F1A800F1411F /* SecondListViewController.swift in Sources */,
 				C4316F741B80E16D004C047F /* InformationViewController.swift in Sources */,
+				C41CA5CC1B83A149000255F3 /* ListsManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
