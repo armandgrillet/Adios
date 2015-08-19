@@ -198,7 +198,6 @@
 		C41CA5BF1B831B91000255F3 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				C4E2060D1B773F6B00C280DF /* ViewController.swift */,
 				C4316F711B80E074004C047F /* AdiosViewController.swift */,
 				C4316F731B80E16D004C047F /* InformationViewController.swift */,
 				C4E6C6151B81F19800F1411F /* MainListViewController.swift */,
@@ -272,6 +271,7 @@
 			children = (
 				C4E2060B1B773F6B00C280DF /* AppDelegate.swift */,
 				C41CA5C51B8330F2000255F3 /* CloudKitViewController.swift */,
+				C4E2060D1B773F6B00C280DF /* ViewController.swift */,
 				C41CA5C11B831BE6000255F3 /* Views */,
 				C41CA5BF1B831B91000255F3 /* View Controllers */,
 				C41CA5C21B832616000255F3 /* Models */,
