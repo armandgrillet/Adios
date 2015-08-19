@@ -11,6 +11,7 @@ import CloudKit
 
 class CloudKitViewController: UIViewController {
     let downloadManager = DownloadManager()
+    let subscriptionsManager = SubscriptionsManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,6 +21,7 @@ class CloudKitViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+        
     }
     
     @IBAction func checkCloudKit(sender: UIButton) {
@@ -27,6 +29,6 @@ class CloudKitViewController: UIViewController {
     }
     
     @IBAction func askForNotifications(sender: UIButton) {
-        
+        subscriptionsManager.addSubscription("AdiosList")
     }
 }

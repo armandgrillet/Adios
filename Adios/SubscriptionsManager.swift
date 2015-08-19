@@ -14,13 +14,13 @@ class SubscriptionsManager {
     let downloadManager = DownloadManager()
     
     func addSubscription(list: String) {
-        let predicate = NSPredicate(format: "recordName == \(list)")
+        let predicate = NSPredicate(format: "TRUEPREDICATE")
         
         let silentNotification = CKNotificationInfo()
         silentNotification.shouldSendContentAvailable = true
-        silentNotification.desiredKeys = ["Update"]
+        silentNotification.desiredKeys = ["Version"]
         
-        let subscription = CKSubscription(recordType: "Rules", predicate: predicate, options: .FiresOnRecordUpdate)
+        let subscription = CKSubscription(recordType: "Updates", predicate: predicate, options: .FiresOnRecordUpdate)
         subscription.notificationInfo = silentNotification
 
         saveSubscription(subscription)
@@ -37,11 +37,11 @@ class SubscriptionsManager {
     }
     
     func didReceiveNotification(userInfo: [NSObject : AnyObject]) {
+        print("We received a notification")
         let notification = CKNotification(fromRemoteNotificationDictionary: userInfo as! [String: NSObject])
         if notification.notificationType == .Query, let queryNotification = notification as? CKQueryNotification {
-            let list = queryNotification.recordID!.recordName
-            let update = queryNotification.recordFields!["Update"] as! Int64
-            downloadManager.updatesRulesForList(list, update: update)
+            let update = queryNotification.recordFields!["Version"]! as! Int
+            downloadManager.getNewRecords(update)
         }
     }
 }
