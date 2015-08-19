@@ -17,32 +17,61 @@ class ListsManager {
         print("We want to remove a rule to a list")
     }
     func createList(list: String, records: [CKRecord]) {
-        var rulesBlock: [Rule] = []
-        var rulesBlockCookies: [Rule] = []
-        var rulesCSSDisplayNone: [Rule] = []
-        var rulesIgnorePreviousRules: [Rule] = []
+        var rulesBlock: [String] = []
+        var rulesBlockCookies: [String] = []
+        var rulesCSSDisplayNone: [String] = []
+        var rulesIgnorePreviousRules: [String] = []
         
         for record in records {
+            let sourceList = record["List"] as! CKReference
+            print(sourceList.recordID.recordName)
             let rule = ruleFromRecord(record)
             switch rule.actionType {
                 case "block":
-                rulesBlock.append(rule)
+                rulesBlock.append(rule.toString())
                 case "block-cookies":
-                rulesBlockCookies.append(rule)
+                rulesBlockCookies.append(rule.toString())
                 case "css-display-none":
-                rulesCSSDisplayNone.append(rule)
+                rulesCSSDisplayNone.append(rule.toString())
                 case "ignore-previous-rules":
-                rulesIgnorePreviousRules.append(rule)
+                rulesIgnorePreviousRules.append(rule.toString())
                 default:
                 print("Problem with a rule that is not well formatted: \(rule.toString())")
             }
         }
         
         // Set the four group defaults here.
+        if let userDefaults = NSUserDefaults(suiteName: "group.AG.Adios") {
+            var followedLists = userDefaults.arrayForKey("followedLists")
+            userDefaults.setObject(rulesBlock, forKey: "\(list)Block")
+            userDefaults.setObject(rulesBlockCookies, forKey: "\(list)BlockCookies")
+            userDefaults.setObject(rulesCSSDisplayNone, forKey: "\(list)CSSDisplayNone")
+            userDefaults.setObject(rulesIgnorePreviousRules, forKey: "\(list)IgnorePreviousRules")
+            
+            if followedLists == nil {
+                followedLists = [list]
+            } else {
+               followedLists!.append(list)
+            }
+            userDefaults.setObject(followedLists, forKey: "followedLists")
+            
+            userDefaults.synchronize()
+        }
         
     }
     func updateRulesWithRecords(recordsCreated: [CKRecord], recordsDeleted: [CKRecord]) {
         
+    }
+    
+    func removeAllLists() {
+        if let userDefaults = NSUserDefaults(suiteName: "group.AG.Adios") {
+            if var followedLists = userDefaults.arrayForKey("followedLists") {
+                for list in followedLists {
+                    userDefaults.removeObjectForKey("\(list)Block")
+                }
+            }
+            
+        }
     }
     
     func ruleFromRecord(record: CKRecord) -> Rule {

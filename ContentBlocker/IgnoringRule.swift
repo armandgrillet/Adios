@@ -8,9 +8,44 @@
 
 import Foundation
 
-class IgnoringRule: Rule {
+class IgnoringRule {
+    var triggerUrlFilter: String = ""
+    var triggerUrlFilterIsCaseSensitive: Bool?
+    var triggerResourceType: [String]?
+    var triggerLoadType: [String]?
+    var triggerIfDomain: [String]?
+    var triggerUnlessDomain: [String]?
+    
+    var actionType: String = ""
+    var actionSelector: String?
+    
+    func toString() -> String {
+        var stringRule = "{ \"trigger\": { \"url-filter\": \"\(triggerUrlFilter)\""
+        if let displayedTriggerUrlFilterIsCaseSensitive = triggerUrlFilterIsCaseSensitive {
+            stringRule += ",\"url-filter-is-case-sensitive\": \"\(displayedTriggerUrlFilterIsCaseSensitive)\""
+        }
+        if let displayedTriggerResourceType = triggerResourceType {
+            stringRule += ",\"resource-type\": \(displayedTriggerResourceType)"
+        }
+        if let displayedTriggerLoadType = triggerLoadType {
+            stringRule += ",\"load-type\": \(displayedTriggerLoadType)"
+        }
+        if let displayedTriggerIfDomain = triggerIfDomain {
+            stringRule += ",\"if-domain\": \(displayedTriggerIfDomain)"
+        } else if let displayedTriggerUnlessDomain = triggerUnlessDomain {
+            stringRule += ",\"unless-domain\": \(displayedTriggerUnlessDomain)"
+        }
+        
+        stringRule += "}, \"action\": {\"type\": \"\(actionType)\""
+        
+        if let displayedActionSelector = actionSelector {
+            stringRule += ",\"selector\": \"\(displayedActionSelector)\""
+        }
+        
+        return stringRule + "}},"
+    }
+    
     init(domain: String) {
-        super.init()
         self.triggerUrlFilter = domain
         self.actionType = "ignore-previous-rules"
     }

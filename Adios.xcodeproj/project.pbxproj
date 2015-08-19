@@ -10,7 +10,6 @@
 		C404E4631B827219006BB98E /* blockerList.json in Resources */ = {isa = PBXBuildFile; fileRef = C404E4621B827219006BB98E /* blockerList.json */; };
 		C404E4651B827219006BB98E /* ActionRequestHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C404E4641B827219006BB98E /* ActionRequestHandler.swift */; };
 		C404E4691B827219006BB98E /* BaseContentBlocker.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = C404E4601B827219006BB98E /* BaseContentBlocker.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		C404E46E1B82723E006BB98E /* Rule.swift in Sources */ = {isa = PBXBuildFile; fileRef = C404E46D1B82723E006BB98E /* Rule.swift */; };
 		C413E0D51B7BD12500287E27 /* IgnoringRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = C413E0D41B7BD12500287E27 /* IgnoringRule.swift */; };
 		C41CA5C41B832660000255F3 /* SubscriptionsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41CA5C31B832660000255F3 /* SubscriptionsManager.swift */; };
 		C41CA5C61B8330F2000255F3 /* CloudKitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41CA5C51B8330F2000255F3 /* CloudKitViewController.swift */; };
@@ -19,7 +18,6 @@
 		C41CA5CC1B83A149000255F3 /* ListsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41CA5CB1B83A149000255F3 /* ListsManager.swift */; };
 		C4316F721B80E074004C047F /* AdiosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4316F711B80E074004C047F /* AdiosViewController.swift */; };
 		C4316F741B80E16D004C047F /* InformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4316F731B80E16D004C047F /* InformationViewController.swift */; };
-		C48B7E811B7A5AD200D58BDA /* Rule.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48B7E801B7A5AD200D58BDA /* Rule.swift */; };
 		C4E2060C1B773F6B00C280DF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E2060B1B773F6B00C280DF /* AppDelegate.swift */; };
 		C4E2060E1B773F6B00C280DF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E2060D1B773F6B00C280DF /* ViewController.swift */; };
 		C4E206111B773F6B00C280DF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C4E2060F1B773F6B00C280DF /* Main.storyboard */; };
@@ -99,7 +97,6 @@
 		C404E4621B827219006BB98E /* blockerList.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = blockerList.json; sourceTree = "<group>"; };
 		C404E4641B827219006BB98E /* ActionRequestHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionRequestHandler.swift; sourceTree = "<group>"; };
 		C404E4661B827219006BB98E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C404E46D1B82723E006BB98E /* Rule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Rule.swift; sourceTree = "<group>"; };
 		C413E0D41B7BD12500287E27 /* IgnoringRule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IgnoringRule.swift; sourceTree = "<group>"; };
 		C41CA5C31B832660000255F3 /* SubscriptionsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubscriptionsManager.swift; sourceTree = "<group>"; };
 		C41CA5C51B8330F2000255F3 /* CloudKitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloudKitViewController.swift; sourceTree = "<group>"; };
@@ -108,7 +105,6 @@
 		C41CA5CB1B83A149000255F3 /* ListsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListsManager.swift; sourceTree = "<group>"; };
 		C4316F711B80E074004C047F /* AdiosViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdiosViewController.swift; sourceTree = "<group>"; };
 		C4316F731B80E16D004C047F /* InformationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InformationViewController.swift; sourceTree = "<group>"; };
-		C48B7E801B7A5AD200D58BDA /* Rule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Rule.swift; sourceTree = "<group>"; };
 		C4E206081B773F6B00C280DF /* Adios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Adios.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4E2060B1B773F6B00C280DF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C4E2060D1B773F6B00C280DF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -193,7 +189,6 @@
 				C404E4621B827219006BB98E /* blockerList.json */,
 				C404E4641B827219006BB98E /* ActionRequestHandler.swift */,
 				C404E4661B827219006BB98E /* Info.plist */,
-				C404E46D1B82723E006BB98E /* Rule.swift */,
 			);
 			path = BaseContentBlocker;
 			sourceTree = "<group>";
@@ -307,7 +302,6 @@
 				C4E206421B77402B00C280DF /* blockerList.json */,
 				C4E206441B77402B00C280DF /* ActionRequestHandler.swift */,
 				C4E206461B77402B00C280DF /* Info.plist */,
-				C48B7E801B7A5AD200D58BDA /* Rule.swift */,
 				C413E0D41B7BD12500287E27 /* IgnoringRule.swift */,
 			);
 			path = ContentBlocker;
@@ -571,7 +565,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				C404E4651B827219006BB98E /* ActionRequestHandler.swift in Sources */,
-				C404E46E1B82723E006BB98E /* Rule.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -617,7 +610,6 @@
 			files = (
 				C413E0D51B7BD12500287E27 /* IgnoringRule.swift in Sources */,
 				C4E206451B77402B00C280DF /* ActionRequestHandler.swift in Sources */,
-				C48B7E811B7A5AD200D58BDA /* Rule.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
