@@ -10,12 +10,23 @@ import Foundation
 import CloudKit
 
 class ListsManager {
-    func addRuleToList(list: String, ruleAsRecord: CKRecord) {
-        print("We want to add a rule to a list")
+    func addRuleToList(list: String, rule: String) {
+        if let userDefaults = NSUserDefaults(suiteName: "group.AG.Adios") {
+            if var searchedlist = userDefaults.arrayForKey(list) as! [String]? {
+                searchedlist.append(rule)
+                userDefaults.setObject(searchedlist, forKey: list)
+            }
+        }
     }
-    func deleteRuleFromList(list: String, ruleAsRecord: CKRecord) {
-        print("We want to remove a rule to a list")
+    func deleteRuleFromList(list: String, rule: String) {
+        if let userDefaults = NSUserDefaults(suiteName: "group.AG.Adios") {
+            if var searchedlist = userDefaults.arrayForKey(list) as! [String]? {
+                searchedlist.removeAtIndex(searchedlist.indexOf(rule)!)
+                userDefaults.setObject(searchedlist, forKey: list)
+            }
+        }
     }
+    
     func createList(list: String, records: [CKRecord]) {
         var rulesBlock: [String] = []
         var rulesBlockCookies: [String] = []
@@ -57,18 +68,54 @@ class ListsManager {
             
             userDefaults.synchronize()
         }
-        
     }
+    
     func updateRulesWithRecords(recordsCreated: [CKRecord], recordsDeleted: [CKRecord]) {
+        for record in recordsCreated {
+            let recordList = (record["List"] as! CKReference).recordID.recordName
+            let rule = ruleFromRecord(record)
+            switch rule.actionType {
+            case "block":
+                addRuleToList("\(recordList)Block", rule: rule.toString())
+            case "block-cookies":
+                addRuleToList("\(recordList)BlockCookies", rule: rule.toString())
+            case "css-display-none":
+                addRuleToList("\(recordList)CSSDisplayNone", rule: rule.toString())
+            case "ignore-previous-rules":
+                addRuleToList("\(recordList)IgnorePreviousRules", rule: rule.toString())
+            default:
+                print("Problem with a rule that is not well formatted: \(rule.toString())")
+            }
+        }
         
+        for record in recordsDeleted {
+            let recordList = (record["List"] as! CKReference).recordID.recordName
+            let rule = ruleFromRecord(record)
+            switch rule.actionType {
+            case "block":
+                deleteRuleFromList("\(recordList)Block", rule: rule.toString())
+            case "block-cookies":
+                deleteRuleFromList("\(recordList)BlockCookies", rule: rule.toString())
+            case "css-display-none":
+                deleteRuleFromList("\(recordList)CSSDisplayNone", rule: rule.toString())
+            case "ignore-previous-rules":
+                deleteRuleFromList("\(recordList)IgnorePreviousRules", rule: rule.toString())
+            default:
+                print("Problem with a rule that is not well formatted: \(rule.toString())")
+            }
+        }
     }
     
     func removeAllLists() {
         if let userDefaults = NSUserDefaults(suiteName: "group.AG.Adios") {
-            if var followedLists = userDefaults.arrayForKey("followedLists") {
+            if let followedLists = userDefaults.arrayForKey("followedLists") {
                 for list in followedLists {
                     userDefaults.removeObjectForKey("\(list)Block")
+                    userDefaults.removeObjectForKey("\(list)BlockCookies")
+                    userDefaults.removeObjectForKey("\(list)CSSDisplayNone")
+                    userDefaults.removeObjectForKey("\(list)IgnorePreviousRules")
                 }
+                userDefaults.removeObjectForKey("followedLists")
             }
             
         }

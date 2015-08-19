@@ -36,6 +36,7 @@
 		C4E6C6181B81F1A800F1411F /* SecondListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E6C6171B81F1A800F1411F /* SecondListViewController.swift */; };
 		C4E6C61A1B81F1C100F1411F /* SocialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E6C6191B81F1C100F1411F /* SocialViewController.swift */; };
 		C4E6C61C1B81F1F500F1411F /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E6C61B1B81F1F500F1411F /* LoadingViewController.swift */; };
+		C4EBCC931B84C32C002D6553 /* ContentBlockersManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EBCC921B84C32C002D6553 /* ContentBlockersManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -134,6 +135,7 @@
 		C4E6C6171B81F1A800F1411F /* SecondListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondListViewController.swift; sourceTree = "<group>"; };
 		C4E6C6191B81F1C100F1411F /* SocialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialViewController.swift; sourceTree = "<group>"; };
 		C4E6C61B1B81F1F500F1411F /* LoadingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
+		C4EBCC921B84C32C002D6553 /* ContentBlockersManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentBlockersManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -233,6 +235,7 @@
 				C41CA5C71B833293000255F3 /* DownloadManager.swift */,
 				C41CA5C91B839FCE000255F3 /* Rule.swift */,
 				C41CA5CB1B83A149000255F3 /* ListsManager.swift */,
+				C4EBCC921B84C32C002D6553 /* ContentBlockersManager.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -578,6 +581,7 @@
 				C4E6C61A1B81F1C100F1411F /* SocialViewController.swift in Sources */,
 				C41CA5C61B8330F2000255F3 /* CloudKitViewController.swift in Sources */,
 				C4E6C61C1B81F1F500F1411F /* LoadingViewController.swift in Sources */,
+				C4EBCC931B84C32C002D6553 /* ContentBlockersManager.swift in Sources */,
 				C4E2060C1B773F6B00C280DF /* AppDelegate.swift in Sources */,
 				C41CA5C41B832660000255F3 /* SubscriptionsManager.swift in Sources */,
 				C4E6C6161B81F19800F1411F /* MainListViewController.swift in Sources */,

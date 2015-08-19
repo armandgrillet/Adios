@@ -38,8 +38,6 @@ class DownloadManager {
                     self.listsManager.createList(list, records: rules)
                     if nextLists != nil && nextLists!.count > 0 { // Other lists need to be downloaded
                        self.downloadRulesFromList(nextLists![0], nextLists: Array(nextLists!.dropFirst()))
-                    } else { // All the list have been downloaded.
-                        
                     }
                 }
             }
