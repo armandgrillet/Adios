@@ -38,7 +38,6 @@ class SubscriptionsManager {
     }
     
     func didReceiveNotification(userInfo: [NSObject : AnyObject]) {
-        print("We received a notification")
         let notification = CKNotification(fromRemoteNotificationDictionary: userInfo as! [String: NSObject])
         if notification.notificationType == .Query, let queryNotification = notification as? CKQueryNotification {
             let update = queryNotification.recordFields!["Version"]! as! Int

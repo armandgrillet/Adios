@@ -48,6 +48,5 @@ class Rule {
     init(triggerUrlFilter: String, actionType: String) {
         self.triggerUrlFilter = triggerUrlFilter
         self.actionType = actionType
-        print("Yo")
     }
 }

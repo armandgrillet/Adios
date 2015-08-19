@@ -45,7 +45,7 @@ class DownloadManager {
                         self.publicDB.performQuery(queryGetUpdate, inZoneWithID: nil) { results, error in
                             if error != nil {
                                 print(error)
-                            } else {
+                            } else { // We downloaded all the lists we want, we set the current update and call it a day.
                                 if let userDefaults = NSUserDefaults(suiteName: "group.AG.Adios") {
                                     if let theOneAndOnlyUpdate = results?.first {
                                         let currentUpdate = theOneAndOnlyUpdate["Version"]! as! Int
@@ -80,7 +80,6 @@ class DownloadManager {
                 var recordsDeleted: [CKRecord] = []
                 
                 // Get all the records that have been created after the last update
-                let currentUpdate = 0
                 let predicate = NSPredicate(format: "(Update > \(currentUpdate)) AND (List IN %@)", referenceToFollowedLists)
                 let queryCreatedRules = CKQuery(recordType: "Rules", predicate: predicate)
                 let queryCreatedRulesOperation = CKQueryOperation(query: queryCreatedRules)
