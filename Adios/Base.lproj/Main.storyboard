@@ -97,33 +97,50 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="avO-Yu-lU5">
-                                <rect key="frame" x="253" y="285" width="95" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dzc-6Y-crs">
+                                <rect key="frame" x="233" y="285" width="135" height="30"/>
                                 <animations/>
-                                <state key="normal" title="Subscriptions"/>
+                                <state key="normal" title="Download AdiosList"/>
                                 <connections>
-                                    <action selector="askForNotifications:" destination="OeH-Wu-i87" eventType="touchUpInside" id="Vj3-t1-eKE"/>
+                                    <action selector="downloadAdiosList:" destination="OeH-Wu-i87" eventType="touchUpInside" id="txf-sN-h3I"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DSf-3D-OJw">
-                                <rect key="frame" x="20" y="535" width="560" height="45"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yBt-2g-1zu">
+                                <rect key="frame" x="227" y="323" width="147" height="30"/>
                                 <animations/>
-                                <fontDescription key="fontDescription" type="system" pointSize="27"/>
-                                <state key="normal" title="check CK"/>
+                                <state key="normal" title="Subscribe to updates"/>
                                 <connections>
-                                    <action selector="checkCloudKit:" destination="OeH-Wu-i87" eventType="touchUpInside" id="8Nm-T1-qax"/>
+                                    <action selector="subscribeToAdiosList:" destination="OeH-Wu-i87" eventType="touchUpInside" id="YLw-gq-3KV"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wqk-nX-4gh">
+                                <rect key="frame" x="251" y="361" width="99" height="30"/>
+                                <animations/>
+                                <state key="normal" title="Print AdiosList"/>
+                                <connections>
+                                    <action selector="printAdiosList:" destination="OeH-Wu-i87" eventType="touchUpInside" id="bQZ-Mz-jY9"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mTb-Jr-yeO">
+                                <rect key="frame" x="225" y="399" width="151" height="30"/>
+                                <animations/>
+                                <state key="normal" title="Apply content blocker"/>
+                                <connections>
+                                    <action selector="applyContentBlockers:" destination="OeH-Wu-i87" eventType="touchUpInside" id="5cs-Uk-nuU"/>
                                 </connections>
                             </button>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="DSf-3D-OJw" firstAttribute="trailing" secondItem="e96-t0-LFf" secondAttribute="trailingMargin" id="7Qw-FN-ZDW"/>
-                            <constraint firstItem="DSf-3D-OJw" firstAttribute="leading" secondItem="e96-t0-LFf" secondAttribute="leadingMargin" id="8oV-Vf-sn4"/>
-                            <constraint firstItem="BGv-Rw-TKp" firstAttribute="top" secondItem="DSf-3D-OJw" secondAttribute="bottom" constant="20" id="LZw-Cb-apC"/>
-                            <constraint firstItem="DSf-3D-OJw" firstAttribute="centerX" secondItem="e96-t0-LFf" secondAttribute="centerX" id="QEO-4F-Adi"/>
-                            <constraint firstItem="avO-Yu-lU5" firstAttribute="centerX" secondItem="e96-t0-LFf" secondAttribute="centerX" id="hNP-a1-ZAe"/>
-                            <constraint firstItem="avO-Yu-lU5" firstAttribute="centerY" secondItem="e96-t0-LFf" secondAttribute="centerY" id="kRZ-wQ-Cpl"/>
+                            <constraint firstItem="dzc-6Y-crs" firstAttribute="centerX" secondItem="e96-t0-LFf" secondAttribute="centerX" id="G3Z-9b-D9E"/>
+                            <constraint firstItem="wqk-nX-4gh" firstAttribute="top" secondItem="yBt-2g-1zu" secondAttribute="bottom" constant="8" id="KeT-3o-ks1"/>
+                            <constraint firstItem="yBt-2g-1zu" firstAttribute="centerX" secondItem="e96-t0-LFf" secondAttribute="centerX" id="Mcn-OH-uln"/>
+                            <constraint firstItem="dzc-6Y-crs" firstAttribute="centerY" secondItem="e96-t0-LFf" secondAttribute="centerY" id="Sju-fO-VfY"/>
+                            <constraint firstItem="mTb-Jr-yeO" firstAttribute="top" secondItem="wqk-nX-4gh" secondAttribute="bottom" constant="8" id="bFT-o0-JEo"/>
+                            <constraint firstItem="mTb-Jr-yeO" firstAttribute="centerX" secondItem="e96-t0-LFf" secondAttribute="centerX" id="krR-RI-Lk7"/>
+                            <constraint firstItem="wqk-nX-4gh" firstAttribute="centerX" secondItem="e96-t0-LFf" secondAttribute="centerX" id="rF2-JD-PY8"/>
+                            <constraint firstItem="yBt-2g-1zu" firstAttribute="top" secondItem="dzc-6Y-crs" secondAttribute="bottom" constant="8" id="sYT-k2-QcG"/>
                         </constraints>
                     </view>
                 </viewController>

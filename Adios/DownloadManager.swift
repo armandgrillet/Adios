@@ -38,17 +38,20 @@ class DownloadManager {
                     self.listsManager.createList(list, records: rules)
                     if nextLists != nil && nextLists!.count > 0 { // Other lists need to be downloaded
                        self.downloadRulesFromList(nextLists![0], nextLists: Array(nextLists!.dropFirst()))
-                    } else { // Everything has been downloaded
+                    } else { // Everything has been downloaded, we're setting the current update user default and run the content blockers manager
+                        self.listsManager.applyLists()
                         let pr = NSPredicate(format: "recordID = %@", CKRecordID(recordName: "TheOneAndOnly"))
                         let queryGetUpdate = CKQuery(recordType: "Updates", predicate: pr)
                         self.publicDB.performQuery(queryGetUpdate, inZoneWithID: nil) { results, error in
                             if error != nil {
                                 print(error)
                             } else {
-                                if let theOneAndOnlyUpdate = results?.first, let userDefaults = NSUserDefaults(suiteName: "group.AG.Adios") {
-                                    let currentUpdate = theOneAndOnlyUpdate["Version"]! as! Int
-                                    userDefaults.setInteger(currentUpdate, forKey: "currentUpdate")
-                                    userDefaults.synchronize()
+                                if let userDefaults = NSUserDefaults(suiteName: "group.AG.Adios") {
+                                    if let theOneAndOnlyUpdate = results?.first {
+                                        let currentUpdate = theOneAndOnlyUpdate["Version"]! as! Int
+                                        userDefaults.setInteger(currentUpdate, forKey: "currentUpdate")
+                                        userDefaults.synchronize()
+                                    }
                                 }
                             }
                         }

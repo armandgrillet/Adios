@@ -8,6 +8,7 @@
 
 import Foundation
 import CloudKit
+import SafariServices
 
 class ListsManager {
     func addRuleToList(list: String, rule: String) {
@@ -18,6 +19,23 @@ class ListsManager {
             }
         }
     }
+    
+    func applyLists() {
+        SFContentBlockerManager.reloadContentBlockerWithIdentifier("AG.Adios.ContentBlocker") { (error: NSError?) -> Void in
+            if error == nil {
+                SFContentBlockerManager.reloadContentBlockerWithIdentifier("AG.Adios.ContentBlocker") { (otherError: NSError?) -> Void in
+                    if error == nil {
+                        print("Rules applied")
+                    } else {
+                        print(otherError)
+                    }
+                }
+            } else {
+               print(error)
+            }
+        }
+    }
+    
     func deleteRuleFromList(list: String, rule: String) {
         if let userDefaults = NSUserDefaults(suiteName: "group.AG.Adios") {
             if var searchedlist = userDefaults.arrayForKey(list) as! [String]? {
@@ -28,6 +46,8 @@ class ListsManager {
     }
     
     func createList(list: String, records: [CKRecord]) {
+        print("On créer la liste \(list)")
+        
         var rulesBlock: [String] = []
         var rulesBlockCookies: [String] = []
         var rulesCSSDisplayNone: [String] = []
@@ -104,6 +124,8 @@ class ListsManager {
                 print("Problem with a rule that is not well formatted: \(rule.toString())")
             }
         }
+        
+        applyLists()
     }
     
     func removeAllLists() {
@@ -122,10 +144,7 @@ class ListsManager {
     }
     
     func ruleFromRecord(record: CKRecord) -> Rule {
-        let rule = Rule()
-        if let triggerUrlFilter = record["TriggerUrlFilter"] as? String {
-            rule.triggerUrlFilter = triggerUrlFilter
-        }
+        let rule = Rule(triggerUrlFilter: record["TriggerUrlFilter"] as! String, actionType: record["ActionType"] as! String)
         if let _ = record["TriggerUrlFilterIsCaseSensitive"] as? Int {
             rule.triggerUrlFilterIsCaseSensitive = true
         }
@@ -141,9 +160,6 @@ class ListsManager {
             rule.triggerUnlessDomain = triggerUnlessDomain
         }
         
-        if let actionType = record["ActionType"] as? String {
-            rule.actionType = actionType
-        }
         if let actionSelector = record["ActionSelector"] as? String {
             rule.actionSelector = actionSelector
         }

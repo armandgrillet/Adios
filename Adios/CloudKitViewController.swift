@@ -8,6 +8,7 @@
 
 import UIKit
 import CloudKit
+import SafariServices
 
 class CloudKitViewController: UIViewController {
     let downloadManager = DownloadManager()
@@ -24,11 +25,37 @@ class CloudKitViewController: UIViewController {
         
     }
     
-    @IBAction func checkCloudKit(sender: UIButton) {
-        downloadManager.downloadRulesFromList("AdiosList", nextLists: [])
+    @IBAction func downloadAdiosList(sender: UIButton) {
+        downloadManager.downloadLists(["AdiosList"])
     }
     
-    @IBAction func askForNotifications(sender: UIButton) {
-        subscriptionsManager.addSubscription("AdiosList")
+    @IBAction func subscribeToAdiosList(sender: UIButton) {
+        subscriptionsManager.subscribeToUpdates()
+    }
+    
+    @IBAction func applyContentBlockers(sender: UIButton) {
+        SFContentBlockerManager.reloadContentBlockerWithIdentifier("AG.Adios.ContentBlocker") { (error: NSError?) -> Void in
+            if error == nil {
+                SFContentBlockerManager.reloadContentBlockerWithIdentifier("AG.Adios.ContentBlocker") { (otherError: NSError?) -> Void in
+                    if error == nil {
+                        print("Rules applied")
+                    } else {
+                        print(otherError)
+                    }
+                }
+            } else {
+                print(error)
+            }
+        }
+
+    }
+    @IBAction func printAdiosList(sender: UIButton) {
+        if let userDefaults = NSUserDefaults(suiteName: "group.AG.Adios") {
+            
+            print(userDefaults.arrayForKey("AdiosListBlock"))
+            print(userDefaults.arrayForKey("AdiosListBlockCookies"))
+            print(userDefaults.arrayForKey("AdiosListCSSDisplayNone"))
+            print(userDefaults.arrayForKey("AdiosListIgnorePreviousRules"))
+        }
     }
 }

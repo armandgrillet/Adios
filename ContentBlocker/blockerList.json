@@ -1,11 +1,11 @@
 [
- {
- "trigger": {
- "url-filter": "armand.gr"
- },
- "action": {
- "type": "css-display-none",
- "selector": ".testContentBlocker"
- }
- }
+    {
+        "trigger": {
+            "url-filter": "armand.gr"
+        },
+        "action": {
+            "type": "css-display-none",
+            "selector": ".testContentBlockerOne"
+        }
+    }
  ]

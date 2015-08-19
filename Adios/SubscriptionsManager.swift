@@ -13,7 +13,8 @@ class SubscriptionsManager {
     let publicDB = CKContainer.defaultContainer().publicCloudDatabase
     let downloadManager = DownloadManager()
     
-    func addSubscription(list: String) {
+    func subscribeToUpdates() {
+        print("We subscribe")
         let predicate = NSPredicate(format: "TRUEPREDICATE")
         
         let silentNotification = CKNotificationInfo()
