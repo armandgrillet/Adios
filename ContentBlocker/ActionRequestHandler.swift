@@ -16,46 +16,36 @@ class ActionRequestHandler: NSObject, NSExtensionRequestHandling {
         if let userDefaults = NSUserDefaults(suiteName: "group.AG.Adios") {
             var rules = "[" // We're starting the array
             
-            let testRule = Rule()
-            testRule.triggerUrl = "armand.gr"
-            testRule.actionType = "css-display-none"
-            testRule.actionSelector = ".testContentBlocker"
-            
             // We check which lists the user is following and load them by action types.
             if let followedLists = userDefaults.arrayForKey("followedLists") as! [String]? {
                 for followedList in followedLists {
-                    if let list = userDefaults.arrayForKey("\(followedList)Block") as! [Rule]? {
+                    if let list = userDefaults.arrayForKey("\(followedList)Block") as! [String]? {
                         for rule in list {
-                            rules += rule.toString()
+                            rules += rule
                         }
                     }
                 }
                 
                 for followedList in followedLists {
-                    if let list = userDefaults.arrayForKey("\(followedList)BlockCookies") as! [Rule]? {
+                    if let list = userDefaults.arrayForKey("\(followedList)BlockCookies") as! [String]? {
                         for rule in list {
-                            rules += rule.toString()
+                            rules += rule
                         }
                     }
                 }
                 
                 for followedList in followedLists {
-                    if let list = userDefaults.arrayForKey("\(followedList)CSSDisplayNone") as! [Rule]? {
+                    if let list = userDefaults.arrayForKey("\(followedList)CSSDisplayNone") as! [String]? {
                         for rule in list {
-                            rules += rule.toString()
+                            rules += rule
                         }
                     }
                 }
                 
-                if let list = userDefaults.arrayForKey("EasyPrivacyIgnorePreviousRules") as! [Rule]? {
-                    for rule in list {
-                        rules += rule.toString()
-                    }
-                }
                 for followedList in followedLists {
-                    if let list = userDefaults.arrayForKey("\(followedList)IgnorePreviousRules") as! [Rule]? {
+                    if let list = userDefaults.arrayForKey("\(followedList)IgnorePreviousRules") as! [String]? {
                         for rule in list {
-                            rules += rule.toString()
+                            rules += rule
                         }
                     }
                 }

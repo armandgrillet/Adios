@@ -16,33 +16,35 @@ class ActionRequestHandler: NSObject, NSExtensionRequestHandling {
         if let userDefaults = NSUserDefaults(suiteName: "group.AG.Adios") {
             var rules = "[" // We're starting the array
             
-            if userDefaults.boolForKey("IsEasyListChosen") {
-                if let list = userDefaults.arrayForKey("EasyListBlock") as! [Rule]? {
-                    for rule in list {
-                        rules += rule.toString()
+            if let followedLists = userDefaults.arrayForKey("followedLists") as! [String]? {
+                if followedLists.contains("EasyList") {
+                    if let list = userDefaults.arrayForKey("EasyListBlock") as! [String]? {
+                        for rule in list {
+                            rules += rule
+                        }
                     }
-                }
-                if let list = userDefaults.arrayForKey("EasyListBlockCookies") as! [Rule]? {
-                    for rule in list {
-                        rules += rule.toString()
+                    if let list = userDefaults.arrayForKey("EasyListBlockCookies") as! [String]? {
+                        for rule in list {
+                            rules += rule
+                        }
                     }
-                }
-                if let list = userDefaults.arrayForKey("EasyListCSSDisplayNone") as! [Rule]? {
-                    for rule in list {
-                        rules += rule.toString()
+                    if let list = userDefaults.arrayForKey("EasyListCSSDisplayNone") as! [String]? {
+                        for rule in list {
+                            rules += rule
+                        }
                     }
-                }
-                if let list = userDefaults.arrayForKey("EasyListIgnorePreviousRules") as! [Rule]? {
-                    for rule in list {
-                        rules += rule.toString()
+                    if let list = userDefaults.arrayForKey("EasyListIgnorePreviousRules") as! [String]? {
+                        for rule in list {
+                            rules += rule
+                        }
                     }
                 }
             }
             
             // JIC
-            if let list = userDefaults.arrayForKey("Adios") as! [Rule]? {
+            if let list = userDefaults.arrayForKey("AdiosList") as! [String]? {
                 for rule in list {
-                    rules += rule.toString()
+                    rules += rule
                 }
             }
             
