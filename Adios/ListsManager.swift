@@ -39,8 +39,11 @@ class ListsManager {
     func deleteRuleFromList(list: String, rule: String) {
         if let userDefaults = NSUserDefaults(suiteName: "group.AG.Adios") {
             if var searchedlist = userDefaults.arrayForKey(list) as! [String]? {
-                searchedlist.removeAtIndex(searchedlist.indexOf(rule)!)
-                userDefaults.setObject(Array(Set(searchedlist)), forKey: list)
+                if searchedlist.indexOf(rule) != nil {
+                    searchedlist.removeAtIndex(searchedlist.indexOf(rule)!)
+                    userDefaults.setObject(Array(Set(searchedlist)), forKey: list)
+                }
+                
             }
         }
     }
