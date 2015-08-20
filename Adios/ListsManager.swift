@@ -144,7 +144,7 @@ class ListsManager {
     }
     
     func ruleFromRecord(record: CKRecord) -> Rule {
-        let rule = Rule(triggerUrlFilter: record["TriggerUrlFilter"] as! String, actionType: record["ActionType"] as! String)
+        let rule = Rule(triggerUrlFilterWithOneBackslash: record["TriggerUrlFilter"] as! String, actionType: record["ActionType"] as! String)
         if let _ = record["TriggerUrlFilterIsCaseSensitive"] as? Int {
             rule.triggerUrlFilterIsCaseSensitive = true
         }
