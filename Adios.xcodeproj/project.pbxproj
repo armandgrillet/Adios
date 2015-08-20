@@ -11,6 +11,7 @@
 		C404E4651B827219006BB98E /* ActionRequestHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C404E4641B827219006BB98E /* ActionRequestHandler.swift */; };
 		C404E4691B827219006BB98E /* BaseContentBlocker.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = C404E4601B827219006BB98E /* BaseContentBlocker.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		C413E0D51B7BD12500287E27 /* IgnoringRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = C413E0D41B7BD12500287E27 /* IgnoringRule.swift */; };
+		C415D5D21B861F1D002EBBFB /* GroupManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C415D5D11B861F1D002EBBFB /* GroupManager.swift */; };
 		C41CA5C41B832660000255F3 /* SubscriptionsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41CA5C31B832660000255F3 /* SubscriptionsManager.swift */; };
 		C41CA5C61B8330F2000255F3 /* CloudKitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41CA5C51B8330F2000255F3 /* CloudKitViewController.swift */; };
 		C41CA5C81B833293000255F3 /* DownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41CA5C71B833293000255F3 /* DownloadManager.swift */; };
@@ -99,6 +100,7 @@
 		C404E4641B827219006BB98E /* ActionRequestHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionRequestHandler.swift; sourceTree = "<group>"; };
 		C404E4661B827219006BB98E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C413E0D41B7BD12500287E27 /* IgnoringRule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IgnoringRule.swift; sourceTree = "<group>"; };
+		C415D5D11B861F1D002EBBFB /* GroupManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupManager.swift; sourceTree = "<group>"; };
 		C41CA5C31B832660000255F3 /* SubscriptionsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubscriptionsManager.swift; sourceTree = "<group>"; };
 		C41CA5C51B8330F2000255F3 /* CloudKitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloudKitViewController.swift; sourceTree = "<group>"; };
 		C41CA5C71B833293000255F3 /* DownloadManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadManager.swift; sourceTree = "<group>"; };
@@ -235,6 +237,7 @@
 				C41CA5C91B839FCE000255F3 /* Rule.swift */,
 				C41CA5CB1B83A149000255F3 /* ListsManager.swift */,
 				C4EBCC921B84C32C002D6553 /* ContentBlockersManager.swift */,
+				C415D5D11B861F1D002EBBFB /* GroupManager.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -589,6 +592,7 @@
 				C4E6C6181B81F1A800F1411F /* SecondListViewController.swift in Sources */,
 				C4316F741B80E16D004C047F /* InformationViewController.swift in Sources */,
 				C41CA5CC1B83A149000255F3 /* ListsManager.swift in Sources */,
+				C415D5D21B861F1D002EBBFB /* GroupManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

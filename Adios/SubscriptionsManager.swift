@@ -14,17 +14,18 @@ class SubscriptionsManager {
     let downloadManager = DownloadManager()
     
     func subscribeToUpdates() {
-        print("We subscribe")
-        let predicate = NSPredicate(format: "TRUEPREDICATE")
+        if !NSUserDefaults.standardUserDefaults().boolForKey("subscriber") {
+            let predicate = NSPredicate(format: "TRUEPREDICATE")
+            let silentNotification = CKNotificationInfo()
+            silentNotification.shouldSendContentAvailable = true
+            silentNotification.desiredKeys = ["Version"]
+            
+            let subscription = CKSubscription(recordType: "Updates", predicate: predicate, options: .FiresOnRecordUpdate)
+            subscription.notificationInfo = silentNotification
+            
+            saveSubscription(subscription)
+        }
         
-        let silentNotification = CKNotificationInfo()
-        silentNotification.shouldSendContentAvailable = true
-        silentNotification.desiredKeys = ["Version"]
-        
-        let subscription = CKSubscription(recordType: "Updates", predicate: predicate, options: .FiresOnRecordUpdate)
-        subscription.notificationInfo = silentNotification
-
-        saveSubscription(subscription)
     }
     
     func saveSubscription(subscription: CKSubscription) {
@@ -33,6 +34,7 @@ class SubscriptionsManager {
                 print("Subscription failed \(error!.localizedDescription)")
             } else {
                 print("Subscription added")
+                NSUserDefaults.standardUserDefaults().setBool(true, forKey: "subscriber")
             }
         }))
     }
