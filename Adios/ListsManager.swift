@@ -139,7 +139,6 @@ class ListsManager {
                 }
                 userDefaults.removeObjectForKey("followedLists")
             }
-            
         }
     }
     

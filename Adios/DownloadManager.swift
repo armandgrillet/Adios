@@ -11,7 +11,6 @@ import CloudKit
 
 class DownloadManager {
     let publicDB = CKContainer.defaultContainer().publicCloudDatabase
-    var status = "Downloading..."
     let listsManager = ListsManager()
     
     func downloadRulesFromList(list: String, nextLists: [String]?) {
@@ -61,6 +60,19 @@ class DownloadManager {
         }
         
         publicDB.addOperation(queryOperation)
+    }
+    
+    func getNewRecordsManually() {
+        let pr = NSPredicate(format: "recordID = %@", CKRecordID(recordName: "TheOneAndOnly"))
+        let queryGetUpdate = CKQuery(recordType: "Updates", predicate: pr)
+        self.publicDB.performQuery(queryGetUpdate, inZoneWithID: nil) { results, error in
+            if error != nil {
+                print(error)
+            } else if let theOneAndOnlyUpdate = results?.first { // We downloaded all the lists we want, we set the current update and call it a day.
+                let cloudUpdate = theOneAndOnlyUpdate["Version"]! as! Int
+                self.getNewRecords(cloudUpdate)
+            }
+        }
     }
     
     func getNewRecords(update: Int) {
