@@ -26,36 +26,17 @@ class CloudKitViewController: UIViewController {
     }
     
     @IBAction func downloadAdiosList(sender: UIButton) {
-        downloadManager.downloadLists(["AdiosList"])
-    }
-    
-    @IBAction func subscribeToAdiosList(sender: UIButton) {
-        subscriptionsManager.subscribeToUpdates()
+        downloadManager.downloadLists(["AdiosList", "AdiosListTest"])
     }
     
     @IBAction func applyContentBlockers(sender: UIButton) {
-        SFContentBlockerManager.reloadContentBlockerWithIdentifier("AG.Adios.ContentBlocker") { (error: NSError?) -> Void in
-            if error == nil {
-                SFContentBlockerManager.reloadContentBlockerWithIdentifier("AG.Adios.ContentBlocker") { (otherError: NSError?) -> Void in
-                    if error == nil {
-                        print("Rules applied")
-                    } else {
-                        print(otherError)
-                    }
-                }
-            } else {
-                print(error)
-            }
-        }
+        ContentBlockersManager.updateContentBlockers()
 
     }
+    @IBAction func manualReload(sender: AnyObject) {
+        downloadManager.getNewRecordsManually()
+    }
     @IBAction func printAdiosList(sender: UIButton) {
-        if let userDefaults = NSUserDefaults(suiteName: "group.AG.Adios") {
-            
-            print(userDefaults.arrayForKey("AdiosListBlock"))
-            print(userDefaults.arrayForKey("AdiosListBlockCookies"))
-            print(userDefaults.arrayForKey("AdiosListCSSDisplayNone"))
-            print(userDefaults.arrayForKey("AdiosListIgnorePreviousRules"))
-        }
+        downloadManager.listsManager.printLists()
     }
 }

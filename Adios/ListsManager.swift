@@ -15,7 +15,7 @@ class ListsManager {
         if let userDefaults = NSUserDefaults(suiteName: "group.AG.Adios") {
             if var searchedlist = userDefaults.arrayForKey(list) as! [String]? {
                 searchedlist.append(rule)
-                userDefaults.setObject(searchedlist, forKey: list)
+                userDefaults.setObject(Array(Set(searchedlist)), forKey: list) // Array(Set(array)) to be sure everything is unique.
             }
         }
     }
@@ -40,7 +40,28 @@ class ListsManager {
         if let userDefaults = NSUserDefaults(suiteName: "group.AG.Adios") {
             if var searchedlist = userDefaults.arrayForKey(list) as! [String]? {
                 searchedlist.removeAtIndex(searchedlist.indexOf(rule)!)
-                userDefaults.setObject(searchedlist, forKey: list)
+                userDefaults.setObject(Array(Set(searchedlist)), forKey: list)
+            }
+        }
+    }
+    
+    func printLists() {
+        if let followedLists = GroupManager.getFollowedLists() {
+            if let userDefaults = NSUserDefaults(suiteName: "group.AG.Adios") {
+                for list in followedLists {
+                    if let displayedList = userDefaults.arrayForKey("\(list)Block") as! [String]? {
+                        print(displayedList)
+                    }
+                    if let displayedList = userDefaults.arrayForKey("\(list)BlockCookies") as! [String]? {
+                        print(displayedList)
+                    }
+                    if let displayedList = userDefaults.arrayForKey("\(list)CSSDisplayNone") as! [String]? {
+                        print(displayedList)
+                    }
+                    if let displayedList = userDefaults.arrayForKey("\(list)IgnorePreviousRules") as! [String]? {
+                        print(displayedList)
+                    }
+                }
             }
         }
     }
@@ -74,10 +95,10 @@ class ListsManager {
         // Set the four group defaults here.
         if let userDefaults = NSUserDefaults(suiteName: "group.AG.Adios") {
             var followedLists = userDefaults.arrayForKey("followedLists")
-            userDefaults.setObject(rulesBlock, forKey: "\(list)Block")
-            userDefaults.setObject(rulesBlockCookies, forKey: "\(list)BlockCookies")
-            userDefaults.setObject(rulesCSSDisplayNone, forKey: "\(list)CSSDisplayNone")
-            userDefaults.setObject(rulesIgnorePreviousRules, forKey: "\(list)IgnorePreviousRules")
+            userDefaults.setObject(Array(Set(rulesBlock)), forKey: "\(list)Block")
+            userDefaults.setObject(Array(Set(rulesBlockCookies)), forKey: "\(list)BlockCookies")
+            userDefaults.setObject(Array(Set(rulesCSSDisplayNone)), forKey: "\(list)CSSDisplayNone")
+            userDefaults.setObject(Array(Set(rulesIgnorePreviousRules)), forKey: "\(list)IgnorePreviousRules")
             
             if followedLists == nil {
                 followedLists = [list]
