@@ -48,22 +48,29 @@ class ListsManager {
         }
     }
     
+    func getFollowedLists() -> [String] {
+        if let userDefaults = NSUserDefaults(suiteName: "group.AG.Adios") {
+            return userDefaults.arrayForKey("followedLists") as! [String]
+        } else {
+            return []
+        }
+    }
+    
     func printLists() {
-        if let followedLists = GroupManager.getFollowedLists() {
-            if let userDefaults = NSUserDefaults(suiteName: "group.AG.Adios") {
-                for list in followedLists {
-                    if let displayedList = userDefaults.arrayForKey("\(list)Block") as! [String]? {
-                        print(displayedList)
-                    }
-                    if let displayedList = userDefaults.arrayForKey("\(list)BlockCookies") as! [String]? {
-                        print(displayedList)
-                    }
-                    if let displayedList = userDefaults.arrayForKey("\(list)CSSDisplayNone") as! [String]? {
-                        print(displayedList)
-                    }
-                    if let displayedList = userDefaults.arrayForKey("\(list)IgnorePreviousRules") as! [String]? {
-                        print(displayedList)
-                    }
+        let followedLists = getFollowedLists()
+        if let userDefaults = NSUserDefaults(suiteName: "group.AG.Adios") {
+            for list in followedLists {
+                if let displayedList = userDefaults.arrayForKey("\(list)Block") as! [String]? {
+                    print(displayedList)
+                }
+                if let displayedList = userDefaults.arrayForKey("\(list)BlockCookies") as! [String]? {
+                    print(displayedList)
+                }
+                if let displayedList = userDefaults.arrayForKey("\(list)CSSDisplayNone") as! [String]? {
+                    print(displayedList)
+                }
+                if let displayedList = userDefaults.arrayForKey("\(list)IgnorePreviousRules") as! [String]? {
+                    print(displayedList)
                 }
             }
         }

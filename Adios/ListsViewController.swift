@@ -11,25 +11,26 @@ import UIKit
 class ListsViewController: UIViewController {
     
     @IBOutlet weak var lists: UITextView!
+    let listsManager = ListsManager()
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         var text = ""
-        if let followedLists = GroupManager.getFollowedLists() {
-            if let userDefaults = NSUserDefaults(suiteName: "group.AG.Adios") {
-                for list in followedLists {
-                    if let displayedList = userDefaults.arrayForKey("\(list)Block") as! [String]? {
-                        text += displayedList.description
-                    }
-                    if let displayedList = userDefaults.arrayForKey("\(list)BlockCookies") as! [String]? {
-                        text += displayedList.description
-                    }
-                    if let displayedList = userDefaults.arrayForKey("\(list)CSSDisplayNone") as! [String]? {
-                        text += displayedList.description
-                    }
-                    if let displayedList = userDefaults.arrayForKey("\(list)IgnorePreviousRules") as! [String]? {
-                        text += displayedList.description
-                    }
+        
+        let followedLists = listsManager.getFollowedLists()
+        if let userDefaults = NSUserDefaults(suiteName: "group.AG.Adios") {
+            for list in followedLists {
+                if let displayedList = userDefaults.arrayForKey("\(list)Block") as! [String]? {
+                    text += displayedList.description
+                }
+                if let displayedList = userDefaults.arrayForKey("\(list)BlockCookies") as! [String]? {
+                    text += displayedList.description
+                }
+                if let displayedList = userDefaults.arrayForKey("\(list)CSSDisplayNone") as! [String]? {
+                    text += displayedList.description
+                }
+                if let displayedList = userDefaults.arrayForKey("\(list)IgnorePreviousRules") as! [String]? {
+                    text += displayedList.description
                 }
             }
         }
