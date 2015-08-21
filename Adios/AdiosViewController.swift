@@ -20,12 +20,30 @@ class AdiosViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        let alwaysFollowedLists = ["AdiosList"]
-        let followedLists = listsManager.getFollowedLists()
+        let alwaysFollowedLists = ["AdiosList", "EasyPrivacy", "AdblockWarningRemoval", "EasyList_SocialMedia"]
+        var followedLists = listsManager.getFollowedLists()
         if followedLists != [] {
-            configurationState.text = "Adios is configured, you're following the lists:"
+            configurationState.text = "Adios is configured! Here is your configuration:"
+            if followedLists.contains("EasyList_SocialMedia") {
+                socialList.text = "You're blocking social buttons"
+            } else {
+                socialList.text = "You're allowing social buttons"
+            }
+            
+            followedLists = followedLists.filter { !alwaysFollowedLists.contains($0) } // Removing the lists that are always followed.
+            if followedLists.count > 1 {
+                mainList.text = "Main list: \(followedLists[0])"
+                secondList.text = "Second list: \(followedLists[1])"
+            } else if followedLists.count == 1 {
+                mainList.text = "Main list: \(followedLists[0])"
+                secondList.text = ""
+            }
         } else {
             configurationState.text = "Adios doesn't block ads yet! Configure Adios first."
+            mainList.text = ""
+            secondList.text = ""
+            socialList.text = ""
+            lastUpdate.text = ""
         }
         
         
