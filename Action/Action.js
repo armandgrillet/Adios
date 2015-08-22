@@ -11,11 +11,11 @@ var Action = function() {};
 Action.prototype = {
     
     run: function(arguments) {
+        alert("Enable or disabling Adios, the webpage will reload automatically once it's done.");
         arguments.completionFunction({ "url" : location.origin });
     },
     
     finalize: function(arguments) {
-        alert(arguments["alert"]);
         document.location.reload();
     }
     

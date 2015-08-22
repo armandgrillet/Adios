@@ -20,6 +20,8 @@
 		C4316F721B80E074004C047F /* AdiosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4316F711B80E074004C047F /* AdiosViewController.swift */; };
 		C4316F741B80E16D004C047F /* InformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4316F731B80E16D004C047F /* InformationViewController.swift */; };
 		C434CB5B1B879A1800537B55 /* OneMoreThingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C434CB5A1B879A1800537B55 /* OneMoreThingViewController.swift */; };
+		C4443AE71B8927DB004EE04C /* OnboardManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4443AE61B8927DB004EE04C /* OnboardManager.swift */; };
+		C4443AE91B8932D9004EE04C /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4443AE81B8932D9004EE04C /* DetailsViewController.swift */; };
 		C4E2060C1B773F6B00C280DF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E2060B1B773F6B00C280DF /* AppDelegate.swift */; };
 		C4E2060E1B773F6B00C280DF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E2060D1B773F6B00C280DF /* ViewController.swift */; };
 		C4E206111B773F6B00C280DF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C4E2060F1B773F6B00C280DF /* Main.storyboard */; };
@@ -36,7 +38,6 @@
 		C4E2065B1B77404200C280DF /* Action.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = C4E206521B77404200C280DF /* Action.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		C4E6C6161B81F19800F1411F /* MainListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E6C6151B81F19800F1411F /* MainListViewController.swift */; };
 		C4E6C6181B81F1A800F1411F /* SecondListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E6C6171B81F1A800F1411F /* SecondListViewController.swift */; };
-		C4E6C61A1B81F1C100F1411F /* SocialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E6C6191B81F1C100F1411F /* SocialViewController.swift */; };
 		C4E6C61C1B81F1F500F1411F /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E6C61B1B81F1F500F1411F /* LoadingViewController.swift */; };
 		C4EBCC931B84C32C002D6553 /* ContentBlockersManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EBCC921B84C32C002D6553 /* ContentBlockersManager.swift */; };
 /* End PBXBuildFile section */
@@ -110,6 +111,8 @@
 		C4316F711B80E074004C047F /* AdiosViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdiosViewController.swift; sourceTree = "<group>"; };
 		C4316F731B80E16D004C047F /* InformationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InformationViewController.swift; sourceTree = "<group>"; };
 		C434CB5A1B879A1800537B55 /* OneMoreThingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OneMoreThingViewController.swift; sourceTree = "<group>"; };
+		C4443AE61B8927DB004EE04C /* OnboardManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardManager.swift; sourceTree = "<group>"; };
+		C4443AE81B8932D9004EE04C /* DetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 		C4E206081B773F6B00C280DF /* Adios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Adios.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4E2060B1B773F6B00C280DF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C4E2060D1B773F6B00C280DF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -137,7 +140,6 @@
 		C4E206601B7740D300C280DF /* Action.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Action.entitlements; sourceTree = "<group>"; };
 		C4E6C6151B81F19800F1411F /* MainListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainListViewController.swift; sourceTree = "<group>"; };
 		C4E6C6171B81F1A800F1411F /* SecondListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondListViewController.swift; sourceTree = "<group>"; };
-		C4E6C6191B81F1C100F1411F /* SocialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialViewController.swift; sourceTree = "<group>"; };
 		C4E6C61B1B81F1F500F1411F /* LoadingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
 		C4EBCC921B84C32C002D6553 /* ContentBlockersManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentBlockersManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -206,7 +208,7 @@
 				C4316F731B80E16D004C047F /* InformationViewController.swift */,
 				C4E6C6151B81F19800F1411F /* MainListViewController.swift */,
 				C4E6C6171B81F1A800F1411F /* SecondListViewController.swift */,
-				C4E6C6191B81F1C100F1411F /* SocialViewController.swift */,
+				C4443AE81B8932D9004EE04C /* DetailsViewController.swift */,
 				C4E6C61B1B81F1F500F1411F /* LoadingViewController.swift */,
 				C434CB5A1B879A1800537B55 /* OneMoreThingViewController.swift */,
 			);
@@ -240,6 +242,7 @@
 				C41CA5C91B839FCE000255F3 /* Rule.swift */,
 				C41CA5CB1B83A149000255F3 /* ListsManager.swift */,
 				C4EBCC921B84C32C002D6553 /* ContentBlockersManager.swift */,
+				C4443AE61B8927DB004EE04C /* OnboardManager.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -586,15 +589,16 @@
 				C434CB5B1B879A1800537B55 /* OneMoreThingViewController.swift in Sources */,
 				C415D5D41B863300002EBBFB /* ListsViewController.swift in Sources */,
 				C4316F721B80E074004C047F /* AdiosViewController.swift in Sources */,
-				C4E6C61A1B81F1C100F1411F /* SocialViewController.swift in Sources */,
 				C41CA5C61B8330F2000255F3 /* CloudKitViewController.swift in Sources */,
 				C4E6C61C1B81F1F500F1411F /* LoadingViewController.swift in Sources */,
 				C4EBCC931B84C32C002D6553 /* ContentBlockersManager.swift in Sources */,
 				C4E2060C1B773F6B00C280DF /* AppDelegate.swift in Sources */,
+				C4443AE91B8932D9004EE04C /* DetailsViewController.swift in Sources */,
 				C41CA5C41B832660000255F3 /* SubscriptionsManager.swift in Sources */,
 				C4E6C6161B81F19800F1411F /* MainListViewController.swift in Sources */,
 				C41CA5CA1B839FCE000255F3 /* Rule.swift in Sources */,
 				C4E6C6181B81F1A800F1411F /* SecondListViewController.swift in Sources */,
+				C4443AE71B8927DB004EE04C /* OnboardManager.swift in Sources */,
 				C4316F741B80E16D004C047F /* InformationViewController.swift in Sources */,
 				C41CA5CC1B83A149000255F3 /* ListsManager.swift in Sources */,
 			);

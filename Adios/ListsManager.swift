@@ -114,8 +114,8 @@ class ListsManager {
     }
     
     func getFollowedLists() -> [String] {
-        if let userDefaults = NSUserDefaults(suiteName: "group.AG.Adios") {
-            return userDefaults.arrayForKey("followedLists") as! [String]
+        if let followedLists = NSUserDefaults(suiteName: "group.AG.Adios")!.arrayForKey("followedLists") {
+            return followedLists as! [String]
         } else {
             return []
         }

@@ -8,14 +8,16 @@
 
 import UIKit
 
-class SecondListViewController: UIViewController {
+class SecondListViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
     
     @IBOutlet weak var secondListPickerView: UIPickerView!
-    let listsManager = ListsManager()
+    let onboardManager = OnboardManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        secondListPickerView.dataSource = self
+        secondListPickerView.delegate = self
     }
     
     override func didReceiveMemoryWarning() {
@@ -28,10 +30,14 @@ class SecondListViewController: UIViewController {
     }
     
     func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return listsManager.getDisplayableLists().count
+        return onboardManager.getSecondLists().count
     }
     
     func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return listsManager.getDisplayableLists()[row]
+        return onboardManager.getSecondLists()[row]
+    }
+    
+    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        onboardManager.secondList = onboardManager.getSecondLists()[row]
     }
 }

@@ -11,7 +11,7 @@ import UIKit
 class MainListViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
     
     @IBOutlet weak var mainListPickerView: UIPickerView!
-    let listsManager = ListsManager()
+    let onboardManager = OnboardManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,14 +30,14 @@ class MainListViewController: UIViewController, UIPickerViewDataSource, UIPicker
     }
     
     func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return listsManager.getDisplayableLists().count
+        return onboardManager.getMainLists().count
     }
     
     func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return listsManager.getDisplayableLists()[row]
+        return onboardManager.getMainLists()[row]
     }
     
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        print(listsManager.getDisplayableLists()[row])
+        onboardManager.mainList = onboardManager.getMainLists()[row]
     }
 }

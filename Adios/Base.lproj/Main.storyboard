@@ -437,7 +437,7 @@
         <!--Details-->
         <scene sceneID="aTw-Ld-F5e">
             <objects>
-                <viewController id="yvo-86-s2z" customClass="SocialViewController" customModule="Adios" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="yvo-86-s2z" customClass="DetailsViewController" customModule="Adios" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="29S-K4-cXa"/>
                         <viewControllerLayoutGuide type="bottom" id="qNY-HV-0Hr"/>
@@ -469,22 +469,80 @@
                                 <animations/>
                                 <color key="onTintColor" red="1" green="0.092578096040000002" blue="0.1144802766" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="thumbTintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <action selector="setSocial:" destination="yvo-86-s2z" eventType="valueChanged" id="4b6-MY-V3E"/>
+                                </connections>
                             </switch>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5Eg-mj-sQG">
+                                <rect key="frame" x="276" y="358" width="51" height="31"/>
+                                <animations/>
+                                <color key="onTintColor" red="1" green="0.092578096040000002" blue="0.1144802766" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="thumbTintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <action selector="setPrivacy:" destination="yvo-86-s2z" eventType="valueChanged" id="9Ic-Br-Ha6"/>
+                                </connections>
+                            </switch>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Block scripts attempting to your privacy?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ihn-hK-kl0">
+                                <rect key="frame" x="20" y="329" width="560" height="21"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8KG-pz-u1o">
+                                <rect key="frame" x="276" y="218" width="51" height="31"/>
+                                <animations/>
+                                <color key="onTintColor" red="1" green="0.092578096040000002" blue="0.1144802766" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="thumbTintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <action selector="setBlockAdblockWarnings:" destination="yvo-86-s2z" eventType="valueChanged" id="e7A-P1-di0"/>
+                                </connections>
+                            </switch>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Block messages asking you to deactivate your ad blocker?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mqw-LG-fEj">
+                                <rect key="frame" x="20" y="189" width="560" height="21"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="pkc-Sd-r7y" firstAttribute="centerX" secondItem="oFH-W7-7L9" secondAttribute="centerX" id="0mF-hb-D0p"/>
+                            <constraint firstItem="Ihn-hK-kl0" firstAttribute="top" secondItem="pkc-Sd-r7y" secondAttribute="bottom" constant="14" id="0pm-Y5-ffr"/>
                             <constraint firstItem="Jfb-8t-UC5" firstAttribute="leading" secondItem="oFH-W7-7L9" secondAttribute="leadingMargin" id="35n-GE-bFP"/>
+                            <constraint firstItem="Jfb-8t-UC5" firstAttribute="top" secondItem="8KG-pz-u1o" secondAttribute="bottom" constant="8" id="4K6-2f-eK9"/>
                             <constraint firstItem="hIM-01-Ax3" firstAttribute="leading" secondItem="oFH-W7-7L9" secondAttribute="leadingMargin" constant="-20" id="91i-sS-JAO"/>
                             <constraint firstItem="pkc-Sd-r7y" firstAttribute="top" secondItem="Jfb-8t-UC5" secondAttribute="bottom" constant="6" id="Gf1-9E-GMb"/>
+                            <constraint firstItem="mqw-LG-fEj" firstAttribute="top" secondItem="5Eg-mj-sQG" secondAttribute="bottom" constant="8" id="Ket-E4-H3h"/>
+                            <constraint firstItem="Ihn-hK-kl0" firstAttribute="leading" secondItem="oFH-W7-7L9" secondAttribute="leadingMargin" id="Lwb-2z-neL"/>
                             <constraint firstItem="Jfb-8t-UC5" firstAttribute="trailing" secondItem="oFH-W7-7L9" secondAttribute="trailingMargin" id="Qbm-i8-hMD"/>
+                            <constraint firstItem="mqw-LG-fEj" firstAttribute="trailing" secondItem="oFH-W7-7L9" secondAttribute="trailingMargin" id="Xuq-gX-R7A"/>
+                            <constraint firstItem="Ihn-hK-kl0" firstAttribute="trailing" secondItem="oFH-W7-7L9" secondAttribute="trailingMargin" id="Z7b-2C-PdO"/>
+                            <constraint firstItem="8KG-pz-u1o" firstAttribute="centerX" secondItem="oFH-W7-7L9" secondAttribute="centerX" id="bPR-a6-NQF"/>
+                            <constraint firstItem="8KG-pz-u1o" firstAttribute="top" secondItem="mqw-LG-fEj" secondAttribute="bottom" constant="8" id="bbV-HJ-dAz"/>
+                            <constraint firstItem="5Eg-mj-sQG" firstAttribute="centerX" secondItem="oFH-W7-7L9" secondAttribute="centerX" id="bje-W4-3nu"/>
+                            <constraint firstItem="8KG-pz-u1o" firstAttribute="top" secondItem="mqw-LG-fEj" secondAttribute="bottom" constant="8" id="cbQ-cE-QiO"/>
                             <constraint firstAttribute="trailingMargin" secondItem="hIM-01-Ax3" secondAttribute="trailing" constant="-20" id="f3V-Bh-hW2"/>
                             <constraint firstItem="pkc-Sd-r7y" firstAttribute="centerY" secondItem="oFH-W7-7L9" secondAttribute="centerY" id="fJL-tL-E8R"/>
+                            <constraint firstItem="mqw-LG-fEj" firstAttribute="leading" secondItem="oFH-W7-7L9" secondAttribute="leadingMargin" id="h36-OP-CmG"/>
                             <constraint firstItem="qNY-HV-0Hr" firstAttribute="top" secondItem="hIM-01-Ax3" secondAttribute="bottom" constant="8" symbolic="YES" id="kzd-he-CHj"/>
+                            <constraint firstItem="5Eg-mj-sQG" firstAttribute="top" secondItem="Ihn-hK-kl0" secondAttribute="bottom" constant="8" id="rRE-LQ-aaB"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="Ket-E4-H3h"/>
+                                <exclude reference="bbV-HJ-dAz"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" title="Details" id="vJj-pk-1f0"/>
+                    <connections>
+                        <outlet property="blockAdblockWarningsSwitch" destination="8KG-pz-u1o" id="cHM-BE-gUM"/>
+                        <outlet property="privacySwitch" destination="5Eg-mj-sQG" id="qet-oC-rZh"/>
+                        <outlet property="socialSwitch" destination="pkc-Sd-r7y" id="HOZ-xj-klS"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="P2z-To-qGd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
