@@ -20,8 +20,57 @@ class ListsManager {
         }
     }
     
+    func getListForCountry() -> String {
+        switch NSLocale.currentLocale().objectForKey(NSLocaleCountryCode) as! String {
+        case "EG", "SA":
+            return "Arabic region 🇪🇬"
+        case "BG":
+            return "Bulgaria 🇧🇬"
+        case "CN":
+            return "China 🇨🇳"
+        case "CZ", "SK":
+            return "Czech and Slovak Rep. 🇸🇰"
+        case "DK":
+            return "Denmark 🇩🇰"
+        case "FR":
+            return "France 🇫🇷"
+        case "EE":
+            return "Estonia 🇪🇪"
+        case "DE":
+            return "Germany 🇩🇪"
+        case "GR":
+            return "Greece 🇬🇷"
+        case "HU":
+            return "Hungary 🇭🇺"
+        case "IS":
+            return "Iceland 🇮🇸"
+        case "ID":
+            return "Indonesia 🇮🇩"
+        case "IT":
+            return "Italy 🇮🇹"
+        case "IL":
+            return "Israel 🇮🇱"
+        case "JP":
+            return "Japan 🇯🇵"
+        case "LV":
+            return "Latvia 🇱🇻"
+        case "NL":
+            return "Netherlands 🇳🇱"
+        case "PL":
+            return "Poland 🇵🇱"
+        case "RO":
+            return "Poland 🇵🇱"
+        case "RU":
+            return "Russia 🇷🇺"
+        case "GB":
+            return "United Kingdom 🇬🇧"
+        default:
+            return "U.S.A 🇺🇸"
+        }
+    }
+    
     func getDisplayableLists() -> [String] {
-        //return ["Arabic region 🇪🇬", "Bulgaria 🇧🇬", "China 🇨🇳", "Czech and Slovak Rep. 🇸🇰", "Denmark 🇩🇰", "France 🇫🇷", "Estonia 🇪🇪", "Germany 🇩🇪", "Iceland 🇮🇸", "Greece 🇬🇷", "Hungary 🇭🇺", "Japan 🇯🇵", "Indonesia 🇮🇩", "Italy 🇮🇹", "Israel 🇮🇱", "Latvia 🇱🇻", "Poland 🇵🇱", "Netherlands 🇳🇱", "Romania 🇷🇴", "Russia 🇷🇺", "United Kingdom 🇬🇧", "U.S.A 🇺🇸"]
+        //return ["Arabic region 🇪🇬", "Bulgaria 🇧🇬", "China 🇨🇳", "Czech and Slovak Rep. 🇸🇰", "Denmark 🇩🇰", "France 🇫🇷", "Estonia 🇪🇪", "Germany 🇩🇪", "Greece 🇬🇷", "Hungary 🇭🇺", "Iceland 🇮🇸", "Indonesia 🇮🇩", "Italy 🇮🇹", "Israel 🇮🇱", "Japan 🇯🇵", "Latvia 🇱🇻", "Netherlands 🇳🇱", "Poland 🇵🇱", "Romania 🇷🇴", "Russia 🇷🇺", "United Kingdom 🇬🇧", "U.S.A 🇺🇸"]
         return ["List for Adios", "Test list for Adios"]
     }
     

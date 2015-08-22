@@ -45,8 +45,13 @@ class AdiosViewController: UIViewController {
             socialList.text = ""
             lastUpdate.text = ""
         }
-        
-        
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "Configure" {
+            NSUserDefaults.standardUserDefaults().setObject([], forKey: "onboardConfiguration")
+            NSUserDefaults.standardUserDefaults().synchronize()
+        }
     }
     
     override func didReceiveMemoryWarning() {

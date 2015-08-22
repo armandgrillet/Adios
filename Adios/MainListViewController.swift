@@ -25,8 +25,6 @@ class MainListViewController: UIViewController, UIPickerViewDataSource, UIPicker
         // Dispose of any resources that can be recreated.
     }
     
-    //  MARK: - UIPickerViewDataSource
-    
     func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int                                   {
         return 1
     }
@@ -37,5 +35,9 @@ class MainListViewController: UIViewController, UIPickerViewDataSource, UIPicker
     
     func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return listsManager.getDisplayableLists()[row]
+    }
+    
+    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        print(listsManager.getDisplayableLists()[row])
     }
 }
