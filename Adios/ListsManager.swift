@@ -20,6 +20,22 @@ class ListsManager {
         }
     }
     
+    func getDisplayableLists() -> [String] {
+        //return ["Arabic region 🇪🇬", "Bulgaria 🇧🇬", "China 🇨🇳", "Czech and Slovak Rep. 🇸🇰", "Denmark 🇩🇰", "France 🇫🇷", "Estonia 🇪🇪", "Germany 🇩🇪", "Iceland 🇮🇸", "Greece 🇬🇷", "Hungary 🇭🇺", "Japan 🇯🇵", "Indonesia 🇮🇩", "Italy 🇮🇹", "Israel 🇮🇱", "Latvia 🇱🇻", "Poland 🇵🇱", "Netherlands 🇳🇱", "Romania 🇷🇴", "Russia 🇷🇺", "United Kingdom 🇬🇧", "U.S.A 🇺🇸"]
+        return ["List for Adios", "Test list for Adios"]
+    }
+    
+    func getListFromDisplayableList(displayableList: String) -> String? {
+        switch displayableList {
+        case "List for Adios":
+            return "AdiosList"
+        case "Test list for Adios":
+            return "AdiosListTest"
+        default:
+            return nil
+        }
+    }
+    
     func applyLists() {
         SFContentBlockerManager.reloadContentBlockerWithIdentifier("AG.Adios.ContentBlocker") { (error: NSError?) -> Void in
             if error == nil {

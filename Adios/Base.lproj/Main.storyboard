@@ -259,12 +259,12 @@
                             <mask key="constraints">
                                 <exclude reference="gKp-CZ-cVS"/>
                                 <exclude reference="zFn-qU-480"/>
-                                <exclude reference="5F4-fq-xev"/>
-                                <exclude reference="ZJ4-Sl-ZH3"/>
-                                <exclude reference="h2W-eH-YrQ"/>
                                 <exclude reference="CFE-bR-jzH"/>
                                 <exclude reference="K8j-Ka-lIQ"/>
                                 <exclude reference="5un-xR-6LR"/>
+                                <exclude reference="5F4-fq-xev"/>
+                                <exclude reference="ZJ4-Sl-ZH3"/>
+                                <exclude reference="h2W-eH-YrQ"/>
                                 <exclude reference="qv8-FD-QwC"/>
                             </mask>
                         </variation>
@@ -329,6 +329,7 @@
                                 <rect key="frame" x="0.0" y="192" width="600" height="216"/>
                                 <animations/>
                                 <color key="tintColor" red="1" green="0.092578096040000002" blue="0.1144802766" alpha="1" colorSpace="calibratedRGB"/>
+                                <accessibility key="accessibilityConfiguration" label="Yo"/>
                             </pickerView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose the country where are based most of the websites you visit:" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LaT-ch-xN4">
                                 <rect key="frame" x="20" y="163" width="560" height="21"/>
@@ -365,6 +366,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Adios - configuration (1/3)" id="vOv-lW-18T"/>
+                    <connections>
+                        <outlet property="mainListPickerView" destination="1TZ-Oa-2Oq" id="xXt-Dn-llB"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OtR-Qw-sE8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -439,16 +443,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="jyd-6P-rVm">
-                                <rect key="frame" x="264" y="286" width="73" height="29"/>
-                                <animations/>
-                                <segments>
-                                    <segment title="Yes"/>
-                                    <segment title="No"/>
-                                </segments>
-                                <color key="tintColor" red="1" green="0.092578096040000002" blue="0.1144802766" alpha="1" colorSpace="calibratedRGB"/>
-                            </segmentedControl>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Do you want to hide &quot;like&quot; and &quot;tweet&quot; buttons on the Web?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jfb-8t-UC5">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hide &quot;like&quot; and &quot;tweet&quot; buttons on the Web?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jfb-8t-UC5">
                                 <rect key="frame" x="20" y="257" width="560" height="21"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -466,18 +461,24 @@
                                     <segue destination="3Ss-T0-xfU" kind="show" id="tmO-8K-kqR"/>
                                 </connections>
                             </button>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pkc-Sd-r7y">
+                                <rect key="frame" x="276" y="284" width="51" height="31"/>
+                                <animations/>
+                                <color key="onTintColor" red="1" green="0.092578096040000002" blue="0.1144802766" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="thumbTintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            </switch>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="pkc-Sd-r7y" firstAttribute="centerX" secondItem="oFH-W7-7L9" secondAttribute="centerX" id="0mF-hb-D0p"/>
                             <constraint firstItem="Jfb-8t-UC5" firstAttribute="leading" secondItem="oFH-W7-7L9" secondAttribute="leadingMargin" id="35n-GE-bFP"/>
                             <constraint firstItem="hIM-01-Ax3" firstAttribute="leading" secondItem="oFH-W7-7L9" secondAttribute="leadingMargin" constant="-20" id="91i-sS-JAO"/>
-                            <constraint firstItem="jyd-6P-rVm" firstAttribute="top" secondItem="Jfb-8t-UC5" secondAttribute="bottom" constant="8" id="EkW-Dr-4WV"/>
+                            <constraint firstItem="pkc-Sd-r7y" firstAttribute="top" secondItem="Jfb-8t-UC5" secondAttribute="bottom" constant="6" id="Gf1-9E-GMb"/>
                             <constraint firstItem="Jfb-8t-UC5" firstAttribute="trailing" secondItem="oFH-W7-7L9" secondAttribute="trailingMargin" id="Qbm-i8-hMD"/>
-                            <constraint firstItem="jyd-6P-rVm" firstAttribute="centerX" secondItem="oFH-W7-7L9" secondAttribute="centerX" id="XbX-q0-NjU"/>
                             <constraint firstAttribute="trailingMargin" secondItem="hIM-01-Ax3" secondAttribute="trailing" constant="-20" id="f3V-Bh-hW2"/>
+                            <constraint firstItem="pkc-Sd-r7y" firstAttribute="centerY" secondItem="oFH-W7-7L9" secondAttribute="centerY" id="fJL-tL-E8R"/>
                             <constraint firstItem="qNY-HV-0Hr" firstAttribute="top" secondItem="hIM-01-Ax3" secondAttribute="bottom" constant="8" symbolic="YES" id="kzd-he-CHj"/>
-                            <constraint firstItem="jyd-6P-rVm" firstAttribute="centerY" secondItem="oFH-W7-7L9" secondAttribute="centerY" id="ty0-JL-Xg1"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Adios - configuration (3/3)" id="vJj-pk-1f0"/>
@@ -532,7 +533,7 @@
                                     <color key="titleColor" red="1" green="0.092578096040000002" blue="0.1144802766" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Done? Now click on &quot;Apply&quot; to start enjoying a Web without ads." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jfx-aj-IZ5">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Done? Now apply and start enjoying a Web without ads." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jfx-aj-IZ5">
                                 <rect key="frame" x="20" y="370" width="560" height="21"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -672,11 +673,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="justified" translatesAutoresizingMaskIntoConstraints="NO" id="7V2-hj-dm1">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="You are using Adios 0.2, more information will be here prior to the release of Adios 1.0" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="7V2-hj-dm1">
                                 <rect key="frame" x="20" y="64" width="560" height="536"/>
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 <dataDetectorType key="dataDetectorTypes" link="YES"/>
