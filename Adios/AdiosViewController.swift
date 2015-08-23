@@ -15,7 +15,7 @@ class AdiosViewController: UIViewController {
     @IBOutlet weak var configurationState: UILabel!
     @IBOutlet weak var countries: UILabel!
     @IBOutlet weak var details: UILabel!
-    @IBOutlet weak var lastUpdate: UILabel!
+    @IBOutlet weak var lastUpdate: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,15 +47,16 @@ class AdiosViewController: UIViewController {
                 details.text = ""
             }
             
-            let lastUpdateTimestamp = NSUserDefaults.standardUserDefaults().objectForKey("lastUpdateTimestamp") as NSDate
+            let lastUpdateTimestamp = NSUserDefaults.standardUserDefaults().objectForKey("lastUpdateTimestamp") as! NSDate
             let formatter = NSDateFormatter()
             formatter.timeStyle = .ShortStyle
-            lastUpdate.text = formatter.stringFromDate(lastUpdateTimestamp)
+            lastUpdate.setTitle(formatter.stringFromDate(lastUpdateTimestamp), forState: .Normal)
         } else {
             configurationState.text = "Adios doesn't block ads yet! Configure Adios first."
             countries.text = ""
             details.text = ""
-            lastUpdate.text = ""
+            lastUpdate.enabled = false
+            lastUpdate.setTitle("", forState: .Disabled)
         }
     }
     

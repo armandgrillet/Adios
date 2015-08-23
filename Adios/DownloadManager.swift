@@ -70,6 +70,8 @@ class DownloadManager {
     }
     
     func getNewRecordsManually() {
+        NSUserDefaults.standardUserDefaults().setObject("Checking if an update is available", forKey: "updateStatus")
+        NSUserDefaults.standardUserDefaults().synchronize()
         let pr = NSPredicate(format: "recordID = %@", CKRecordID(recordName: "TheOneAndOnly"))
         let queryGetUpdate = CKQuery(recordType: "Updates", predicate: pr)
         self.publicDB.performQuery(queryGetUpdate, inZoneWithID: nil) { results, error in
@@ -136,6 +138,7 @@ class DownloadManager {
                             // We've updated the list, now we can call the content blocker to update it.
                             NSUserDefaults.standardUserDefaults().setInteger(update, forKey: "currentUpdate")
                             NSUserDefaults.standardUserDefaults().setObject(NSDate(), forKey: "lastUpdateTimestamp")
+                            NSUserDefaults.standardUserDefaults().setObject("✅", forKey: "updateStatus")
                             NSUserDefaults.standardUserDefaults().synchronize()
                             self.listsManager.updateRulesWithRecords(recordsCreated, recordsDeleted: recordsDeleted)
                         }
@@ -144,6 +147,9 @@ class DownloadManager {
                 }
             }
             publicDB.addOperation(queryCreatedRulesOperation)
+        } else {
+            NSUserDefaults.standardUserDefaults().setObject("✅", forKey: "updateStatus")
+            NSUserDefaults.standardUserDefaults().synchronize()
         }
     }
     
