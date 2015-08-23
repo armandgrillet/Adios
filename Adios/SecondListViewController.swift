@@ -18,6 +18,7 @@ class SecondListViewController: UIViewController, UIPickerViewDataSource, UIPick
         // Do any additional setup after loading the view, typically from a nib.
         secondListPickerView.dataSource = self
         secondListPickerView.delegate = self
+        secondListPickerView.selectRow(onboardManager.getSecondListPosition(), inComponent: 0, animated: false)
     }
     
     override func didReceiveMemoryWarning() {

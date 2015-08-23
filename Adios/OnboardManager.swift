@@ -9,7 +9,7 @@
 import Foundation
 
 class OnboardManager {
-    var mainList: String {
+    var mainList: String? {
         get {
             if let list = NSUserDefaults.standardUserDefaults().stringForKey("mainList") {
                 return list
@@ -18,19 +18,32 @@ class OnboardManager {
             }
         }
         set {
-            NSUserDefaults.standardUserDefaults().setValue(newValue, forKey: "mainList")
+            if newValue != nil {
+                NSUserDefaults.standardUserDefaults().setValue(newValue, forKey: "mainList")
+            } else {
+                NSUserDefaults.standardUserDefaults().setValue(getLogicCountry(), forKey: "mainList")
+            }
         }
     }
     var secondList: String? {
         get {
             if let list = NSUserDefaults.standardUserDefaults().stringForKey("secondList") {
-                return list
+                if list == mainList {
+                    return "No"
+                } else {
+                    return list
+                }
             } else {
                 return "No"
             }
         }
         set {
-            NSUserDefaults.standardUserDefaults().setValue(newValue, forKey: "secondList")
+            if newValue != nil {
+                NSUserDefaults.standardUserDefaults().setValue(newValue, forKey: "secondList")
+            } else {
+                NSUserDefaults.standardUserDefaults().setValue("No", forKey: "secondList")
+            }
+            
         }
     }
     var blockAdblockWarnings: Bool {
@@ -38,7 +51,6 @@ class OnboardManager {
             return NSUserDefaults.standardUserDefaults().boolForKey("blockAdblockWarnings")
         }
         set {
-            print("On le set a \(newValue)")
             NSUserDefaults.standardUserDefaults().setBool(newValue, forKey: "blockAdblockWarnings")
         }
     }
@@ -59,7 +71,7 @@ class OnboardManager {
         }
     }
     
-    let lists = ["Arabic region 🇪🇬", "Bulgaria 🇧🇬", "China 🇨🇳", "Czech and Slovak Rep. 🇸🇰", "Denmark 🇩🇰", "France 🇫🇷", "Estonia 🇪🇪", "Germany 🇩🇪", "Greece 🇬🇷", "Hungary 🇭🇺", "Iceland 🇮🇸", "Indonesia 🇮🇩", "Italy 🇮🇹", "Israel 🇮🇱", "Japan 🇯🇵", "Latvia 🇱🇻", "Netherlands 🇳🇱", "Poland 🇵🇱", "Romania 🇷🇴", "Russia 🇷🇺", "United Kingdom 🇬🇧", "U.S.A 🇺🇸"]
+    private let lists = ["Arabic region 🇪🇬", "Bulgaria 🇧🇬", "China 🇨🇳", "Czech and Slovak Rep. 🇸🇰", "Denmark 🇩🇰", "France 🇫🇷", "Estonia 🇪🇪", "Germany 🇩🇪", "Greece 🇬🇷", "Hungary 🇭🇺", "Iceland 🇮🇸", "Indonesia 🇮🇩", "Italy 🇮🇹", "Israel 🇮🇱", "Japan 🇯🇵", "Latvia 🇱🇻", "Netherlands 🇳🇱", "Poland 🇵🇱", "Romania 🇷🇴", "Russia 🇷🇺", "United Kingdom 🇬🇧", "U.S.A 🇺🇸"]
     
     func getLogicCountry() -> String {
         switch NSLocale.currentLocale().objectForKey(NSLocaleCountryCode) as! String {
@@ -111,17 +123,29 @@ class OnboardManager {
     }
     
     func getMainLists() -> [String] {
-        let firstList = getLogicCountry()
-        var mainLists = lists
-        mainLists.removeAtIndex(mainLists.indexOf(firstList)!)
-        mainLists.insert(firstList, atIndex: 0)
-        return mainLists
+        return lists
+    }
+    
+    func getMainListPosition() -> Int {
+        return lists.indexOf(mainList!)!
     }
     
     func getSecondLists() -> [String] {
         var secondLists = lists
-        secondLists.removeAtIndex(secondLists.indexOf(mainList)!)
+        secondLists.removeAtIndex(secondLists.indexOf(mainList!)!)
         secondLists.insert("No", atIndex: 0)
         return secondLists
+    }
+    
+    func getSecondListPosition() -> Int {
+        return getSecondLists().indexOf(secondList!)!
+    }
+    
+    func reset() {
+        mainList = nil
+        secondList = nil
+        blockAdblockWarnings = true
+        social = true
+        privacy = true
     }
 }

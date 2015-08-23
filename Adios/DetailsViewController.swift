@@ -18,10 +18,6 @@ class DetailsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        onboardManager.blockAdblockWarnings = blockAdblockWarningsSwitch.on
-        onboardManager.social = blockAdblockWarningsSwitch.on
-        onboardManager.privacy = privacySwitch.on
     }
     
     @IBAction func setBlockAdblockWarnings(sender: UISwitch) {

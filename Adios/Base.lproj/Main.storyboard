@@ -313,10 +313,10 @@
             </objects>
             <point key="canvasLocation" x="560" y="2043"/>
         </scene>
-        <!--Onboard-->
+        <!--Main list-->
         <scene sceneID="m3R-iF-pNn">
             <objects>
-                <viewController title="Onboard" id="suD-hM-Er7" customClass="MainListViewController" customModule="Adios" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Main list" id="suD-hM-Er7" customClass="MainListViewController" customModule="Adios" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="o2F-7B-2t2"/>
                         <viewControllerLayoutGuide type="bottom" id="LG9-47-RQb"/>
@@ -365,7 +365,15 @@
                             <constraint firstAttribute="trailingMargin" secondItem="1TZ-Oa-2Oq" secondAttribute="trailing" constant="-20" id="rth-xz-MPP"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Main list" id="vOv-lW-18T"/>
+                    <navigationItem key="navigationItem" title="Main list (step 1/3)" id="NKG-d7-M8x">
+                        <barButtonItem key="backBarButtonItem" title="1st list" id="ZcC-QV-4Xo"/>
+                        <barButtonItem key="leftBarButtonItem" image="Home" id="HvK-dN-7M1">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <segue destination="iI1-hR-9en" kind="presentation" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="q0b-EP-LJj"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="mainListPickerView" destination="1TZ-Oa-2Oq" id="xXt-Dn-llB"/>
                     </connections>
@@ -374,7 +382,7 @@
             </objects>
             <point key="canvasLocation" x="1323" y="2043"/>
         </scene>
-        <!--Optional list-->
+        <!--Optional list (step 2/3)-->
         <scene sceneID="GVH-E0-rQz">
             <objects>
                 <viewController id="dU6-Tb-OWe" customClass="SecondListViewController" customModule="Adios" customModuleProvider="target" sceneMemberID="viewController">
@@ -425,7 +433,9 @@
                             <constraint firstItem="Bu0-yI-PxZ" firstAttribute="centerX" secondItem="0it-Xx-kbt" secondAttribute="centerX" id="vcv-Va-slm"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Optional list" id="tsU-wB-ji0"/>
+                    <navigationItem key="navigationItem" title="Optional list (step 2/3)" id="tsU-wB-ji0">
+                        <barButtonItem key="backBarButtonItem" title="2nd list" id="e0O-bU-QvS"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="secondListPickerView" destination="Bu0-yI-PxZ" id="CLJ-Rb-hI7"/>
                     </connections>
@@ -434,7 +444,7 @@
             </objects>
             <point key="canvasLocation" x="2046" y="2043"/>
         </scene>
-        <!--Details-->
+        <!--Details (step 3/3)-->
         <scene sceneID="aTw-Ld-F5e">
             <objects>
                 <viewController id="yvo-86-s2z" customClass="DetailsViewController" customModule="Adios" customModuleProvider="target" sceneMemberID="viewController">
@@ -537,7 +547,9 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" title="Details" id="vJj-pk-1f0"/>
+                    <navigationItem key="navigationItem" title="Details (step 3/3)" id="vJj-pk-1f0">
+                        <barButtonItem key="backBarButtonItem" title="Details" id="6te-lX-HRm"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="blockAdblockWarningsSwitch" destination="8KG-pz-u1o" id="cHM-BE-gUM"/>
                         <outlet property="privacySwitch" destination="5Eg-mj-sQG" id="qet-oC-rZh"/>
@@ -628,6 +640,7 @@
                             </mask>
                         </variation>
                     </view>
+                    <navigationItem key="navigationItem" title="One more thing..." id="anp-DT-wUw"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kTo-eT-kfF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -645,7 +658,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="CWb-tv-OCa">
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="CWb-tv-OCa">
                                 <rect key="frame" x="282" y="281" width="37" height="37"/>
                                 <animations/>
                                 <color key="color" red="1" green="0.092578096040000002" blue="0.1144802766" alpha="1" colorSpace="calibratedRGB"/>
@@ -759,6 +772,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Home" width="24" height="24"/>
         <image name="InfoOutline" width="24" height="24"/>
     </resources>
 </document>

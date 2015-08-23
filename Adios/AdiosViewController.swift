@@ -10,6 +10,7 @@ import UIKit
 
 class AdiosViewController: UIViewController {
     let listsManager = ListsManager()
+    let onboardManager = OnboardManager()
     
     @IBOutlet weak var configurationState: UILabel!
     @IBOutlet weak var mainList: UILabel!
@@ -49,8 +50,7 @@ class AdiosViewController: UIViewController {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "Configure" {
-            NSUserDefaults.standardUserDefaults().setObject([], forKey: "onboardConfiguration")
-            NSUserDefaults.standardUserDefaults().synchronize()
+            onboardManager.reset()
         }
     }
     

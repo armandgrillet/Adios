@@ -18,6 +18,7 @@ class MainListViewController: UIViewController, UIPickerViewDataSource, UIPicker
         // Do any additional setup after loading the view, typically from a nib.
         mainListPickerView.dataSource = self
         mainListPickerView.delegate = self
+        mainListPickerView.selectRow(onboardManager.getMainListPosition(), inComponent: 0, animated: false)
     }
     
     override func didReceiveMemoryWarning() {
@@ -25,7 +26,7 @@ class MainListViewController: UIViewController, UIPickerViewDataSource, UIPicker
         // Dispose of any resources that can be recreated.
     }
     
-    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int                                   {
+    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
         return 1
     }
     
