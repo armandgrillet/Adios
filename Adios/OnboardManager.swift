@@ -201,7 +201,7 @@ class OnboardManager {
         }
         
         if secondList! != "No" {
-            let secondListFlag = mainList!.substringFromIndex(secondList!.endIndex.predecessor())
+            let secondListFlag = secondList!.substringFromIndex(secondList!.endIndex.predecessor())
             if getListFromFlag(secondListFlag) != nil {
                 realLists.append(getListFromFlag(secondListFlag)!)
             }
