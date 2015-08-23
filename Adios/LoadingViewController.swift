@@ -18,12 +18,25 @@ class LoadingViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         status.text = onboardManager.getRealListsFromChoices().description
+        NSUserDefaults.standardUserDefaults().addObserver(self, forKeyPath: "updateStatus", options: NSKeyValueObservingOptions(), context: &defaultsContext)
         
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+        if context == &defaultsContext {
+            seeUpdate()
+        } else {
+            super.observeValueForKeyPath(keyPath, ofObject: object, change: change, context: context)
+        }
+    }
+    
+    func seeUpdate() {
+        print(NSUserDefaults.standardUserDefaults().boolForKey("updateStatus"))
     }
     
     deinit {

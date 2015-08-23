@@ -365,7 +365,7 @@
                             <constraint firstAttribute="trailingMargin" secondItem="1TZ-Oa-2Oq" secondAttribute="trailing" constant="-20" id="rth-xz-MPP"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Main list (step 1/3)" id="NKG-d7-M8x">
+                    <navigationItem key="navigationItem" title="Main list - step 1/3" id="NKG-d7-M8x">
                         <barButtonItem key="backBarButtonItem" title="1st list" id="ZcC-QV-4Xo"/>
                         <barButtonItem key="leftBarButtonItem" image="Home" id="HvK-dN-7M1">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -382,7 +382,7 @@
             </objects>
             <point key="canvasLocation" x="1323" y="2043"/>
         </scene>
-        <!--Optional list (step 2/3)-->
+        <!--Optional list - step 2/3-->
         <scene sceneID="GVH-E0-rQz">
             <objects>
                 <viewController id="dU6-Tb-OWe" customClass="SecondListViewController" customModule="Adios" customModuleProvider="target" sceneMemberID="viewController">
@@ -433,7 +433,7 @@
                             <constraint firstItem="Bu0-yI-PxZ" firstAttribute="centerX" secondItem="0it-Xx-kbt" secondAttribute="centerX" id="vcv-Va-slm"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Optional list (step 2/3)" id="tsU-wB-ji0">
+                    <navigationItem key="navigationItem" title="Optional list - step 2/3" id="tsU-wB-ji0">
                         <barButtonItem key="backBarButtonItem" title="2nd list" id="e0O-bU-QvS"/>
                     </navigationItem>
                     <connections>
@@ -444,7 +444,7 @@
             </objects>
             <point key="canvasLocation" x="2046" y="2043"/>
         </scene>
-        <!--Details (step 3/3)-->
+        <!--Details-->
         <scene sceneID="aTw-Ld-F5e">
             <objects>
                 <viewController id="yvo-86-s2z" customClass="DetailsViewController" customModule="Adios" customModuleProvider="target" sceneMemberID="viewController">
@@ -547,7 +547,7 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" title="Details (step 3/3)" id="vJj-pk-1f0">
+                    <navigationItem key="navigationItem" title="Details" id="vJj-pk-1f0">
                         <barButtonItem key="backBarButtonItem" title="Details" id="6te-lX-HRm"/>
                     </navigationItem>
                     <connections>
@@ -601,7 +601,7 @@
                                     <action selector="openSettingsActivateBackgroundUpdates:" destination="3Ss-T0-xfU" eventType="touchUpInside" id="5nm-Cy-Gb3"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Done? Now apply and start enjoying a Web without ads." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jfx-aj-IZ5">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Done? Now apply and start enjoying a Web without ads!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jfx-aj-IZ5">
                                 <rect key="frame" x="20" y="370" width="560" height="21"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>

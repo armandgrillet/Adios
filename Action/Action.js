@@ -11,7 +11,7 @@ var Action = function() {};
 Action.prototype = {
     
     run: function(arguments) {
-        alert("Enable or disabling Adios, the webpage will reload automatically once it's done.");
+        document.documentElement.innerHTML = "<h3 style=\"font-family: -apple-system; color:#e00b00;\">Enabling or disabling Adios for this website, wait a few seconds and the page will  automatically be reloaded...</h3>";
         arguments.completionFunction({ "url" : location.origin });
     },
     
