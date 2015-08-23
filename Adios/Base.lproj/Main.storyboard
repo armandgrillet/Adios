@@ -480,7 +480,7 @@
                                 <color key="onTintColor" red="1" green="0.092578096040000002" blue="0.1144802766" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="thumbTintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
-                                    <action selector="setSocial:" destination="yvo-86-s2z" eventType="valueChanged" id="4b6-MY-V3E"/>
+                                    <action selector="setAntisocial:" destination="yvo-86-s2z" eventType="valueChanged" id="Tfl-w1-u8M"/>
                                 </connections>
                             </switch>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5Eg-mj-sQG">
@@ -551,9 +551,9 @@
                         <barButtonItem key="backBarButtonItem" title="Details" id="6te-lX-HRm"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="antisocialSwitch" destination="pkc-Sd-r7y" id="9jX-yb-PEm"/>
                         <outlet property="blockAdblockWarningsSwitch" destination="8KG-pz-u1o" id="cHM-BE-gUM"/>
                         <outlet property="privacySwitch" destination="5Eg-mj-sQG" id="qet-oC-rZh"/>
-                        <outlet property="socialSwitch" destination="pkc-Sd-r7y" id="HOZ-xj-klS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="P2z-To-qGd" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -590,21 +590,16 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sNe-vA-xcX">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NzF-gt-Dbb">
                                 <rect key="frame" x="20" y="282" width="560" height="36"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <state key="normal" title="Activate Adios filters">
+                                <state key="normal" title="Activate background updates">
                                     <color key="titleColor" red="1" green="0.092578096040000002" blue="0.1144802766" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NzF-gt-Dbb">
-                                <rect key="frame" x="20" y="326" width="560" height="36"/>
-                                <animations/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <state key="normal" title="Activate updates">
-                                    <color key="titleColor" red="1" green="0.092578096040000002" blue="0.1144802766" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
+                                <connections>
+                                    <action selector="openSettingsActivateBackgroundUpdates:" destination="3Ss-T0-xfU" eventType="touchUpInside" id="5nm-Cy-Gb3"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Done? Now apply and start enjoying a Web without ads." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jfx-aj-IZ5">
                                 <rect key="frame" x="20" y="370" width="560" height="21"/>
@@ -613,30 +608,39 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Activate Adios in Settings/Safari/Content Blockers" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rbH-gY-yov">
+                                <rect key="frame" x="20" y="331" width="560" height="24"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="NzF-gt-Dbb" firstAttribute="centerY" secondItem="QAr-zd-ZTn" secondAttribute="centerY" id="0wK-HM-T4E"/>
                             <constraint firstItem="fjP-qk-BB8" firstAttribute="centerY" secondItem="QAr-zd-ZTn" secondAttribute="centerY" id="2Oh-Co-0zQ"/>
                             <constraint firstItem="fjP-qk-BB8" firstAttribute="leading" secondItem="QAr-zd-ZTn" secondAttribute="leadingMargin" id="3b0-lQ-PZz"/>
                             <constraint firstAttribute="leadingMargin" secondItem="Jfx-aj-IZ5" secondAttribute="leading" id="4Xy-Qx-fO2"/>
-                            <constraint firstItem="sNe-vA-xcX" firstAttribute="top" secondItem="fjP-qk-BB8" secondAttribute="bottom" constant="8" id="7Iy-Hp-Xt2"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="sNe-vA-xcX" secondAttribute="trailing" id="I2T-MP-DgR"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="rbH-gY-yov" secondAttribute="leading" id="4mx-H2-Zwa"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="rbH-gY-yov" secondAttribute="trailing" id="7j5-4V-uOA"/>
                             <constraint firstItem="WBN-8V-h5Q" firstAttribute="leading" secondItem="QAr-zd-ZTn" secondAttribute="leadingMargin" id="JH3-QY-MrZ"/>
                             <constraint firstItem="4I1-Q4-sJd" firstAttribute="top" secondItem="WBN-8V-h5Q" secondAttribute="bottom" constant="8" symbolic="YES" id="Ls2-QM-SID"/>
+                            <constraint firstItem="NzF-gt-Dbb" firstAttribute="top" secondItem="fjP-qk-BB8" secondAttribute="bottom" constant="8" id="MBH-lU-68B"/>
                             <constraint firstItem="WBN-8V-h5Q" firstAttribute="trailing" secondItem="QAr-zd-ZTn" secondAttribute="trailingMargin" id="ORm-fH-zPY"/>
+                            <constraint firstItem="Jfx-aj-IZ5" firstAttribute="top" secondItem="rbH-gY-yov" secondAttribute="bottom" constant="15" id="SPM-zB-LIG"/>
                             <constraint firstAttribute="trailingMargin" secondItem="fjP-qk-BB8" secondAttribute="trailing" id="WaC-sA-OZ4"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Jfx-aj-IZ5" secondAttribute="trailing" id="dzU-Fb-UoN"/>
                             <constraint firstItem="NzF-gt-Dbb" firstAttribute="trailing" secondItem="Jfx-aj-IZ5" secondAttribute="trailing" id="eD7-OD-Wyi"/>
-                            <constraint firstItem="NzF-gt-Dbb" firstAttribute="top" secondItem="sNe-vA-xcX" secondAttribute="bottom" constant="8" id="ikf-eD-vYg"/>
-                            <constraint firstAttribute="leadingMargin" secondItem="sNe-vA-xcX" secondAttribute="leading" id="kaO-qW-wga"/>
+                            <constraint firstItem="rbH-gY-yov" firstAttribute="top" secondItem="NzF-gt-Dbb" secondAttribute="bottom" constant="13" id="koa-Mq-4sc"/>
                             <constraint firstItem="Jfx-aj-IZ5" firstAttribute="top" secondItem="NzF-gt-Dbb" secondAttribute="bottom" constant="8" id="lFK-Ed-SOj"/>
                             <constraint firstItem="NzF-gt-Dbb" firstAttribute="leading" secondItem="Jfx-aj-IZ5" secondAttribute="leading" id="n5Z-KC-6J9"/>
-                            <constraint firstItem="sNe-vA-xcX" firstAttribute="centerY" secondItem="QAr-zd-ZTn" secondAttribute="centerY" id="vF6-LS-SOO"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="2Oh-Co-0zQ"/>
+                                <exclude reference="lFK-Ed-SOj"/>
                             </mask>
                         </variation>
                     </view>
@@ -663,7 +667,7 @@
                                 <animations/>
                                 <color key="color" red="1" green="0.092578096040000002" blue="0.1144802766" alpha="1" colorSpace="calibratedRGB"/>
                             </activityIndicatorView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="usZ-s4-iO1">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Status" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="usZ-s4-iO1">
                                 <rect key="frame" x="20" y="252" width="560" height="21"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -681,6 +685,9 @@
                             <constraint firstItem="usZ-s4-iO1" firstAttribute="trailing" secondItem="aau-lL-jms" secondAttribute="trailingMargin" id="m1m-tC-wRC"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="status" destination="usZ-s4-iO1" id="niz-Zc-lH4"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2Qu-RI-UDE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

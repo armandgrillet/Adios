@@ -19,4 +19,8 @@ class OneMoreThingViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    @IBAction func openSettingsActivateBackgroundUpdates(sender: UIButton) {
+        UIApplication.sharedApplication().openURL(NSURL(string: UIApplicationOpenSettingsURLString)!)
+    }
 }

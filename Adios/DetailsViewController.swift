@@ -11,21 +11,24 @@ import UIKit
 class DetailsViewController: UIViewController {
     
     @IBOutlet weak var blockAdblockWarningsSwitch: UISwitch!
-    @IBOutlet weak var socialSwitch: UISwitch!
+    @IBOutlet weak var antisocialSwitch: UISwitch!
     @IBOutlet weak var privacySwitch: UISwitch!
     
     let onboardManager = OnboardManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        blockAdblockWarningsSwitch.on = onboardManager.blockAdblockWarnings
+        antisocialSwitch.on = onboardManager.antisocial
+        privacySwitch.on = onboardManager.privacy
     }
     
     @IBAction func setBlockAdblockWarnings(sender: UISwitch) {
         onboardManager.blockAdblockWarnings = sender.on
     }
     
-    @IBAction func setSocial(sender: UISwitch) {
-        onboardManager.social = sender.on
+    @IBAction func setAntisocial(sender: UISwitch) {
+        onboardManager.antisocial = sender.on
     }
     
     @IBAction func setPrivacy(sender: UISwitch) {

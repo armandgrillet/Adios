@@ -54,12 +54,12 @@ class OnboardManager {
             NSUserDefaults.standardUserDefaults().setBool(newValue, forKey: "blockAdblockWarnings")
         }
     }
-    var social: Bool {
+    var antisocial: Bool {
         get {
-            return NSUserDefaults.standardUserDefaults().boolForKey("social")
+            return NSUserDefaults.standardUserDefaults().boolForKey("antisocial")
         }
         set {
-            NSUserDefaults.standardUserDefaults().setBool(newValue, forKey: "social")
+            NSUserDefaults.standardUserDefaults().setBool(newValue, forKey: "antisocial")
         }
     }
     var privacy: Bool {
@@ -112,13 +112,64 @@ class OnboardManager {
         case "PL":
             return "Poland 🇵🇱"
         case "RO":
-            return "Poland 🇵🇱"
+            return "Romania 🇷🇴"
         case "RU":
             return "Russia 🇷🇺"
         case "GB":
             return "United Kingdom 🇬🇧"
         default:
             return "U.S.A 🇺🇸"
+        }
+    }
+    
+    func getListFromFlag(flag: String) -> String? {
+        switch flag {
+            case "🇪🇬":
+            return "EasyList_Arabic"
+            case "🇧🇬":
+            return "EasyList_Bulgaria"
+            case "🇨🇳":
+            return "EasyList_China"
+            case "🇸🇰":
+            return "EasyList_Czechoslovakia"
+            case "🇩🇰":
+            return "List_Danish"
+            case "🇫🇷":
+            return "EasyList_France"
+            case "🇪🇪":
+            return "List_Estonia"
+            case "🇩🇪":
+            return "EasyList_Germany"
+            case "🇬🇷":
+            return "EasyList_Greece"
+            case "🇭🇺":
+            return "List_Hungary"
+            case "🇮🇸":
+            return "EasyList_Iceland"
+            case "🇮🇩":
+            return "EasyList_Indonesia"
+            case "🇮🇹":
+            return "EasyList_Italy"
+            case "🇮🇱":
+            return "EasyList_Hebrew"
+            case "🇯🇵":
+            return "List_Japan"
+            case "🇱🇻":
+            return "EasyList_Latvia"
+            case "🇳🇱":
+            return "EasyList_Dutch"
+            case "🇵🇱":
+            return "EasyList_Poland"
+            case "🇷🇴":
+            return "EasyList_Romania"
+            case "🇷🇺":
+            return "EasyList_Russia"
+            case "🇬🇧":
+            return "List_England"
+            case "🇺🇸":
+            return "EasyList"
+            default:
+            return nil
         }
     }
     
@@ -141,11 +192,39 @@ class OnboardManager {
         return getSecondLists().indexOf(secondList!)!
     }
     
+    func getRealListsFromChoices() -> [String] {
+        var realLists: [String] = []
+        
+        let mainListFlag = mainList!.substringFromIndex(mainList!.endIndex.predecessor())
+        if getListFromFlag(mainListFlag) != nil {
+            realLists.append(getListFromFlag(mainListFlag)!)
+        }
+        
+        if secondList! != "No" {
+            let secondListFlag = mainList!.substringFromIndex(secondList!.endIndex.predecessor())
+            if getListFromFlag(secondListFlag) != nil {
+                realLists.append(getListFromFlag(secondListFlag)!)
+            }
+        }
+        
+        if blockAdblockWarnings {
+            realLists.append("AdblockWarningRemoval")
+        }
+        if antisocial {
+            realLists.append("EasyList_SocialMedia")
+        }
+        if privacy {
+            realLists.append("EasyPrivacy")
+        }
+        
+        return realLists
+    }
+    
     func reset() {
         mainList = nil
         secondList = nil
         blockAdblockWarnings = true
-        social = true
+        antisocial = true
         privacy = true
     }
 }

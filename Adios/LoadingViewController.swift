@@ -9,10 +9,14 @@
 import UIKit
 
 class LoadingViewController: UIViewController {
+    @IBOutlet weak var status: UILabel!
+    let onboardManager = OnboardManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        status.text = onboardManager.getRealListsFromChoices().description
+        
     }
     
     override func didReceiveMemoryWarning() {
