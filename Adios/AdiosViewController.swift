@@ -13,37 +13,48 @@ class AdiosViewController: UIViewController {
     let onboardManager = OnboardManager()
     
     @IBOutlet weak var configurationState: UILabel!
-    @IBOutlet weak var mainList: UILabel!
-    @IBOutlet weak var secondList: UILabel!
-    @IBOutlet weak var socialList: UILabel!
+    @IBOutlet weak var countries: UILabel!
+    @IBOutlet weak var details: UILabel!
     @IBOutlet weak var lastUpdate: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        let alwaysFollowedLists = ["AdiosList", "EasyPrivacy", "AdblockWarningRemoval", "EasyList_SocialMedia"]
         var followedLists = listsManager.getFollowedLists()
         if followedLists != [] {
             configurationState.text = "Adios is configured! Here is your configuration:"
-            if followedLists.contains("EasyList_SocialMedia") {
-                socialList.text = "You're blocking social buttons"
+            
+            var countriesText = "You're blocking ads on websites based in "
+            countriesText += onboardManager.getCountryFromList(followedLists[0])!
+            if let secondCountry = onboardManager.getCountryFromList(followedLists[0]) {
+                countriesText += " & \(secondCountry)"
+            }
+            countries.text = countriesText
+            
+            if followedLists.contains("EasyList_SocialMedia") || followedLists.contains("EasyPrivacy") || followedLists.contains("AdblockWarningRemoval") {
+                var detailsText = "You're also blocking "
+                if followedLists.contains("EasyList_SocialMedia") {
+                    detailsText += "social buttons, "
+                }
+                if followedLists.contains("EasyPrivacy") {
+                    detailsText += "malicious scripts, "
+                }
+                if followedLists.contains("AdblockWarningRemoval") {
+                    detailsText += "messages against Adios"
+                }
+                details.text = detailsText
             } else {
-                socialList.text = "You're allowing social buttons"
+                details.text = ""
             }
             
-            followedLists = followedLists.filter { !alwaysFollowedLists.contains($0) } // Removing the lists that are always followed.
-            if followedLists.count > 1 {
-                mainList.text = "Main list: \(followedLists[0])"
-                secondList.text = "Second list: \(followedLists[1])"
-            } else if followedLists.count == 1 {
-                mainList.text = "Main list: \(followedLists[0])"
-                secondList.text = ""
-            }
+            let lastUpdateTimestamp = NSUserDefaults.standardUserDefaults().objectForKey("lastUpdateTimestamp") as NSDate
+            let formatter = NSDateFormatter()
+            formatter.timeStyle = .ShortStyle
+            lastUpdate.text = formatter.stringFromDate(lastUpdateTimestamp)
         } else {
             configurationState.text = "Adios doesn't block ads yet! Configure Adios first."
-            mainList.text = ""
-            secondList.text = ""
-            socialList.text = ""
+            countries.text = ""
+            details.text = ""
             lastUpdate.text = ""
         }
     }

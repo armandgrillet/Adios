@@ -14,6 +14,10 @@ class DownloadManager {
     let listsManager = ListsManager()
     
     func downloadRulesFromList(list: String, nextLists: [String]?) {
+        if list != "AdiosList" {
+            NSUserDefaults.standardUserDefaults().setObject("Downloading \(list)", forKey: "updateStatus")
+            NSUserDefaults.standardUserDefaults().synchronize()
+        }
         var rules: [CKRecord] = []
         
         let listToMatch = CKReference(recordID: CKRecordID(recordName: list), action: .DeleteSelf)
@@ -48,7 +52,8 @@ class DownloadManager {
                                 if let theOneAndOnlyUpdate = results?.first {
                                     let currentUpdate = theOneAndOnlyUpdate["Version"]! as! Int
                                     NSUserDefaults.standardUserDefaults().setInteger(currentUpdate, forKey: "currentUpdate")
-                                    print("Liste téléchargée et currentUpdate mise à \(currentUpdate)")
+                                    print("Liste updated and currentUpdate now \(currentUpdate)")
+                                    NSUserDefaults.standardUserDefaults().setObject(NSDate(), forKey: "lastUpdateTimestamp")
                                     NSUserDefaults.standardUserDefaults().synchronize()
                                     // We set the subscription if it hasn't been done before
                                     let subscriptionsManager = SubscriptionsManager()
@@ -86,6 +91,8 @@ class DownloadManager {
         print("Current update: \(currentUpdate) and last update: \(update)")
         
         if update > currentUpdate {
+            NSUserDefaults.standardUserDefaults().setObject("Updating your lists", forKey: "updateStatus")
+            NSUserDefaults.standardUserDefaults().synchronize()
             let followedLists = listsManager.getFollowedLists()
             var referenceToFollowedLists: [CKReference] = []
             for list in followedLists {
@@ -128,6 +135,7 @@ class DownloadManager {
                         } else {
                             // We've updated the list, now we can call the content blocker to update it.
                             NSUserDefaults.standardUserDefaults().setInteger(update, forKey: "currentUpdate")
+                            NSUserDefaults.standardUserDefaults().setObject(NSDate(), forKey: "lastUpdateTimestamp")
                             NSUserDefaults.standardUserDefaults().synchronize()
                             self.listsManager.updateRulesWithRecords(recordsCreated, recordsDeleted: recordsDeleted)
                         }
@@ -139,8 +147,7 @@ class DownloadManager {
         }
     }
     
-    func downloadLists(lists: [String]) {
-        listsManager.removeAllLists() // We remove the old lists we were following.
-        downloadRulesFromList(lists[0], nextLists: Array(lists.dropFirst()))
+    func downloadFollowedLists() {
+        downloadRulesFromList(listsManager.getFollowedLists()[0], nextLists: Array(listsManager.getFollowedLists().dropFirst()))
     }
 }

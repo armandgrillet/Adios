@@ -20,23 +20,17 @@ class ListsManager {
         }
     }
     
-    func getListFromDisplayableList(displayableList: String) -> String? {
-        switch displayableList {
-        case "List for Adios":
-            return "AdiosList"
-        case "Test list for Adios":
-            return "AdiosListTest"
-        default:
-            return nil
-        }
-    }
-    
     func applyLists() {
+        NSUserDefaults.standardUserDefaults().setObject("Applying the standard content blocker", forKey: "updateStatus")
+        NSUserDefaults.standardUserDefaults().synchronize()
         SFContentBlockerManager.reloadContentBlockerWithIdentifier("AG.Adios.ContentBlocker") { (error: NSError?) -> Void in
             if error == nil {
+                NSUserDefaults.standardUserDefaults().setObject("Applying user's content blocker", forKey: "updateStatus")
+                NSUserDefaults.standardUserDefaults().synchronize()
                 SFContentBlockerManager.reloadContentBlockerWithIdentifier("AG.Adios.ContentBlocker") { (otherError: NSError?) -> Void in
                     if error == nil {
-                        print("Rules applied")
+                        NSUserDefaults.standardUserDefaults().setObject("✅", forKey: "updateStatus")
+                        NSUserDefaults.standardUserDefaults().synchronize()
                     } else {
                         print(otherError)
                     }
@@ -88,47 +82,41 @@ class ListsManager {
     }
     
     func createList(list: String, records: [CKRecord]) {
-        print("On créer la liste \(list)")
-        
-        var rulesBlock: [String] = []
-        var rulesBlockCookies: [String] = []
-        var rulesCSSDisplayNone: [String] = []
-        var rulesIgnorePreviousRules: [String] = []
-        
-        for record in records {
-            let sourceList = record["List"] as! CKReference
-            print(sourceList.recordID.recordName)
-            let rule = ruleFromRecord(record)
-            switch rule.actionType {
+        if getFollowedLists().indexOf(list) > -1 {
+            print("On créer les listes pour \(list)")
+            
+            var rulesBlock: [String] = []
+            var rulesBlockCookies: [String] = []
+            var rulesCSSDisplayNone: [String] = []
+            var rulesIgnorePreviousRules: [String] = []
+            
+            for record in records {
+                let sourceList = record["List"] as! CKReference
+                print(sourceList.recordID.recordName)
+                let rule = ruleFromRecord(record)
+                switch rule.actionType {
                 case "block":
-                rulesBlock.append(rule.toString())
+                    rulesBlock.append(rule.toString())
                 case "block-cookies":
-                rulesBlockCookies.append(rule.toString())
+                    rulesBlockCookies.append(rule.toString())
                 case "css-display-none":
-                rulesCSSDisplayNone.append(rule.toString())
+                    rulesCSSDisplayNone.append(rule.toString())
                 case "ignore-previous-rules":
-                rulesIgnorePreviousRules.append(rule.toString())
+                    rulesIgnorePreviousRules.append(rule.toString())
                 default:
-                print("Problem with a rule that is not well formatted: \(rule.toString())")
+                    print("Problem with a rule that is not well formatted: \(rule.toString())")
+                }
             }
-        }
-        
-        // Set the four group defaults here.
-        if let userDefaults = NSUserDefaults(suiteName: "group.AG.Adios") {
-            var followedLists = userDefaults.arrayForKey("followedLists")
-            userDefaults.setObject(Array(Set(rulesBlock)), forKey: "\(list)Block")
-            userDefaults.setObject(Array(Set(rulesBlockCookies)), forKey: "\(list)BlockCookies")
-            userDefaults.setObject(Array(Set(rulesCSSDisplayNone)), forKey: "\(list)CSSDisplayNone")
-            userDefaults.setObject(Array(Set(rulesIgnorePreviousRules)), forKey: "\(list)IgnorePreviousRules")
             
-            if followedLists == nil {
-                followedLists = [list]
-            } else {
-               followedLists!.append(list)
+            // Set the four group defaults here.
+            if let userDefaults = NSUserDefaults(suiteName: "group.AG.Adios") {
+                userDefaults.setObject(Array(Set(rulesBlock)), forKey: "\(list)Block")
+                userDefaults.setObject(Array(Set(rulesBlockCookies)), forKey: "\(list)BlockCookies")
+                userDefaults.setObject(Array(Set(rulesCSSDisplayNone)), forKey: "\(list)CSSDisplayNone")
+                userDefaults.setObject(Array(Set(rulesIgnorePreviousRules)), forKey: "\(list)IgnorePreviousRules")
+                
+                userDefaults.synchronize()
             }
-            userDefaults.setObject(followedLists, forKey: "followedLists")
-            
-            userDefaults.synchronize()
         }
     }
     
@@ -170,7 +158,7 @@ class ListsManager {
         applyLists()
     }
     
-    func removeAllLists() {
+    func setFollowedLists(newFollowedLists: [String]) {
         if let userDefaults = NSUserDefaults(suiteName: "group.AG.Adios") {
             if let followedLists = userDefaults.arrayForKey("followedLists") {
                 for list in followedLists {
@@ -181,6 +169,7 @@ class ListsManager {
                 }
                 userDefaults.removeObjectForKey("followedLists")
             }
+            userDefaults.setObject(newFollowedLists, forKey: "followedLists")
         }
     }
     

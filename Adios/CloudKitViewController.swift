@@ -12,6 +12,7 @@ import SafariServices
 
 class CloudKitViewController: UIViewController {
     let downloadManager = DownloadManager()
+    let listsManager = ListsManager()
     let subscriptionsManager = SubscriptionsManager()
     
     override func viewDidLoad() {
@@ -22,11 +23,11 @@ class CloudKitViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-        
     }
     
     @IBAction func downloadAdiosList(sender: UIButton) {
-        downloadManager.downloadLists(["AdiosList", "AdiosListTest"])
+        listsManager.setFollowedLists(["AdiosList", "AdiosListTest"])
+        downloadManager.downloadFollowedLists()
     }
     
     @IBAction func applyContentBlockers(sender: UIButton) {

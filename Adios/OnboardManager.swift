@@ -173,6 +173,57 @@ class OnboardManager {
         }
     }
     
+    func getCountryFromList(list: String) -> String? {
+        switch list {
+        case "EasyList_Arabic":
+            return "Arabic region 🇪🇬"
+        case "EasyList_Bulgaria":
+            return "Bulgaria 🇧🇬"
+        case "EasyList_China":
+            return "China 🇨🇳"
+        case "EasyList_Czechoslovakia":
+            return "Czech and Slovak Rep. 🇸🇰"
+        case "List_Danish":
+            return "Denmark 🇩🇰"
+        case "EasyList_France":
+            return "France 🇫🇷"
+        case "List_Estonia":
+            return "Estonia 🇪🇪"
+        case "EasyList_Germany":
+            return "Germany 🇩🇪"
+        case "EasyList_Greece":
+            return "Greece 🇬🇷"
+        case "List_Hungary":
+            return "Hungary 🇭🇺"
+        case "EasyList_Iceland":
+            return "Iceland 🇮🇸"
+        case "EasyList_Indonesia":
+            return "Indonesia 🇮🇩"
+        case "EasyList_Italy":
+            return "Italy 🇮🇹"
+        case "EasyList_Hebrew":
+            return "Israel 🇮🇱"
+        case "List_Japan":
+            return "Japan 🇯🇵"
+        case "EasyList_Latvia":
+            return "Latvia 🇱🇻"
+        case "EasyList_Dutch":
+            return "Netherlands 🇳🇱"
+        case "EasyList_Poland":
+            return "Poland 🇵🇱"
+        case "EasyList_Romania":
+            return "Romania 🇷🇴"
+        case "EasyList_Russia":
+            return "Russia 🇷🇺"
+        case "List_England":
+            return "United Kingdom 🇬🇧"
+        case "EasyList":
+            return "U.S.A 🇺🇸"
+        default:
+            return nil
+        }
+    }
+    
     func getMainLists() -> [String] {
         return lists
     }
@@ -216,6 +267,8 @@ class OnboardManager {
         if privacy {
             realLists.append("EasyPrivacy")
         }
+        
+        realLists.append("AdiosList")
         
         return realLists
     }
