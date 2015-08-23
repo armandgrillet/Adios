@@ -23,4 +23,17 @@ class OneMoreThingViewController: UIViewController {
     @IBAction func openSettingsActivateBackgroundUpdates(sender: UIButton) {
         UIApplication.sharedApplication().openURL(NSURL(string: UIApplicationOpenSettingsURLString)!)
     }
+    
+    override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
+        if Reachability.isConnectedToNetwork() {
+            return true
+        } else {
+            let alertController = UIAlertController(title: "Internet is required", message:
+                "Adios needs to download some ad filters for you, please activate your data connection", preferredStyle: UIAlertControllerStyle.Alert)
+            alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default,handler: nil))
+            
+            self.presentViewController(alertController, animated: true, completion: nil)
+            return false
+        }
+    }
 }

@@ -8,6 +8,8 @@
 
 import UIKit
 
+private var defaultsContext = 0
+
 class LoadingViewController: UIViewController {
     @IBOutlet weak var status: UILabel!
     let onboardManager = OnboardManager()
@@ -22,5 +24,10 @@ class LoadingViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    deinit {
+        //Remove observer
+        NSUserDefaults.standardUserDefaults().removeObserver(self, forKeyPath: "updateStatus", context: &defaultsContext)
     }
 }
