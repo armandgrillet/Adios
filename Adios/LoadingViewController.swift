@@ -7,13 +7,14 @@
 //
 
 import UIKit
-
+import MMWormhole
 
 class LoadingViewController: UIViewController {
     @IBOutlet weak var status: UILabel!
     let onboardManager = OnboardManager()
     let downloadManager = DownloadManager()
     let listsManager = ListsManager()
+    let wormhole = MMWormhole(applicationGroupIdentifier: "group.AG.Adios", optionalDirectory: "wormhole")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,7 +22,15 @@ class LoadingViewController: UIViewController {
         NSUserDefaults.standardUserDefaults().setObject("Downloading", forKey: "updateStatus")
         NSUserDefaults.standardUserDefaults().synchronize()
         // Do any additional setup after loading the view, typically from a nib.
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("updateStatus"), name: NSUserDefaultsDidChangeNotification, object: nil)
+        wormhole.listenForMessageWithIdentifier("updateStatus") { (messageObject: AnyObject?) -> Void in
+            if let message = messageObject as! String? {
+                if message != "✅" {
+                    self.status.text = message
+                } else {
+                    self.performSegueWithIdentifier("Done", sender: self)
+                }
+            }
+        }
         listsManager.setFollowedLists(onboardManager.getRealListsFromChoices())
         downloadManager.downloadFollowedLists()
     }
@@ -29,23 +38,5 @@ class LoadingViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-    
-    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
-        seeUpdate()
-    }
-    
-    func seeUpdate() {
-        if NSUserDefaults.standardUserDefaults().stringForKey("updateStatus") != "✅" {
-            status.text = NSUserDefaults.standardUserDefaults().stringForKey("updateStatus")
-        } else {
-            self.performSegueWithIdentifier("Done", sender: self)
-        }
-        
-    }
-    
-    deinit {
-        //Remove observer
-        NSUserDefaults.standardUserDefaults().removeObserver(self, forKeyPath: "updateStatus")
     }
 }

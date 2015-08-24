@@ -91,8 +91,6 @@ class ListsManager {
             var rulesIgnorePreviousRules: [String] = []
             
             for record in records {
-                let sourceList = record["List"] as! CKReference
-                print(sourceList.recordID.recordName)
                 let rule = ruleFromRecord(record)
                 switch rule.actionType {
                 case "block":
@@ -107,6 +105,8 @@ class ListsManager {
                     print("Problem with a rule that is not well formatted: \(rule.toString())")
                 }
             }
+            
+            print("Done for list \(list)")
             
             // Set the four group defaults here.
             if let userDefaults = NSUserDefaults(suiteName: "group.AG.Adios") {

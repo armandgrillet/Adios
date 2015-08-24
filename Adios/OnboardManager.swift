@@ -123,7 +123,6 @@ class OnboardManager {
     }
     
     func getRealList(flag: String) -> String? {
-        print(flag)
         switch flag {
         case "🇪🇬":
             return "EasyList_Arabic"
@@ -249,7 +248,6 @@ class OnboardManager {
         
         let mainListFlag = mainList!.substringFromIndex(mainList!.endIndex.predecessor())
         if let realMainList = getRealList(mainListFlag) {
-            print(realMainList)
             realLists.append(realMainList)
         }
         

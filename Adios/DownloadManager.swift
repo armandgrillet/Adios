@@ -8,17 +8,19 @@
 
 import Foundation
 import CloudKit
+import MMWormhole
 
 class DownloadManager {
     let publicDB = CKContainer.defaultContainer().publicCloudDatabase
+    let wormhole = MMWormhole(applicationGroupIdentifier: "group.AG.Adios", optionalDirectory: "wormhole")
     let listsManager = ListsManager()
     
-    func downloadRulesFromList(list: String, nextLists: [String]?) {
+    func downloadRulesFromList(list: String, nextLists: [String]?, unachievedRules: [CKRecord], cursor: CKQueryCursor?) {
         if list != "AdiosList" {
-            NSUserDefaults.standardUserDefaults().setObject("Downloading \(list)", forKey: "updateStatus")
-            NSUserDefaults.standardUserDefaults().synchronize()
+            wormhole.passMessageObject("Downloading \(list)", identifier: "updateStatus")
         }
-        var rules: [CKRecord] = []
+        
+        var rules = unachievedRules
         
         let queue = NSOperationQueue()
         
@@ -28,29 +30,34 @@ class DownloadManager {
         
         let queryOperation = CKQueryOperation(query: query)
         queryOperation.qualityOfService = .UserInitiated // The user is waiting for the task to complete
+        queryOperation.database = publicDB
+        
+        if cursor != nil {
+            queryOperation.cursor = cursor
+        }
         queryOperation.recordFetchedBlock = { (rule: CKRecord) in
             rules.append(rule)
         }
-        queryOperation.database = publicDB
+        
         queryOperation.queryCompletionBlock = { (cursor : CKQueryCursor?, error : NSError?) in
             if error != nil {
-               print(error)
+               print(error?.localizedFailureReason)
             } else {
                 if cursor != nil { // The cursor is not nil thus we still have some records to download
-                    let newOperation = queryOperation
-                    newOperation.cursor = cursor!
-                    queue.addOperation(newOperation)
+                    print("Not done for \(list)")
+                    self.downloadRulesFromList(list, nextLists: nextLists, unachievedRules: rules, cursor: cursor)
                 } else { // List downloaded
                     self.listsManager.createList(list, records: rules)
                     if nextLists != nil && nextLists!.count > 0 { // Other lists need to be downloaded
-                       self.downloadRulesFromList(nextLists![0], nextLists: Array(nextLists!.dropFirst()))
+                        self.downloadRulesFromList(nextLists![0], nextLists: Array(nextLists!.dropFirst()), unachievedRules: rules, cursor: nil)
                     } else { // Everything has been downloaded, we're setting the current update user default and run the content blockers manager
+                        print("Everything done")
                         self.listsManager.applyLists()
                         let pr = NSPredicate(format: "recordID = %@", CKRecordID(recordName: "TheOneAndOnly"))
                         let queryGetUpdate = CKQuery(recordType: "Updates", predicate: pr)
                         self.publicDB.performQuery(queryGetUpdate, inZoneWithID: nil) { results, error in
                             if error != nil {
-                                print(error)
+                                print(error?.localizedFailureReason)
                             } else { // We downloaded all the lists we want, we set the current update and call it a day.
                                 if let theOneAndOnlyUpdate = results?.first {
                                     let currentUpdate = theOneAndOnlyUpdate["Version"]! as! Int
@@ -68,13 +75,20 @@ class DownloadManager {
                 }
             }
         }
-        
         queue.addOperation(queryOperation)
     }
     
+    func newGetRulesOperation(query: CKQuery, cursor: CKQueryCursor, recordFetchedBlock: ((CKRecord) -> Void), queryCompletionBlock: ((CKQueryCursor?, NSError?) -> Void)?) -> CKQueryOperation {
+        let newOperation = CKQueryOperation(query: query)
+        newOperation.qualityOfService = .UserInitiated // The user is waiting for the task to complete
+        newOperation.recordFetchedBlock = recordFetchedBlock
+        newOperation.queryCompletionBlock = queryCompletionBlock
+        newOperation.database = self.publicDB
+        return newOperation
+    }
+    
     func getNewRecordsManually() {
-        NSUserDefaults.standardUserDefaults().setObject("Checking if an update is available", forKey: "updateStatus")
-        NSUserDefaults.standardUserDefaults().synchronize()
+        self.wormhole.passMessageObject("Checking if an update is available", identifier: "updateStatus")
         let pr = NSPredicate(format: "recordID = %@", CKRecordID(recordName: "TheOneAndOnly"))
         let queryGetUpdate = CKQuery(recordType: "Updates", predicate: pr)
         self.publicDB.performQuery(queryGetUpdate, inZoneWithID: nil) { results, error in
@@ -96,8 +110,7 @@ class DownloadManager {
         print("Current update: \(currentUpdate) and last update: \(update)")
         
         if update > currentUpdate {
-            NSUserDefaults.standardUserDefaults().setObject("Updating your lists", forKey: "updateStatus")
-            NSUserDefaults.standardUserDefaults().synchronize()
+            wormhole.passMessageObject("Updating your lists", identifier: "updateStatus")
             let queue = NSOperationQueue()
             let followedLists = listsManager.getFollowedLists()
             var referenceToFollowedLists: [CKReference] = []
@@ -119,11 +132,14 @@ class DownloadManager {
             queryCreatedRulesOperation.database = publicDB
             queryCreatedRulesOperation.queryCompletionBlock = { (cursor : CKQueryCursor?, error : NSError?) in
                 if error != nil {
-                    print(error)
+                    print(error?.localizedFailureReason)
                 } else if cursor != nil { // The cursor is not nil thus we still have some records to download
-                    let newCreationOperation = queryCreatedRulesOperation
-                    newCreationOperation.cursor = cursor!
-                    queue.addOperation(newCreationOperation)
+                    let newOperation = CKQueryOperation(cursor: cursor!)
+                    newOperation.qualityOfService = .Utility // The user is waiting for the task to complete
+                    newOperation.recordFetchedBlock = queryCreatedRulesOperation.recordFetchedBlock
+                    newOperation.queryCompletionBlock = queryCreatedRulesOperation.queryCompletionBlock
+                    newOperation.database = self.publicDB
+                    queue.addOperation(newOperation)
                 }
             }
             
@@ -137,28 +153,30 @@ class DownloadManager {
             queryDeletedRulesOperation.database = publicDB
             queryDeletedRulesOperation.queryCompletionBlock = { (cursor : CKQueryCursor?, error : NSError?) in
                 if error != nil {
-                    print(error)
+                    print(error?.localizedFailureReason)
                 } else if cursor != nil { // The cursor is not nil thus we still have some records to download
-                    let newDeletionOperation = queryDeletedRulesOperation
-                    newDeletionOperation.cursor = cursor!
-                    queue.addOperation(newDeletionOperation)
+                    let newOperation = CKQueryOperation(cursor: cursor!)
+                    newOperation.qualityOfService = .Utility // The user is waiting for the task to complete
+                    newOperation.recordFetchedBlock = queryDeletedRulesOperation.recordFetchedBlock
+                    newOperation.queryCompletionBlock = queryDeletedRulesOperation.queryCompletionBlock
+                    newOperation.database = self.publicDB
+                    queue.addOperation(newOperation)
                 } else {
                     // We've updated the list, now we can call the content blocker to update it.
                     NSUserDefaults.standardUserDefaults().setInteger(update, forKey: "currentUpdate")
                     NSUserDefaults.standardUserDefaults().setObject(NSDate(), forKey: "lastUpdateTimestamp")
-                    NSUserDefaults.standardUserDefaults().setObject("✅", forKey: "updateStatus")
                     NSUserDefaults.standardUserDefaults().synchronize()
+                    self.wormhole.passMessageObject("✅", identifier: "updateStatus")
                     self.listsManager.updateRulesWithRecords(recordsCreated, recordsDeleted: recordsDeleted)
                 }
             }
             queue.addOperations([queryCreatedRulesOperation, queryDeletedRulesOperation], waitUntilFinished: true)
         } else {
-            NSUserDefaults.standardUserDefaults().setObject("✅", forKey: "updateStatus")
-            NSUserDefaults.standardUserDefaults().synchronize()
+            wormhole.passMessageObject("✅", identifier: "updateStatus")
         }
     }
     
     func downloadFollowedLists() {
-        downloadRulesFromList(listsManager.getFollowedLists()[0], nextLists: Array(listsManager.getFollowedLists().dropFirst()))
+        downloadRulesFromList(listsManager.getFollowedLists()[0], nextLists: Array(listsManager.getFollowedLists().dropFirst()), unachievedRules: [], cursor: nil)
     }
 }
