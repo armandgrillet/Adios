@@ -20,15 +20,18 @@ class DownloadManager {
         }
         var rules: [CKRecord] = []
         
+        let queue = NSOperationQueue()
+        
         let listToMatch = CKReference(recordID: CKRecordID(recordName: list), action: .DeleteSelf)
         let predicate = NSPredicate(format: "List == %@", listToMatch)
         let query = CKQuery(recordType: "Rules", predicate: predicate)
         
         let queryOperation = CKQueryOperation(query: query)
-        queryOperation.qualityOfService = .UserInitiated // The user is waiting for the task to compelte
+        queryOperation.qualityOfService = .UserInitiated // The user is waiting for the task to complete
         queryOperation.recordFetchedBlock = { (rule: CKRecord) in
             rules.append(rule)
         }
+        queryOperation.database = publicDB
         queryOperation.queryCompletionBlock = { (cursor : CKQueryCursor?, error : NSError?) in
             if error != nil {
                print(error)
@@ -36,7 +39,7 @@ class DownloadManager {
                 if cursor != nil { // The cursor is not nil thus we still have some records to download
                     let newOperation = queryOperation
                     newOperation.cursor = cursor!
-                    self.publicDB.addOperation(newOperation)
+                    queue.addOperation(newOperation)
                 } else { // List downloaded
                     self.listsManager.createList(list, records: rules)
                     if nextLists != nil && nextLists!.count > 0 { // Other lists need to be downloaded
@@ -66,7 +69,7 @@ class DownloadManager {
             }
         }
         
-        publicDB.addOperation(queryOperation)
+        queue.addOperation(queryOperation)
     }
     
     func getNewRecordsManually() {
@@ -95,6 +98,7 @@ class DownloadManager {
         if update > currentUpdate {
             NSUserDefaults.standardUserDefaults().setObject("Updating your lists", forKey: "updateStatus")
             NSUserDefaults.standardUserDefaults().synchronize()
+            let queue = NSOperationQueue()
             let followedLists = listsManager.getFollowedLists()
             var referenceToFollowedLists: [CKReference] = []
             for list in followedLists {
@@ -112,41 +116,42 @@ class DownloadManager {
             queryCreatedRulesOperation.recordFetchedBlock = { (rule: CKRecord) in
                 recordsCreated.append(rule)
             }
+            queryCreatedRulesOperation.database = publicDB
             queryCreatedRulesOperation.queryCompletionBlock = { (cursor : CKQueryCursor?, error : NSError?) in
                 if error != nil {
                     print(error)
                 } else if cursor != nil { // The cursor is not nil thus we still have some records to download
-                    let newOperation = queryCreatedRulesOperation
-                    newOperation.cursor = cursor!
-                    self.publicDB.addOperation(newOperation)
-                } else { // We have added the rules, now we remove the old ones.
-                    let deletedRulesPredicate = NSPredicate(format: "(CreationUpdate <= \(currentUpdate)) AND (Update > \(currentUpdate)) AND (List IN %@)", referenceToFollowedLists)
-                    let queryDeletedRules = CKQuery(recordType: "DeletedRules", predicate: deletedRulesPredicate)
-                    let queryDeletedRulesOperation = CKQueryOperation(query: queryDeletedRules)
-                    queryDeletedRulesOperation.qualityOfService = .Utility // The user is waiting for the task to compelte
-                    queryDeletedRulesOperation.recordFetchedBlock = { (rule: CKRecord) in
-                        recordsDeleted.append(rule)
-                    }
-                    queryDeletedRulesOperation.queryCompletionBlock = { (cursor : CKQueryCursor?, error : NSError?) in
-                        if error != nil {
-                            print(error)
-                        } else if cursor != nil { // The cursor is not nil thus we still have some records to download
-                            let newOperation = queryDeletedRulesOperation
-                            newOperation.cursor = cursor!
-                            self.publicDB.addOperation(newOperation)
-                        } else {
-                            // We've updated the list, now we can call the content blocker to update it.
-                            NSUserDefaults.standardUserDefaults().setInteger(update, forKey: "currentUpdate")
-                            NSUserDefaults.standardUserDefaults().setObject(NSDate(), forKey: "lastUpdateTimestamp")
-                            NSUserDefaults.standardUserDefaults().setObject("✅", forKey: "updateStatus")
-                            NSUserDefaults.standardUserDefaults().synchronize()
-                            self.listsManager.updateRulesWithRecords(recordsCreated, recordsDeleted: recordsDeleted)
-                        }
-                    }
-                    self.publicDB.addOperation(queryDeletedRulesOperation)
+                    let newCreationOperation = queryCreatedRulesOperation
+                    newCreationOperation.cursor = cursor!
+                    queue.addOperation(newCreationOperation)
                 }
             }
-            publicDB.addOperation(queryCreatedRulesOperation)
+            
+            let deletedRulesPredicate = NSPredicate(format: "(CreationUpdate <= \(currentUpdate)) AND (Update > \(currentUpdate)) AND (List IN %@)", referenceToFollowedLists)
+            let queryDeletedRules = CKQuery(recordType: "DeletedRules", predicate: deletedRulesPredicate)
+            let queryDeletedRulesOperation = CKQueryOperation(query: queryDeletedRules)
+            queryDeletedRulesOperation.addDependency(queryCreatedRulesOperation)
+            queryDeletedRulesOperation.recordFetchedBlock = { (rule: CKRecord) in
+                recordsDeleted.append(rule)
+            }
+            queryDeletedRulesOperation.database = publicDB
+            queryDeletedRulesOperation.queryCompletionBlock = { (cursor : CKQueryCursor?, error : NSError?) in
+                if error != nil {
+                    print(error)
+                } else if cursor != nil { // The cursor is not nil thus we still have some records to download
+                    let newDeletionOperation = queryDeletedRulesOperation
+                    newDeletionOperation.cursor = cursor!
+                    queue.addOperation(newDeletionOperation)
+                } else {
+                    // We've updated the list, now we can call the content blocker to update it.
+                    NSUserDefaults.standardUserDefaults().setInteger(update, forKey: "currentUpdate")
+                    NSUserDefaults.standardUserDefaults().setObject(NSDate(), forKey: "lastUpdateTimestamp")
+                    NSUserDefaults.standardUserDefaults().setObject("✅", forKey: "updateStatus")
+                    NSUserDefaults.standardUserDefaults().synchronize()
+                    self.listsManager.updateRulesWithRecords(recordsCreated, recordsDeleted: recordsDeleted)
+                }
+            }
+            queue.addOperations([queryCreatedRulesOperation, queryDeletedRulesOperation], waitUntilFinished: true)
         } else {
             NSUserDefaults.standardUserDefaults().setObject("✅", forKey: "updateStatus")
             NSUserDefaults.standardUserDefaults().synchronize()

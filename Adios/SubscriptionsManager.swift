@@ -8,6 +8,7 @@
 
 import Foundation
 import CloudKit
+import UIKit
 
 class SubscriptionsManager {
     let publicDB = CKContainer.defaultContainer().publicCloudDatabase
@@ -35,11 +36,12 @@ class SubscriptionsManager {
         }))
     }
     
-    func didReceiveNotification(userInfo: [NSObject : AnyObject]) {
+    func didReceiveNotification(userInfo: [NSObject : AnyObject], completionHandler: (UIBackgroundFetchResult) -> Void) {
         let notification = CKNotification(fromRemoteNotificationDictionary: userInfo as! [String: NSObject])
         if notification.notificationType == .Query, let queryNotification = notification as? CKQueryNotification {
             let update = queryNotification.recordFields!["Version"]! as! Int
             downloadManager.getNewRecords(update)
+            completionHandler(.NewData)
         }
     }
 }

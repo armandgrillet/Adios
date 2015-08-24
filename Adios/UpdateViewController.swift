@@ -18,9 +18,13 @@ class UpdateViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        NSUserDefaults.standardUserDefaults().addObserver(self, forKeyPath: "updateStatus", options: NSKeyValueObservingOptions(), context: &defaultsContext)
-        downloadManager.getNewRecordsManually()
+        if Reachability.isConnectedToNetwork() {
+            NSUserDefaults.standardUserDefaults().addObserver(self, forKeyPath: "updateStatus", options: NSKeyValueObservingOptions(), context: &defaultsContext)
+            downloadManager.getNewRecordsManually()
+        } else {
+            self.performSegueWithIdentifier("Done", sender: self)
+        }
+        
     }
     
     override func didReceiveMemoryWarning() {
