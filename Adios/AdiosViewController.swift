@@ -47,10 +47,12 @@ class AdiosViewController: UIViewController {
                 details.text = ""
             }
             
-            let lastUpdateTimestamp = NSUserDefaults.standardUserDefaults().objectForKey("lastUpdateTimestamp") as! NSDate
-            let formatter = NSDateFormatter()
-            formatter.timeStyle = .ShortStyle
-            lastUpdate.setTitle(formatter.stringFromDate(lastUpdateTimestamp), forState: .Normal)
+            if let lastUpdateTimestamp = NSUserDefaults.standardUserDefaults().objectForKey("lastUpdateTimestamp") {
+                let formatter = NSDateFormatter()
+                formatter.timeStyle = .ShortStyle
+                lastUpdate.setTitle(formatter.stringFromDate(lastUpdateTimestamp as! NSDate), forState: .Normal)
+            }
+            
         } else {
             configurationState.text = "Adios doesn't block ads yet! Configure Adios first."
             countries.text = ""

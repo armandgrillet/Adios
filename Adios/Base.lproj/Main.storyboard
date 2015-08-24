@@ -253,7 +253,7 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oA2-iG-BeH">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oA2-iG-BeH">
                                 <rect key="frame" x="20" y="347" width="560" height="30"/>
                                 <animations/>
                                 <state key="normal" title="Last update">
@@ -273,14 +273,17 @@
                             <constraint firstItem="z0F-M3-cTY" firstAttribute="trailing" secondItem="Vyq-Zz-hAe" secondAttribute="trailingMargin" id="DHj-Su-PRN"/>
                             <constraint firstItem="Wji-Pu-4Xx" firstAttribute="trailing" secondItem="Vyq-Zz-hAe" secondAttribute="trailingMargin" id="DyH-7f-8GS"/>
                             <constraint firstItem="z0F-M3-cTY" firstAttribute="top" secondItem="CLg-qg-eZo" secondAttribute="bottom" constant="8" id="SUO-J7-VWN"/>
+                            <constraint firstItem="oA2-iG-BeH" firstAttribute="leading" secondItem="Vyq-Zz-hAe" secondAttribute="leadingMargin" id="WBN-a9-Yrm"/>
                             <constraint firstItem="CLg-qg-eZo" firstAttribute="trailing" secondItem="Vyq-Zz-hAe" secondAttribute="trailingMargin" id="Z6A-aS-SVl"/>
                             <constraint firstItem="CLg-qg-eZo" firstAttribute="centerY" secondItem="Vyq-Zz-hAe" secondAttribute="centerY" id="Zd5-P7-3Ty"/>
                             <constraint firstItem="EUL-vB-PFU" firstAttribute="leading" secondItem="Vyq-Zz-hAe" secondAttribute="leadingMargin" id="l0D-hf-Ko0"/>
                             <constraint firstItem="Vhk-Ae-hhU" firstAttribute="top" secondItem="Wji-Pu-4Xx" secondAttribute="bottom" constant="8" id="oEe-9Q-Gdx"/>
+                            <constraint firstItem="oA2-iG-BeH" firstAttribute="trailing" secondItem="Vyq-Zz-hAe" secondAttribute="trailingMargin" id="pgY-T9-Qbz"/>
                             <constraint firstItem="CLg-qg-eZo" firstAttribute="top" secondItem="EUL-vB-PFU" secondAttribute="bottom" constant="8" id="pjR-lO-IbO"/>
                             <constraint firstItem="Wji-Pu-4Xx" firstAttribute="centerX" secondItem="Vyq-Zz-hAe" secondAttribute="centerX" id="px6-yo-ctL"/>
                             <constraint firstItem="Vhk-Ae-hhU" firstAttribute="top" secondItem="Wji-Pu-4Xx" secondAttribute="bottom" constant="8" id="qv8-FD-QwC"/>
                             <constraint firstItem="Wji-Pu-4Xx" firstAttribute="leading" secondItem="Vyq-Zz-hAe" secondAttribute="leadingMargin" id="xeT-WV-V3r"/>
+                            <constraint firstItem="oA2-iG-BeH" firstAttribute="top" secondItem="z0F-M3-cTY" secondAttribute="bottom" constant="8" id="ym0-Dy-96f"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
@@ -626,7 +629,7 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Activate Adios in Settings/Safari/Content Blockers" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rbH-gY-yov">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Activate Adios in Settings &gt; Safari &gt; Content Blockers" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rbH-gY-yov">
                                 <rect key="frame" x="20" y="331" width="560" height="24"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>

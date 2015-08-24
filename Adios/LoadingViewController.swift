@@ -8,7 +8,6 @@
 
 import UIKit
 
-private var defaultsContext = 0
 
 class LoadingViewController: UIViewController {
     @IBOutlet weak var status: UILabel!
@@ -19,9 +18,10 @@ class LoadingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         NSUserDefaults.standardUserDefaults().setObject(onboardManager.getRealListsFromChoices(), forKey: "settledLists")
+        NSUserDefaults.standardUserDefaults().setObject("Downloading", forKey: "updateStatus")
         NSUserDefaults.standardUserDefaults().synchronize()
         // Do any additional setup after loading the view, typically from a nib.
-        NSUserDefaults.standardUserDefaults().addObserver(self, forKeyPath: "updateStatus", options: NSKeyValueObservingOptions(), context: &defaultsContext)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("updateStatus"), name: NSUserDefaultsDidChangeNotification, object: nil)
         listsManager.setFollowedLists(onboardManager.getRealListsFromChoices())
         downloadManager.downloadFollowedLists()
     }
@@ -32,11 +32,7 @@ class LoadingViewController: UIViewController {
     }
     
     override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
-        if context == &defaultsContext {
-            seeUpdate()
-        } else {
-            super.observeValueForKeyPath(keyPath, ofObject: object, change: change, context: context)
-        }
+        seeUpdate()
     }
     
     func seeUpdate() {
@@ -50,6 +46,6 @@ class LoadingViewController: UIViewController {
     
     deinit {
         //Remove observer
-        NSUserDefaults.standardUserDefaults().removeObserver(self, forKeyPath: "updateStatus", context: &defaultsContext)
+        NSUserDefaults.standardUserDefaults().removeObserver(self, forKeyPath: "updateStatus")
     }
 }

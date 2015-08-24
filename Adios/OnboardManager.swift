@@ -122,53 +122,54 @@ class OnboardManager {
         }
     }
     
-    func getListFromFlag(flag: String) -> String? {
+    func getRealList(flag: String) -> String? {
+        print(flag)
         switch flag {
-            case "🇪🇬":
+        case "🇪🇬":
             return "EasyList_Arabic"
-            case "🇧🇬":
+        case "🇧🇬":
             return "EasyList_Bulgaria"
-            case "🇨🇳":
+        case "🇨🇳":
             return "EasyList_China"
-            case "🇸🇰":
+        case "🇸🇰":
             return "EasyList_Czechoslovakia"
-            case "🇩🇰":
+        case "🇩🇰":
             return "List_Danish"
-            case "🇫🇷":
+        case "🇫🇷":
             return "EasyList_France"
-            case "🇪🇪":
+        case "🇪🇪":
             return "List_Estonia"
-            case "🇩🇪":
+        case "🇩🇪":
             return "EasyList_Germany"
-            case "🇬🇷":
+        case "🇬🇷":
             return "EasyList_Greece"
-            case "🇭🇺":
+        case "🇭🇺":
             return "List_Hungary"
-            case "🇮🇸":
+        case "🇮🇸":
             return "EasyList_Iceland"
-            case "🇮🇩":
+        case "🇮🇩":
             return "EasyList_Indonesia"
-            case "🇮🇹":
+        case "🇮🇹":
             return "EasyList_Italy"
-            case "🇮🇱":
+        case "🇮🇱":
             return "EasyList_Hebrew"
-            case "🇯🇵":
+        case "🇯🇵":
             return "List_Japan"
-            case "🇱🇻":
+        case "🇱🇻":
             return "EasyList_Latvia"
-            case "🇳🇱":
+        case "🇳🇱":
             return "EasyList_Dutch"
-            case "🇵🇱":
+        case "🇵🇱":
             return "EasyList_Poland"
-            case "🇷🇴":
+        case "🇷🇴":
             return "EasyList_Romania"
-            case "🇷🇺":
+        case "🇷🇺":
             return "EasyList_Russia"
-            case "🇬🇧":
+        case "🇬🇧":
             return "List_England"
-            case "🇺🇸":
+        case "🇺🇸":
             return "EasyList"
-            default:
+        default:
             return nil
         }
     }
@@ -247,14 +248,15 @@ class OnboardManager {
         var realLists: [String] = []
         
         let mainListFlag = mainList!.substringFromIndex(mainList!.endIndex.predecessor())
-        if getListFromFlag(mainListFlag) != nil {
-            realLists.append(getListFromFlag(mainListFlag)!)
+        if let realMainList = getRealList(mainListFlag) {
+            print(realMainList)
+            realLists.append(realMainList)
         }
         
         if secondList! != "No" {
             let secondListFlag = secondList!.substringFromIndex(secondList!.endIndex.predecessor())
-            if getListFromFlag(secondListFlag) != nil {
-                realLists.append(getListFromFlag(secondListFlag)!)
+            if let realSecondList = getRealList(secondListFlag) {
+                realLists.append(realSecondList)
             }
         }
         
