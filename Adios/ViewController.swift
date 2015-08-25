@@ -27,13 +27,15 @@ class ViewController: UIViewController {
 
     @IBAction func seeLogs(sender: UIButton) {
         if let userDefaults = NSUserDefaults(suiteName: "group.AG.Adios") {
-            if let groupDebugRules = userDefaults.stringForKey("debugRules") {
-                print(groupDebugRules)
-            } else {
-                print("Debugrules doesn't exist")
-            }
+            print(userDefaults.stringForKey("testAgain"))
         } else {
             print("Impossible de se connecter au groupe")
+        }
+    }
+    
+    @IBAction func createFile(sender: UIButton) {
+        if let userDefaults = NSUserDefaults(suiteName: "group.AG.Adios") {
+            userDefaults.setObject("{\"trigger\":{\"url-filter\":\"armand.gr\"},\"action\":{\"type\":\"css-display-none\",\"selector\":\".testContentBlockerFour\"}},", forKey: "testAgain")
         }
     }
     
@@ -41,15 +43,6 @@ class ViewController: UIViewController {
         SFContentBlockerManager.reloadContentBlockerWithIdentifier("AG.Adios.BaseContentBlocker") { (error: NSError?) -> Void in
             if error == nil {
                 print("Le base passe")
-                NSUserDefaults.standardUserDefaults().setObject("Applying user's content blocker", forKey: "updateStatus")
-                NSUserDefaults.standardUserDefaults().synchronize()
-                SFContentBlockerManager.reloadContentBlockerWithIdentifier("AG.Adios.ContentBlocker") { (otherError: NSError?) -> Void in
-                    if error == nil {
-                        print("Listes appliquees")
-                    } else {
-                        print(otherError)
-                    }
-                }
             } else {
                 print(error)
             }

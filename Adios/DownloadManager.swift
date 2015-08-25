@@ -54,9 +54,6 @@ class DownloadManager {
                     self.downloadRulesFromList(nextLists![0], nextLists: Array(nextLists!.dropFirst()))
                 } else { // Everything has been downloaded, we're setting the current update user default and run the content blockers manager
                     print("Everything done")
-                    if let userDefaults = NSUserDefaults(suiteName: "group.AG.Adios") {
-                        print(userDefaults.stringForKey("EasyList")!)
-                    }
                     self.wormhole.passMessageObject("Applying the standard content blocker", identifier: "updateStatus")
                     SFContentBlockerManager.reloadContentBlockerWithIdentifier("AG.Adios.BaseContentBlocker") { (error: NSError?) -> Void in
                         if error == nil {

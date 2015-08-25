@@ -18,9 +18,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Blj-NX-w1o">
-                                <rect key="frame" x="277" y="285" width="46" height="30"/>
+                                <rect key="frame" x="285" y="285" width="30" height="30"/>
                                 <animations/>
-                                <state key="normal" title="Button"/>
+                                <state key="normal" title="CB"/>
                                 <connections>
                                     <action selector="update:" destination="BYZ-38-t0r" eventType="touchUpInside" id="go8-u8-eKs"/>
                                 </connections>
@@ -40,14 +40,24 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ylV-yg-OKM">
+                                <rect key="frame" x="265" y="247" width="71" height="30"/>
+                                <animations/>
+                                <state key="normal" title="Create file"/>
+                                <connections>
+                                    <action selector="createFile:" destination="BYZ-38-t0r" eventType="touchUpInside" id="OV7-pR-9Ad"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="SQM-v9-QHw" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="15r-gu-cI9"/>
                             <constraint firstItem="Blj-NX-w1o" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="1PY-fu-I4t"/>
+                            <constraint firstItem="ylV-yg-OKM" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="EJr-mg-RDG"/>
                             <constraint firstItem="SQM-v9-QHw" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="HEj-vv-pyM"/>
                             <constraint firstItem="SQM-v9-QHw" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="HlF-yy-1l0"/>
+                            <constraint firstItem="Blj-NX-w1o" firstAttribute="top" secondItem="ylV-yg-OKM" secondAttribute="bottom" constant="8" id="IOy-au-pTE"/>
                             <constraint firstItem="tq2-h8-wyW" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="Pzs-BU-XbH"/>
                             <constraint firstItem="Blj-NX-w1o" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="eQv-9C-gFn"/>
                             <constraint firstItem="tq2-h8-wyW" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="iNU-7w-Y10"/>
