@@ -10,11 +10,14 @@ import UIKit
 import SafariServices
 
 class ViewController: UIViewController {
-    @IBOutlet weak var debugRules: UITextView!
+    @IBOutlet weak var followed: UILabel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        if let userDefaults = NSUserDefaults(suiteName: "group.AG.Adios") {
+            followed.text = userDefaults.arrayForKey("followedLists")?.description
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -25,14 +28,32 @@ class ViewController: UIViewController {
     @IBAction func seeLogs(sender: UIButton) {
         if let userDefaults = NSUserDefaults(suiteName: "group.AG.Adios") {
             if let groupDebugRules = userDefaults.stringForKey("debugRules") {
-                debugRules.text = groupDebugRules
+                print(groupDebugRules)
+            } else {
+                print("Debugrules doesn't exist")
             }
+        } else {
+            print("Impossible de se connecter au groupe")
         }
     }
     
     @IBAction func update(sender: UIButton) {
-        SFContentBlockerManager.reloadContentBlockerWithIdentifier("AG.Adios.ContentBlocker") { (error: NSError?) -> Void in
-            print(error)
+        SFContentBlockerManager.reloadContentBlockerWithIdentifier("AG.Adios.BaseContentBlocker") { (error: NSError?) -> Void in
+            if error == nil {
+                print("Le base passe")
+                NSUserDefaults.standardUserDefaults().setObject("Applying user's content blocker", forKey: "updateStatus")
+                NSUserDefaults.standardUserDefaults().synchronize()
+                SFContentBlockerManager.reloadContentBlockerWithIdentifier("AG.Adios.ContentBlocker") { (otherError: NSError?) -> Void in
+                    if error == nil {
+                        print("Listes appliquees")
+                    } else {
+                        print(otherError)
+                    }
+                }
+            } else {
+                print(error)
+            }
         }
+
     }
 }

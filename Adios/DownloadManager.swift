@@ -55,20 +55,17 @@ class DownloadManager {
                 } else { // Everything has been downloaded, we're setting the current update user default and run the content blockers manager
                     print("Everything done")
                     if let userDefaults = NSUserDefaults(suiteName: "group.AG.Adios") {
-                        print(userDefaults.stringForKey("EasyList")!.characters.count)
+                        print(userDefaults.stringForKey("EasyList")!)
                     }
-                    NSUserDefaults.standardUserDefaults().setObject("Applying the standard content blocker", forKey: "updateStatus")
-                    NSUserDefaults.standardUserDefaults().synchronize()
+                    self.wormhole.passMessageObject("Applying the standard content blocker", identifier: "updateStatus")
                     SFContentBlockerManager.reloadContentBlockerWithIdentifier("AG.Adios.BaseContentBlocker") { (error: NSError?) -> Void in
                         if error == nil {
                             print("Le base passe")
-                            NSUserDefaults.standardUserDefaults().setObject("Applying user's content blocker", forKey: "updateStatus")
-                            NSUserDefaults.standardUserDefaults().synchronize()
+                            self.wormhole.passMessageObject("Applying user's content blocker", identifier: "updateStatus")
                             SFContentBlockerManager.reloadContentBlockerWithIdentifier("AG.Adios.ContentBlocker") { (otherError: NSError?) -> Void in
                                 if error == nil {
                                     print("Listes appliquees")
-                                    NSUserDefaults.standardUserDefaults().setObject("✅", forKey: "updateStatus")
-                                    NSUserDefaults.standardUserDefaults().synchronize()
+                                    self.wormhole.passMessageObject("✅", identifier: "updateStatus")
                                 } else {
                                     print(otherError)
                                 }
