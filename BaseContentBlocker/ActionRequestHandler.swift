@@ -18,34 +18,15 @@ class ActionRequestHandler: NSObject, NSExtensionRequestHandling {
             
             if let followedLists = userDefaults.arrayForKey("followedLists") as! [String]? {
                 if followedLists.contains("EasyList") {
-                    if let list = userDefaults.arrayForKey("EasyListBlock") as! [String]? {
-                        for rule in list {
-                            rules += rule
-                        }
-                    }
-                    if let list = userDefaults.arrayForKey("EasyListBlockCookies") as! [String]? {
-                        for rule in list {
-                            rules += rule
-                        }
-                    }
-                    if let list = userDefaults.arrayForKey("EasyListCSSDisplayNone") as! [String]? {
-                        for rule in list {
-                            rules += rule
-                        }
-                    }
-                    if let list = userDefaults.arrayForKey("EasyListIgnorePreviousRules") as! [String]? {
-                        for rule in list {
-                            rules += rule
-                        }
+                    if let list = userDefaults.stringForKey("EasyList") as String! {
+                        rules += list
                     }
                 }
             }
             
             // JIC
-            if let list = userDefaults.arrayForKey("AdiosList") as! [String]? {
-                for rule in list {
-                    rules += rule
-                }
+            if let list = userDefaults.stringForKey("AdiosList") as String! {
+                rules += list
             }
             
             // Removing the last coma

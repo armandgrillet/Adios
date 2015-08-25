@@ -18,9 +18,11 @@ class LoadingViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        NSUserDefaults.standardUserDefaults().setObject(onboardManager.getRealListsFromChoices(), forKey: "settledLists")
-        NSUserDefaults.standardUserDefaults().setObject("Downloading", forKey: "updateStatus")
-        NSUserDefaults.standardUserDefaults().synchronize()
+        if let groupUD = NSUserDefaults(suiteName: "group.AG.Adios") {
+            groupUD.setObject(onboardManager.getRealListsFromChoices(), forKey: "followedLists")
+            groupUD.synchronize()
+        }
+        
         // Do any additional setup after loading the view, typically from a nib.
         wormhole.listenForMessageWithIdentifier("updateStatus") { (messageObject: AnyObject?) -> Void in
             if let message = messageObject as! String? {
@@ -31,7 +33,6 @@ class LoadingViewController: UIViewController {
                 }
             }
         }
-        listsManager.setFollowedLists(onboardManager.getRealListsFromChoices())
         downloadManager.downloadFollowedLists()
     }
     

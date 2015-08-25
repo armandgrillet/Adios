@@ -41,7 +41,6 @@
 		C4E6C6161B81F19800F1411F /* MainListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E6C6151B81F19800F1411F /* MainListViewController.swift */; };
 		C4E6C6181B81F1A800F1411F /* SecondListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E6C6171B81F1A800F1411F /* SecondListViewController.swift */; };
 		C4E6C61C1B81F1F500F1411F /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E6C61B1B81F1F500F1411F /* LoadingViewController.swift */; };
-		C4EBCC931B84C32C002D6553 /* ContentBlockersManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EBCC921B84C32C002D6553 /* ContentBlockersManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -118,6 +117,7 @@
 		C434CB5A1B879A1800537B55 /* OneMoreThingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OneMoreThingViewController.swift; sourceTree = "<group>"; };
 		C4443AE61B8927DB004EE04C /* OnboardManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardManager.swift; sourceTree = "<group>"; };
 		C4443AE81B8932D9004EE04C /* DetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
+		C4A6902D1B8CC09D0074E314 /* BaseContentBlocker.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = BaseContentBlocker.entitlements; sourceTree = "<group>"; };
 		C4C2B1C51B8A2D780099240A /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		C4E206081B773F6B00C280DF /* Adios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Adios.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4E2060B1B773F6B00C280DF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -147,7 +147,6 @@
 		C4E6C6151B81F19800F1411F /* MainListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainListViewController.swift; sourceTree = "<group>"; };
 		C4E6C6171B81F1A800F1411F /* SecondListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondListViewController.swift; sourceTree = "<group>"; };
 		C4E6C61B1B81F1F500F1411F /* LoadingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
-		C4EBCC921B84C32C002D6553 /* ContentBlockersManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentBlockersManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -209,6 +208,7 @@
 		C404E4611B827219006BB98E /* BaseContentBlocker */ = {
 			isa = PBXGroup;
 			children = (
+				C4A6902D1B8CC09D0074E314 /* BaseContentBlocker.entitlements */,
 				C404E4621B827219006BB98E /* blockerList.json */,
 				C404E4641B827219006BB98E /* ActionRequestHandler.swift */,
 				C404E4661B827219006BB98E /* Info.plist */,
@@ -256,7 +256,6 @@
 				C41CA5C71B833293000255F3 /* DownloadManager.swift */,
 				C41CA5C91B839FCE000255F3 /* Rule.swift */,
 				C41CA5CB1B83A149000255F3 /* ListsManager.swift */,
-				C4EBCC921B84C32C002D6553 /* ContentBlockersManager.swift */,
 				C4443AE61B8927DB004EE04C /* OnboardManager.swift */,
 				C4C2B1C51B8A2D780099240A /* Reachability.swift */,
 			);
@@ -483,6 +482,11 @@
 					C404E45F1B827219006BB98E = {
 						CreatedOnToolsVersion = 7.0;
 						DevelopmentTeam = BL4CLL95SL;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 					C4E206071B773F6B00C280DF = {
 						CreatedOnToolsVersion = 7.0;
@@ -669,7 +673,6 @@
 				C4316F721B80E074004C047F /* AdiosViewController.swift in Sources */,
 				C41CA5C61B8330F2000255F3 /* CloudKitViewController.swift in Sources */,
 				C4E6C61C1B81F1F500F1411F /* LoadingViewController.swift in Sources */,
-				C4EBCC931B84C32C002D6553 /* ContentBlockersManager.swift in Sources */,
 				C4E2060C1B773F6B00C280DF /* AppDelegate.swift in Sources */,
 				C4443AE91B8932D9004EE04C /* DetailsViewController.swift in Sources */,
 				C41CA5C41B832660000255F3 /* SubscriptionsManager.swift in Sources */,
@@ -769,12 +772,14 @@
 		C404E46A1B827219006BB98E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = BaseContentBlocker/BaseContentBlocker.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = BaseContentBlocker/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = AG.Adios.BaseContentBlocker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
 			};
 			name = Debug;
@@ -782,12 +787,14 @@
 		C404E46B1B827219006BB98E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = BaseContentBlocker/BaseContentBlocker.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = BaseContentBlocker/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = AG.Adios.BaseContentBlocker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
 			};
 			name = Release;

@@ -9,43 +9,39 @@
 import Foundation
 import CloudKit
 import MMWormhole
+import SafariServices
 
 class DownloadManager {
     let publicDB = CKContainer.defaultContainer().publicCloudDatabase
     let wormhole = MMWormhole(applicationGroupIdentifier: "group.AG.Adios", optionalDirectory: "wormhole")
-    let listsManager = ListsManager()
     
-    func downloadRulesFromList(list: String, nextLists: [String]?, unachievedRules: [CKRecord], cursor: CKQueryCursor?) {
+    func downloadRulesFromList(list: String, nextLists: [String]?) {
         if list != "AdiosList" {
             wormhole.passMessageObject("Downloading \(list)", identifier: "updateStatus")
         }
         
-        print(list)
-        
-        var rules = unachievedRules
-        
         let queue = NSOperationQueue()
-        
-        
-        
-        let queryOperation = CKQueryOperation()
-        if cursor != nil {
-            queryOperation.cursor = cursor
-        } else {
-            let listToMatch = CKReference(recordID: CKRecordID(recordName: list), action: .DeleteSelf)
-            let predicate = NSPredicate(format: "List == %@", listToMatch)
-            let query = CKQuery(recordType: "Rulesets", predicate: predicate)
-            queryOperation.query = query
-        }
+        let predicate = NSPredicate(format: "Name == %@", list)
+        let query = CKQuery(recordType: "ListFiles", predicate: predicate)
+        let queryOperation = CKQueryOperation(query: query)
         queryOperation.qualityOfService = .UserInitiated // The user is waiting for the task to complete
         queryOperation.database = publicDB
         
-        
-        queryOperation.recordFetchedBlock = { (ruleset: CKRecord) in
-            let rulesetRules = ruleset["Rules"] as! String
-            let newRules = rulesetRules.componentsSeparatedByString("CKPByADIOS") as [String]
-            for rule in newRules {
-                print(rule)
+        var listText = ""
+        queryOperation.recordFetchedBlock = { (downloadedList: CKRecord) in
+            if let rulesFile = downloadedList["File"] as? CKAsset {
+                if let content = NSFileManager.defaultManager().contentsAtPath(rulesFile.fileURL.path!) {
+                    listText = NSString(data: content, encoding: NSUTF8StringEncoding)! as String
+                    listText = listText.substringFromIndex(list.startIndex.successor()) // Removing '['
+                    listText = listText.substringToIndex(listText.endIndex.predecessor()) // Removing ']'
+                    listText += ","
+                    print("\(list): \(listText.characters.count)")
+                    if let userDefaults = NSUserDefaults(suiteName: "group.AG.Adios") {
+                        print("On la set tranquillement")
+                        userDefaults.setObject(listText, forKey: list)
+                        userDefaults.synchronize()
+                    }
+                }
             }
         }
         
@@ -53,35 +49,36 @@ class DownloadManager {
             if error != nil {
                 print(error?.localizedFailureReason)
             } else {
-                if cursor != nil { // The cursor is not nil thus we still have some records to download
-                    print("Not done for \(list)")
-                    self.downloadRulesFromList(list, nextLists: nextLists, unachievedRules: rules, cursor: cursor)
-                } else { // List downloaded
-                    self.listsManager.createList(list, records: rules)
-                    if nextLists != nil && nextLists!.count > 0 { // Other lists need to be downloaded
-                        self.downloadRulesFromList(nextLists![0], nextLists: Array(nextLists!.dropFirst()), unachievedRules: rules, cursor: nil)
-                    } else { // Everything has been downloaded, we're setting the current update user default and run the content blockers manager
-                        print("Everything done")
-                        self.listsManager.applyLists()
-                        let pr = NSPredicate(format: "recordID = %@", CKRecordID(recordName: "TheOneAndOnly"))
-                        let queryGetUpdate = CKQuery(recordType: "Updates", predicate: pr)
-                        self.publicDB.performQuery(queryGetUpdate, inZoneWithID: nil) { results, error in
-                            if error != nil {
-                                print(error?.localizedFailureReason)
-                            } else { // We downloaded all the lists we want, we set the current update and call it a day.
-                                if let theOneAndOnlyUpdate = results?.first {
-                                    let currentUpdate = theOneAndOnlyUpdate["Version"]! as! Int
-                                    NSUserDefaults.standardUserDefaults().setInteger(currentUpdate, forKey: "currentUpdate")
-                                    print("Liste updated and currentUpdate now \(currentUpdate)")
-                                    NSUserDefaults.standardUserDefaults().setObject(NSDate(), forKey: "lastUpdateTimestamp")
+                if nextLists != nil && nextLists!.count > 0 { // Other lists need to be downloaded
+                    print("On a d'autres listes")
+                    self.downloadRulesFromList(nextLists![0], nextLists: Array(nextLists!.dropFirst()))
+                } else { // Everything has been downloaded, we're setting the current update user default and run the content blockers manager
+                    print("Everything done")
+                    if let userDefaults = NSUserDefaults(suiteName: "group.AG.Adios") {
+                        print(userDefaults.stringForKey("EasyList")!.characters.count)
+                    }
+                    NSUserDefaults.standardUserDefaults().setObject("Applying the standard content blocker", forKey: "updateStatus")
+                    NSUserDefaults.standardUserDefaults().synchronize()
+                    SFContentBlockerManager.reloadContentBlockerWithIdentifier("AG.Adios.BaseContentBlocker") { (error: NSError?) -> Void in
+                        if error == nil {
+                            print("Le base passe")
+                            NSUserDefaults.standardUserDefaults().setObject("Applying user's content blocker", forKey: "updateStatus")
+                            NSUserDefaults.standardUserDefaults().synchronize()
+                            SFContentBlockerManager.reloadContentBlockerWithIdentifier("AG.Adios.ContentBlocker") { (otherError: NSError?) -> Void in
+                                if error == nil {
+                                    print("Listes appliquees")
+                                    NSUserDefaults.standardUserDefaults().setObject("✅", forKey: "updateStatus")
                                     NSUserDefaults.standardUserDefaults().synchronize()
-                                    // We set the subscription if it hasn't been done before
-                                    let subscriptionsManager = SubscriptionsManager()
-                                    subscriptionsManager.subscribeToUpdates()
+                                } else {
+                                    print(otherError)
                                 }
                             }
+                        } else {
+                            print(error)
                         }
                     }
+                    //let subscriptionsManager = SubscriptionsManager()
+                    // subscriptionsManager.subscribeToUpdates()
                 }
             }
         }
@@ -93,6 +90,11 @@ class DownloadManager {
     }
     
     func downloadFollowedLists() {
-        downloadRulesFromList(listsManager.getFollowedLists()[0], nextLists: Array(listsManager.getFollowedLists().dropFirst()), unachievedRules: [], cursor: nil)
+        if let followedLists = NSUserDefaults(suiteName: "group.AG.Adios")!.arrayForKey("followedLists") as! [String]? {
+            downloadRulesFromList(followedLists[0], nextLists: Array(followedLists.dropFirst()))
+        } else {
+            print("problem")
+        }
+        
     }
 }

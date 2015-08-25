@@ -9,7 +9,6 @@
 import UIKit
 
 class AdiosViewController: UIViewController {
-    let listsManager = ListsManager()
     let onboardManager = OnboardManager()
     
     @IBOutlet weak var configurationState: UILabel!
@@ -20,13 +19,13 @@ class AdiosViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        var followedLists = listsManager.getFollowedLists()
+        var followedLists = ListsManager.getFollowedLists()
         if followedLists != [] {
             configurationState.text = "Adios is configured! Here is your configuration:"
             
             var countriesText = "You're blocking ads on websites based in "
             countriesText += onboardManager.getCountryFromList(followedLists[0])!
-            if let secondCountry = onboardManager.getCountryFromList(followedLists[0]) {
+            if let secondCountry = onboardManager.getCountryFromList(followedLists[1]) {
                 countriesText += " & \(secondCountry)"
             }
             countries.text = countriesText

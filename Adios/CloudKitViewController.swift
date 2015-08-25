@@ -26,18 +26,15 @@ class CloudKitViewController: UIViewController {
     }
     
     @IBAction func downloadAdiosList(sender: UIButton) {
-        listsManager.setFollowedLists(["AdiosList", "AdiosListTest"])
         downloadManager.downloadFollowedLists()
     }
     
     @IBAction func applyContentBlockers(sender: UIButton) {
-        ContentBlockersManager.updateContentBlockers()
 
     }
     @IBAction func manualReload(sender: AnyObject) {
         // downloadManager.getNewRecordsManually()
     }
     @IBAction func printAdiosList(sender: UIButton) {
-        downloadManager.listsManager.printLists()
     }
 }
