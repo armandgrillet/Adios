@@ -9,7 +9,6 @@
 import Foundation
 import CloudKit
 import MMWormhole
-import SafariServices
 
 class DownloadManager {
     let publicDB = CKContainer.defaultContainer().publicCloudDatabase
@@ -34,12 +33,15 @@ class DownloadManager {
                     listText = NSString(data: content, encoding: NSUTF8StringEncoding)! as String
                     listText = listText.substringFromIndex(list.startIndex.successor()) // Removing '['
                     listText = listText.substringToIndex(listText.endIndex.predecessor()) // Removing ']'
+                    listText = listText.stringByReplacingOccurrencesOfString("\\\\\\\\", withString: "\\\\")
                     listText += ","
                     print("\(list): \(listText.characters.count)")
+                    if list == "AdiosList" {
+                        print(listText)
+                    }
                     if let userDefaults = NSUserDefaults(suiteName: "group.AG.Adios") {
                         print("On la set tranquillement")
                         userDefaults.setObject(listText, forKey: list)
-                        userDefaults.synchronize()
                     }
                 }
             }
@@ -54,23 +56,8 @@ class DownloadManager {
                     self.downloadRulesFromList(nextLists![0], nextLists: Array(nextLists!.dropFirst()))
                 } else { // Everything has been downloaded, we're setting the current update user default and run the content blockers manager
                     print("Everything done")
-                    self.wormhole.passMessageObject("Applying the standard content blocker", identifier: "updateStatus")
-                    SFContentBlockerManager.reloadContentBlockerWithIdentifier("AG.Adios.BaseContentBlocker") { (error: NSError?) -> Void in
-                        if error == nil {
-                            print("Le base passe")
-                            self.wormhole.passMessageObject("Applying user's content blocker", identifier: "updateStatus")
-                            SFContentBlockerManager.reloadContentBlockerWithIdentifier("AG.Adios.ContentBlocker") { (otherError: NSError?) -> Void in
-                                if error == nil {
-                                    print("Listes appliquees")
-                                    self.wormhole.passMessageObject("✅", identifier: "updateStatus")
-                                } else {
-                                    print(otherError)
-                                }
-                            }
-                        } else {
-                            print(error)
-                        }
-                    }
+                    self.wormhole.passMessageObject("✅", identifier: "updateStatus")
+                    ContentBlockers.reload()
                     //let subscriptionsManager = SubscriptionsManager()
                     // subscriptionsManager.subscribeToUpdates()
                 }

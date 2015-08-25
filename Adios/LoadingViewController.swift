@@ -18,9 +18,10 @@ class LoadingViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if let groupUD = NSUserDefaults(suiteName: "group.AG.Adios") {
-            groupUD.setObject(onboardManager.getRealListsFromChoices(), forKey: "followedLists")
-            groupUD.synchronize()
+        ListsManager.removeFollowedListsData()
+        if let userDefaults = NSUserDefaults(suiteName: "group.AG.Adios") {
+            userDefaults.setObject(onboardManager.getRealListsFromChoices(), forKey: "followedLists")
+            userDefaults.synchronize()
         }
         
         // Do any additional setup after loading the view, typically from a nib.

@@ -20,6 +20,14 @@ public class ListsManager {
         }
     }
     
+    public class func removeFollowedListsData() {
+        if let userDefaults = NSUserDefaults(suiteName: "group.AG.Adios") {
+            for list in getFollowedLists() {
+                userDefaults.removeObjectForKey(list)
+            }
+        }
+    }
+    
     public class func setList(list: String, value: String) {
         if getFollowedLists().indexOf(list) > -1 {
             print("\(list): \(value.characters.count)")

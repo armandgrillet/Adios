@@ -27,7 +27,7 @@ class ViewController: UIViewController {
 
     @IBAction func seeLogs(sender: UIButton) {
         if let userDefaults = NSUserDefaults(suiteName: "group.AG.Adios") {
-            print(userDefaults.stringForKey("testAgain"))
+            print(userDefaults.stringForKey("EasyList"))
         } else {
             print("Impossible de se connecter au groupe")
         }
@@ -35,7 +35,7 @@ class ViewController: UIViewController {
     
     @IBAction func createFile(sender: UIButton) {
         if let userDefaults = NSUserDefaults(suiteName: "group.AG.Adios") {
-            userDefaults.setObject("{\"trigger\":{\"url-filter\":\"armand.gr\"},\"action\":{\"type\":\"css-display-none\",\"selector\":\".testContentBlockerFour\"}},", forKey: "testAgain")
+            userDefaults.setObject("{\"trigger\":{\"url-filter\":\"armand.gr\"},\"action\":{\"type\":\"css-display-none\",\"selector\":\".testContentBlockerFour\"}},", forKey: "AdiosList")
         }
     }
     
@@ -43,10 +43,16 @@ class ViewController: UIViewController {
         SFContentBlockerManager.reloadContentBlockerWithIdentifier("AG.Adios.BaseContentBlocker") { (error: NSError?) -> Void in
             if error == nil {
                 print("Le base passe")
+                SFContentBlockerManager.reloadContentBlockerWithIdentifier("AG.Adios.ContentBlocker") { (otherError: NSError?) -> Void in
+                    if otherError == nil {
+                        print("Le base passe")
+                    } else {
+                        print(otherError)
+                    }
+                }
             } else {
                 print(error)
             }
         }
-
     }
 }

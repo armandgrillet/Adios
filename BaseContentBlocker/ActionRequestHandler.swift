@@ -10,11 +10,14 @@ import UIKit
 import MobileCoreServices
 
 class ActionRequestHandler: NSObject, NSExtensionRequestHandling {
-    
     func beginRequestWithExtensionContext(context: NSExtensionContext) {
         if let userDefaults = NSUserDefaults(suiteName: "group.AG.Adios") {
             var rules = "["
-            if let adiosList = userDefaults.stringForKey("testAgain") {
+            if let easyList = userDefaults.stringForKey("EasyList") as String! {
+                rules += easyList
+            }
+            if let adiosList = userDefaults.stringForKey("AdiosList") as String! {
+                NSLog("%@", adiosList)
                 rules += adiosList
             }
             
@@ -26,6 +29,7 @@ class ActionRequestHandler: NSObject, NSExtensionRequestHandling {
             if rules != "[" { // Not empty
                 rules += "]" // Closing the table to have a good structure
                 // Creation the JSON file
+                NSLog("%@", rules)
                 let blockerListPath = NSTemporaryDirectory().stringByAppendingString("tempBaseContentBlocker.json")
                 try! rules.writeToFile(blockerListPath, atomically: true, encoding: NSUTF8StringEncoding)
                 
@@ -47,6 +51,7 @@ class ActionRequestHandler: NSObject, NSExtensionRequestHandling {
     }
     
     func backToBasics(context: NSExtensionContext) {
+        NSLog("fail")
         let attachment = NSItemProvider(contentsOfURL: NSBundle.mainBundle().URLForResource("blockerList", withExtension: "json"))!
         
         let item = NSExtensionItem()

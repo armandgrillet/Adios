@@ -39,7 +39,7 @@ class ActionRequestHandler: NSObject, NSExtensionRequestHandling {
             
             if rules != "[" { // Not empty
                 rules += "]" // Closing the table to have a good structure
-                
+                NSLog("%@", rules)
                 userDefaults.setObject(rules, forKey: "debugRules")
                 userDefaults.synchronize()
                 
@@ -56,15 +56,21 @@ class ActionRequestHandler: NSObject, NSExtensionRequestHandling {
                 context.completeRequestReturningItems([item], completionHandler: { (Bool) -> Void in
                     try! NSFileManager().removeItemAtPath(blockerListPath) // Removing the list now that it's been used.
                 })
-            } else { // Blocking just one useless rule
-                let attachment = NSItemProvider(contentsOfURL: NSBundle.mainBundle().URLForResource("blockerList", withExtension: "json"))!
-                
-                let item = NSExtensionItem()
-                item.attachments = [attachment]
-                
-                context.completeRequestReturningItems([item], completionHandler: nil);
+            } else {
+                backToBasics(context)
             }
+        } else {
+            backToBasics(context)
         }
     }
     
+    func backToBasics(context: NSExtensionContext) {
+        NSLog("fail")
+        let attachment = NSItemProvider(contentsOfURL: NSBundle.mainBundle().URLForResource("blockerList", withExtension: "json"))!
+        
+        let item = NSExtensionItem()
+        item.attachments = [attachment]
+        
+        context.completeRequestReturningItems([item], completionHandler: nil);
+    }
 }
