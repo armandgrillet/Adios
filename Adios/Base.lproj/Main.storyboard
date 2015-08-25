@@ -165,50 +165,6 @@
             </objects>
             <point key="canvasLocation" x="-255" y="-103"/>
         </scene>
-        <!--Update View Controller-->
-        <scene sceneID="dNX-Ob-Z6P">
-            <objects>
-                <viewController id="f30-Nb-763" customClass="UpdateViewController" customModule="Adios" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="kvg-pl-DXi"/>
-                        <viewControllerLayoutGuide type="bottom" id="rEE-ke-t5l"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="rLX-GP-zVv">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="E2P-ax-btc">
-                                <rect key="frame" x="282" y="281" width="37" height="37"/>
-                                <animations/>
-                                <color key="color" red="1" green="0.092578096040000002" blue="0.1144802766" alpha="1" colorSpace="calibratedRGB"/>
-                            </activityIndicatorView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Status" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iMl-sf-nGa">
-                                <rect key="frame" x="20" y="252" width="560" height="21"/>
-                                <animations/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <animations/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="E2P-ax-btc" firstAttribute="top" secondItem="iMl-sf-nGa" secondAttribute="bottom" constant="8" id="3jq-Vx-Ue9"/>
-                            <constraint firstItem="E2P-ax-btc" firstAttribute="centerY" secondItem="rLX-GP-zVv" secondAttribute="centerY" id="61C-1Q-kgf"/>
-                            <constraint firstItem="iMl-sf-nGa" firstAttribute="trailing" secondItem="rLX-GP-zVv" secondAttribute="trailingMargin" id="ICh-mB-p8K"/>
-                            <constraint firstItem="iMl-sf-nGa" firstAttribute="leading" secondItem="rLX-GP-zVv" secondAttribute="leadingMargin" id="M8I-6L-GzC"/>
-                            <constraint firstItem="E2P-ax-btc" firstAttribute="centerX" secondItem="rLX-GP-zVv" secondAttribute="centerX" id="oqe-6r-Ryo"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="status" destination="iMl-sf-nGa" id="bPn-tU-bjJ"/>
-                        <segue destination="iI1-hR-9en" kind="presentation" identifier="Done" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="Hnd-j5-KYj"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="smG-lr-3a3" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="560" y="534"/>
-        </scene>
         <!--Adios-->
         <scene sceneID="9Tn-Vg-lC6">
             <objects>
@@ -260,7 +216,7 @@
                                     <color key="titleColor" red="0.87691503763198853" green="0.045341350138187408" blue="0.0014832466840744019" alpha="0.6435614224137931" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="f30-Nb-763" kind="presentation" modalPresentationStyle="fullScreen" modalTransitionStyle="coverVertical" id="lMa-8b-TSE"/>
+                                    <segue destination="w34-Gh-7Xl" kind="presentation" modalPresentationStyle="fullScreen" modalTransitionStyle="coverVertical" id="Fjm-XC-G5m"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -806,6 +762,7 @@
         <image name="InfoOutline" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Hnd-j5-KYj"/>
+        <segue reference="q0b-EP-LJj"/>
+        <segue reference="Fjm-XC-G5m"/>
     </inferredMetricsTieBreakers>
 </document>

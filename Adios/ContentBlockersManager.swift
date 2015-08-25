@@ -9,8 +9,8 @@
 import Foundation
 import SafariServices
 
-class ContentBlockersManager {
-    static func updateContentBlockers() {
+public class ContentBlockersManager {
+    public class func updateContentBlockers() {
         SFContentBlockerManager.reloadContentBlockerWithIdentifier("AG.Adios.ContentBlocker") { (error: NSError?) -> Void in
             SFContentBlockerManager.reloadContentBlockerWithIdentifier("AG.Adios.ContentBlocker") { (otherError: NSError?) -> Void in
                 print(otherError)
