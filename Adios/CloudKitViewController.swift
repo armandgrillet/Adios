@@ -13,6 +13,7 @@ import SafariServices
 class CloudKitViewController: UIViewController {
     let downloadManager = DownloadManager()
     let subscriptionsManager = SubscriptionsManager()
+    let listsManager = ListsManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,7 +26,7 @@ class CloudKitViewController: UIViewController {
     }
     
     @IBAction func downloadAdiosList(sender: UIButton) {
-        ListsManager.setFollowedLists(["AdiosList", "AdiosListTest"])
+        listsManager.setFollowedLists(["AdiosList", "AdiosListTest"])
         downloadManager.downloadFollowedLists()
     }
     
@@ -34,7 +35,7 @@ class CloudKitViewController: UIViewController {
 
     }
     @IBAction func manualReload(sender: AnyObject) {
-        downloadManager.getNewRecordsManually()
+        // downloadManager.getNewRecordsManually()
     }
     @IBAction func printAdiosList(sender: UIButton) {
         downloadManager.listsManager.printLists()

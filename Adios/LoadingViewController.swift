@@ -13,6 +13,7 @@ class LoadingViewController: UIViewController {
     @IBOutlet weak var status: UILabel!
     let onboardManager = OnboardManager()
     let downloadManager = DownloadManager()
+    let listsManager = ListsManager()
     let wormhole = MMWormhole(applicationGroupIdentifier: "group.AG.Adios", optionalDirectory: "wormhole")
     
     override func viewDidLoad() {
@@ -30,7 +31,7 @@ class LoadingViewController: UIViewController {
                 }
             }
         }
-        ListsManager.setFollowedLists(onboardManager.getRealListsFromChoices())
+        listsManager.setFollowedLists(onboardManager.getRealListsFromChoices())
         downloadManager.downloadFollowedLists()
     }
     
