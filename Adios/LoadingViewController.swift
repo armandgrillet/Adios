@@ -11,6 +11,7 @@ import MMWormhole
 
 class LoadingViewController: UIViewController {
     @IBOutlet weak var status: UILabel!
+    @IBOutlet weak var cancelButton: UIButton!
     let onboardManager = OnboardManager()
     let downloadManager = DownloadManager()
     let listsManager = ListsManager()
@@ -27,10 +28,14 @@ class LoadingViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         wormhole.listenForMessageWithIdentifier("updateStatus") { (messageObject: AnyObject?) -> Void in
             if let message = messageObject as! String? {
-                if message != "✅" {
-                    self.status.text = message
-                } else {
+                if message == "✅" {
                     self.performSegueWithIdentifier("Done", sender: self)
+                } else if message == "❌" {
+                    self.status.text = "Something went wrong!"
+                    self.cancelButton.enabled = true
+                    self.cancelButton.setTitle("Cancel", forState: .Normal)
+                } else {
+                    self.status.text = message
                 }
             }
         }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8173.3" systemVersion="15A262e" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="iI1-hR-9en">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8173.3" systemVersion="15A262e" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8142"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -661,19 +661,34 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2aw-rQ-C7K">
+                                <rect key="frame" x="20" y="551" width="560" height="41"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <state key="normal">
+                                    <color key="titleColor" red="1" green="0.092578096040000002" blue="0.1144802766" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <segue destination="3Ss-T0-xfU" kind="presentation" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="Ygt-vK-edx"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="2aw-rQ-C7K" firstAttribute="leading" secondItem="aau-lL-jms" secondAttribute="leadingMargin" id="0Jx-YW-lLq"/>
                             <constraint firstItem="CWb-tv-OCa" firstAttribute="centerY" secondItem="aau-lL-jms" secondAttribute="centerY" id="0mw-qn-Luu"/>
+                            <constraint firstItem="jUU-kE-VSG" firstAttribute="top" secondItem="2aw-rQ-C7K" secondAttribute="bottom" constant="8" symbolic="YES" id="Gib-cg-tof"/>
                             <constraint firstItem="CWb-tv-OCa" firstAttribute="centerX" secondItem="aau-lL-jms" secondAttribute="centerX" id="Mbc-yR-UTP"/>
                             <constraint firstItem="CWb-tv-OCa" firstAttribute="top" secondItem="usZ-s4-iO1" secondAttribute="bottom" constant="8" id="XTb-oh-tVx"/>
                             <constraint firstItem="usZ-s4-iO1" firstAttribute="leading" secondItem="aau-lL-jms" secondAttribute="leadingMargin" id="aKm-fZ-c4M"/>
+                            <constraint firstItem="2aw-rQ-C7K" firstAttribute="trailing" secondItem="aau-lL-jms" secondAttribute="trailingMargin" id="b6g-2l-bFi"/>
                             <constraint firstItem="usZ-s4-iO1" firstAttribute="trailing" secondItem="aau-lL-jms" secondAttribute="trailingMargin" id="m1m-tC-wRC"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="status" destination="usZ-s4-iO1" id="niz-Zc-lH4"/>
+                        <outlet property="cancelButton" destination="2aw-rQ-C7K" id="STo-ep-5L6"/>
+                        <outlet property="status" destination="usZ-s4-iO1" id="YJf-fD-UuW"/>
                         <segue destination="iI1-hR-9en" kind="presentation" identifier="Done" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="Tdo-dp-wz2"/>
                     </connections>
                 </viewController>
@@ -772,7 +787,8 @@
         <image name="InfoOutline" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="q0b-EP-LJj"/>
-        <segue reference="Fjm-XC-G5m"/>
+        <segue reference="Tdo-dp-wz2"/>
+        <segue reference="Vwu-gv-FzD"/>
+        <segue reference="Ygt-vK-edx"/>
     </inferredMetricsTieBreakers>
 </document>

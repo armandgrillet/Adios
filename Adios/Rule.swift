@@ -67,7 +67,9 @@ class Rule {
     }
     
     init(jsonRule: JSON) {
-        self.triggerUrlFilter = jsonRule["trigger"]["url-filter"].string!.stringByReplacingOccurrencesOfString("\\", withString: "\\\\")
+        var triggerUrlFilterWithCorrectSyntax = jsonRule["trigger"]["url-filter"].string!.stringByReplacingOccurrencesOfString("\\", withString: "\\\\")
+        triggerUrlFilterWithCorrectSyntax = triggerUrlFilterWithCorrectSyntax.stringByReplacingOccurrencesOfString("\"", withString: "\\\"") // One quote => Backslash + quote
+        self.triggerUrlFilter = triggerUrlFilterWithCorrectSyntax
         if jsonRule["trigger"]["url-filter-is-case-sensitive"].bool != nil {
             self.triggerUrlFilterIsCaseSensitive = jsonRule["trigger"]["url-filter-is-case-sensitive"].bool
         }
@@ -98,7 +100,9 @@ class Rule {
         self.actionType = jsonRule["action"]["type"].string!
         
         if jsonRule["action"]["selector"].string != nil {
-            self.actionSelector = jsonRule["action"]["selector"].string!
+            var jsonRuleWithCorrectSyntax = jsonRule["action"]["selector"].string!.stringByReplacingOccurrencesOfString("\\", withString: "\\\\") // One backslash => Two backslahes
+            jsonRuleWithCorrectSyntax = jsonRuleWithCorrectSyntax.stringByReplacingOccurrencesOfString("\"", withString: "\\\"") // One quote => Backslash + quote
+            self.actionSelector = jsonRuleWithCorrectSyntax
         }
     }
 }

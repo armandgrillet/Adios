@@ -58,8 +58,7 @@ class DownloadManager {
                     self.downloadRulesFromList(nextLists![0], nextLists: Array(nextLists!.dropFirst()))
                 } else { // Everything has been downloaded, we're setting the current update user default and run the content blockers manager
                     print("Everything done")
-                    self.wormhole.passMessageObject("✅", identifier: "updateStatus")
-                    ContentBlockers.reload()
+                    ContentBlockers.reload({self.wormhole.passMessageObject("✅", identifier: "updateStatus")}, badCompletion: {self.wormhole.passMessageObject("❌", identifier: "updateStatus")})
                     //let subscriptionsManager = SubscriptionsManager()
                     // subscriptionsManager.subscribeToUpdates()
                 }

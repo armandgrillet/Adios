@@ -29,7 +29,7 @@ class ViewController: UIViewController {
     @IBAction func seeLogs(sender: UIButton) {
         if let userDefaults = NSUserDefaults(suiteName: "group.AG.Adios") {
             if let easyList = userDefaults.arrayForKey("EasyList") {
-                for rule in easyList[0..<100] {
+                for rule in easyList[34010..<34011] {
                     print(rule)
                 }
             }
@@ -39,16 +39,20 @@ class ViewController: UIViewController {
     }
     
     @IBAction func createFile(sender: UIButton) {
-        let path = NSBundle.mainBundle().pathForResource("list", ofType: "json")
-        let data = NSData(contentsOfFile: path!)
-        if (data != nil) {
-            let json = JSON(data: data!)
-            for jsonRule in json.array! {
-                let rule = Rule(jsonRule: jsonRule)
-                print(rule.toString())
+//        let path = NSBundle.mainBundle().pathForResource("list", ofType: "json")
+//        let data = NSData(contentsOfFile: path!)
+//        if (data != nil) {
+//            let json = JSON(data: data!)
+//            for jsonRule in json.array! {
+//                let rule = Rule(jsonRule: jsonRule)
+//                print(rule.toString())
+//            }
+//        }
+        if let userDefaults = NSUserDefaults(suiteName: "group.AG.Adios") {
+            if let adiosList = userDefaults.stringForKey("testAgain") {
+                print(adiosList)
             }
         }
-        
     }
     
     @IBAction func update(sender: UIButton) {
@@ -57,7 +61,7 @@ class ViewController: UIViewController {
                 print("Le base passe")
                 SFContentBlockerManager.reloadContentBlockerWithIdentifier("AG.Adios.ContentBlocker") { (otherError: NSError?) -> Void in
                     if otherError == nil {
-                        print("Le base passe")
+                        print("Le CB passe")
                     } else {
                         print(otherError)
                     }

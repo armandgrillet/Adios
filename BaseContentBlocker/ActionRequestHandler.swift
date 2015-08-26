@@ -10,15 +10,20 @@ import UIKit
 import MobileCoreServices
 
 class ActionRequestHandler: NSObject, NSExtensionRequestHandling {
+    
     func beginRequestWithExtensionContext(context: NSExtensionContext) {
+        var rules = "["
         if let userDefaults = NSUserDefaults(suiteName: "group.AG.Adios") {
-            var rules = "["
             if let easyList = userDefaults.arrayForKey("EasyList") {
                 for rule in easyList {
                     rules += rule as! String
                 }
             }
-            
+            if let adiosList = userDefaults.arrayForKey("AdiosList") {
+                for rule in adiosList {
+                    rules += rule as! String
+                }
+            }
             // Removing the last coma
             if rules.characters.last! == "," {
                 rules = rules.substringToIndex(rules.endIndex.predecessor())
@@ -28,20 +33,16 @@ class ActionRequestHandler: NSObject, NSExtensionRequestHandling {
                 rules += "]" // Closing the table to have a good structure
                 // Creation the JSON file
                 NSLog("%@", rules)
-                let blockerListPath = NSTemporaryDirectory().stringByAppendingString("tempBaseContentBlocker.json")
-                try! rules.writeToFile(blockerListPath, atomically: true, encoding: NSUTF8StringEncoding)
-                
+                let data = rules.dataUsingEncoding(NSUTF8StringEncoding)
                 // Loading the JSON file
-                let attachment = NSItemProvider(contentsOfURL: NSURL.fileURLWithPath(blockerListPath))!
+                let attachment = NSItemProvider(item: data, typeIdentifier: kUTTypeJSON as String)
                 
                 let item = NSExtensionItem()
                 item.attachments = [attachment]
                 
-                context.completeRequestReturningItems([item], completionHandler: { (Bool) -> Void in
-                    try! NSFileManager().removeItemAtPath(blockerListPath) // Removing the list now that it's been used.
-                })
+                context.completeRequestReturningItems([item], completionHandler: nil)
             } else {
-                  backToBasics(context)
+                backToBasics(context)
             }
         } else {
             backToBasics(context)
