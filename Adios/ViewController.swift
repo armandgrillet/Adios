@@ -8,6 +8,7 @@
 
 import UIKit
 import SafariServices
+import SwiftyJSON
 
 class ViewController: UIViewController {
     @IBOutlet weak var followed: UILabel!
@@ -27,16 +28,27 @@ class ViewController: UIViewController {
 
     @IBAction func seeLogs(sender: UIButton) {
         if let userDefaults = NSUserDefaults(suiteName: "group.AG.Adios") {
-            print(userDefaults.stringForKey("EasyList"))
+            if let easyList = userDefaults.arrayForKey("EasyList") {
+                for rule in easyList[0..<100] {
+                    print(rule)
+                }
+            }
         } else {
             print("Impossible de se connecter au groupe")
         }
     }
     
     @IBAction func createFile(sender: UIButton) {
-        if let userDefaults = NSUserDefaults(suiteName: "group.AG.Adios") {
-            userDefaults.setObject("{\"trigger\":{\"url-filter\":\"armand.gr\"},\"action\":{\"type\":\"css-display-none\",\"selector\":\".testContentBlockerFour\"}},", forKey: "AdiosList")
+        let path = NSBundle.mainBundle().pathForResource("list", ofType: "json")
+        let data = NSData(contentsOfFile: path!)
+        if (data != nil) {
+            let json = JSON(data: data!)
+            for jsonRule in json.array! {
+                let rule = Rule(jsonRule: jsonRule)
+                print(rule.toString())
+            }
         }
+        
     }
     
     @IBAction func update(sender: UIButton) {

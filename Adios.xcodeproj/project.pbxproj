@@ -42,6 +42,7 @@
 		C4E6C6161B81F19800F1411F /* MainListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E6C6151B81F19800F1411F /* MainListViewController.swift */; };
 		C4E6C6181B81F1A800F1411F /* SecondListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E6C6171B81F1A800F1411F /* SecondListViewController.swift */; };
 		C4E6C61C1B81F1F500F1411F /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E6C61B1B81F1F500F1411F /* LoadingViewController.swift */; };
+		C4FE80611B8DACBD0057B049 /* list.json in Resources */ = {isa = PBXBuildFile; fileRef = C4FE80601B8DACBD0057B049 /* list.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -149,6 +150,7 @@
 		C4E6C6151B81F19800F1411F /* MainListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainListViewController.swift; sourceTree = "<group>"; };
 		C4E6C6171B81F1A800F1411F /* SecondListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondListViewController.swift; sourceTree = "<group>"; };
 		C4E6C61B1B81F1F500F1411F /* LoadingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
+		C4FE80601B8DACBD0057B049 /* list.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = list.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -300,6 +302,7 @@
 				C4E2060B1B773F6B00C280DF /* AppDelegate.swift */,
 				C41CA5C51B8330F2000255F3 /* CloudKitViewController.swift */,
 				C4E2060D1B773F6B00C280DF /* ViewController.swift */,
+				C4FE80601B8DACBD0057B049 /* list.json */,
 				C415D5D31B863300002EBBFB /* ListsViewController.swift */,
 				C41CA5C11B831BE6000255F3 /* Views */,
 				C41CA5BF1B831B91000255F3 /* View Controllers */,
@@ -571,6 +574,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C4E206161B773F6B00C280DF /* LaunchScreen.storyboard in Resources */,
+				C4FE80611B8DACBD0057B049 /* list.json in Resources */,
 				C4E206131B773F6B00C280DF /* Assets.xcassets in Resources */,
 				C4E206111B773F6B00C280DF /* Main.storyboard in Resources */,
 			);

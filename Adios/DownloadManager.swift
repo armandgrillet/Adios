@@ -9,6 +9,7 @@
 import Foundation
 import CloudKit
 import MMWormhole
+import SwiftyJSON
 
 class DownloadManager {
     let publicDB = CKContainer.defaultContainer().publicCloudDatabase
@@ -26,22 +27,23 @@ class DownloadManager {
         queryOperation.qualityOfService = .UserInitiated // The user is waiting for the task to complete
         queryOperation.database = publicDB
         
-        var listText = ""
+        var rules = [String]()
         queryOperation.recordFetchedBlock = { (downloadedList: CKRecord) in
             if let rulesFile = downloadedList["File"] as? CKAsset {
+                self.wormhole.passMessageObject("Processing \(list)", identifier: "updateStatus")
                 if let content = NSFileManager.defaultManager().contentsAtPath(rulesFile.fileURL.path!) {
-                    listText = NSString(data: content, encoding: NSUTF8StringEncoding)! as String
-                    listText = listText.substringFromIndex(list.startIndex.successor()) // Removing '['
-                    listText = listText.substringToIndex(listText.endIndex.predecessor()) // Removing ']'
-                    listText = listText.stringByReplacingOccurrencesOfString("\\\\\\\\", withString: "\\\\")
-                    listText += ","
-                    print("\(list): \(listText.characters.count)")
+                    let json = JSON(data: content)
+                    for jsonRule in json.array! {
+                        let rule = Rule(jsonRule: jsonRule)
+                        rules.append(rule.toString())
+                    }
+                    print("\(list): \(rules.count)")
                     if list == "AdiosList" {
-                        print(listText)
+                        print(rules.description)
                     }
                     if let userDefaults = NSUserDefaults(suiteName: "group.AG.Adios") {
                         print("On la set tranquillement")
-                        userDefaults.setObject(listText, forKey: list)
+                        userDefaults.setObject(rules, forKey: list)
                     }
                 }
             }

@@ -13,12 +13,10 @@ class ActionRequestHandler: NSObject, NSExtensionRequestHandling {
     func beginRequestWithExtensionContext(context: NSExtensionContext) {
         if let userDefaults = NSUserDefaults(suiteName: "group.AG.Adios") {
             var rules = "["
-            if let easyList = userDefaults.stringForKey("EasyList") as String! {
-                rules += easyList
-            }
-            if let adiosList = userDefaults.stringForKey("AdiosList") as String! {
-                NSLog("%@", adiosList)
-                rules += adiosList
+            if let easyList = userDefaults.arrayForKey("EasyList") {
+                for rule in easyList {
+                    rules += rule as! String
+                }
             }
             
             // Removing the last coma
