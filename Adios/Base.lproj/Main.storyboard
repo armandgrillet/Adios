@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8173.3" systemVersion="15A262e" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8173.3" systemVersion="15A262e" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="iI1-hR-9en">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8142"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -225,9 +225,6 @@
                                 <state key="normal" title="Last update">
                                     <color key="titleColor" red="0.87691503763198853" green="0.045341350138187408" blue="0.0014832466840744019" alpha="0.6435614224137931" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
-                                <connections>
-                                    <segue destination="w34-Gh-7Xl" kind="presentation" modalPresentationStyle="fullScreen" modalTransitionStyle="coverVertical" id="Fjm-XC-G5m"/>
-                                </connections>
                             </button>
                         </subviews>
                         <animations/>
@@ -312,12 +309,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1TZ-Oa-2Oq">
-                                <rect key="frame" x="0.0" y="192" width="600" height="216"/>
-                                <animations/>
-                                <color key="tintColor" red="1" green="0.092578096040000002" blue="0.1144802766" alpha="1" colorSpace="calibratedRGB"/>
-                                <accessibility key="accessibilityConfiguration" label="Yo"/>
-                            </pickerView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose the country where are based most of the websites you visit:" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LaT-ch-xN4">
                                 <rect key="frame" x="20" y="163" width="560" height="21"/>
                                 <animations/>
@@ -336,6 +327,12 @@
                                     <segue destination="dU6-Tb-OWe" kind="show" id="jml-yW-fap"/>
                                 </connections>
                             </button>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1TZ-Oa-2Oq">
+                                <rect key="frame" x="0.0" y="192" width="600" height="216"/>
+                                <animations/>
+                                <color key="tintColor" red="1" green="0.092578096040000002" blue="0.1144802766" alpha="1" colorSpace="calibratedRGB"/>
+                                <accessibility key="accessibilityConfiguration" label="Yo"/>
+                            </pickerView>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -344,6 +341,7 @@
                             <constraint firstItem="2jo-cS-O7k" firstAttribute="leading" secondItem="gHC-nT-J1m" secondAttribute="leadingMargin" constant="-20" id="Knw-RG-eqd"/>
                             <constraint firstItem="1TZ-Oa-2Oq" firstAttribute="centerX" secondItem="gHC-nT-J1m" secondAttribute="centerX" id="Slv-YM-xzB"/>
                             <constraint firstItem="1TZ-Oa-2Oq" firstAttribute="centerY" secondItem="gHC-nT-J1m" secondAttribute="centerY" id="TnK-Lm-7wm"/>
+                            <constraint firstItem="2jo-cS-O7k" firstAttribute="top" secondItem="1TZ-Oa-2Oq" secondAttribute="bottom" constant="8" id="WJk-J5-y5Z"/>
                             <constraint firstItem="LG9-47-RQb" firstAttribute="top" secondItem="2jo-cS-O7k" secondAttribute="bottom" constant="8" symbolic="YES" id="Y59-ru-a3T"/>
                             <constraint firstItem="LaT-ch-xN4" firstAttribute="trailing" secondItem="gHC-nT-J1m" secondAttribute="trailingMargin" id="eXP-TA-Wir"/>
                             <constraint firstItem="1TZ-Oa-2Oq" firstAttribute="top" secondItem="LaT-ch-xN4" secondAttribute="bottom" constant="8" id="kPE-N8-PGE"/>
@@ -351,6 +349,17 @@
                             <constraint firstItem="1TZ-Oa-2Oq" firstAttribute="leading" secondItem="gHC-nT-J1m" secondAttribute="leadingMargin" constant="-20" id="ph5-ZE-fUs"/>
                             <constraint firstAttribute="trailingMargin" secondItem="1TZ-Oa-2Oq" secondAttribute="trailing" constant="-20" id="rth-xz-MPP"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="WJk-J5-y5Z"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=compact-widthClass=compact">
+                            <mask key="constraints">
+                                <exclude reference="TnK-Lm-7wm"/>
+                                <include reference="WJk-J5-y5Z"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" title="Main list - step 1/3" id="NKG-d7-M8x">
                         <barButtonItem key="backBarButtonItem" title="1st list" id="ZcC-QV-4Xo"/>
@@ -392,11 +401,6 @@
                                     <segue destination="yvo-86-s2z" kind="show" identifier="" id="xWg-Jp-Zbk"/>
                                 </connections>
                             </button>
-                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bu0-yI-PxZ">
-                                <rect key="frame" x="0.0" y="192" width="600" height="216"/>
-                                <animations/>
-                                <color key="tintColor" red="1" green="0.092578096040000002" blue="0.1144802766" alpha="1" colorSpace="calibratedRGB"/>
-                            </pickerView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Are you visiting websites from another country?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="caq-Yr-v8W">
                                 <rect key="frame" x="20" y="163" width="560" height="21"/>
                                 <animations/>
@@ -404,6 +408,11 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bu0-yI-PxZ">
+                                <rect key="frame" x="0.0" y="192" width="600" height="216"/>
+                                <animations/>
+                                <color key="tintColor" red="1" green="0.092578096040000002" blue="0.1144802766" alpha="1" colorSpace="calibratedRGB"/>
+                            </pickerView>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -417,8 +426,20 @@
                             <constraint firstItem="caq-Yr-v8W" firstAttribute="leading" secondItem="0it-Xx-kbt" secondAttribute="leadingMargin" id="hSZ-YE-V8c"/>
                             <constraint firstItem="Bu0-yI-PxZ" firstAttribute="leading" secondItem="0it-Xx-kbt" secondAttribute="leadingMargin" constant="-20" id="lfT-O9-43n"/>
                             <constraint firstItem="Bu0-yI-PxZ" firstAttribute="centerY" secondItem="0it-Xx-kbt" secondAttribute="centerY" id="luA-AI-MlP"/>
+                            <constraint firstItem="hAI-WK-QWw" firstAttribute="top" secondItem="Bu0-yI-PxZ" secondAttribute="bottom" constant="8" id="tSt-1u-p6W"/>
                             <constraint firstItem="Bu0-yI-PxZ" firstAttribute="centerX" secondItem="0it-Xx-kbt" secondAttribute="centerX" id="vcv-Va-slm"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="tSt-1u-p6W"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=compact-widthClass=compact">
+                            <mask key="constraints">
+                                <exclude reference="luA-AI-MlP"/>
+                                <include reference="tSt-1u-p6W"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" title="Optional list - step 2/3" id="tsU-wB-ji0">
                         <barButtonItem key="backBarButtonItem" title="2nd list" id="e0O-bU-QvS"/>
@@ -669,7 +690,7 @@
                                     <color key="titleColor" red="1" green="0.092578096040000002" blue="0.1144802766" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="3Ss-T0-xfU" kind="presentation" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="Ygt-vK-edx"/>
+                                    <segue destination="UhJ-fC-jbL" kind="presentation" id="2VF-QW-Oym"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -787,8 +808,7 @@
         <image name="InfoOutline" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Tdo-dp-wz2"/>
-        <segue reference="Vwu-gv-FzD"/>
-        <segue reference="Ygt-vK-edx"/>
+        <segue reference="2VF-QW-Oym"/>
+        <segue reference="q0b-EP-LJj"/>
     </inferredMetricsTieBreakers>
 </document>

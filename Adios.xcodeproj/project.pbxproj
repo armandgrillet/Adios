@@ -42,7 +42,9 @@
 		C4E6C6161B81F19800F1411F /* MainListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E6C6151B81F19800F1411F /* MainListViewController.swift */; };
 		C4E6C6181B81F1A800F1411F /* SecondListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E6C6171B81F1A800F1411F /* SecondListViewController.swift */; };
 		C4E6C61C1B81F1F500F1411F /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E6C61B1B81F1F500F1411F /* LoadingViewController.swift */; };
+		C4E6E1511B8E1C5400282520 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C4E206121B773F6B00C280DF /* Assets.xcassets */; };
 		C4FE80611B8DACBD0057B049 /* list.json in Resources */ = {isa = PBXBuildFile; fileRef = C4FE80601B8DACBD0057B049 /* list.json */; };
+		C4FE80631B8DE4F90057B049 /* IgnoringRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4FE80621B8DE4F90057B049 /* IgnoringRule.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -151,6 +153,7 @@
 		C4E6C6171B81F1A800F1411F /* SecondListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondListViewController.swift; sourceTree = "<group>"; };
 		C4E6C61B1B81F1F500F1411F /* LoadingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
 		C4FE80601B8DACBD0057B049 /* list.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = list.json; sourceTree = "<group>"; };
+		C4FE80621B8DE4F90057B049 /* IgnoringRule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IgnoringRule.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -216,6 +219,7 @@
 				C404E4621B827219006BB98E /* blockerList.json */,
 				C404E4641B827219006BB98E /* ActionRequestHandler.swift */,
 				C404E4661B827219006BB98E /* Info.plist */,
+				C4FE80621B8DE4F90057B049 /* IgnoringRule.swift */,
 			);
 			path = BaseContentBlocker;
 			sourceTree = "<group>";
@@ -606,6 +610,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C4E6E1511B8E1C5400282520 /* Assets.xcassets in Resources */,
 				C4E206571B77404200C280DF /* Action.js in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -665,6 +670,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C4FE80631B8DE4F90057B049 /* IgnoringRule.swift in Sources */,
 				C404E4651B827219006BB98E /* ActionRequestHandler.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1005,6 +1011,7 @@
 		C4E2065D1B77404300C280DF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = ActionIcon;
 				CODE_SIGN_ENTITLEMENTS = Action/Action.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -1020,6 +1027,7 @@
 		C4E2065E1B77404300C280DF /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = ActionIcon;
 				CODE_SIGN_ENTITLEMENTS = Action/Action.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";

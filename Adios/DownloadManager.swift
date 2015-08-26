@@ -30,7 +30,9 @@ class DownloadManager {
         var rules = [String]()
         queryOperation.recordFetchedBlock = { (downloadedList: CKRecord) in
             if let rulesFile = downloadedList["File"] as? CKAsset {
-                self.wormhole.passMessageObject("Processing \(list)", identifier: "updateStatus")
+                if list != "AdiosList" {
+                    self.wormhole.passMessageObject("Processing \(list)", identifier: "updateStatus")
+                }
                 if let content = NSFileManager.defaultManager().contentsAtPath(rulesFile.fileURL.path!) {
                     let json = JSON(data: content)
                     for jsonRule in json.array! {

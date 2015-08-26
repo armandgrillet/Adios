@@ -19,11 +19,19 @@ class ActionRequestHandler: NSObject, NSExtensionRequestHandling {
                     rules += rule as! String
                 }
             }
+            
             if let adiosList = userDefaults.arrayForKey("AdiosList") {
                 for rule in adiosList {
                     rules += rule as! String
                 }
             }
+            
+            if let whitelist = userDefaults.arrayForKey("whitelist") {
+                for domain in whitelist {
+                    rules += IgnoringRule(domain: domain as! String).toString()
+                }
+            }
+            
             // Removing the last coma
             if rules.characters.last! == "," {
                 rules = rules.substringToIndex(rules.endIndex.predecessor())
