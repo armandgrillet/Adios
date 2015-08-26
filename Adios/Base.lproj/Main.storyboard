@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8173.3" systemVersion="15A262e" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="iI1-hR-9en">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8187.4" systemVersion="15A262e" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8142"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8151.3"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -693,6 +693,13 @@
                                     <segue destination="UhJ-fC-jbL" kind="presentation" id="2VF-QW-Oym"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="It will take between 1 and 2 minutes, there is a lot of ads on the Web!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GUq-3M-fxe">
+                                <rect key="frame" x="20" y="522" width="560" height="21"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -702,6 +709,7 @@
                             <constraint firstItem="jUU-kE-VSG" firstAttribute="top" secondItem="2aw-rQ-C7K" secondAttribute="bottom" constant="8" symbolic="YES" id="Gib-cg-tof"/>
                             <constraint firstItem="CWb-tv-OCa" firstAttribute="centerX" secondItem="aau-lL-jms" secondAttribute="centerX" id="Mbc-yR-UTP"/>
                             <constraint firstItem="CWb-tv-OCa" firstAttribute="top" secondItem="usZ-s4-iO1" secondAttribute="bottom" constant="8" id="XTb-oh-tVx"/>
+                            <constraint firstItem="2aw-rQ-C7K" firstAttribute="top" secondItem="GUq-3M-fxe" secondAttribute="bottom" constant="8" id="Zc7-RU-zmh"/>
                             <constraint firstItem="usZ-s4-iO1" firstAttribute="leading" secondItem="aau-lL-jms" secondAttribute="leadingMargin" id="aKm-fZ-c4M"/>
                             <constraint firstItem="2aw-rQ-C7K" firstAttribute="trailing" secondItem="aau-lL-jms" secondAttribute="trailingMargin" id="b6g-2l-bFi"/>
                             <constraint firstItem="usZ-s4-iO1" firstAttribute="trailing" secondItem="aau-lL-jms" secondAttribute="trailingMargin" id="m1m-tC-wRC"/>

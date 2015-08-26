@@ -17,10 +17,9 @@ class DownloadManager {
     
     func downloadRulesFromList(list: String, nextLists: [String]?) {
         if list != "AdiosList" {
-            wormhole.passMessageObject("Downloading \(list)", identifier: "updateStatus")
+            wormhole.passMessageObject("Downloading \(list)...", identifier: "updateStatus")
         }
         
-        let queue = NSOperationQueue()
         let predicate = NSPredicate(format: "Name == %@", list)
         let query = CKQuery(recordType: "ListFiles", predicate: predicate)
         let queryOperation = CKQueryOperation(query: query)
@@ -31,7 +30,7 @@ class DownloadManager {
         queryOperation.recordFetchedBlock = { (downloadedList: CKRecord) in
             if let rulesFile = downloadedList["File"] as? CKAsset {
                 if list != "AdiosList" {
-                    self.wormhole.passMessageObject("Processing \(list)", identifier: "updateStatus")
+                    self.wormhole.passMessageObject("Processing \(list)...", identifier: "updateStatus")
                 }
                 if let content = NSFileManager.defaultManager().contentsAtPath(rulesFile.fileURL.path!) {
                     let json = JSON(data: content)
@@ -53,20 +52,21 @@ class DownloadManager {
         
         queryOperation.queryCompletionBlock = { (cursor : CKQueryCursor?, error : NSError?) in
             if error != nil {
-                print(error?.localizedFailureReason)
+                print(error)
             } else {
                 if nextLists != nil && nextLists!.count > 0 { // Other lists need to be downloaded
                     print("On a d'autres listes")
                     self.downloadRulesFromList(nextLists![0], nextLists: Array(nextLists!.dropFirst()))
                 } else { // Everything has been downloaded, we're setting the current update user default and run the content blockers manager
                     print("Everything done")
+                    self.wormhole.passMessageObject("Applying the rules...", identifier: "updateStatus")
                     ContentBlockers.reload({self.wormhole.passMessageObject("✅", identifier: "updateStatus")}, badCompletion: {self.wormhole.passMessageObject("❌", identifier: "updateStatus")})
                     //let subscriptionsManager = SubscriptionsManager()
                     // subscriptionsManager.subscribeToUpdates()
                 }
             }
         }
-        queue.addOperation(queryOperation)
+        publicDB.addOperation(queryOperation)
     }
     
     func updateRules() {
