@@ -31,7 +31,7 @@ class ViewController: UIViewController {
         let sharedContainerPathLocation = groupUrl?.path
         let fileManager = NSFileManager()
         
-        let filePath = sharedContainerPathLocation! + "/AdiosList.json"
+        let filePath = sharedContainerPathLocation! + "/baseList.json"
         if let content = fileManager.contentsAtPath(filePath) {
             let list = String(data: content, encoding: NSUTF8StringEncoding)
             print(list!)

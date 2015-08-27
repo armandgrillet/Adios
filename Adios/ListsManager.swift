@@ -23,10 +23,11 @@ public class ListsManager {
     public class func removeFollowedListsData() {
         if let groupUrl = NSFileManager.defaultManager().containerURLForSecurityApplicationGroupIdentifier("group.AG.Adios") {
             if let groupPath = groupUrl.path {
-                for list in getFollowedLists() {
-                    if NSFileManager().fileExistsAtPath(groupPath + "/" + list + ".json") {
-                        try! NSFileManager().removeItemAtPath(groupPath + "/" + list + ".json")
-                    }
+                if NSFileManager().fileExistsAtPath(groupPath + "/baseList.json") {
+                    try! NSFileManager().removeItemAtPath(groupPath + "/baseList.json")
+                }
+                if NSFileManager().fileExistsAtPath(groupPath + "/secondList.json") {
+                    try! NSFileManager().removeItemAtPath(groupPath + "/secondList.json")
                 }
             }
         }
