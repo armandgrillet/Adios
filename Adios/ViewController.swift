@@ -27,14 +27,14 @@ class ViewController: UIViewController {
     }
 
     @IBAction func seeLogs(sender: UIButton) {
-        if let userDefaults = NSUserDefaults(suiteName: "group.AG.Adios") {
-            if let easyList = userDefaults.arrayForKey("EasyList") {
-                for rule in easyList[34010..<34011] {
-                    print(rule)
-                }
-            }
-        } else {
-            print("Impossible de se connecter au groupe")
+        let groupUrl = NSFileManager.defaultManager().containerURLForSecurityApplicationGroupIdentifier("group.AG.Adios")
+        let sharedContainerPathLocation = groupUrl?.path
+        let fileManager = NSFileManager()
+        
+        let filePath = sharedContainerPathLocation! + "/AdiosList.json"
+        if let content = fileManager.contentsAtPath(filePath) {
+            let list = String(data: content, encoding: NSUTF8StringEncoding)
+            print(list!)
         }
     }
     
