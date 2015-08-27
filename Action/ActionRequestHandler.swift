@@ -84,32 +84,47 @@ class ActionRequestHandler: NSObject, NSExtensionRequestHandling {
     }
     
     func doneWithResults(resultsForJavaScriptFinalizeArg: [NSObject: AnyObject]?) {
-        SFContentBlockerManager.reloadContentBlockerWithIdentifier("AG.Adios.ContentBlocker") { (error: NSError?) -> Void in
-            if let resultsForJavaScriptFinalize = resultsForJavaScriptFinalizeArg {
-                // Construct an NSExtensionItem of the appropriate type to return our
-                // results dictionary in.
-                
-                // These will be used as the arguments to the JavaScript finalize()
-                // method.
-                
-                let resultsDictionary = [NSExtensionJavaScriptFinalizeArgumentKey: resultsForJavaScriptFinalize]
-                
-                let resultsProvider = NSItemProvider(item: resultsDictionary, typeIdentifier: String(kUTTypePropertyList))
-                
-                let resultsItem = NSExtensionItem()
-                resultsItem.attachments = [resultsProvider]
-                
-                // Signal that we're complete, returning our results.
-                self.extensionContext!.completeRequestReturningItems([resultsItem], completionHandler: nil)
+        if let userDefaults = NSUserDefaults(suiteName: "group.AG.Adios") {
+            if userDefaults.arrayForKey("EasyList") != nil {
+                SFContentBlockerManager.reloadContentBlockerWithIdentifier("AG.Adios.BaseContentBlocker") { (error: NSError?) -> Void in
+                    if error == nil {
+                        self.reloadContentBlockerAndDone(resultsForJavaScriptFinalizeArg)
+                    }
+                }
             } else {
-                // We still need to signal that we're done even if we have nothing to
-                // pass back.
-                self.extensionContext!.completeRequestReturningItems([], completionHandler: nil)
+                reloadContentBlockerAndDone(resultsForJavaScriptFinalizeArg)
             }
-            
-            // Don't hold on to this after we finished with it.
-            self.extensionContext = nil
         }
     }
-    
+        
+    func reloadContentBlockerAndDone(resultsForJavaScriptFinalizeArg: [NSObject: AnyObject]?) {
+        SFContentBlockerManager.reloadContentBlockerWithIdentifier("AG.Adios.ContentBlocker") { (otherError: NSError?) -> Void in
+            if otherError == nil {
+                if let resultsForJavaScriptFinalize = resultsForJavaScriptFinalizeArg {
+                    // Construct an NSExtensionItem of the appropriate type to return our
+                    // results dictionary in.
+                    
+                    // These will be used as the arguments to the JavaScript finalize()
+                    // method.
+                    
+                    let resultsDictionary = [NSExtensionJavaScriptFinalizeArgumentKey: resultsForJavaScriptFinalize]
+                    
+                    let resultsProvider = NSItemProvider(item: resultsDictionary, typeIdentifier: String(kUTTypePropertyList))
+                    
+                    let resultsItem = NSExtensionItem()
+                    resultsItem.attachments = [resultsProvider]
+                    
+                    // Signal that we're complete, returning our results.
+                    self.extensionContext!.completeRequestReturningItems([resultsItem], completionHandler: nil)
+                } else {
+                    // We still need to signal that we're done even if we have nothing to
+                    // pass back.
+                    self.extensionContext!.completeRequestReturningItems([], completionHandler: nil)
+                }
+                
+                // Don't hold on to this after we finished with it.
+                self.extensionContext = nil
+            }
+        }
+    }
 }

@@ -12,8 +12,8 @@ import SafariServices
 
 class CloudKitViewController: UIViewController {
     let downloadManager = DownloadManager()
-    let listsManager = ListsManager()
     let subscriptionsManager = SubscriptionsManager()
+    let listsManager = ListsManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,18 +26,15 @@ class CloudKitViewController: UIViewController {
     }
     
     @IBAction func downloadAdiosList(sender: UIButton) {
-        listsManager.setFollowedLists(["AdiosList", "AdiosListTest"])
         downloadManager.downloadFollowedLists()
     }
     
     @IBAction func applyContentBlockers(sender: UIButton) {
-        ContentBlockersManager.updateContentBlockers()
 
     }
     @IBAction func manualReload(sender: AnyObject) {
-        downloadManager.getNewRecordsManually()
+        // downloadManager.getNewRecordsManually()
     }
     @IBAction func printAdiosList(sender: UIButton) {
-        downloadManager.listsManager.printLists()
     }
 }

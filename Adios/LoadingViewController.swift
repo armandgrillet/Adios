@@ -11,6 +11,7 @@ import MMWormhole
 
 class LoadingViewController: UIViewController {
     @IBOutlet weak var status: UILabel!
+    @IBOutlet weak var cancelButton: UIButton!
     let onboardManager = OnboardManager()
     let downloadManager = DownloadManager()
     let listsManager = ListsManager()
@@ -18,21 +19,29 @@ class LoadingViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        NSUserDefaults.standardUserDefaults().setObject(onboardManager.getRealListsFromChoices(), forKey: "settledLists")
-        NSUserDefaults.standardUserDefaults().setObject("Downloading", forKey: "updateStatus")
-        NSUserDefaults.standardUserDefaults().synchronize()
-        // Do any additional setup after loading the view, typically from a nib.
-        wormhole.listenForMessageWithIdentifier("updateStatus") { (messageObject: AnyObject?) -> Void in
-            if let message = messageObject as! String? {
-                if message != "✅" {
-                    self.status.text = message
-                } else {
-                    self.performSegueWithIdentifier("Done", sender: self)
+        let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
+        dispatch_async(dispatch_get_global_queue(priority, 0)) {
+            ListsManager.removeFollowedListsData()
+            dispatch_async(dispatch_get_main_queue()) {
+                NSUserDefaults().setObject(self.onboardManager.getRealListsFromChoices(), forKey: "followedLists")
+                
+                // Do any additional setup after loading the view, typically from a nib.
+                self.wormhole.listenForMessageWithIdentifier("updateStatus") { (messageObject: AnyObject?) -> Void in
+                    if let message = messageObject as! String? {
+                        if message == "✅" {
+                            self.performSegueWithIdentifier("Done", sender: self)
+                        } else if message == "❌" {
+                            self.status.text = "Something went wrong!"
+                            self.cancelButton.enabled = true
+                            self.cancelButton.setTitle("Cancel", forState: .Normal)
+                        } else {
+                            self.status.text = message
+                        }
+                    }
                 }
+                self.downloadManager.downloadFollowedLists()
             }
         }
-        listsManager.setFollowedLists(onboardManager.getRealListsFromChoices())
-        downloadManager.downloadFollowedLists()
     }
     
     override func didReceiveMemoryWarning() {

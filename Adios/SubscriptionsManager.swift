@@ -40,7 +40,7 @@ class SubscriptionsManager {
         let notification = CKNotification(fromRemoteNotificationDictionary: userInfo as! [String: NSObject])
         if notification.notificationType == .Query, let queryNotification = notification as? CKQueryNotification {
             let update = queryNotification.recordFields!["Version"]! as! Int
-            downloadManager.getNewRecords(update)
+            // downloadManager.getNewRecords()
             completionHandler(.NewData)
         }
     }
