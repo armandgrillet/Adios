@@ -21,7 +21,7 @@ class AdiosViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         var followedLists = ListsManager.getFollowedLists()
         if followedLists != [] {
-            configurationState.text = "Adios is configured! Here is your configuration:"
+            configurationState.text = "Adios is configured! Your configuration:"
             
             var countriesText = "You're blocking ads on websites based in "
             countriesText += onboardManager.getCountryFromList(followedLists[0])!
@@ -36,10 +36,13 @@ class AdiosViewController: UIViewController {
                     detailsText += "social buttons, "
                 }
                 if followedLists.contains("EasyPrivacy") {
-                    detailsText += "malicious scripts, "
+                    detailsText += "malicious scripts "
                 }
                 if followedLists.contains("AdblockWarningRemoval") {
-                    detailsText += "messages against Adios"
+                    if followedLists.contains("EasyList_SocialMedia") || followedLists.contains("EasyPrivacy") {
+                        detailsText += "and "
+                    }
+                    detailsText += "messages against ad blockers"
                 }
                 details.text = detailsText
             } else {
@@ -49,7 +52,8 @@ class AdiosViewController: UIViewController {
             if let lastUpdateTimestamp = NSUserDefaults.standardUserDefaults().objectForKey("lastUpdateTimestamp") {
                 let formatter = NSDateFormatter()
                 formatter.timeStyle = .ShortStyle
-                lastUpdate.setTitle(formatter.stringFromDate(lastUpdateTimestamp as! NSDate), forState: .Normal)
+                formatter.dateStyle = .ShortStyle
+                lastUpdate.setTitle("Last update: " + formatter.stringFromDate(lastUpdateTimestamp as! NSDate), forState: .Normal)
             }
             
         } else {

@@ -84,6 +84,8 @@ class DownloadManager {
                         
                         dispatch_async(dispatch_get_main_queue()) {
                             print("Everything done")
+                            NSUserDefaults.standardUserDefaults().setObject(NSDate(), forKey: "lastUpdateTimestamp")
+                            NSUserDefaults.standardUserDefaults().synchronize()
                             self.wormhole.passMessageObject("Applying the rules...", identifier: "updateStatus")
                             ContentBlockers.reload({self.wormhole.passMessageObject("✅", identifier: "updateStatus")}, badCompletion: {self.wormhole.passMessageObject("❌", identifier: "updateStatus")})
                             //let subscriptionsManager = SubscriptionsManager()
