@@ -500,7 +500,7 @@
                                     <action selector="setPrivacy:" destination="yvo-86-s2z" eventType="valueChanged" id="9Ic-Br-Ha6"/>
                                 </connections>
                             </switch>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Block scripts attempting to your privacy?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ihn-hK-kl0">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Block scripts attempting to access your private data?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ihn-hK-kl0">
                                 <rect key="frame" x="20" y="329" width="560" height="21"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -693,7 +693,7 @@
                                     <segue destination="UhJ-fC-jbL" kind="presentation" id="2VF-QW-Oym"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="It will take between 1 and 2 minutes, there is a lot of ads on the Web!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GUq-3M-fxe">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="It will take between 1 and 2 minutes, there are a lot of ads on the Web!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GUq-3M-fxe">
                                 <rect key="frame" x="20" y="522" width="560" height="21"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -818,7 +818,7 @@
         <image name="InfoOutline" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="cGA-Z8-F0m"/>
-        <segue reference="q0b-EP-LJj"/>
+        <segue reference="Tdo-dp-wz2"/>
+        <segue reference="2VF-QW-Oym"/>
     </inferredMetricsTieBreakers>
 </document>
