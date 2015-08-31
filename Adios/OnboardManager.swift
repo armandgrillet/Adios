@@ -268,7 +268,7 @@ class OnboardManager {
             realLists.append("EasyPrivacy")
         }
         
-        realLists.append("AdiosList")
+        // realLists.append("AdiosList")
         
         return realLists
     }

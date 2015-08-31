@@ -44,7 +44,7 @@ public class Parser {
             return [rule.toString()]
         } else { // This is element hiding
             if line.containsString("#@#") { // Exception rule syntax, we transform the rule for a standard syntax
-                let indexOfHashtag = line.startIndex.advancedBy(indexOf(line, substring: "#@#")!)
+                let indexOfHashtag = line.rangeOfString("#@#")!.startIndex
                 let domains = line.substringToIndex(indexOfHashtag).componentsSeparatedByString(",")
                 var newDomains = [String]()
                 for domain in domains {
@@ -56,24 +56,58 @@ public class Parser {
                 }
                 line = newDomains.joinWithSeparator(",") + "##" + line.substringFromIndex(indexOfHashtag.successor().successor().successor())
             }
-            rule = addElementHidingTriggerToRule(rule, line: line)
-            rule = addElementHidingActionToRule(rule, line: line)
             
-            if rule.triggerIfDomain != nil && rule.triggerUnlessDomain != nil {
+            // Trigger
+            rule.triggerUrlFilter = ".*"
+            print(line)
+            let indexOfHashtag = line.rangeOfString("##")!.startIndex
+            var hasIfDomain = false
+            var hasUnlessDomain = false
+            
+            if line.substringToIndex(indexOfHashtag).containsString("~") {
+                hasUnlessDomain = true
+                var ifDomains = [String]()
+                var unlessDomains = [String]()
+                
+                for domain in line.substringToIndex(indexOfHashtag).componentsSeparatedByString(",") {
+                    if domain.characters.first == "~" {
+                        unlessDomains.append(domain.stringByReplacingOccurrencesOfString("~", withString: ""))
+                    } else {
+                        hasIfDomain = true
+                        ifDomains.append(domain)
+                    }
+                }
+                
+                if ifDomains.count > 0 {
+                    rule.triggerIfDomain = ifDomains
+                }
+                
+                if unlessDomains.count > 0 {
+                    rule.triggerUnlessDomain = unlessDomains
+                }
+            } else {
+                rule.triggerIfDomain = line.substringToIndex(indexOfHashtag).componentsSeparatedByString(",")
+            }
+            
+            // Action
+            rule.actionType = "css-display-none"
+            rule.actionSelector = line.substringFromIndex(indexOfHashtag.successor().successor())
+            
+            if hasIfDomain && hasUnlessDomain {
                 if rule.triggerIfDomain!.count == 1 { // Only one if, we can manage that.
                     rule.triggerUrlFilter = "^(?:[^:/?#]+:)?(?://(?:[^/?#]*\\.)?)?" + escapeSpecialCharacters(rule.triggerIfDomain!.first!) + "[^a-z\\-A-Z0-9._.%]"
                     rule.triggerIfDomain = nil
                     rule.triggerUnlessDomain = rule.triggerUnlessDomain!.map({ "*" + $0 })
                     return [rule.toString()]
                 } else {
-                    let indexOfHashtag = line.startIndex.advancedBy(indexOf(line, substring: "##")!)
+                    let indexOfHashtag = line.rangeOfString("##")!.startIndex
                     let domains = line.substringFromIndex(indexOfHashtag.successor().successor())
                     var regularDomains = [String]()
                     var rules = [String]()
                     for ifDomain in rule.triggerIfDomain! {
                         var ifUnlessDomains = [String]()
                         for unlessDomain in rule.triggerUnlessDomain! {
-                            if indexOf(unlessDomain, substring: ifDomain) != nil {
+                            if unlessDomain.rangeOfString(ifDomain) != nil {
                                 ifUnlessDomains.append(unlessDomain)
                             }
                         }
@@ -118,64 +152,6 @@ public class Parser {
         escapedString = escapedString.stringByReplacingOccurrencesOfString("]", withString: "\\]")
         escapedString = escapedString.stringByReplacingOccurrencesOfString("}", withString: "\\}")
         return escapedString
-    }
-    
-    class func indexOf(source: String, substring: String) -> Int? {
-        let maxIndex = source.characters.count - substring.characters.count
-        if maxIndex > 0 {
-            for index in 0...maxIndex {
-                let rangeSubstring = source.startIndex.advancedBy(index)..<source.startIndex.advancedBy(index + substring.characters.count)
-                if source.substringWithRange(rangeSubstring) == substring {
-                    return index
-                }
-            }
-        }
-        return nil
-    }
-    
-    class func addElementHidingTriggerToRule(rule: Rule, line: String) -> Rule {
-        let indexOfHashtag = line.startIndex.advancedBy(indexOf(line, substring: "##")!)
-        let domains = line.substringToIndex(indexOfHashtag).componentsSeparatedByString(",")
-        
-        ////////////////////////////
-        // Getting the URL filter //
-        ////////////////////////////
-        
-        rule.triggerUrlFilter = ".*"
-        
-        ////////////////////////////////
-        // Getting the rule's domains //
-        ////////////////////////////////
-        
-        var ifDomains = [String]()
-        var unlessDomains = [String]()
-        
-        for domain in domains {
-            if domain.characters.first == "~" {
-                unlessDomains.append(domain.stringByReplacingOccurrencesOfString("~", withString: ""))
-            } else {
-                ifDomains.append(domain)
-            }
-        }
-        
-        if ifDomains.count > 0 {
-            rule.triggerIfDomain = ifDomains
-        }
-        
-        if unlessDomains.count > 0 {
-            rule.triggerUnlessDomain = unlessDomains
-        }
-        
-        return rule
-    }
-    
-    class func addElementHidingActionToRule(rule: Rule, line: String) -> Rule {
-        rule.actionType = "css-display-none"
-        
-        let indexOfHashtag = line.startIndex.advancedBy(indexOf(line, substring: "##")!)
-        rule.actionSelector = line.substringFromIndex(indexOfHashtag.successor().successor())
-        
-        return rule
     }
     
     class func addTriggerToRule(rule: Rule, line: String) -> Rule {

@@ -6,8 +6,9 @@
 //  Copyright © 2015 Armand Grillet. All rights reserved.
 //
 
-import Foundation
+import Alamofire
 import CloudKit
+import Foundation
 import MMWormhole
 import SwiftyJSON
 
@@ -15,87 +16,60 @@ class DownloadManager {
     let publicDB = CKContainer.defaultContainer().publicCloudDatabase
     let wormhole = MMWormhole(applicationGroupIdentifier: "group.AG.Adios", optionalDirectory: "wormhole")
     
+    func applyDownloads(rulesBaseContentBlocker: String, rulesContentBlocker: String) {
+        ListsManager.applyLists(rulesBaseContentBlocker, rulesContentBlocker: rulesContentBlocker) { () -> Void in
+            self.wormhole.passMessageObject("Applying the rules...", identifier: "updateStatus")
+            ContentBlockers.reload({self.wormhole.passMessageObject("✅", identifier: "updateStatus")}, badCompletion: {self.wormhole.passMessageObject("❌", identifier: "updateStatus")})
+            //let subscriptionsManager = SubscriptionsManager()
+            // subscriptionsManager.subscribeToUpdates()
+        }
+    }
+    
     func downloadRulesFromList(list: String, nextLists: [String]?, var rulesBaseContentBlocker: String, var rulesContentBlocker: String) {
+        print("Downloading \(list)")
         if list != "AdiosList" {
             wormhole.passMessageObject("Downloading \(list)...", identifier: "updateStatus")
         }
         
-        let predicate = NSPredicate(format: "Name == %@", list)
-        let query = CKQuery(recordType: "ListFiles", predicate: predicate)
-        let queryOperation = CKQueryOperation(query: query)
-        queryOperation.qualityOfService = .UserInitiated // The user is waiting for the task to complete
-        queryOperation.database = publicDB
-
-        queryOperation.recordFetchedBlock = { (downloadedList: CKRecord) in
-            if let rulesFile = downloadedList["File"] as? CKAsset {
-                if list != "AdiosList" {
-                    self.wormhole.passMessageObject("Processing \(list)...", identifier: "updateStatus")
-                }
-                if let content = NSFileManager.defaultManager().contentsAtPath(rulesFile.fileURL.path!) {
-                    var rules = ""
-                    let json = JSON(data: content)
-                    for jsonRule in json.array! {
-                        let rule = Rule(jsonRule: jsonRule)
-                        rules += rule.toString()
+        Alamofire
+        .request(.GET, ListsManager.getUrlOfList(list)!)
+        .responseString { _, _, result in
+            if result.isSuccess {
+                print("\(list) downloaded")
+                self.wormhole.passMessageObject("Processing \(list)...", identifier: "updateStatus")
+                var rules = ""
+                let downloadedList = result.value!.componentsSeparatedByString("\n")
+                for index in 0..<downloadedList.count {
+                    let line = downloadedList[index]
+                    print("Processing \(index) on \(downloadedList.count)")
+                    if Parser.isReadableRule(line) {
+                        for rule in Parser.getRulesFromLine(line) {
+                            rules += rule
+                        }
                     }
-                    if list == "AdiosList" || list == "EasyList" {
-                        rulesBaseContentBlocker += rules
-                    } else {
-                        rulesContentBlocker += rules
-                    }
+                    print("End of process \(index) on \(downloadedList.count)")
                 }
-            }
-        }
-        
-        queryOperation.queryCompletionBlock = { (cursor : CKQueryCursor?, error : NSError?) in
-            if error != nil {
-                print(error)
-            } else {
+                print("Done with \(list)")
+                if list == "AdiosList" || list == "EasyList" {
+                    rulesBaseContentBlocker += rules
+                } else {
+                    rulesContentBlocker += rules
+                }
                 if nextLists != nil && nextLists!.count > 0 { // Other lists need to be downloaded
                     self.downloadRulesFromList(nextLists![0], nextLists: Array(nextLists!.dropFirst()), rulesBaseContentBlocker: rulesBaseContentBlocker, rulesContentBlocker: rulesContentBlocker)
-                } else { // Everything has been downloaded, we're setting the current update user default and run the content blockers manager
-                    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
-                        
-                        let fileManager = NSFileManager()
-                        let groupUrl = NSFileManager.defaultManager().containerURLForSecurityApplicationGroupIdentifier("group.AG.Adios")
-                        let sharedContainerPathLocation = groupUrl?.path
-                        
-                        var baseList = ""
-                        if rulesBaseContentBlocker.characters.last! == "," {
-                            baseList = rulesBaseContentBlocker.substringToIndex(rulesBaseContentBlocker.endIndex.predecessor()) + "]"
-                        }
-                        let bastListPath = sharedContainerPathLocation! + "/baseList.json"
-                        if !fileManager.fileExistsAtPath(bastListPath) {
-                            fileManager.createFileAtPath(bastListPath, contents: baseList.dataUsingEncoding(NSUTF8StringEncoding), attributes: nil)
-                        } else {
-                            try! baseList.writeToFile(bastListPath, atomically: true, encoding: NSUTF8StringEncoding)
-                        }
-                        
-                        var secondList = ""
-                        if rulesContentBlocker.characters.last! == "," {
-                            secondList = rulesContentBlocker.substringToIndex(rulesContentBlocker.endIndex.predecessor()) + "]"
-                        }
-                        let secondListPath = sharedContainerPathLocation! + "/secondList.json"
-                        if !fileManager.fileExistsAtPath(secondListPath) {
-                            fileManager.createFileAtPath(secondListPath, contents: secondList.dataUsingEncoding(NSUTF8StringEncoding), attributes: nil)
-                        } else {
-                            try! secondList.writeToFile(secondListPath, atomically: true, encoding: NSUTF8StringEncoding)
-                        }
-                        
-                        dispatch_async(dispatch_get_main_queue()) {
-                            print("Everything done")
-                            NSUserDefaults.standardUserDefaults().setObject(NSDate(), forKey: "lastUpdateTimestamp")
-                            NSUserDefaults.standardUserDefaults().synchronize()
-                            self.wormhole.passMessageObject("Applying the rules...", identifier: "updateStatus")
-                            ContentBlockers.reload({self.wormhole.passMessageObject("✅", identifier: "updateStatus")}, badCompletion: {self.wormhole.passMessageObject("❌", identifier: "updateStatus")})
-                            //let subscriptionsManager = SubscriptionsManager()
-                            // subscriptionsManager.subscribeToUpdates()
-                        }
-                    }
+                } else {
+                    self.applyDownloads(rulesBaseContentBlocker, rulesContentBlocker: rulesContentBlocker)
+                }
+            } else {
+                print("Fail with \(list)")
+                self.wormhole.passMessageObject("Error with \(list)...", identifier: "updateStatus")
+                if nextLists != nil && nextLists!.count > 0 { // Other lists need to be downloaded
+                    self.downloadRulesFromList(nextLists![0], nextLists: Array(nextLists!.dropFirst()), rulesBaseContentBlocker: rulesBaseContentBlocker, rulesContentBlocker: rulesContentBlocker)
+                } else {
+                    self.applyDownloads(rulesBaseContentBlocker, rulesContentBlocker: rulesContentBlocker)
                 }
             }
         }
-        publicDB.addOperation(queryOperation)
     }
     
     func updateRules() {

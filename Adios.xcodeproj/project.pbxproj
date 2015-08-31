@@ -25,6 +25,7 @@
 		C4443AE71B8927DB004EE04C /* OnboardManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4443AE61B8927DB004EE04C /* OnboardManager.swift */; };
 		C4443AE91B8932D9004EE04C /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4443AE81B8932D9004EE04C /* DetailsViewController.swift */; };
 		C44B31291B8E32E800E92434 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C44B31281B8E32E800E92434 /* CloudKit.framework */; };
+		C47E44231B94A34400DFC55A /* Regex.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47E44221B94A34400DFC55A /* Regex.swift */; settings = {ASSET_TAGS = (); }; };
 		C4C2B1C61B8A2D780099240A /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C2B1C51B8A2D780099240A /* Reachability.swift */; };
 		C4CF6FDD1B8D13C300CD27FC /* ContentBlockers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CF6FDC1B8D13C300CD27FC /* ContentBlockers.swift */; };
 		C4E2060C1B773F6B00C280DF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E2060B1B773F6B00C280DF /* AppDelegate.swift */; };
@@ -123,6 +124,7 @@
 		C4443AE61B8927DB004EE04C /* OnboardManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardManager.swift; sourceTree = "<group>"; };
 		C4443AE81B8932D9004EE04C /* DetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 		C44B31281B8E32E800E92434 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
+		C47E44221B94A34400DFC55A /* Regex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Regex.swift; sourceTree = "<group>"; };
 		C4A6902D1B8CC09D0074E314 /* BaseContentBlocker.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = BaseContentBlocker.entitlements; sourceTree = "<group>"; };
 		C4C2B1C51B8A2D780099240A /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		C4CF6FDC1B8D13C300CD27FC /* ContentBlockers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentBlockers.swift; sourceTree = "<group>"; };
@@ -269,6 +271,7 @@
 				C4C2B1C51B8A2D780099240A /* Reachability.swift */,
 				C4CF6FDC1B8D13C300CD27FC /* ContentBlockers.swift */,
 				C41B5AA11B948E0E005043D6 /* Parser.swift */,
+				C47E44221B94A34400DFC55A /* Regex.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -679,6 +682,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C4E2060E1B773F6B00C280DF /* ViewController.swift in Sources */,
+				C47E44231B94A34400DFC55A /* Regex.swift in Sources */,
 				C41CA5C81B833293000255F3 /* DownloadManager.swift in Sources */,
 				C434CB5B1B879A1800537B55 /* OneMoreThingViewController.swift in Sources */,
 				C415D5D41B863300002EBBFB /* ListsViewController.swift in Sources */,
@@ -787,8 +791,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = BaseContentBlocker/BaseContentBlocker.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = BaseContentBlocker/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = AG.Adios.BaseContentBlocker;
@@ -802,8 +806,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = BaseContentBlocker/BaseContentBlocker.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = BaseContentBlocker/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = AG.Adios.BaseContentBlocker;
@@ -902,8 +906,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Adios/Adios.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Armand Grillet (BL4CLL95SL)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Armand Grillet (BL4CLL95SL)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Armand Grillet (38834SJ24R)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Armand Grillet (38834SJ24R)";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = Adios/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -919,8 +923,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Adios/Adios.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Armand Grillet (BL4CLL95SL)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Armand Grillet (BL4CLL95SL)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Armand Grillet (38834SJ24R)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Armand Grillet (38834SJ24R)";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = Adios/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -982,8 +986,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = ContentBlocker/ContentBlocker.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = ContentBlocker/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = AG.Adios.ContentBlocker;
@@ -997,8 +1001,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = ContentBlocker/ContentBlocker.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = ContentBlocker/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = AG.Adios.ContentBlocker;
@@ -1013,8 +1017,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = ActionIcon;
 				CODE_SIGN_ENTITLEMENTS = Action/Action.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Action/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = AG.Adios.Action;
@@ -1029,8 +1033,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = ActionIcon;
 				CODE_SIGN_ENTITLEMENTS = Action/Action.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Action/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = AG.Adios.Action;

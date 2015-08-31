@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import SwiftyJSON
 
 class Rule {
     var triggerUrlFilter: String = ""
@@ -21,12 +20,12 @@ class Rule {
     var actionSelector: String?
     
     func toString() -> String {
-        var stringRule = "{ \"trigger\": { \"url-filter\": \"\(triggerUrlFilter)\""
+        var stringRule = "{\"trigger\":{\"url-filter\":\"\(triggerUrlFilter)\""
         if let displayedTriggerUrlFilterIsCaseSensitive = triggerUrlFilterIsCaseSensitive {
-            stringRule += ",\"url-filter-is-case-sensitive\": \(displayedTriggerUrlFilterIsCaseSensitive)"
+            stringRule += ",\"url-filter-is-case-sensitive\":\(displayedTriggerUrlFilterIsCaseSensitive)"
         }
         if let displayedTriggerResourceType = triggerResourceType {
-            stringRule += ",\"resource-type\": ["
+            stringRule += ",\"resource-type\":["
             for resourceType in displayedTriggerResourceType {
                 stringRule += "\"\(resourceType)\","
             }
@@ -34,7 +33,7 @@ class Rule {
             stringRule += "]"
         }
         if let displayedTriggerLoadType = triggerLoadType {
-            stringRule += ",\"load-type\": ["
+            stringRule += ",\"load-type\":["
             for loadType in displayedTriggerLoadType {
                 stringRule += "\"\(loadType)\","
             }
@@ -42,14 +41,14 @@ class Rule {
             stringRule += "]"
         }
         if let displayedTriggerIfDomain = triggerIfDomain {
-            stringRule += ",\"if-domain\": ["
+            stringRule += ",\"if-domain\":["
             for ifDomain in displayedTriggerIfDomain {
                 stringRule += "\"\(ifDomain)\","
             }
             stringRule = stringRule.substringToIndex(stringRule.endIndex.predecessor())
             stringRule += "]"
         } else if let displayedTriggerUnlessDomain = triggerUnlessDomain {
-            stringRule += ",\"unless-domain\": ["
+            stringRule += ",\"unless-domain\":["
             for unlessDomain in displayedTriggerUnlessDomain {
                 stringRule += "\"\(unlessDomain)\","
             }
@@ -57,52 +56,12 @@ class Rule {
             stringRule += "]"
         }
         
-        stringRule += "}, \"action\": {\"type\": \"\(actionType)\""
+        stringRule += "},\"action\":{\"type\": \"\(actionType)\""
         
         if let displayedActionSelector = actionSelector {
-            stringRule += ",\"selector\": \"\(displayedActionSelector)\""
+            stringRule += ",\"selector\":\"\(displayedActionSelector)\""
         }
         
         return stringRule + "}},"
-    }
-    
-    init(jsonRule: JSON) {
-        var triggerUrlFilterWithCorrectSyntax = jsonRule["trigger"]["url-filter"].string!.stringByReplacingOccurrencesOfString("\\", withString: "\\\\")
-        triggerUrlFilterWithCorrectSyntax = triggerUrlFilterWithCorrectSyntax.stringByReplacingOccurrencesOfString("\"", withString: "\\\"") // One quote => Backslash + quote
-        self.triggerUrlFilter = triggerUrlFilterWithCorrectSyntax
-        if jsonRule["trigger"]["url-filter-is-case-sensitive"].bool != nil {
-            self.triggerUrlFilterIsCaseSensitive = jsonRule["trigger"]["url-filter-is-case-sensitive"].bool
-        }
-        if jsonRule["trigger"]["resource-type"].array != nil {
-            self.triggerResourceType = []
-            for resourceType in jsonRule["trigger"]["resource-type"].array! {
-                self.triggerResourceType!.append(resourceType.string!)
-            }
-        }
-        if jsonRule["trigger"]["load-type"].array != nil {
-            self.triggerLoadType = []
-            for loadType in jsonRule["trigger"]["load-type"].array! {
-                self.triggerLoadType!.append(loadType.string!)
-            }
-        }
-        if jsonRule["trigger"]["if-domain"].array != nil {
-            self.triggerIfDomain = []
-            for ifDomain in jsonRule["trigger"]["if-domain"].array! {
-                self.triggerIfDomain!.append(ifDomain.string!)
-            }
-        } else if jsonRule["trigger"]["unless-domain"].array != nil {
-            self.triggerUnlessDomain = []
-            for unlessDomain in jsonRule["trigger"]["unless-domain"].array! {
-                self.triggerUnlessDomain!.append(unlessDomain.string!)
-            }
-        }
-        
-        self.actionType = jsonRule["action"]["type"].string!
-        
-        if jsonRule["action"]["selector"].string != nil {
-            var jsonRuleWithCorrectSyntax = jsonRule["action"]["selector"].string!.stringByReplacingOccurrencesOfString("\\", withString: "\\\\") // One backslash => Two backslahes
-            jsonRuleWithCorrectSyntax = jsonRuleWithCorrectSyntax.stringByReplacingOccurrencesOfString("\"", withString: "\\\"") // One quote => Backslash + quote
-            self.actionSelector = jsonRuleWithCorrectSyntax
-        }
     }
 }
