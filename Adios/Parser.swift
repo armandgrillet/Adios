@@ -59,7 +59,6 @@ public class Parser {
             
             // Trigger
             rule.triggerUrlFilter = ".*"
-            print(line)
             let indexOfHashtag = line.rangeOfString("##")!.startIndex
             var hasIfDomain = false
             var hasUnlessDomain = false
@@ -86,16 +85,18 @@ public class Parser {
                     rule.triggerUnlessDomain = unlessDomains
                 }
             } else {
-                rule.triggerIfDomain = line.substringToIndex(indexOfHashtag).componentsSeparatedByString(",")
+                if line.substringToIndex(indexOfHashtag).componentsSeparatedByString(",") != [""] {
+                    rule.triggerIfDomain = line.substringToIndex(indexOfHashtag).componentsSeparatedByString(",")
+                }
             }
             
             // Action
             rule.actionType = "css-display-none"
-            rule.actionSelector = line.substringFromIndex(indexOfHashtag.successor().successor())
+            rule.actionSelector = escapeSelector(line.substringFromIndex(indexOfHashtag.successor().successor()))
             
             if hasIfDomain && hasUnlessDomain {
                 if rule.triggerIfDomain!.count == 1 { // Only one if, we can manage that.
-                    rule.triggerUrlFilter = "^(?:[^:/?#]+:)?(?://(?:[^/?#]*\\.)?)?" + escapeSpecialCharacters(rule.triggerIfDomain!.first!) + "[^a-z\\-A-Z0-9._.%]"
+                    rule.triggerUrlFilter = "^(?:[^:/?#]+:)?(?://(?:[^/?#]*\\\\.)?)?" + escapeSpecialCharacters(rule.triggerIfDomain!.first!) + "[^a-z\\\\-A-Z0-9._.%]"
                     rule.triggerIfDomain = nil
                     rule.triggerUnlessDomain = rule.triggerUnlessDomain!.map({ "*" + $0 })
                     return [rule.toString()]
@@ -135,21 +136,29 @@ public class Parser {
         }
     }
     
+    class func escapeSelector(selector: String) -> String {
+        var escapedString = selector
+        escapedString = escapedString.stringByReplacingOccurrencesOfString("\\", withString: "\\\\")
+        escapedString = escapedString.stringByReplacingOccurrencesOfString("\"", withString: "\\\"")
+        return escapedString
+    }
+    
     class func escapeSpecialCharacters(stringWithSpecialCharacters: String) -> String { // Removing special Regex characters except ^, | and *
         var escapedString = stringWithSpecialCharacters
         escapedString = escapedString.stringByReplacingOccurrencesOfString("\\", withString: "\\\\")
         //escapedString = escapedString.stringByReplacingOccurrencesOfString("^", withString: "\\^")
         escapedString = escapedString.stringByReplacingOccurrencesOfString("$", withString: "\\$")
-        escapedString = escapedString.stringByReplacingOccurrencesOfString(".", withString: "\\.")
+        escapedString = escapedString.stringByReplacingOccurrencesOfString(".", withString: "\\\\.")
         //escapedString = escapedString.stringByReplacingOccurrencesOfString("|", withString: "\\|")
-        escapedString = escapedString.stringByReplacingOccurrencesOfString("?", withString: "\\?")
+        escapedString = escapedString.stringByReplacingOccurrencesOfString("?", withString: "\\\\?")
         //escapedString = escapedString.stringByReplacingOccurrencesOfString("*", withString: "\\*")
-        escapedString = escapedString.stringByReplacingOccurrencesOfString("+", withString: "\\+")
-        escapedString = escapedString.stringByReplacingOccurrencesOfString("(", withString: "\\(")
-        escapedString = escapedString.stringByReplacingOccurrencesOfString(")", withString: "\\)")
-        escapedString = escapedString.stringByReplacingOccurrencesOfString("[", withString: "\\[")
-        escapedString = escapedString.stringByReplacingOccurrencesOfString("]", withString: "\\]")
-        escapedString = escapedString.stringByReplacingOccurrencesOfString("}", withString: "\\}")
+        escapedString = escapedString.stringByReplacingOccurrencesOfString("+", withString: "\\\\+")
+        escapedString = escapedString.stringByReplacingOccurrencesOfString("(", withString: "\\\\(")
+        escapedString = escapedString.stringByReplacingOccurrencesOfString(")", withString: "\\\\)")
+        escapedString = escapedString.stringByReplacingOccurrencesOfString("[", withString: "\\\\[")
+        escapedString = escapedString.stringByReplacingOccurrencesOfString("]", withString: "\\\\]")
+        escapedString = escapedString.stringByReplacingOccurrencesOfString("}", withString: "\\\\}")
+        escapedString = escapedString.stringByReplacingOccurrencesOfString("\"", withString: "\\\"")
         return escapedString
     }
     
@@ -175,8 +184,7 @@ public class Parser {
         
         // Separator character ^ matches anything but a letter, a digit, or one of the following: _ - . %.
         // The end of the address is also accepted as separator.
-        urlFilter = urlFilter.stringByReplacingOccurrencesOfString("^", withString: "[^a-z\\-A-Z0-9._.%]")
-        
+        urlFilter = urlFilter.stringByReplacingOccurrencesOfString("^", withString: "[^a-z\\\\-A-Z0-9._.%]")
         // * symbol means anything
         urlFilter = urlFilter.stringByReplacingOccurrencesOfString("*", withString: ".*")
         
@@ -190,7 +198,7 @@ public class Parser {
         if urlFilter.substringWithRange(rangeDomainName) == "||" {
             if urlFilter.characters.count > 2 {
                 urlFilter.removeRange(rangeDomainName)
-                urlFilter = "^(?:[^:]+:)(?://(?:[^/?#]*\\.)?)" + urlFilter
+                urlFilter = "^(?:[^:]+:)(?://(?:[^/?#]*\\\\.)?)" + urlFilter
             }
         } else if urlFilter.characters.first == "|" {
             urlFilter.removeAtIndex(urlFilter.startIndex)
@@ -198,7 +206,7 @@ public class Parser {
         }
         
         // other | symbols should be escaped, we have '|$' in our regexp - do not touch it
-        urlFilter = urlFilter.stringByReplacingOccurrencesOfString("|", withString: "\\|")
+        urlFilter = urlFilter.stringByReplacingOccurrencesOfString("|", withString: "\\\\|")
         
         rule.triggerUrlFilter = urlFilter
         

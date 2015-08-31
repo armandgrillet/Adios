@@ -12,47 +12,37 @@ import SafariServices
 
 public class ListsManager {
     public class func applyLists(rulesBaseContentBlocker: String, rulesContentBlocker: String, completion: (() -> Void)) {
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
-            
-            let fileManager = NSFileManager()
-            let groupUrl = NSFileManager.defaultManager().containerURLForSecurityApplicationGroupIdentifier("group.AG.Adios")
-            let sharedContainerPathLocation = groupUrl?.path
-            
-            var baseList = ""
-            if rulesBaseContentBlocker.characters.last! == "," {
-                baseList = rulesBaseContentBlocker.substringToIndex(rulesBaseContentBlocker.endIndex.predecessor()) + "]"
-            } else {
-                baseList = "[{\"trigger\":{\"url-filter\":\"armand.gr\"},\"action\":{\"type\": \"css-display-none\",\"selector\": \".testContentBlockerOne\"}}]"
-            }
-            let bastListPath = sharedContainerPathLocation! + "/baseList.json"
-            if !fileManager.fileExistsAtPath(bastListPath) {
-                fileManager.createFileAtPath(bastListPath, contents: baseList.dataUsingEncoding(NSUTF8StringEncoding), attributes: nil)
-            } else {
-                try! baseList.writeToFile(bastListPath, atomically: true, encoding: NSUTF8StringEncoding)
-            }
-            
-            var secondList = ""
-            if rulesContentBlocker.characters.last! == "," {
-                secondList = rulesContentBlocker.substringToIndex(rulesContentBlocker.endIndex.predecessor()) + "]"
-            } else {
-                secondList = "[{\"trigger\":{\"url-filter\":\"armand.gr\"},\"action\":{\"type\": \"css-display-none\",\"selector\": \".testContentBlockerTwo\"}}]"
-            }
-            print(secondList)
-            let secondListPath = sharedContainerPathLocation! + "/secondList.json"
-            if !fileManager.fileExistsAtPath(secondListPath) {
-                fileManager.createFileAtPath(secondListPath, contents: secondList.dataUsingEncoding(NSUTF8StringEncoding), attributes: nil)
-            } else {
-                try! secondList.writeToFile(secondListPath, atomically: true, encoding: NSUTF8StringEncoding)
-            }
-            
-            dispatch_async(dispatch_get_main_queue()) {
-                print("Everything done")
-                NSUserDefaults.standardUserDefaults().setObject(NSDate(), forKey: "lastUpdateTimestamp")
-                NSUserDefaults.standardUserDefaults().synchronize()
-                
-                completion()
-            }
+        let fileManager = NSFileManager()
+        let groupUrl = NSFileManager.defaultManager().containerURLForSecurityApplicationGroupIdentifier("group.AG.Adios")
+        let sharedContainerPathLocation = groupUrl?.path
+        
+        var baseList = ""
+        if rulesBaseContentBlocker.characters.last! == "," {
+            baseList = rulesBaseContentBlocker.substringToIndex(rulesBaseContentBlocker.endIndex.predecessor()) + "]"
+        } else {
+            baseList = "[{\"trigger\":{\"url-filter\":\"armand.gr\"},\"action\":{\"type\": \"css-display-none\",\"selector\": \".testContentBlockerOne\"}}]"
         }
+        let bastListPath = sharedContainerPathLocation! + "/baseList.json"
+        if !fileManager.fileExistsAtPath(bastListPath) {
+            fileManager.createFileAtPath(bastListPath, contents: baseList.dataUsingEncoding(NSUTF8StringEncoding), attributes: nil)
+        } else {
+            try! baseList.writeToFile(bastListPath, atomically: true, encoding: NSUTF8StringEncoding)
+        }
+        
+        var secondList = ""
+        if rulesContentBlocker.characters.last! == "," {
+            secondList = rulesContentBlocker.substringToIndex(rulesContentBlocker.endIndex.predecessor()) + "]"
+        } else {
+            secondList = "[{\"trigger\":{\"url-filter\":\"armand.gr\"},\"action\":{\"type\": \"css-display-none\",\"selector\": \".testContentBlockerTwo\"}}]"
+        }
+        let secondListPath = sharedContainerPathLocation! + "/secondList.json"
+        if !fileManager.fileExistsAtPath(secondListPath) {
+            fileManager.createFileAtPath(secondListPath, contents: secondList.dataUsingEncoding(NSUTF8StringEncoding), attributes: nil)
+        } else {
+            try! secondList.writeToFile(secondListPath, atomically: true, encoding: NSUTF8StringEncoding)
+        }
+        
+        completion()
 
     }
     
