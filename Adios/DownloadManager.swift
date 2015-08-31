@@ -35,7 +35,8 @@ class DownloadManager {
         .responseString { _, _, result in
             if result.isSuccess {
                 var rules = ""
-                let downloadedList = result.value!.componentsSeparatedByString("\n")
+                var downloadedList = result.value!.componentsSeparatedByString("\n")
+                downloadedList.removeFirst() // Remove the [AdBlock] stuff.
                 for index in 0..<downloadedList.count {
                     let line = downloadedList[index]
                     if Parser.isReadableRule(line) {
