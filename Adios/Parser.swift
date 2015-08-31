@@ -113,7 +113,6 @@ public class Parser {
                         }
                         
                         if ifUnlessDomains.count > 0 {
-                            
                             let newLine = ifDomain + ",~" + ifUnlessDomains.joinWithSeparator(",~") + "##" + domains
                             rules.append(getRulesFromLine(newLine).first!)
                         } else {

@@ -25,9 +25,12 @@ class AdiosViewController: UIViewController {
             
             var countriesText = "You're blocking ads on websites based in "
             countriesText += onboardManager.getCountryFromList(followedLists[0])!
-            if let secondCountry = onboardManager.getCountryFromList(followedLists[1]) {
-                countriesText += " & \(secondCountry)"
+            if followedLists.count > 1 {
+                if let secondCountry = onboardManager.getCountryFromList(followedLists[1]) {
+                    countriesText += " & \(secondCountry)"
+                }
             }
+            
             countries.text = countriesText
             
             if followedLists.contains("EasyList_SocialMedia") || followedLists.contains("EasyPrivacy") || followedLists.contains("AdblockWarningRemoval") {

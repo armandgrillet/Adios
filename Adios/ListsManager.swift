@@ -21,6 +21,8 @@ public class ListsManager {
             var baseList = ""
             if rulesBaseContentBlocker.characters.last! == "," {
                 baseList = rulesBaseContentBlocker.substringToIndex(rulesBaseContentBlocker.endIndex.predecessor()) + "]"
+            } else {
+                baseList = "[{\"trigger\":{\"url-filter\":\"armand.gr\"},\"action\":{\"type\": \"css-display-none\",\"selector\": \".testContentBlockerOne\"}}]"
             }
             let bastListPath = sharedContainerPathLocation! + "/baseList.json"
             if !fileManager.fileExistsAtPath(bastListPath) {
@@ -32,7 +34,10 @@ public class ListsManager {
             var secondList = ""
             if rulesContentBlocker.characters.last! == "," {
                 secondList = rulesContentBlocker.substringToIndex(rulesContentBlocker.endIndex.predecessor()) + "]"
+            } else {
+                secondList = "[{\"trigger\":{\"url-filter\":\"armand.gr\"},\"action\":{\"type\": \"css-display-none\",\"selector\": \".testContentBlockerTwo\"}}]"
             }
+            print(secondList)
             let secondListPath = sharedContainerPathLocation! + "/secondList.json"
             if !fileManager.fileExistsAtPath(secondListPath) {
                 fileManager.createFileAtPath(secondListPath, contents: secondList.dataUsingEncoding(NSUTF8StringEncoding), attributes: nil)

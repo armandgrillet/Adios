@@ -26,7 +26,6 @@ class DownloadManager {
     }
     
     func downloadRulesFromList(list: String, nextLists: [String]?, var rulesBaseContentBlocker: String, var rulesContentBlocker: String) {
-        print("Downloading \(list)")
         if list != "AdiosList" {
             wormhole.passMessageObject("Downloading \(list)...", identifier: "updateStatus")
         }
@@ -34,22 +33,21 @@ class DownloadManager {
         Alamofire
         .request(.GET, ListsManager.getUrlOfList(list)!)
         .responseString { _, _, result in
+            
+            self.wormhole.passMessageObject("Processing \(list)...", identifier: "updateStatus")
             if result.isSuccess {
-                print("\(list) downloaded")
-                self.wormhole.passMessageObject("Processing \(list)...", identifier: "updateStatus")
                 var rules = ""
                 let downloadedList = result.value!.componentsSeparatedByString("\n")
                 for index in 0..<downloadedList.count {
                     let line = downloadedList[index]
-                    print("Processing \(index) on \(downloadedList.count)")
+                    self.wormhole.passMessageObject("Processing rule n° \(index) (\(list))", identifier: "updateStatus")
                     if Parser.isReadableRule(line) {
                         for rule in Parser.getRulesFromLine(line) {
                             rules += rule
                         }
                     }
-                    print("End of process \(index) on \(downloadedList.count)")
                 }
-                print("Done with \(list)")
+                
                 if list == "AdiosList" || list == "EasyList" {
                     rulesBaseContentBlocker += rules
                 } else {
