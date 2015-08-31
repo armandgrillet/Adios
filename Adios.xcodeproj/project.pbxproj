@@ -13,6 +13,7 @@
 		C404E4691B827219006BB98E /* BaseContentBlocker.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = C404E4601B827219006BB98E /* BaseContentBlocker.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		C413E0D51B7BD12500287E27 /* IgnoringRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = C413E0D41B7BD12500287E27 /* IgnoringRule.swift */; };
 		C415D5D41B863300002EBBFB /* ListsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C415D5D31B863300002EBBFB /* ListsViewController.swift */; };
+		C41B5AA21B948E0E005043D6 /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41B5AA11B948E0E005043D6 /* Parser.swift */; settings = {ASSET_TAGS = (); }; };
 		C41CA5C41B832660000255F3 /* SubscriptionsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41CA5C31B832660000255F3 /* SubscriptionsManager.swift */; };
 		C41CA5C61B8330F2000255F3 /* CloudKitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41CA5C51B8330F2000255F3 /* CloudKitViewController.swift */; };
 		C41CA5C81B833293000255F3 /* DownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41CA5C71B833293000255F3 /* DownloadManager.swift */; };
@@ -110,6 +111,7 @@
 		C404E4661B827219006BB98E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C413E0D41B7BD12500287E27 /* IgnoringRule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IgnoringRule.swift; sourceTree = "<group>"; };
 		C415D5D31B863300002EBBFB /* ListsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListsViewController.swift; sourceTree = "<group>"; };
+		C41B5AA11B948E0E005043D6 /* Parser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
 		C41CA5C31B832660000255F3 /* SubscriptionsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubscriptionsManager.swift; sourceTree = "<group>"; };
 		C41CA5C51B8330F2000255F3 /* CloudKitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloudKitViewController.swift; sourceTree = "<group>"; };
 		C41CA5C71B833293000255F3 /* DownloadManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadManager.swift; sourceTree = "<group>"; };
@@ -266,6 +268,7 @@
 				C4443AE61B8927DB004EE04C /* OnboardManager.swift */,
 				C4C2B1C51B8A2D780099240A /* Reachability.swift */,
 				C4CF6FDC1B8D13C300CD27FC /* ContentBlockers.swift */,
+				C41B5AA11B948E0E005043D6 /* Parser.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -690,6 +693,7 @@
 				C4E6C6181B81F1A800F1411F /* SecondListViewController.swift in Sources */,
 				C4C2B1C61B8A2D780099240A /* Reachability.swift in Sources */,
 				C4CF6FDD1B8D13C300CD27FC /* ContentBlockers.swift in Sources */,
+				C41B5AA21B948E0E005043D6 /* Parser.swift in Sources */,
 				C4443AE71B8927DB004EE04C /* OnboardManager.swift in Sources */,
 				C4316F741B80E16D004C047F /* InformationViewController.swift in Sources */,
 				C41CA5CC1B83A149000255F3 /* ListsManager.swift in Sources */,
