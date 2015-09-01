@@ -43,7 +43,6 @@ public class ListsManager {
         }
         
         completion()
-
     }
     
     public class func getFollowedLists() -> [String] {
@@ -107,7 +106,7 @@ public class ListsManager {
         case "EasyList_Poland":
             return "https://raw.githubusercontent.com/adblockpolska/Adblock_PL_List/master/adblock_polska.txt"
         case "EasyList_Romania":
-            return "http://www.zoso.ro/rolist"
+            return "http://www.zoso.ro/pages/rolist.txt"
         case "EasyList_Russia":
             return "https://easylist-downloads.adblockplus.org/advblock.txt"
         case "List_England":

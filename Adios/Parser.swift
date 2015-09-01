@@ -10,7 +10,7 @@ import Foundation
 
 public class Parser {
     public class func isReadableRule(line: String) -> Bool {
-        if line.characters.count > 0
+        if line.stringByReplacingOccurrencesOfString("\r", withString: "").characters.count > 0
             && line.canBeConvertedToEncoding(NSASCIIStringEncoding)
             && line.characters.first != "!" {
                 if let indexOfDollar = line.characters.indexOf("$") {
@@ -175,9 +175,11 @@ public class Parser {
         }
         
         // Removing exception characters
-        let rangeExceptionCharacters = urlFilter.startIndex..<urlFilter.startIndex.successor().successor()
-        if urlFilter.substringWithRange(rangeExceptionCharacters) == "@@" {
-            urlFilter.removeRange(rangeExceptionCharacters)
+        if urlFilter.characters.count > 1 {
+            let startString = urlFilter.substringToIndex(urlFilter.startIndex.successor().successor())
+            if startString == "@@" {
+                urlFilter = urlFilter.substringFromIndex(urlFilter.startIndex.successor().successor())
+            }
         }
         
         urlFilter = escapeSpecialCharacters(urlFilter)
@@ -194,15 +196,16 @@ public class Parser {
         }
         
         // || in the beginning means beginning of the domain name
-        let rangeDomainName = urlFilter.startIndex..<urlFilter.startIndex.successor().successor()
-        if urlFilter.substringWithRange(rangeDomainName) == "||" {
-            if urlFilter.characters.count > 2 {
-                urlFilter.removeRange(rangeDomainName)
+        if urlFilter.characters.count > 1 {
+            let checkBars = urlFilter.substringToIndex(urlFilter.startIndex.successor().successor())
+            if checkBars == "||" {
+                urlFilter = urlFilter.substringToIndex(urlFilter.startIndex.successor().successor())
                 urlFilter = "^(?:[^:]+:)(?://(?:[^/?#]*\\\\.)?)" + urlFilter
+
+            } else if urlFilter.characters.first == "|" {
+                urlFilter.removeAtIndex(urlFilter.startIndex)
+                urlFilter = "^" + urlFilter
             }
-        } else if urlFilter.characters.first == "|" {
-            urlFilter.removeAtIndex(urlFilter.startIndex)
-            urlFilter = "^" + urlFilter
         }
         
         // other | symbols should be escaped, we have '|$' in our regexp - do not touch it
@@ -293,9 +296,13 @@ public class Parser {
     }
     
     class func addActionToRule(rule: Rule, line:String) -> Rule {
-        let rangeExceptionCharacters = line.startIndex..<line.startIndex.successor().successor()
-        if line.substringWithRange(rangeExceptionCharacters) == "@@" {
-            rule.actionType = "ignore-previous-rules"
+        if line.characters.count > 1 {
+            let startString = line.substringToIndex(line.startIndex.successor().successor())
+            if startString == "@@" {
+                rule.actionType = "ignore-previous-rules"
+            } else {
+                rule.actionType = "block"
+            }
         } else {
             rule.actionType = "block"
         }
