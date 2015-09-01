@@ -84,47 +84,88 @@ class ActionRequestHandler: NSObject, NSExtensionRequestHandling {
     }
     
     func doneWithResults(resultsForJavaScriptFinalizeArg: [NSObject: AnyObject]?) {
+        var whitelistAssembled = ""
         if let userDefaults = NSUserDefaults(suiteName: "group.AG.Adios") {
-            if userDefaults.arrayForKey("EasyList") != nil {
-                SFContentBlockerManager.reloadContentBlockerWithIdentifier("AG.Adios.BaseContentBlocker") { (error: NSError?) -> Void in
+            if let whitelist = userDefaults.arrayForKey("whitelist") as! [String]? {
+                for domain in whitelist {
+                    whitelistAssembled += IgnoringRule(domain: domain).toString()
+                }
+            }
+        }
+        
+        let fileManager = NSFileManager()
+        let groupUrl = NSFileManager.defaultManager().containerURLForSecurityApplicationGroupIdentifier("group.AG.Adios")
+        let sharedContainerPathLocation = groupUrl?.path
+        
+        var baseListWithoutWhitelist = ""
+        let baseListWithoutWhitelistPath = sharedContainerPathLocation! + "/baseListWithoutWhitelist.txt"
+        if let content = fileManager.contentsAtPath(baseListWithoutWhitelistPath) {
+            baseListWithoutWhitelist = String(data: content, encoding: NSUTF8StringEncoding)!
+        }
+        var baseList = baseListWithoutWhitelist + whitelistAssembled
+        baseList = "[" + baseList.substringToIndex(baseList.endIndex.predecessor()) + "]" // Removing the last coma
+        let baseListPath = sharedContainerPathLocation! + "/baseList.json"
+        if !fileManager.fileExistsAtPath(baseListPath) {
+            fileManager.createFileAtPath(baseListPath, contents: baseList.dataUsingEncoding(NSUTF8StringEncoding), attributes: nil)
+        } else {
+            try! baseList.writeToFile(baseListPath, atomically: true, encoding: NSUTF8StringEncoding)
+        }
+        
+        var secondListWithoutWhitelist = ""
+        let secondListWithoutWhitelistPath = sharedContainerPathLocation! + "/secondListWithoutWhitelist.txt"
+        if let content = fileManager.contentsAtPath(secondListWithoutWhitelistPath) {
+            secondListWithoutWhitelist = String(data: content, encoding: NSUTF8StringEncoding)!
+        }
+        var secondList = secondListWithoutWhitelist + whitelistAssembled
+        secondList = "[" + secondList.substringToIndex(secondList.endIndex.predecessor()) + "]" // Removing the last coma
+        let secondListPath = sharedContainerPathLocation! + "/secondList.json"
+        if !fileManager.fileExistsAtPath(secondListPath) {
+            fileManager.createFileAtPath(secondListPath, contents: secondList.dataUsingEncoding(NSUTF8StringEncoding), attributes: nil)
+        } else {
+            try! secondList.writeToFile(secondListPath, atomically: true, encoding: NSUTF8StringEncoding)
+        }
+        
+        SFContentBlockerManager.reloadContentBlockerWithIdentifier("AG.Adios.BaseContentBlocker") { (error: NSError?) -> Void in
+            if error == nil {
+                NSLog("Le base passe")
+                SFContentBlockerManager.reloadContentBlockerWithIdentifier("AG.Adios.ContentBlocker") { (otherError: NSError?) -> Void in
                     if error == nil {
-                        self.reloadContentBlockerAndDone(resultsForJavaScriptFinalizeArg)
+                        NSLog("Listes appliquees")
+                        self.done(resultsForJavaScriptFinalizeArg)
+                    } else {
+                        NSLog("%@", otherError!)
                     }
                 }
             } else {
-                reloadContentBlockerAndDone(resultsForJavaScriptFinalizeArg)
+                NSLog("%@", error!)
             }
         }
     }
         
-    func reloadContentBlockerAndDone(resultsForJavaScriptFinalizeArg: [NSObject: AnyObject]?) {
-        SFContentBlockerManager.reloadContentBlockerWithIdentifier("AG.Adios.ContentBlocker") { (otherError: NSError?) -> Void in
-            if otherError == nil {
-                if let resultsForJavaScriptFinalize = resultsForJavaScriptFinalizeArg {
-                    // Construct an NSExtensionItem of the appropriate type to return our
-                    // results dictionary in.
-                    
-                    // These will be used as the arguments to the JavaScript finalize()
-                    // method.
-                    
-                    let resultsDictionary = [NSExtensionJavaScriptFinalizeArgumentKey: resultsForJavaScriptFinalize]
-                    
-                    let resultsProvider = NSItemProvider(item: resultsDictionary, typeIdentifier: String(kUTTypePropertyList))
-                    
-                    let resultsItem = NSExtensionItem()
-                    resultsItem.attachments = [resultsProvider]
-                    
-                    // Signal that we're complete, returning our results.
-                    self.extensionContext!.completeRequestReturningItems([resultsItem], completionHandler: nil)
-                } else {
-                    // We still need to signal that we're done even if we have nothing to
-                    // pass back.
-                    self.extensionContext!.completeRequestReturningItems([], completionHandler: nil)
-                }
-                
-                // Don't hold on to this after we finished with it.
-                self.extensionContext = nil
-            }
+    func done(resultsForJavaScriptFinalizeArg: [NSObject: AnyObject]?) {
+        if let resultsForJavaScriptFinalize = resultsForJavaScriptFinalizeArg {
+            // Construct an NSExtensionItem of the appropriate type to return our
+            // results dictionary in.
+            
+            // These will be used as the arguments to the JavaScript finalize()
+            // method.
+            
+            let resultsDictionary = [NSExtensionJavaScriptFinalizeArgumentKey: resultsForJavaScriptFinalize]
+            
+            let resultsProvider = NSItemProvider(item: resultsDictionary, typeIdentifier: String(kUTTypePropertyList))
+            
+            let resultsItem = NSExtensionItem()
+            resultsItem.attachments = [resultsProvider]
+            
+            // Signal that we're complete, returning our results.
+            self.extensionContext!.completeRequestReturningItems([resultsItem], completionHandler: nil)
+        } else {
+            // We still need to signal that we're done even if we have nothing to
+            // pass back.
+            self.extensionContext!.completeRequestReturningItems([], completionHandler: nil)
         }
+        
+        // Don't hold on to this after we finished with it.
+        self.extensionContext = nil
     }
 }

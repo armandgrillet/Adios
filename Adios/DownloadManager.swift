@@ -76,7 +76,7 @@ class DownloadManager {
     func downloadFollowedLists() {
         let followedLists = ListsManager.getFollowedLists()
         if followedLists.count > 0 {
-            downloadRulesFromList(followedLists[0], nextLists: Array(followedLists.dropFirst()), rulesBaseContentBlocker: "[", rulesContentBlocker: "[")
+            downloadRulesFromList(followedLists[0], nextLists: Array(followedLists.dropFirst()), rulesBaseContentBlocker: "", rulesContentBlocker: "")
         }
         
     }
