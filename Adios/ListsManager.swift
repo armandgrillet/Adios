@@ -35,11 +35,8 @@ public class ListsManager {
             baseListWithoutWhitelist = "{\"trigger\":{\"url-filter\":\"armand.gr\"},\"action\":{\"type\": \"css-display-none\",\"selector\": \".testContentBlockerTwo\"}},"
         }
     
-        let baseListWithoutWhitelistPath = sharedContainerPathLocation! + "/baseListWithoutWhitelist.txt"
-        if !fileManager.fileExistsAtPath(baseListWithoutWhitelistPath) {
-            fileManager.createFileAtPath(baseListWithoutWhitelistPath, contents: baseListWithoutWhitelist.dataUsingEncoding(NSUTF8StringEncoding), attributes: nil)
-        } else {
-            try! baseListWithoutWhitelist.writeToFile(baseListWithoutWhitelistPath, atomically: true, encoding: NSUTF8StringEncoding)
+        if let userDefaults = NSUserDefaults(suiteName: "group.AG.Adios") {
+            userDefaults.setObject(baseListWithoutWhitelist, forKey: "baseListWithoutWhitelist")
         }
         
         var baseList = baseListWithoutWhitelist + whitelistAssembled
@@ -62,11 +59,9 @@ public class ListsManager {
             secondListWithoutWhitelist = "{\"trigger\":{\"url-filter\":\"armand.gr\"},\"action\":{\"type\": \"css-display-none\",\"selector\": \".testContentBlockerTwo\"}},"
         }
     
-        let secondListWithoutWhitelistPath = sharedContainerPathLocation! + "/secondListWithoutWhitelist.txt"
-        if !fileManager.fileExistsAtPath(secondListWithoutWhitelistPath) {
-            fileManager.createFileAtPath(secondListWithoutWhitelistPath, contents: secondListWithoutWhitelist.dataUsingEncoding(NSUTF8StringEncoding), attributes: nil)
-        } else {
-            try! secondListWithoutWhitelist.writeToFile(secondListWithoutWhitelistPath, atomically: true, encoding: NSUTF8StringEncoding)
+        if let userDefaults = NSUserDefaults(suiteName: "group.AG.Adios") {
+            userDefaults.setObject(secondListWithoutWhitelist, forKey: "secondListWithoutWhitelist")
+            NSUserDefaults(suiteName: "group.AG.Adios")!.synchronize()
         }
         
         var secondList = secondListWithoutWhitelist + whitelistAssembled

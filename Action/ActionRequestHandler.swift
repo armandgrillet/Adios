@@ -40,7 +40,7 @@ class ActionRequestHandler: NSObject, NSExtensionRequestHandling {
                         }
                     }
                 }
-        }
+            }
     }
     
     func itemLoadCompletedWithPreprocessingResults(javaScriptPreprocessingResults: [NSObject: AnyObject]) {
@@ -84,8 +84,16 @@ class ActionRequestHandler: NSObject, NSExtensionRequestHandling {
     }
     
     func doneWithResults(resultsForJavaScriptFinalizeArg: [NSObject: AnyObject]?) {
+        var baseListWithoutWhitelist = ""
+        var secondListWithoutWhitelist = ""
         var whitelistAssembled = ""
         if let userDefaults = NSUserDefaults(suiteName: "group.AG.Adios") {
+            if let sharedBaseListWithoutWhitelist = userDefaults.stringForKey("baseListWithoutWhitelist") {
+                baseListWithoutWhitelist = sharedBaseListWithoutWhitelist
+            }
+            if let sharedSecondListWithoutWhitelist = userDefaults.stringForKey("secondListWithoutWhitelist") {
+                secondListWithoutWhitelist = sharedSecondListWithoutWhitelist
+            }
             if let whitelist = userDefaults.arrayForKey("whitelist") as! [String]? {
                 for domain in whitelist {
                     whitelistAssembled += IgnoringRule(domain: domain).toString()
@@ -97,11 +105,6 @@ class ActionRequestHandler: NSObject, NSExtensionRequestHandling {
         let groupUrl = NSFileManager.defaultManager().containerURLForSecurityApplicationGroupIdentifier("group.AG.Adios")
         let sharedContainerPathLocation = groupUrl?.path
         
-        var baseListWithoutWhitelist = ""
-        let baseListWithoutWhitelistPath = sharedContainerPathLocation! + "/baseListWithoutWhitelist.txt"
-        if let content = fileManager.contentsAtPath(baseListWithoutWhitelistPath) {
-            baseListWithoutWhitelist = String(data: content, encoding: NSUTF8StringEncoding)!
-        }
         var baseList = baseListWithoutWhitelist + whitelistAssembled
         baseList = "[" + baseList.substringToIndex(baseList.endIndex.predecessor()) + "]" // Removing the last coma
         let baseListPath = sharedContainerPathLocation! + "/baseList.json"
@@ -111,11 +114,6 @@ class ActionRequestHandler: NSObject, NSExtensionRequestHandling {
             try! baseList.writeToFile(baseListPath, atomically: true, encoding: NSUTF8StringEncoding)
         }
         
-        var secondListWithoutWhitelist = ""
-        let secondListWithoutWhitelistPath = sharedContainerPathLocation! + "/secondListWithoutWhitelist.txt"
-        if let content = fileManager.contentsAtPath(secondListWithoutWhitelistPath) {
-            secondListWithoutWhitelist = String(data: content, encoding: NSUTF8StringEncoding)!
-        }
         var secondList = secondListWithoutWhitelist + whitelistAssembled
         secondList = "[" + secondList.substringToIndex(secondList.endIndex.predecessor()) + "]" // Removing the last coma
         let secondListPath = sharedContainerPathLocation! + "/secondList.json"

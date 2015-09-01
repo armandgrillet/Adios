@@ -27,6 +27,11 @@
 		C45687221B958D880086DD0E /* ListsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45687211B958D880086DD0E /* ListsManager.swift */; settings = {ASSET_TAGS = (); }; };
 		C45687241B9595700086DD0E /* IgnoringRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45687231B9595700086DD0E /* IgnoringRule.swift */; settings = {ASSET_TAGS = (); }; };
 		C45687261B95A5C30086DD0E /* IgnoringRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45687251B95A5C30086DD0E /* IgnoringRule.swift */; settings = {ASSET_TAGS = (); }; };
+		C456872E1B95D14F0086DD0E /* ActionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C456872D1B95D14F0086DD0E /* ActionViewController.swift */; };
+		C45687311B95D14F0086DD0E /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C456872F1B95D14F0086DD0E /* MainInterface.storyboard */; };
+		C45687351B95D14F0086DD0E /* Whitelist.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = C456872B1B95D14F0086DD0E /* Whitelist.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		C456873A1B95D2D50086DD0E /* IgnoringRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45687391B95D2D50086DD0E /* IgnoringRule.swift */; settings = {ASSET_TAGS = (); }; };
+		C456873D1B95D3B10086DD0E /* Action.js in Resources */ = {isa = PBXBuildFile; fileRef = C456873C1B95D3B10086DD0E /* Action.js */; settings = {ASSET_TAGS = (); }; };
 		C47E44231B94A34400DFC55A /* Regex.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47E44221B94A34400DFC55A /* Regex.swift */; settings = {ASSET_TAGS = (); }; };
 		C4C2B1C61B8A2D780099240A /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C2B1C51B8A2D780099240A /* Reachability.swift */; };
 		C4CF6FDD1B8D13C300CD27FC /* ContentBlockers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CF6FDC1B8D13C300CD27FC /* ContentBlockers.swift */; };
@@ -57,6 +62,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = C404E45F1B827219006BB98E;
 			remoteInfo = BaseContentBlocker;
+		};
+		C45687331B95D14F0086DD0E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C4E206001B773F6B00C280DF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C456872A1B95D14F0086DD0E;
+			remoteInfo = Whitelist;
 		};
 		C4E2061D1B773F6B00C280DF /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -95,6 +107,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
+				C45687351B95D14F0086DD0E /* Whitelist.appex in Embed App Extensions */,
 				C4E2065B1B77404200C280DF /* Action.appex in Embed App Extensions */,
 				C4E206491B77402B00C280DF /* ContentBlocker.appex in Embed App Extensions */,
 				C404E4691B827219006BB98E /* BaseContentBlocker.appex in Embed App Extensions */,
@@ -128,6 +141,13 @@
 		C45687211B958D880086DD0E /* ListsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListsManager.swift; sourceTree = "<group>"; };
 		C45687231B9595700086DD0E /* IgnoringRule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IgnoringRule.swift; sourceTree = "<group>"; };
 		C45687251B95A5C30086DD0E /* IgnoringRule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IgnoringRule.swift; sourceTree = "<group>"; };
+		C456872B1B95D14F0086DD0E /* Whitelist.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = Whitelist.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		C456872D1B95D14F0086DD0E /* ActionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionViewController.swift; sourceTree = "<group>"; };
+		C45687301B95D14F0086DD0E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
+		C45687321B95D14F0086DD0E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C45687391B95D2D50086DD0E /* IgnoringRule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IgnoringRule.swift; sourceTree = "<group>"; };
+		C456873B1B95D3180086DD0E /* Whitelist.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Whitelist.entitlements; sourceTree = "<group>"; };
+		C456873C1B95D3B10086DD0E /* Action.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = Action.js; sourceTree = "<group>"; };
 		C47E44221B94A34400DFC55A /* Regex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Regex.swift; sourceTree = "<group>"; };
 		C4A6902D1B8CC09D0074E314 /* BaseContentBlocker.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = BaseContentBlocker.entitlements; sourceTree = "<group>"; };
 		C4C2B1C51B8A2D780099240A /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
@@ -164,6 +184,13 @@
 
 /* Begin PBXFrameworksBuildPhase section */
 		C404E45D1B827219006BB98E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C45687281B95D14F0086DD0E /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -281,12 +308,26 @@
 			name = Models;
 			sourceTree = "<group>";
 		};
+		C456872C1B95D14F0086DD0E /* Whitelist */ = {
+			isa = PBXGroup;
+			children = (
+				C456873B1B95D3180086DD0E /* Whitelist.entitlements */,
+				C456872D1B95D14F0086DD0E /* ActionViewController.swift */,
+				C456872F1B95D14F0086DD0E /* MainInterface.storyboard */,
+				C45687321B95D14F0086DD0E /* Info.plist */,
+				C45687391B95D2D50086DD0E /* IgnoringRule.swift */,
+				C456873C1B95D3B10086DD0E /* Action.js */,
+			);
+			path = Whitelist;
+			sourceTree = "<group>";
+		};
 		C4E205FF1B773F6B00C280DF = {
 			isa = PBXGroup;
 			children = (
 				C4E2060A1B773F6B00C280DF /* Adios */,
 				C404E4611B827219006BB98E /* BaseContentBlocker */,
 				C4E206411B77402B00C280DF /* ContentBlocker */,
+				C456872C1B95D14F0086DD0E /* Whitelist */,
 				C4E206531B77404200C280DF /* Action */,
 				C4E2061F1B773F6B00C280DF /* AdiosTests */,
 				C4E2062A1B773F6B00C280DF /* AdiosUITests */,
@@ -305,6 +346,7 @@
 				C4E206401B77402A00C280DF /* ContentBlocker.appex */,
 				C4E206521B77404200C280DF /* Action.appex */,
 				C404E4601B827219006BB98E /* BaseContentBlocker.appex */,
+				C456872B1B95D14F0086DD0E /* Whitelist.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -395,6 +437,23 @@
 			productReference = C404E4601B827219006BB98E /* BaseContentBlocker.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
+		C456872A1B95D14F0086DD0E /* Whitelist */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C45687361B95D14F0086DD0E /* Build configuration list for PBXNativeTarget "Whitelist" */;
+			buildPhases = (
+				C45687271B95D14F0086DD0E /* Sources */,
+				C45687281B95D14F0086DD0E /* Frameworks */,
+				C45687291B95D14F0086DD0E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Whitelist;
+			productName = Whitelist;
+			productReference = C456872B1B95D14F0086DD0E /* Whitelist.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		C4E206071B773F6B00C280DF /* Adios */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = C4E206301B773F6C00C280DF /* Build configuration list for PBXNativeTarget "Adios" */;
@@ -413,6 +472,7 @@
 				C4E206481B77402B00C280DF /* PBXTargetDependency */,
 				C4E2065A1B77404200C280DF /* PBXTargetDependency */,
 				C404E4681B827219006BB98E /* PBXTargetDependency */,
+				C45687341B95D14F0086DD0E /* PBXTargetDependency */,
 			);
 			name = Adios;
 			productName = Adios;
@@ -507,6 +567,15 @@
 							};
 						};
 					};
+					C456872A1B95D14F0086DD0E = {
+						CreatedOnToolsVersion = 7.0;
+						DevelopmentTeam = BL4CLL95SL;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
+					};
 					C4E206071B773F6B00C280DF = {
 						CreatedOnToolsVersion = 7.0;
 						DevelopmentTeam = BL4CLL95SL;
@@ -569,6 +638,7 @@
 				C4E2063F1B77402A00C280DF /* ContentBlocker */,
 				C4E206511B77404200C280DF /* Action */,
 				C404E45F1B827219006BB98E /* BaseContentBlocker */,
+				C456872A1B95D14F0086DD0E /* Whitelist */,
 			);
 		};
 /* End PBXProject section */
@@ -579,6 +649,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				C404E4631B827219006BB98E /* blockerList.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C45687291B95D14F0086DD0E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C456873D1B95D3B10086DD0E /* Action.js in Resources */,
+				C45687311B95D14F0086DD0E /* MainInterface.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -683,6 +762,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		C45687271B95D14F0086DD0E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C456873A1B95D2D50086DD0E /* IgnoringRule.swift in Sources */,
+				C456872E1B95D14F0086DD0E /* ActionViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C4E206041B773F6B00C280DF /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -753,6 +841,11 @@
 			target = C404E45F1B827219006BB98E /* BaseContentBlocker */;
 			targetProxy = C404E4671B827219006BB98E /* PBXContainerItemProxy */;
 		};
+		C45687341B95D14F0086DD0E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C456872A1B95D14F0086DD0E /* Whitelist */;
+			targetProxy = C45687331B95D14F0086DD0E /* PBXContainerItemProxy */;
+		};
 		C4E2061E1B773F6B00C280DF /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = C4E206071B773F6B00C280DF /* Adios */;
@@ -776,6 +869,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		C456872F1B95D14F0086DD0E /* MainInterface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C45687301B95D14F0086DD0E /* Base */,
+			);
+			name = MainInterface.storyboard;
+			sourceTree = "<group>";
+		};
 		C4E2060F1B773F6B00C280DF /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -819,6 +920,36 @@
 				INFOPLIST_FILE = BaseContentBlocker/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = AG.Adios.BaseContentBlocker;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		C45687371B95D14F0086DD0E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = Whitelist/Whitelist.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = Whitelist/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = AG.Adios.Whitelist;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		C45687381B95D14F0086DD0E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = Whitelist/Whitelist.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = Whitelist/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = AG.Adios.Whitelist;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
@@ -1063,6 +1194,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		C45687361B95D14F0086DD0E /* Build configuration list for PBXNativeTarget "Whitelist" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C45687371B95D14F0086DD0E /* Debug */,
+				C45687381B95D14F0086DD0E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 		C4E206031B773F6B00C280DF /* Build configuration list for PBXProject "Adios" */ = {
 			isa = XCConfigurationList;
