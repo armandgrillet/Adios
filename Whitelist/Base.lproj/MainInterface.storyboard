@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8187.4" systemVersion="15A262e" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="PDv-xc-22X">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8187.4" systemVersion="15A278b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="PDv-xc-22X">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8151.3"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -28,6 +28,11 @@
                                     <action selector="apply:" destination="ObA-dk-sSI" eventType="touchUpInside" id="AYx-Hr-21o"/>
                                 </connections>
                             </button>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="0i9-1k-5Jd">
+                                <rect key="frame" x="142" y="245" width="37" height="37"/>
+                                <animations/>
+                                <color key="color" red="1" green="0.092578096040000002" blue="0.1144802766" alpha="1" colorSpace="calibratedRGB"/>
+                            </activityIndicatorView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Gll-RA-wRr">
                                 <rect key="frame" x="-4" y="64" width="328" height="407"/>
                                 <animations/>
@@ -41,16 +46,20 @@
                             <constraint firstAttribute="trailingMargin" secondItem="6ef-Me-SCR" secondAttribute="trailing" constant="-20" id="A0F-xm-Tuz"/>
                             <constraint firstItem="Gll-RA-wRr" firstAttribute="leading" secondItem="zMn-AG-sqS" secondAttribute="leadingMargin" constant="-20" id="I7E-5s-cRS"/>
                             <constraint firstItem="Gll-RA-wRr" firstAttribute="top" secondItem="qkL-Od-lgU" secondAttribute="bottom" id="Ik8-pA-GIM"/>
+                            <constraint firstItem="0i9-1k-5Jd" firstAttribute="centerY" secondItem="zMn-AG-sqS" secondAttribute="centerY" id="UKE-Fi-RYh"/>
                             <constraint firstItem="n38-gi-rB5" firstAttribute="top" secondItem="6ef-Me-SCR" secondAttribute="bottom" constant="8" symbolic="YES" id="ful-K7-jaM"/>
                             <constraint firstItem="6ef-Me-SCR" firstAttribute="top" secondItem="Gll-RA-wRr" secondAttribute="bottom" constant="8" id="lCg-D1-6OR"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Gll-RA-wRr" secondAttribute="trailing" constant="-20" id="qhF-35-BuL"/>
+                            <constraint firstItem="0i9-1k-5Jd" firstAttribute="centerX" secondItem="zMn-AG-sqS" secondAttribute="centerX" id="rYa-zo-b8c"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Whitelist" id="3Me-jB-q9V"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="528"/>
                     <connections>
+                        <outlet property="applyButton" destination="6ef-Me-SCR" id="nkc-a4-7TT"/>
                         <outlet property="domainsTableView" destination="Gll-RA-wRr" id="VqU-Bw-ERL"/>
+                        <outlet property="loader" destination="0i9-1k-5Jd" id="dbF-zN-Wrw"/>
                         <outlet property="view" destination="zMn-AG-sqS" id="Qma-de-2ek"/>
                     </connections>
                 </viewController>
@@ -66,7 +75,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <animations/>
-                        <color key="barTintColor" red="1" green="0.092578096040000002" blue="0.1144802766" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="tintColor" red="1" green="0.092578096040000002" blue="0.1144802766" alpha="1" colorSpace="calibratedRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" red="1" green="0.092578096040000002" blue="0.1144802766" alpha="1" colorSpace="calibratedRGB"/>
+                        </textAttributes>
                     </navigationBar>
                     <connections>
                         <segue destination="ObA-dk-sSI" kind="relationship" relationship="rootViewController" id="eHC-aS-Pmx"/>

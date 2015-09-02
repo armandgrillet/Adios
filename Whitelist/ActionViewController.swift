@@ -14,6 +14,8 @@ class ActionViewController: UIViewController, UITableViewDataSource, UITableView
     var domains = [String]()
     
     @IBOutlet weak var domainsTableView: UITableView!
+    @IBOutlet weak var loader: UIActivityIndicatorView!
+    @IBOutlet weak var applyButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -34,10 +36,6 @@ class ActionViewController: UIViewController, UITableViewDataSource, UITableView
                                 let domain = ((dictionary[NSExtensionJavaScriptPreprocessingResultsKey] as! [NSObject: AnyObject])["url"] as? String)!
                                 if !self.domains.contains(domain) {
                                     self.domains.append(domain)
-                                    if let userDefaults = NSUserDefaults(suiteName: "group.AG.Adios") {
-                                        userDefaults.setObject(self.domains, forKey: "whitelist")
-                                        userDefaults.synchronize()
-                                    }
                                 } else {
 //                                    self.domains.removeAtIndex(self.domains.indexOf(domain)!)
 //                                    if let userDefaults = NSUserDefaults(suiteName: "group.AG.Adios") {
@@ -54,6 +52,8 @@ class ActionViewController: UIViewController, UITableViewDataSource, UITableView
                 self.domainsTableView.dataSource = self
                 self.domainsTableView.delegate = self
                 self.domainsTableView.allowsMultipleSelectionDuringEditing = false
+                self.domainsTableView.backgroundView = nil
+                self.domainsTableView.backgroundColor = UIColor(red: 245 / 255, green: 245 / 255, blue: 245 / 255, alpha: 1)
             }
         }
     }
@@ -65,7 +65,13 @@ class ActionViewController: UIViewController, UITableViewDataSource, UITableView
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func apply(sender: UIButton) {
+    func updateAndDone() {
+        domainsTableView.userInteractionEnabled = false
+        applyButton.setTitle("Applying...", forState: .Disabled)
+        applyButton.setTitleColor(UIColor.blackColor(), forState: .Disabled)
+        applyButton.enabled = false
+        domainsTableView.alpha = 0
+        
         var whitelistAssembled = ""
         for domain in domains {
             whitelistAssembled += IgnoringRule(domain: domain).toString()
@@ -115,18 +121,32 @@ class ActionViewController: UIViewController, UITableViewDataSource, UITableView
         
         SFContentBlockerManager.reloadContentBlockerWithIdentifier("AG.Adios.BaseContentBlocker") { (error: NSError?) -> Void in
             if error == nil {
-                NSLog("Le base passe")
                 SFContentBlockerManager.reloadContentBlockerWithIdentifier("AG.Adios.ContentBlocker") { (otherError: NSError?) -> Void in
-                    if error == nil {
-                        NSLog("Listes appliquees")
-                        self.extensionContext!.completeRequestReturningItems(self.extensionContext!.inputItems, completionHandler: nil)
-                    } else {
-                        NSLog("%@", otherError!)
-                    }
+                    self.done()
                 }
             } else {
-                NSLog("%@", error!)
+                self.done()
             }
+        }
+    }
+    
+    func done() {
+        self.extensionContext!.completeRequestReturningItems(self.extensionContext!.inputItems, completionHandler: nil)
+    }
+    
+    @IBAction func apply(sender: UIButton) {
+        if let userDefaults = NSUserDefaults(suiteName: "group.AG.Adios") {
+            if let ignoredList = userDefaults.arrayForKey("whitelist") as! [String]? {
+                if ignoredList == domains { // Nothing changed
+                    done()
+                } else {
+                    updateAndDone()
+                }
+            } else {
+                done()
+            }
+        } else {
+            done()
         }
     }
     
