@@ -26,6 +26,16 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    @IBAction func printWhitelist(sender: UIButton) {
+        if let userDefaults = NSUserDefaults(suiteName: "group.AG.Adios") {
+            if let ignoredList = userDefaults.arrayForKey("whitelist") as! [String]? {
+                for domain in ignoredList {
+                    print(domain)
+                }
+            }
+        }
+    }
+    
     @IBAction func seeLogs(sender: UIButton) {
         let groupUrl = NSFileManager.defaultManager().containerURLForSecurityApplicationGroupIdentifier("group.AG.Adios")
         let sharedContainerPathLocation = groupUrl?.path

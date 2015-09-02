@@ -12,17 +12,25 @@ import SafariServices
 
 class ActionViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     var domains = [String]()
+    var baseListWithoutWhitelist = ""
+    var secondListWithoutWhitelist = ""
     
+    @IBOutlet weak var cancelButton: UIBarButtonItem!
+    @IBOutlet weak var saveButton: UIBarButtonItem!
     @IBOutlet weak var domainsTableView: UITableView!
     @IBOutlet weak var loader: UIActivityIndicatorView!
-    @IBOutlet weak var applyButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
             if let userDefaults = NSUserDefaults(suiteName: "group.AG.Adios") {
                 if let ignoredList = userDefaults.arrayForKey("whitelist") as! [String]? {
-                    self.domains = ignoredList as [String]
+                    domains = ignoredList as [String]
+                }
+                if let sharedBaseListWithoutWhitelist = userDefaults.stringForKey("baseListWithoutWhitelist") {
+                    baseListWithoutWhitelist = sharedBaseListWithoutWhitelist
+                }
+                if let sharedSecondListWithoutWhitelist = userDefaults.stringForKey("secondListWithoutWhitelist") {
+                    secondListWithoutWhitelist = sharedSecondListWithoutWhitelist
                 }
             }
                     
@@ -33,133 +41,125 @@ class ActionViewController: UIViewController, UITableViewDataSource, UITableView
                         if itemProvider.hasItemConformingToTypeIdentifier(String(kUTTypePropertyList)) {
                             itemProvider.loadItemForTypeIdentifier(String(kUTTypePropertyList), options: nil, completionHandler: { (item, error) in
                                 let dictionary = item as! [String: AnyObject]
-                                let domain = ((dictionary[NSExtensionJavaScriptPreprocessingResultsKey] as! [NSObject: AnyObject])["url"] as? String)!
-                                if !self.domains.contains(domain) {
-                                    self.domains.append(domain)
+                                if let domain = ((dictionary[NSExtensionJavaScriptPreprocessingResultsKey] as! [NSObject: AnyObject])["url"] as? String) {
+                                    if !self.domains.contains(domain) {
+                                        self.domains.append(domain)
+                                    } else {
+                                        //                                    self.domains.removeAtIndex(self.domains.indexOf(domain)!)
+                                        //                                    if let userDefaults = NSUserDefaults(suiteName: "group.AG.Adios") {
+                                        //                                        userDefaults.setObject(self.domains, forKey: "whitelist")
+                                        //                                        userDefaults.synchronize()
+                                        //                                    }
+                                    }
+                                    self.domainsTableView.dataSource = self
+                                    self.domainsTableView.delegate = self
+                                    self.domainsTableView.allowsMultipleSelectionDuringEditing = false
+                                    self.domainsTableView.backgroundView = nil
+                                    self.domainsTableView.backgroundColor = UIColor(red: 245 / 255, green: 245 / 255, blue: 245 / 255, alpha: 1)
+                                    self.domainsTableView.reloadData()
+                                    self.saveButton.enabled = true
                                 } else {
-//                                    self.domains.removeAtIndex(self.domains.indexOf(domain)!)
-//                                    if let userDefaults = NSUserDefaults(suiteName: "group.AG.Adios") {
-//                                        userDefaults.setObject(self.domains, forKey: "whitelist")
-//                                        userDefaults.synchronize()
-//                                    }
+                                    self.done(false)
                                 }
                             })
                         }
                     }
                 }
             }
-            dispatch_async(dispatch_get_main_queue()) {
-                self.domainsTableView.dataSource = self
-                self.domainsTableView.delegate = self
-                self.domainsTableView.allowsMultipleSelectionDuringEditing = false
-                self.domainsTableView.backgroundView = nil
-                self.domainsTableView.backgroundColor = UIColor(red: 245 / 255, green: 245 / 255, blue: 245 / 255, alpha: 1)
-            }
-        }
-    }
-    
-    
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     func updateAndDone() {
         domainsTableView.userInteractionEnabled = false
-        applyButton.setTitle("Applying...", forState: .Disabled)
-        applyButton.setTitleColor(UIColor.blackColor(), forState: .Disabled)
-        applyButton.enabled = false
+        saveButton.enabled = false
+        cancelButton.enabled = false
         domainsTableView.alpha = 0
         
-        var whitelistAssembled = ""
-        for domain in domains {
-            whitelistAssembled += IgnoringRule(domain: domain).toString()
-        }
-        
-        var baseListWithoutWhitelist = ""
-        var secondListWithoutWhitelist = ""
-        
-        if let userDefaults = NSUserDefaults(suiteName: "group.AG.Adios") {
-            userDefaults.setObject(domains, forKey: "whitelist")
-            userDefaults.synchronize()
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
+            var whitelistAssembled = ""
+            for domain in self.domains {
+                whitelistAssembled += IgnoringRule(domain: domain).toString()
+            }
             
-            if let sharedBaseListWithoutWhitelist = userDefaults.stringForKey("baseListWithoutWhitelist") {
-                baseListWithoutWhitelist = sharedBaseListWithoutWhitelist
-            }
-            if let sharedSecondListWithoutWhitelist = userDefaults.stringForKey("secondListWithoutWhitelist") {
-                secondListWithoutWhitelist = sharedSecondListWithoutWhitelist
-            }
-            if let whitelist = userDefaults.arrayForKey("whitelist") as! [String]? {
-                for domain in whitelist {
-                    whitelistAssembled += IgnoringRule(domain: domain).toString()
-                }
-            }
-        }
-        
-        let fileManager = NSFileManager()
-        let groupUrl = NSFileManager.defaultManager().containerURLForSecurityApplicationGroupIdentifier("group.AG.Adios")
-        let sharedContainerPathLocation = groupUrl?.path
-        
-        var baseList = baseListWithoutWhitelist + whitelistAssembled
-        baseList = "[" + baseList.substringToIndex(baseList.endIndex.predecessor()) + "]" // Removing the last coma
-        let baseListPath = sharedContainerPathLocation! + "/baseList.json"
-        if !fileManager.fileExistsAtPath(baseListPath) {
-            fileManager.createFileAtPath(baseListPath, contents: baseList.dataUsingEncoding(NSUTF8StringEncoding), attributes: nil)
-        } else {
-            try! baseList.writeToFile(baseListPath, atomically: true, encoding: NSUTF8StringEncoding)
-        }
-        
-        var secondList = secondListWithoutWhitelist + whitelistAssembled
-        secondList = "[" + secondList.substringToIndex(secondList.endIndex.predecessor()) + "]" // Removing the last coma
-        let secondListPath = sharedContainerPathLocation! + "/secondList.json"
-        if !fileManager.fileExistsAtPath(secondListPath) {
-            fileManager.createFileAtPath(secondListPath, contents: secondList.dataUsingEncoding(NSUTF8StringEncoding), attributes: nil)
-        } else {
-            try! secondList.writeToFile(secondListPath, atomically: true, encoding: NSUTF8StringEncoding)
-        }
-        
-        SFContentBlockerManager.reloadContentBlockerWithIdentifier("AG.Adios.BaseContentBlocker") { (error: NSError?) -> Void in
-            if error == nil {
-                SFContentBlockerManager.reloadContentBlockerWithIdentifier("AG.Adios.ContentBlocker") { (otherError: NSError?) -> Void in
-                    self.done()
-                }
+            let fileManager = NSFileManager()
+            let groupUrl = NSFileManager.defaultManager().containerURLForSecurityApplicationGroupIdentifier("group.AG.Adios")
+            let sharedContainerPathLocation = groupUrl?.path
+            
+            var baseList = self.baseListWithoutWhitelist + whitelistAssembled
+            baseList = "[" + baseList.substringToIndex(baseList.endIndex.predecessor()) + "]" // Removing the last coma
+            let baseListPath = sharedContainerPathLocation! + "/baseList.json"
+            if !fileManager.fileExistsAtPath(baseListPath) {
+                fileManager.createFileAtPath(baseListPath, contents: baseList.dataUsingEncoding(NSUTF8StringEncoding), attributes: nil)
             } else {
-                self.done()
+                try! baseList.writeToFile(baseListPath, atomically: true, encoding: NSUTF8StringEncoding)
+            }
+            
+            var secondList = self.secondListWithoutWhitelist + whitelistAssembled
+            secondList = "[" + secondList.substringToIndex(secondList.endIndex.predecessor()) + "]" // Removing the last coma
+            let secondListPath = sharedContainerPathLocation! + "/secondList.json"
+            if !fileManager.fileExistsAtPath(secondListPath) {
+                fileManager.createFileAtPath(secondListPath, contents: secondList.dataUsingEncoding(NSUTF8StringEncoding), attributes: nil)
+            } else {
+                try! secondList.writeToFile(secondListPath, atomically: true, encoding: NSUTF8StringEncoding)
+            }
+        
+            dispatch_async(dispatch_get_main_queue()) {
+                SFContentBlockerManager.reloadContentBlockerWithIdentifier("AG.Adios.BaseContentBlocker") { (error: NSError?) -> Void in
+                    if error == nil {
+                        SFContentBlockerManager.reloadContentBlockerWithIdentifier("AG.Adios.ContentBlocker") { (otherError: NSError?) -> Void in
+                            if otherError == nil {
+                                self.done(true)
+                            } else {
+                                self.done(true)
+                            }
+                        }
+                    } else {
+                        self.done(true)
+                    }
+                }
             }
         }
     }
     
-    func done() {
+    func done(reload: Bool) {
+        let resultsProvider = NSItemProvider(item: [NSExtensionJavaScriptFinalizeArgumentKey: ["reload": reload]], typeIdentifier: String(kUTTypePropertyList))
+        
+        let resultsItem = NSExtensionItem()
+        resultsItem.attachments = [resultsProvider]
+        
+        self.extensionContext!.completeRequestReturningItems([resultsItem], completionHandler: nil)
+        
         self.extensionContext!.completeRequestReturningItems(self.extensionContext!.inputItems, completionHandler: nil)
     }
     
-    @IBAction func apply(sender: UIButton) {
-        if let userDefaults = NSUserDefaults(suiteName: "group.AG.Adios") {
-            if let ignoredList = userDefaults.arrayForKey("whitelist") as! [String]? {
-                if ignoredList == domains { // Nothing changed
-                    done()
-                } else {
-                    updateAndDone()
-                }
+    @IBAction func cancel(sender: AnyObject) {
+        done(false)
+    }
+    @IBAction func save(sender: AnyObject) {
+        let userDefaults = NSUserDefaults(suiteName: "group.AG.Adios")!
+        if let ignoredDomains = userDefaults.arrayForKey("whitelist") as! [String]? {
+            if domains != ignoredDomains {
+               userDefaults.setObject(domains, forKey: "whitelist")
+                updateAndDone()
             } else {
-                done()
+                done(false)
             }
         } else {
-            done()
+            userDefaults.setObject(domains, forKey: "whitelist")
+            updateAndDone()
         }
     }
     
-    func removeDomain(domain: String, indexPath: NSIndexPath) {
-        domains.removeAtIndex(domains.indexOf(domain)!)
-        domainsTableView.beginUpdates()
-        domainsTableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        domainsTableView.endUpdates()
+    @IBAction func apply(sender: UIButton) {
+        
     }
     
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
-            removeDomain(domains[indexPath.row], indexPath: indexPath)
+            NSLog("%d", domains.count)
+            domains.removeAtIndex(domains.indexOf(domains[indexPath.row])!)
+            NSLog("%d", domains.count)
+            domainsTableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+            domainsTableView.reloadData()
         }
     }
     
@@ -183,6 +183,10 @@ class ActionViewController: UIViewController, UITableViewDataSource, UITableView
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     }
-
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
     
 }

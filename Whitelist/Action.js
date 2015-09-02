@@ -11,11 +11,13 @@ var Action = function() {};
 Action.prototype = {
     
 run: function(arguments) {
-    arguments.completionFunction({ "url" : location.origin });
+    arguments.completionFunction({ "url" : document.location.hostname });
 },
     
 finalize: function(arguments) {
-    document.location.reload();
+    if (arguments["reload"]) {
+        document.location.reload();
+    }
 }
     
 };

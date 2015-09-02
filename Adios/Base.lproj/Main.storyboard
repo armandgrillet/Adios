@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8187.4" systemVersion="15A262e" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="iI1-hR-9en">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8187.4" systemVersion="15A278b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="iI1-hR-9en">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8151.3"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -17,14 +17,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Blj-NX-w1o">
-                                <rect key="frame" x="285" y="285" width="30" height="30"/>
-                                <animations/>
-                                <state key="normal" title="CB"/>
-                                <connections>
-                                    <action selector="update:" destination="BYZ-38-t0r" eventType="touchUpInside" id="go8-u8-eKs"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tq2-h8-wyW">
                                 <rect key="frame" x="20" y="550" width="560" height="30"/>
                                 <animations/>
@@ -40,32 +32,38 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ylV-yg-OKM">
-                                <rect key="frame" x="264" y="247" width="73" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cIE-6p-JWA">
+                                <rect key="frame" x="254" y="285" width="93" height="30"/>
                                 <animations/>
-                                <state key="normal" title="Test JSON"/>
+                                <state key="normal" title="Print whitelist"/>
                                 <connections>
-                                    <action selector="createFile:" destination="BYZ-38-t0r" eventType="touchUpInside" id="OV7-pR-9Ad"/>
+                                    <action selector="printWhitelist:" destination="BYZ-38-t0r" eventType="touchUpInside" id="AdX-vR-2e0"/>
                                 </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y5O-Cl-jsW">
+                                <rect key="frame" x="253" y="323" width="94" height="30"/>
+                                <animations/>
+                                <state key="normal" title="Print mainList"/>
                             </button>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="Y5O-Cl-jsW" firstAttribute="top" secondItem="cIE-6p-JWA" secondAttribute="bottom" constant="8" id="0jL-Wg-dsT"/>
                             <constraint firstItem="SQM-v9-QHw" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="15r-gu-cI9"/>
-                            <constraint firstItem="Blj-NX-w1o" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="1PY-fu-I4t"/>
-                            <constraint firstItem="ylV-yg-OKM" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="EJr-mg-RDG"/>
                             <constraint firstItem="SQM-v9-QHw" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="HEj-vv-pyM"/>
                             <constraint firstItem="SQM-v9-QHw" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="HlF-yy-1l0"/>
-                            <constraint firstItem="Blj-NX-w1o" firstAttribute="top" secondItem="ylV-yg-OKM" secondAttribute="bottom" constant="8" id="IOy-au-pTE"/>
+                            <constraint firstItem="Y5O-Cl-jsW" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="KAI-A6-dSf"/>
                             <constraint firstItem="tq2-h8-wyW" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="Pzs-BU-XbH"/>
-                            <constraint firstItem="Blj-NX-w1o" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="eQv-9C-gFn"/>
+                            <constraint firstItem="cIE-6p-JWA" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="Y9J-o5-vvK"/>
                             <constraint firstItem="tq2-h8-wyW" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="iNU-7w-Y10"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="tq2-h8-wyW" secondAttribute="bottom" constant="20" id="vy4-dz-Zcl"/>
+                            <constraint firstItem="cIE-6p-JWA" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="xYA-t4-zoG"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="followed" destination="SQM-v9-QHw" id="sq4-80-28N"/>
+                        <outlet property="printBaseList" destination="Y5O-Cl-jsW" id="a0I-A3-H5D"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

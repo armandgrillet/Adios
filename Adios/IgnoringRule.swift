@@ -9,22 +9,13 @@
 import Foundation
 
 class IgnoringRule {
-    var triggerUrlFilter: String = ""
-    var triggerUrlFilterIsCaseSensitive: Bool?
-    var triggerResourceType: [String]?
-    var triggerLoadType: [String]?
-    var triggerIfDomain: [String]?
-    var triggerUnlessDomain: [String]?
-    
-    var actionType: String = ""
-    var actionSelector: String?
+    var triggerUrlFilter: String
     
     func toString() -> String {
-        return "{ \"trigger\": { \"url-filter\": \"\(triggerUrlFilter)\"}, \"action\": {\"type\": \"ignore-previous-rules\"}},"
+        return "{ \"trigger\": { \"url-filter\":\".*\",\"if-domain\":[\"*\(triggerUrlFilter)\"]}, \"action\": {\"type\": \"ignore-previous-rules\"}},"
     }
     
     init(domain: String) {
         self.triggerUrlFilter = domain
-        self.actionType = "ignore-previous-rules"
     }
 }
