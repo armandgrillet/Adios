@@ -26,9 +26,9 @@ class InformationViewController: UIViewController {
     func getlocaleWebpage() -> String {
         switch NSLocale.currentLocale().objectForKey(NSLocaleCountryCode) as! String {
         case "FR":
-            return "fr"
+            return "french"
         default:
-            return "en"
+            return "english"
         }
     }
 }

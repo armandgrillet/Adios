@@ -18,6 +18,6 @@ a {
 	color: #e00b00;
 }
 
-.arabic {
-	text-align: left;
+body.arabic {
+	text-align: right;
 }
