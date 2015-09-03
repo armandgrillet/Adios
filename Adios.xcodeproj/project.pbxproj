@@ -24,6 +24,7 @@
 		C4443AE71B8927DB004EE04C /* OnboardManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4443AE61B8927DB004EE04C /* OnboardManager.swift */; };
 		C4443AE91B8932D9004EE04C /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4443AE81B8932D9004EE04C /* DetailsViewController.swift */; };
 		C44B31291B8E32E800E92434 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C44B31281B8E32E800E92434 /* CloudKit.framework */; };
+		C45356B51B98224700791CDC /* WhitelistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45356B41B98224700791CDC /* WhitelistViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		C45687241B9595700086DD0E /* IgnoringRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45687231B9595700086DD0E /* IgnoringRule.swift */; settings = {ASSET_TAGS = (); }; };
 		C456872E1B95D14F0086DD0E /* ActionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C456872D1B95D14F0086DD0E /* ActionViewController.swift */; };
 		C45687311B95D14F0086DD0E /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C456872F1B95D14F0086DD0E /* MainInterface.storyboard */; };
@@ -125,6 +126,7 @@
 		C4443AE61B8927DB004EE04C /* OnboardManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardManager.swift; sourceTree = "<group>"; };
 		C4443AE81B8932D9004EE04C /* DetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 		C44B31281B8E32E800E92434 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
+		C45356B41B98224700791CDC /* WhitelistViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WhitelistViewController.swift; sourceTree = "<group>"; };
 		C45687231B9595700086DD0E /* IgnoringRule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IgnoringRule.swift; sourceTree = "<group>"; };
 		C456872B1B95D14F0086DD0E /* Whitelist.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = Whitelist.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		C456872D1B95D14F0086DD0E /* ActionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionViewController.swift; sourceTree = "<group>"; };
@@ -241,6 +243,7 @@
 				C4443AE81B8932D9004EE04C /* DetailsViewController.swift */,
 				C4E6C61B1B81F1F500F1411F /* LoadingViewController.swift */,
 				C434CB5A1B879A1800537B55 /* OneMoreThingViewController.swift */,
+				C45356B41B98224700791CDC /* WhitelistViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -709,6 +712,7 @@
 				C45687241B9595700086DD0E /* IgnoringRule.swift in Sources */,
 				C4443AE91B8932D9004EE04C /* DetailsViewController.swift in Sources */,
 				C41CA5C41B832660000255F3 /* SubscriptionsManager.swift in Sources */,
+				C45356B51B98224700791CDC /* WhitelistViewController.swift in Sources */,
 				C4E6C6161B81F19800F1411F /* MainListViewController.swift in Sources */,
 				C41CA5CA1B839FCE000255F3 /* Rule.swift in Sources */,
 				C4E6C6181B81F1A800F1411F /* SecondListViewController.swift in Sources */,

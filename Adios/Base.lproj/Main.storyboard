@@ -253,6 +253,12 @@
                         </variation>
                     </view>
                     <navigationItem key="navigationItem" title="Adios" id="Be0-DD-CIq">
+                        <barButtonItem key="leftBarButtonItem" image="Whitelist" id="CQk-8M-wyK">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <segue destination="l4l-1k-91a" kind="presentation" modalPresentationStyle="fullScreen" modalTransitionStyle="coverVertical" id="Ajv-42-UKu"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="InfoOutline" id="cMJ-SP-DUe">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
@@ -774,6 +780,107 @@
             </objects>
             <point key="canvasLocation" x="411" y="-103"/>
         </scene>
+        <!--Whitelist-->
+        <scene sceneID="yWL-W3-tc0">
+            <objects>
+                <viewController id="cuN-nr-AuD" customClass="WhitelistViewController" customModule="Adios" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="e4C-n4-b0v"/>
+                        <viewControllerLayoutGuide type="bottom" id="BwQ-kq-Zwf"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="spG-iA-coT">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="aAh-FM-v5m">
+                                <rect key="frame" x="282" y="281" width="37" height="37"/>
+                                <animations/>
+                                <color key="color" red="1" green="0.092578096040000002" blue="0.1144802766" alpha="1" colorSpace="calibratedRGB"/>
+                            </activityIndicatorView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ZX8-ba-JHx">
+                                <rect key="frame" x="0.0" y="64" width="600" height="479"/>
+                                <animations/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YJN-fg-dNl">
+                                <rect key="frame" x="0.0" y="551" width="600" height="41"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <state key="normal" title="Apply">
+                                    <color key="titleColor" red="1" green="0.092578096040000002" blue="0.1144802766" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="apply:" destination="cuN-nr-AuD" eventType="touchUpInside" id="itU-Rp-TN2"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="YJN-fg-dNl" firstAttribute="top" secondItem="ZX8-ba-JHx" secondAttribute="bottom" constant="8" symbolic="YES" id="FPj-Ax-Uqw"/>
+                            <constraint firstItem="aAh-FM-v5m" firstAttribute="centerY" secondItem="spG-iA-coT" secondAttribute="centerY" id="JRE-n1-Z2e"/>
+                            <constraint firstItem="ZX8-ba-JHx" firstAttribute="top" secondItem="spG-iA-coT" secondAttribute="topMargin" id="KUO-xb-1u2"/>
+                            <constraint firstItem="ZX8-ba-JHx" firstAttribute="top" secondItem="e4C-n4-b0v" secondAttribute="bottom" id="MLk-TZ-7tj"/>
+                            <constraint firstItem="YJN-fg-dNl" firstAttribute="leading" secondItem="spG-iA-coT" secondAttribute="leadingMargin" constant="-20" id="OPi-Zc-dHi"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="ZX8-ba-JHx" secondAttribute="trailing" constant="-20" id="ed3-wu-cmY"/>
+                            <constraint firstItem="aAh-FM-v5m" firstAttribute="centerX" secondItem="spG-iA-coT" secondAttribute="centerX" id="kcJ-hl-avB"/>
+                            <constraint firstItem="ZX8-ba-JHx" firstAttribute="top" secondItem="e4C-n4-b0v" secondAttribute="bottom" id="nhN-fX-UYy"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="YJN-fg-dNl" secondAttribute="trailing" constant="-20" id="rXG-zz-Vog"/>
+                            <constraint firstItem="BwQ-kq-Zwf" firstAttribute="top" secondItem="YJN-fg-dNl" secondAttribute="bottom" constant="8" symbolic="YES" id="u9R-Yp-KQk"/>
+                            <constraint firstItem="ZX8-ba-JHx" firstAttribute="leading" secondItem="spG-iA-coT" secondAttribute="leadingMargin" constant="-20" id="xV7-xy-HIa"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="KUO-xb-1u2"/>
+                                <exclude reference="MLk-TZ-7tj"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <navigationItem key="navigationItem" title="Whitelist" id="HT4-OW-Rbr">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="N42-UA-ioG">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <segue destination="iI1-hR-9en" kind="presentation" identifier="Done" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="r3D-EF-dff"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="dJF-cq-vlA">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="addDomain:" destination="cuN-nr-AuD" id="Mhc-rg-IMB"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="addButton" destination="dJF-cq-vlA" id="CH7-Sv-3Nk"/>
+                        <outlet property="cancelButton" destination="N42-UA-ioG" id="BUx-JK-4xd"/>
+                        <outlet property="domainsTableView" destination="ZX8-ba-JHx" id="JfS-fC-wJf"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Os2-mp-1Go" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1323" y="573"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="GNa-qa-cZW">
+            <objects>
+                <navigationController id="l4l-1k-91a" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="VNR-Me-CZO">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
+                        <color key="barTintColor" red="1" green="0.092578096040000002" blue="0.1144802766" alpha="1" colorSpace="calibratedRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="cuN-nr-AuD" kind="relationship" relationship="rootViewController" id="9tU-36-s2V"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4sQ-rK-waa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="560" y="573"/>
+        </scene>
         <!--Information-->
         <scene sceneID="Fdi-Vb-Mpa">
             <objects>
@@ -814,9 +921,10 @@
     <resources>
         <image name="Home" width="24" height="24"/>
         <image name="InfoOutline" width="24" height="24"/>
+        <image name="Whitelist" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Tdo-dp-wz2"/>
-        <segue reference="2VF-QW-Oym"/>
+        <segue reference="cGA-Z8-F0m"/>
+        <segue reference="r3D-EF-dff"/>
     </inferredMetricsTieBreakers>
 </document>
