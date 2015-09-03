@@ -13,11 +13,9 @@ import SafariServices
 public class ListsManager {
     public class func applyLists(rulesBaseContentBlocker: String, rulesContentBlocker: String, completion: (() -> Void)) {
         var whitelistAssembled = ""
-        if let userDefaults = NSUserDefaults(suiteName: "group.AG.Adios") {
-            if let whitelist = userDefaults.arrayForKey("whitelist") as! [String]? {
-                for domain in whitelist {
-                    whitelistAssembled += IgnoringRule(domain: domain).toString()
-                }
+        if let whitelist = NSUserDefaults.standardUserDefaults().arrayForKey("whitelist") as! [String]? {
+            for domain in whitelist {
+                whitelistAssembled += IgnoringRule(domain: domain).toString()
             }
         }
         
@@ -35,9 +33,7 @@ public class ListsManager {
             baseListWithoutWhitelist = "{\"trigger\":{\"url-filter\":\"armand.gr\"},\"action\":{\"type\": \"css-display-none\",\"selector\": \".testContentBlockerTwo\"}},"
         }
     
-        if let userDefaults = NSUserDefaults(suiteName: "group.AG.Adios") {
-            userDefaults.setObject(baseListWithoutWhitelist, forKey: "baseListWithoutWhitelist")
-        }
+        NSUserDefaults.standardUserDefaults().setObject(baseListWithoutWhitelist, forKey: "baseListWithoutWhitelist")
         
         var baseList = baseListWithoutWhitelist + whitelistAssembled
         baseList = "[" + baseList.substringToIndex(baseList.endIndex.predecessor()) + "]" // Removing the last coma
@@ -59,10 +55,7 @@ public class ListsManager {
             secondListWithoutWhitelist = "{\"trigger\":{\"url-filter\":\"armand.gr\"},\"action\":{\"type\": \"css-display-none\",\"selector\": \".testContentBlockerTwo\"}},"
         }
     
-        if let userDefaults = NSUserDefaults(suiteName: "group.AG.Adios") {
-            userDefaults.setObject(secondListWithoutWhitelist, forKey: "secondListWithoutWhitelist")
-            NSUserDefaults(suiteName: "group.AG.Adios")!.synchronize()
-        }
+        NSUserDefaults.standardUserDefaults().setObject(secondListWithoutWhitelist, forKey: "secondListWithoutWhitelist")
         
         var secondList = secondListWithoutWhitelist + whitelistAssembled
         secondList = "[" + secondList.substringToIndex(secondList.endIndex.predecessor()) + "]" // Removing the last coma
@@ -79,7 +72,7 @@ public class ListsManager {
     }
     
     public class func getFollowedLists() -> [String] {
-        if let followedLists = NSUserDefaults().arrayForKey("followedLists") {
+        if let followedLists = NSUserDefaults.standardUserDefaults().arrayForKey("followedLists") {
             return followedLists as! [String]
         } else {
             return []

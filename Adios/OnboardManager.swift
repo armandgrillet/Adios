@@ -11,7 +11,7 @@ import Foundation
 class OnboardManager {
     var mainList: String? {
         get {
-            if let list = NSUserDefaults.standardUserDefaults().stringForKey("mainList") {
+            if let list = NSUserDefaults.standardUserDefaults().stringForKey("tempMainList") {
                 return list
             } else {
                 return getLogicCountry()
@@ -19,15 +19,15 @@ class OnboardManager {
         }
         set {
             if newValue != nil {
-                NSUserDefaults.standardUserDefaults().setValue(newValue, forKey: "mainList")
+                NSUserDefaults.standardUserDefaults().setValue(newValue, forKey: "tempMainList")
             } else {
-                NSUserDefaults.standardUserDefaults().setValue(getLogicCountry(), forKey: "mainList")
+                NSUserDefaults.standardUserDefaults().setValue(getLogicCountry(), forKey: "tempMainList")
             }
         }
     }
     var secondList: String? {
         get {
-            if let list = NSUserDefaults.standardUserDefaults().stringForKey("secondList") {
+            if let list = NSUserDefaults.standardUserDefaults().stringForKey("tempSecondList") {
                 if list == mainList {
                     return "No"
                 } else {
@@ -39,35 +39,35 @@ class OnboardManager {
         }
         set {
             if newValue != nil {
-                NSUserDefaults.standardUserDefaults().setValue(newValue, forKey: "secondList")
+                NSUserDefaults.standardUserDefaults().setValue(newValue, forKey: "tempSecondList")
             } else {
-                NSUserDefaults.standardUserDefaults().setValue("No", forKey: "secondList")
+                NSUserDefaults.standardUserDefaults().setValue("No", forKey: "tempSecondList")
             }
             
         }
     }
     var blockAdblockWarnings: Bool {
         get {
-            return NSUserDefaults.standardUserDefaults().boolForKey("blockAdblockWarnings")
+            return NSUserDefaults.standardUserDefaults().boolForKey("tempBlockAdblockWarnings")
         }
         set {
-            NSUserDefaults.standardUserDefaults().setBool(newValue, forKey: "blockAdblockWarnings")
+            NSUserDefaults.standardUserDefaults().setBool(newValue, forKey: "tempBlockAdblockWarnings")
         }
     }
     var antisocial: Bool {
         get {
-            return NSUserDefaults.standardUserDefaults().boolForKey("antisocial")
+            return NSUserDefaults.standardUserDefaults().boolForKey("tempAntisocial")
         }
         set {
-            NSUserDefaults.standardUserDefaults().setBool(newValue, forKey: "antisocial")
+            NSUserDefaults.standardUserDefaults().setBool(newValue, forKey: "tempAntisocial")
         }
     }
     var privacy: Bool {
         get {
-            return NSUserDefaults.standardUserDefaults().boolForKey("privacy")
+            return NSUserDefaults.standardUserDefaults().boolForKey("tempPrivacy")
         }
         set {
-            NSUserDefaults.standardUserDefaults().setBool(newValue, forKey: "privacy")
+            NSUserDefaults.standardUserDefaults().setBool(newValue, forKey: "tempPrivacy")
         }
     }
     
@@ -252,9 +252,11 @@ class OnboardManager {
         }
         
         if secondList! != "No" {
-            let secondListFlag = secondList!.substringFromIndex(secondList!.endIndex.predecessor())
-            if let realSecondList = getRealList(secondListFlag) {
-                realLists.append(realSecondList)
+            if secondList != mainList {
+                let secondListFlag = secondList!.substringFromIndex(secondList!.endIndex.predecessor())
+                if let realSecondList = getRealList(secondListFlag) {
+                    realLists.append(realSecondList)
+                }
             }
         }
         
@@ -267,8 +269,6 @@ class OnboardManager {
         if privacy {
             realLists.append("EasyPrivacy")
         }
-        
-        // realLists.append("AdiosList")
         
         return realLists
     }

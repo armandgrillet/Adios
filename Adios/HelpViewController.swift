@@ -8,7 +8,7 @@
 
 import UIKit
 
-class InformationViewController: UIViewController {
+class HelpViewController: UIViewController {
     
     @IBOutlet weak var informationWebView: UIWebView!
     override func viewDidLoad() {

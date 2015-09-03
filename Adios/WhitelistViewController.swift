@@ -23,16 +23,14 @@ class WhitelistViewController: UIViewController, UITableViewDataSource, UITableV
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let userDefaults = NSUserDefaults(suiteName: "group.AG.Adios") {
-            if let ignoredList = userDefaults.arrayForKey("whitelist") as! [String]? {
-                domains = ignoredList as [String]
-            }
-            if let sharedBaseListWithoutWhitelist = userDefaults.stringForKey("baseListWithoutWhitelist") {
-                baseListWithoutWhitelist = sharedBaseListWithoutWhitelist
-            }
-            if let sharedSecondListWithoutWhitelist = userDefaults.stringForKey("secondListWithoutWhitelist") {
-                secondListWithoutWhitelist = sharedSecondListWithoutWhitelist
-            }
+        if let ignoredList = NSUserDefaults.standardUserDefaults().arrayForKey("whitelist") as! [String]? {
+            domains = ignoredList as [String]
+        }
+        if let sharedBaseListWithoutWhitelist = NSUserDefaults.standardUserDefaults().stringForKey("baseListWithoutWhitelist") {
+            baseListWithoutWhitelist = sharedBaseListWithoutWhitelist
+        }
+        if let sharedSecondListWithoutWhitelist = NSUserDefaults.standardUserDefaults().stringForKey("secondListWithoutWhitelist") {
+            secondListWithoutWhitelist = sharedSecondListWithoutWhitelist
         }
         
         self.domainsTableView.dataSource = self
@@ -55,7 +53,7 @@ class WhitelistViewController: UIViewController, UITableViewDataSource, UITableV
         let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel) { (_) in }
         
         alertController.addTextFieldWithConfigurationHandler { (textField) in
-            textField.placeholder = "websiteinwhitelist.com"
+            textField.placeholder = "www.igen.fr"
             
             NSNotificationCenter.defaultCenter().addObserverForName(UITextFieldTextDidChangeNotification, object: textField, queue: NSOperationQueue.mainQueue()) { (notification) in
                 if Regex(pattern: "^(?!\\-)(?:[a-zA-Z\\d\\-]{0,62}[a-zA-Z\\d]\\.){1,126}(?!\\d+)[a-zA-Z\\d]{1,63}$").test(textField.text!) { // Real domain.
@@ -89,9 +87,8 @@ class WhitelistViewController: UIViewController, UITableViewDataSource, UITableV
             for domain in self.domains {
                 whitelistAssembled += IgnoringRule(domain: domain).toString()
             }
-            if let userDefaults = NSUserDefaults(suiteName: "group.AG.Adios") {
-                userDefaults.setObject(self.domains, forKey: "whitelist")
-            }
+            NSUserDefaults.standardUserDefaults().setObject(self.domains, forKey: "whitelist")
+            NSUserDefaults.standardUserDefaults().synchronize()
             
             let fileManager = NSFileManager()
             let groupUrl = NSFileManager.defaultManager().containerURLForSecurityApplicationGroupIdentifier("group.AG.Adios")

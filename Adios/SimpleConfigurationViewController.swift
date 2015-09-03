@@ -19,6 +19,15 @@ class SimpleConfigurationViewController: UIViewController, UIPickerViewDataSourc
         countryPickerView.dataSource = self
         countryPickerView.delegate = self
         countryPickerView.selectRow(onboardManager.getMainListPosition(), inComponent: 0, animated: false)
+        
+        // Standard configuration.
+        onboardManager.secondList = "U.S.A 🇺🇸"
+        onboardManager.blockAdblockWarnings = true
+        onboardManager.privacy = true
+    }
+    
+    @IBAction func setAntisocial(sender: UISwitch) {
+        onboardManager.antisocial = sender.on
     }
     
     override func didReceiveMemoryWarning() {

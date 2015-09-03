@@ -21,9 +21,8 @@ class LoadingViewController: UIViewController {
         dispatch_async(dispatch_get_global_queue(priority, 0)) {
             ListsManager.removeFollowedListsData()
             dispatch_async(dispatch_get_main_queue()) {
-                NSUserDefaults().setObject(self.onboardManager.getRealListsFromChoices(), forKey: "followedLists")
                 NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateNotification:", name: NSUserDefaultsDidChangeNotification, object: nil)
-                self.downloadManager.downloadFollowedLists()
+                self.downloadManager.downloadLists(self.onboardManager.getRealListsFromChoices())
             }
         }
     }
@@ -36,6 +35,11 @@ class LoadingViewController: UIViewController {
     func updateNotification(notification:NSNotification?) {
         let message = NSUserDefaults.standardUserDefaults().stringForKey("updateStatus")
         if message == "✅" {
+            NSNotificationCenter.defaultCenter().removeObserver(self, name: NSUserDefaultsDidChangeNotification, object: nil) // No infinite loop.
+            let realLists = onboardManager.getRealListsFromChoices()
+            NSUserDefaults.standardUserDefaults().setObject(realLists, forKey: "followedLists")
+            NSUserDefaults.standardUserDefaults().synchronize()
+            NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateNotification:", name: NSUserDefaultsDidChangeNotification, object: nil) // For the deinit
             self.performSegueWithIdentifier("Done", sender: self)
         } else if message == "❌" {
             self.status.text = "Something went wrong!"

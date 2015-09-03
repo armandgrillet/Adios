@@ -192,29 +192,8 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Country lists" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CLg-qg-eZo">
-                                <rect key="frame" x="20" y="289" width="560" height="21"/>
-                                <animations/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Details" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z0F-M3-cTY">
-                                <rect key="frame" x="20" y="318" width="560" height="21"/>
-                                <animations/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oA2-iG-BeH">
-                                <rect key="frame" x="20" y="347" width="560" height="30"/>
-                                <animations/>
-                                <state key="normal" title="Last update">
-                                    <color key="titleColor" red="0.87691503763198853" green="0.045341350138187408" blue="0.0014832466840744019" alpha="0.6435614224137931" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wji-Pu-4Xx">
-                                <rect key="frame" x="20" y="510" width="560" height="41"/>
+                                <rect key="frame" x="20" y="502" width="560" height="41"/>
                                 <animations/>
                                 <gestureRecognizers/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
@@ -225,30 +204,36 @@
                                     <segue destination="tpk-3K-YbC" kind="presentation" id="6O9-GB-Ua1"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oA2-iG-BeH">
+                                <rect key="frame" x="20" y="284" width="560" height="33"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <state key="normal" title="Date">
+                                    <color key="titleColor" red="0.87691503763198853" green="0.045341350138187408" blue="0.0014832466840744019" alpha="0.6435614224137931" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                            </button>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="CLg-qg-eZo" firstAttribute="leading" secondItem="Vyq-Zz-hAe" secondAttribute="leadingMargin" id="1f6-QM-5mD"/>
                             <constraint firstItem="EUL-vB-PFU" firstAttribute="trailing" secondItem="Vyq-Zz-hAe" secondAttribute="trailingMargin" id="7R7-zk-cvb"/>
-                            <constraint firstItem="z0F-M3-cTY" firstAttribute="leading" secondItem="Vyq-Zz-hAe" secondAttribute="leadingMargin" id="9Rv-p2-7gy"/>
-                            <constraint firstItem="z0F-M3-cTY" firstAttribute="trailing" secondItem="Vyq-Zz-hAe" secondAttribute="trailingMargin" id="DHj-Su-PRN"/>
                             <constraint firstItem="Wji-Pu-4Xx" firstAttribute="trailing" secondItem="Vyq-Zz-hAe" secondAttribute="trailingMargin" id="DyH-7f-8GS"/>
-                            <constraint firstItem="z0F-M3-cTY" firstAttribute="top" secondItem="CLg-qg-eZo" secondAttribute="bottom" constant="8" id="SUO-J7-VWN"/>
+                            <constraint firstItem="oA2-iG-BeH" firstAttribute="top" secondItem="EUL-vB-PFU" secondAttribute="bottom" constant="3" id="OAj-91-wyP"/>
                             <constraint firstItem="oA2-iG-BeH" firstAttribute="leading" secondItem="Vyq-Zz-hAe" secondAttribute="leadingMargin" id="WBN-a9-Yrm"/>
-                            <constraint firstItem="CLg-qg-eZo" firstAttribute="trailing" secondItem="Vyq-Zz-hAe" secondAttribute="trailingMargin" id="Z6A-aS-SVl"/>
-                            <constraint firstItem="CLg-qg-eZo" firstAttribute="centerY" secondItem="Vyq-Zz-hAe" secondAttribute="centerY" id="Zd5-P7-3Ty"/>
+                            <constraint firstItem="Vhk-Ae-hhU" firstAttribute="top" secondItem="Wji-Pu-4Xx" secondAttribute="bottom" constant="8" symbolic="YES" id="gIq-Ch-pU6"/>
                             <constraint firstItem="EUL-vB-PFU" firstAttribute="leading" secondItem="Vyq-Zz-hAe" secondAttribute="leadingMargin" id="l0D-hf-Ko0"/>
                             <constraint firstItem="Vhk-Ae-hhU" firstAttribute="top" secondItem="Wji-Pu-4Xx" secondAttribute="bottom" id="oEe-9Q-Gdx"/>
                             <constraint firstItem="oA2-iG-BeH" firstAttribute="trailing" secondItem="Vyq-Zz-hAe" secondAttribute="trailingMargin" id="pgY-T9-Qbz"/>
-                            <constraint firstItem="CLg-qg-eZo" firstAttribute="top" secondItem="EUL-vB-PFU" secondAttribute="bottom" constant="8" id="pjR-lO-IbO"/>
                             <constraint firstItem="Wji-Pu-4Xx" firstAttribute="centerX" secondItem="Vyq-Zz-hAe" secondAttribute="centerX" id="px6-yo-ctL"/>
+                            <constraint firstItem="oA2-iG-BeH" firstAttribute="centerY" secondItem="Vyq-Zz-hAe" secondAttribute="centerY" id="qt1-oU-Xd0"/>
                             <constraint firstItem="Vhk-Ae-hhU" firstAttribute="top" secondItem="Wji-Pu-4Xx" secondAttribute="bottom" constant="8" id="qv8-FD-QwC"/>
+                            <constraint firstItem="EUL-vB-PFU" firstAttribute="centerY" secondItem="Vyq-Zz-hAe" secondAttribute="centerY" id="rOR-rS-zdW"/>
                             <constraint firstItem="Wji-Pu-4Xx" firstAttribute="leading" secondItem="Vyq-Zz-hAe" secondAttribute="leadingMargin" id="xeT-WV-V3r"/>
-                            <constraint firstItem="oA2-iG-BeH" firstAttribute="top" secondItem="z0F-M3-cTY" secondAttribute="bottom" constant="8" id="ym0-Dy-96f"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
+                                <exclude reference="rOR-rS-zdW"/>
+                                <exclude reference="oEe-9Q-Gdx"/>
                                 <exclude reference="qv8-FD-QwC"/>
                             </mask>
                         </variation>
@@ -269,11 +254,9 @@
                     </navigationItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="configurationState" destination="EUL-vB-PFU" id="ugq-Iq-eHR"/>
+                        <outlet property="configurationState" destination="EUL-vB-PFU" id="EGv-Cr-Ho7"/>
                         <outlet property="configureButton" destination="Wji-Pu-4Xx" id="77U-zV-hcx"/>
-                        <outlet property="countries" destination="CLg-qg-eZo" id="r8n-S6-z8D"/>
-                        <outlet property="details" destination="z0F-M3-cTY" id="tcG-TA-UvG"/>
-                        <outlet property="lastUpdate" destination="oA2-iG-BeH" id="vRh-Xf-Whg"/>
+                        <outlet property="lastUpdateButton" destination="oA2-iG-BeH" id="jcq-N7-zjc"/>
                         <segue destination="UhJ-fC-jbL" kind="presentation" identifier="Advanced" id="cHP-U8-PNc"/>
                     </connections>
                 </viewController>
@@ -339,7 +322,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose the country where are based most of the websites you visit:" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LaT-ch-xN4">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Where are based most of the websites you visit?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LaT-ch-xN4">
                                 <rect key="frame" x="20" y="163" width="560" height="21"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -440,13 +423,13 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1OP-ej-yPP">
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="1OP-ej-yPP">
                                 <rect key="frame" x="276" y="445" width="51" height="31"/>
                                 <animations/>
                                 <color key="onTintColor" red="1" green="0.092578096040000002" blue="0.1144802766" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="thumbTintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
-                                    <action selector="setPrivacy:" destination="yvo-86-s2z" eventType="valueChanged" id="IlY-Jd-KJw"/>
+                                    <action selector="setAntisocial:" destination="a7T-0V-eEg" eventType="valueChanged" id="VPt-QV-Fxz"/>
                                 </connections>
                             </switch>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jnb-ug-Q6t">
@@ -526,7 +509,7 @@
                                     <segue destination="yvo-86-s2z" kind="show" identifier="" id="xWg-Jp-Zbk"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Are you visiting websites from another country?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="caq-Yr-v8W">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Do you visit websites from elsewhere?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="caq-Yr-v8W">
                                 <rect key="frame" x="20" y="163" width="560" height="21"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -580,7 +563,7 @@
         <!--Two more things...-->
         <scene sceneID="5oP-nu-c1h">
             <objects>
-                <viewController title="Two more things..." id="li1-Nl-Cr4" sceneMemberID="viewController">
+                <viewController title="Two more things..." id="li1-Nl-Cr4" customClass="TwoMoreThingsViewController" customModule="Adios" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="2XB-zV-dnC"/>
                         <viewControllerLayoutGuide type="bottom" id="xHS-or-U8v"/>
@@ -597,7 +580,7 @@
                                     <color key="titleColor" red="1" green="0.092578096040000002" blue="0.1144802766" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="openSettingsActivateBackgroundUpdates:" destination="3Ss-T0-xfU" eventType="touchUpInside" id="9XT-mX-aGp"/>
+                                    <action selector="openSettingsActivateBackgroundUpdates:" destination="li1-Nl-Cr4" eventType="touchUpInside" id="CAh-wb-ZND"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To let Adios block ads, you need to check two things: " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6dn-G5-BNs">
@@ -621,6 +604,9 @@
                                 <state key="normal" title="Done">
                                     <color key="titleColor" red="1" green="0.092578096040000002" blue="0.1144802766" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <segue destination="w34-Gh-7Xl" kind="presentation" modalPresentationStyle="fullScreen" modalTransitionStyle="coverVertical" id="sbh-uc-Dgo"/>
+                                </connections>
                             </button>
                         </subviews>
                         <animations/>
@@ -646,7 +632,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fMs-cY-FgJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2046" y="2710"/>
+            <point key="canvasLocation" x="3480" y="2710"/>
         </scene>
         <!--Details-->
         <scene sceneID="aTw-Ld-F5e">
@@ -675,7 +661,7 @@
                                     <color key="titleColor" red="1" green="0.092578096040000002" blue="0.1144802766" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="3Ss-T0-xfU" kind="show" id="tmO-8K-kqR"/>
+                                    <segue destination="li1-Nl-Cr4" kind="show" id="FqA-vE-7NF"/>
                                 </connections>
                             </button>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pkc-Sd-r7y">
@@ -763,96 +749,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="P2z-To-qGd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2788" y="2043"/>
-        </scene>
-        <!--One more thing...-->
-        <scene sceneID="ecq-eM-6gp">
-            <objects>
-                <viewController title="One more thing..." id="3Ss-T0-xfU" customClass="OneMoreThingViewController" customModule="Adios" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Cse-l7-n4J"/>
-                        <viewControllerLayoutGuide type="bottom" id="4I1-Q4-sJd"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="QAr-zd-ZTn">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WBN-8V-h5Q">
-                                <rect key="frame" x="20" y="551" width="560" height="41"/>
-                                <animations/>
-                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                <state key="normal" title="Apply">
-                                    <color key="titleColor" red="1" green="0.092578096040000002" blue="0.1144802766" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <connections>
-                                    <segue destination="w34-Gh-7Xl" kind="presentation" modalPresentationStyle="fullScreen" modalTransitionStyle="coverVertical" id="Vwu-gv-FzD"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To block ads, you need to check two things in your device's settings: " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fjP-qk-BB8">
-                                <rect key="frame" x="20" y="253" width="560" height="21"/>
-                                <animations/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NzF-gt-Dbb">
-                                <rect key="frame" x="20" y="282" width="560" height="36"/>
-                                <animations/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <state key="normal" title="Activate background updates">
-                                    <color key="titleColor" red="1" green="0.092578096040000002" blue="0.1144802766" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="openSettingsActivateBackgroundUpdates:" destination="3Ss-T0-xfU" eventType="touchUpInside" id="5nm-Cy-Gb3"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Done? Now apply and start enjoying a Web without ads!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jfx-aj-IZ5">
-                                <rect key="frame" x="20" y="387" width="560" height="21"/>
-                                <animations/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="From the link below, activate Adios in Settings &gt; Safari &gt; Content Blockers" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rbH-gY-yov">
-                                <rect key="frame" x="20" y="331" width="560" height="41"/>
-                                <animations/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <animations/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="NzF-gt-Dbb" firstAttribute="centerY" secondItem="QAr-zd-ZTn" secondAttribute="centerY" id="0wK-HM-T4E"/>
-                            <constraint firstItem="fjP-qk-BB8" firstAttribute="centerY" secondItem="QAr-zd-ZTn" secondAttribute="centerY" id="2Oh-Co-0zQ"/>
-                            <constraint firstItem="fjP-qk-BB8" firstAttribute="leading" secondItem="QAr-zd-ZTn" secondAttribute="leadingMargin" id="3b0-lQ-PZz"/>
-                            <constraint firstAttribute="leadingMargin" secondItem="Jfx-aj-IZ5" secondAttribute="leading" id="4Xy-Qx-fO2"/>
-                            <constraint firstAttribute="leadingMargin" secondItem="rbH-gY-yov" secondAttribute="leading" id="4mx-H2-Zwa"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="rbH-gY-yov" secondAttribute="trailing" id="7j5-4V-uOA"/>
-                            <constraint firstItem="WBN-8V-h5Q" firstAttribute="leading" secondItem="QAr-zd-ZTn" secondAttribute="leadingMargin" id="JH3-QY-MrZ"/>
-                            <constraint firstItem="4I1-Q4-sJd" firstAttribute="top" secondItem="WBN-8V-h5Q" secondAttribute="bottom" constant="8" symbolic="YES" id="Ls2-QM-SID"/>
-                            <constraint firstItem="NzF-gt-Dbb" firstAttribute="top" secondItem="fjP-qk-BB8" secondAttribute="bottom" constant="8" id="MBH-lU-68B"/>
-                            <constraint firstItem="WBN-8V-h5Q" firstAttribute="trailing" secondItem="QAr-zd-ZTn" secondAttribute="trailingMargin" id="ORm-fH-zPY"/>
-                            <constraint firstItem="Jfx-aj-IZ5" firstAttribute="top" secondItem="rbH-gY-yov" secondAttribute="bottom" constant="15" id="SPM-zB-LIG"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="fjP-qk-BB8" secondAttribute="trailing" id="WaC-sA-OZ4"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="Jfx-aj-IZ5" secondAttribute="trailing" id="dzU-Fb-UoN"/>
-                            <constraint firstItem="NzF-gt-Dbb" firstAttribute="trailing" secondItem="Jfx-aj-IZ5" secondAttribute="trailing" id="eD7-OD-Wyi"/>
-                            <constraint firstItem="rbH-gY-yov" firstAttribute="top" secondItem="NzF-gt-Dbb" secondAttribute="bottom" constant="13" id="koa-Mq-4sc"/>
-                            <constraint firstItem="Jfx-aj-IZ5" firstAttribute="top" secondItem="NzF-gt-Dbb" secondAttribute="bottom" constant="8" id="lFK-Ed-SOj"/>
-                            <constraint firstItem="NzF-gt-Dbb" firstAttribute="leading" secondItem="Jfx-aj-IZ5" secondAttribute="leading" id="n5Z-KC-6J9"/>
-                        </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="2Oh-Co-0zQ"/>
-                                <exclude reference="lFK-Ed-SOj"/>
-                            </mask>
-                        </variation>
-                    </view>
-                    <navigationItem key="navigationItem" title="One more thing..." id="anp-DT-wUw"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="kTo-eT-kfF" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3467" y="2043"/>
         </scene>
         <!--Loading View Controller-->
         <scene sceneID="vt7-7f-KvK">
@@ -1076,7 +972,7 @@
         <!--Information-->
         <scene sceneID="Fdi-Vb-Mpa">
             <objects>
-                <viewController title="Information" id="q7o-K2-NRX" customClass="InformationViewController" customModule="Adios" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Information" id="q7o-K2-NRX" customClass="HelpViewController" customModule="Adios" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="BvP-sw-Wdv"/>
                         <viewControllerLayoutGuide type="bottom" id="gjn-tL-uiV"/>
@@ -1113,7 +1009,7 @@
                         </variation>
                     </view>
                     <connections>
-                        <outlet property="informationWebView" destination="I9M-Di-G7Q" id="Sow-S8-0j5"/>
+                        <outlet property="informationWebView" destination="I9M-Di-G7Q" id="Oze-vI-V5x"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rXd-W8-pIX" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1127,7 +1023,8 @@
         <image name="Whitelist" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="cHP-U8-PNc"/>
         <segue reference="W4X-Yh-bgY"/>
+        <segue reference="vMf-YT-cxu"/>
+        <segue reference="cHP-U8-PNc"/>
     </inferredMetricsTieBreakers>
 </document>

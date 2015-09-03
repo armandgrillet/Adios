@@ -19,8 +19,8 @@
 		C41CA5CA1B839FCE000255F3 /* Rule.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41CA5C91B839FCE000255F3 /* Rule.swift */; };
 		C41CA5CC1B83A149000255F3 /* ListsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41CA5CB1B83A149000255F3 /* ListsManager.swift */; };
 		C4316F721B80E074004C047F /* AdiosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4316F711B80E074004C047F /* AdiosViewController.swift */; };
-		C4316F741B80E16D004C047F /* InformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4316F731B80E16D004C047F /* InformationViewController.swift */; };
-		C434CB5B1B879A1800537B55 /* OneMoreThingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C434CB5A1B879A1800537B55 /* OneMoreThingViewController.swift */; };
+		C4316F741B80E16D004C047F /* HelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4316F731B80E16D004C047F /* HelpViewController.swift */; };
+		C434CB5B1B879A1800537B55 /* TwoMoreThingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C434CB5A1B879A1800537B55 /* TwoMoreThingsViewController.swift */; };
 		C43D698B1B986EC5002829E5 /* style.css in Resources */ = {isa = PBXBuildFile; fileRef = C43D698A1B986EC5002829E5 /* style.css */; settings = {ASSET_TAGS = (); }; };
 		C4443AE71B8927DB004EE04C /* OnboardManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4443AE61B8927DB004EE04C /* OnboardManager.swift */; };
 		C4443AE91B8932D9004EE04C /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4443AE81B8932D9004EE04C /* DetailsViewController.swift */; };
@@ -111,8 +111,8 @@
 		C41CA5C91B839FCE000255F3 /* Rule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Rule.swift; sourceTree = "<group>"; };
 		C41CA5CB1B83A149000255F3 /* ListsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListsManager.swift; sourceTree = "<group>"; };
 		C4316F711B80E074004C047F /* AdiosViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdiosViewController.swift; sourceTree = "<group>"; };
-		C4316F731B80E16D004C047F /* InformationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InformationViewController.swift; sourceTree = "<group>"; };
-		C434CB5A1B879A1800537B55 /* OneMoreThingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OneMoreThingViewController.swift; sourceTree = "<group>"; };
+		C4316F731B80E16D004C047F /* HelpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpViewController.swift; sourceTree = "<group>"; };
+		C434CB5A1B879A1800537B55 /* TwoMoreThingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwoMoreThingsViewController.swift; sourceTree = "<group>"; };
 		C43D698A1B986EC5002829E5 /* style.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = style.css; sourceTree = "<group>"; };
 		C4443AE61B8927DB004EE04C /* OnboardManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardManager.swift; sourceTree = "<group>"; };
 		C4443AE81B8932D9004EE04C /* DetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
@@ -217,12 +217,12 @@
 			isa = PBXGroup;
 			children = (
 				C4316F711B80E074004C047F /* AdiosViewController.swift */,
-				C4316F731B80E16D004C047F /* InformationViewController.swift */,
+				C4316F731B80E16D004C047F /* HelpViewController.swift */,
 				C4E6C6151B81F19800F1411F /* MainListViewController.swift */,
 				C4E6C6171B81F1A800F1411F /* SecondListViewController.swift */,
 				C4443AE81B8932D9004EE04C /* DetailsViewController.swift */,
 				C4E6C61B1B81F1F500F1411F /* LoadingViewController.swift */,
-				C434CB5A1B879A1800537B55 /* OneMoreThingViewController.swift */,
+				C434CB5A1B879A1800537B55 /* TwoMoreThingsViewController.swift */,
 				C45356B41B98224700791CDC /* WhitelistViewController.swift */,
 				C45356B61B983F0A00791CDC /* SimpleConfigurationViewController.swift */,
 			);
@@ -637,7 +637,7 @@
 				C45356B71B983F0A00791CDC /* SimpleConfigurationViewController.swift in Sources */,
 				C47E44231B94A34400DFC55A /* Regex.swift in Sources */,
 				C41CA5C81B833293000255F3 /* DownloadManager.swift in Sources */,
-				C434CB5B1B879A1800537B55 /* OneMoreThingViewController.swift in Sources */,
+				C434CB5B1B879A1800537B55 /* TwoMoreThingsViewController.swift in Sources */,
 				C415D5D41B863300002EBBFB /* ListsViewController.swift in Sources */,
 				C4316F721B80E074004C047F /* AdiosViewController.swift in Sources */,
 				C41CA5C61B8330F2000255F3 /* CloudKitViewController.swift in Sources */,
@@ -654,7 +654,7 @@
 				C4CF6FDD1B8D13C300CD27FC /* ContentBlockers.swift in Sources */,
 				C41B5AA21B948E0E005043D6 /* Parser.swift in Sources */,
 				C4443AE71B8927DB004EE04C /* OnboardManager.swift in Sources */,
-				C4316F741B80E16D004C047F /* InformationViewController.swift in Sources */,
+				C4316F741B80E16D004C047F /* HelpViewController.swift in Sources */,
 				C41CA5CC1B83A149000255F3 /* ListsManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -855,6 +855,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = AG.Adios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -872,6 +873,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = AG.Adios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
