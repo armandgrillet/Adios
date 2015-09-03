@@ -239,13 +239,13 @@
                         </variation>
                     </view>
                     <navigationItem key="navigationItem" title="Adios" id="Be0-DD-CIq">
-                        <barButtonItem key="leftBarButtonItem" image="Whitelist" id="CQk-8M-wyK">
+                        <barButtonItem key="leftBarButtonItem" title="Whitelist" id="CQk-8M-wyK">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <segue destination="l4l-1k-91a" kind="presentation" modalPresentationStyle="fullScreen" modalTransitionStyle="coverVertical" id="Ajv-42-UKu"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" image="HelpOutline" id="cMJ-SP-DUe">
+                        <barButtonItem key="rightBarButtonItem" title="Help" id="cMJ-SP-DUe">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <segue destination="q7o-K2-NRX" kind="show" id="U6x-aA-afs"/>
@@ -376,7 +376,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Main list - step 1/3" id="NKG-d7-M8x">
                         <barButtonItem key="backBarButtonItem" title="1st list" id="ZcC-QV-4Xo"/>
-                        <barButtonItem key="leftBarButtonItem" image="Home" id="HvK-dN-7M1">
+                        <barButtonItem key="leftBarButtonItem" title="Home" id="HvK-dN-7M1">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <segue destination="iI1-hR-9en" kind="presentation" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="q0b-EP-LJj"/>
@@ -471,7 +471,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Configuration" id="3oJ-Tt-tGM">
                         <barButtonItem key="backBarButtonItem" title="Back" id="aV0-V0-54M"/>
-                        <barButtonItem key="leftBarButtonItem" image="Home" id="aZX-DK-2Y8">
+                        <barButtonItem key="leftBarButtonItem" title="Home" id="aZX-DK-2Y8">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <segue destination="iI1-hR-9en" kind="presentation" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="W4X-Yh-bgY"/>
@@ -970,10 +970,10 @@
             </objects>
             <point key="canvasLocation" x="560" y="573"/>
         </scene>
-        <!--Information-->
+        <!--Help-->
         <scene sceneID="Fdi-Vb-Mpa">
             <objects>
-                <viewController title="Information" id="q7o-K2-NRX" customClass="HelpViewController" customModule="Adios" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Help" id="q7o-K2-NRX" customClass="HelpViewController" customModule="Adios" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="BvP-sw-Wdv"/>
                         <viewControllerLayoutGuide type="bottom" id="gjn-tL-uiV"/>
@@ -1018,14 +1018,9 @@
             <point key="canvasLocation" x="1323" y="1230"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="HelpOutline" width="24" height="24"/>
-        <image name="Home" width="24" height="24"/>
-        <image name="Whitelist" width="24" height="24"/>
-    </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="r3D-EF-dff"/>
+        <segue reference="q0b-EP-LJj"/>
+        <segue reference="cHP-U8-PNc"/>
         <segue reference="vMf-YT-cxu"/>
-        <segue reference="2VF-QW-Oym"/>
     </inferredMetricsTieBreakers>
 </document>

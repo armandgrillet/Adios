@@ -82,50 +82,46 @@ class WhitelistViewController: UIViewController, UITableViewDataSource, UITableV
         applyButton.enabled = false
         domainsTableView.alpha = 0
         
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
-            var whitelistAssembled = ""
-            for domain in self.domains {
-                whitelistAssembled += IgnoringRule(domain: domain).toString()
-            }
-            NSUserDefaults.standardUserDefaults().setObject(self.domains, forKey: "whitelist")
-            NSUserDefaults.standardUserDefaults().synchronize()
-            
-            let fileManager = NSFileManager()
-            let groupUrl = NSFileManager.defaultManager().containerURLForSecurityApplicationGroupIdentifier("group.AG.Adios")
-            let sharedContainerPathLocation = groupUrl?.path
-            
-            var baseList = self.baseListWithoutWhitelist + whitelistAssembled
-            baseList = "[" + baseList.substringToIndex(baseList.endIndex.predecessor()) + "]" // Removing the last coma
-            let baseListPath = sharedContainerPathLocation! + "/baseList.json"
-            if !fileManager.fileExistsAtPath(baseListPath) {
-                fileManager.createFileAtPath(baseListPath, contents: baseList.dataUsingEncoding(NSUTF8StringEncoding), attributes: nil)
-            } else {
-                try! baseList.writeToFile(baseListPath, atomically: true, encoding: NSUTF8StringEncoding)
-            }
-            
-            var secondList = self.secondListWithoutWhitelist + whitelistAssembled
-            secondList = "[" + secondList.substringToIndex(secondList.endIndex.predecessor()) + "]" // Removing the last coma
-            let secondListPath = sharedContainerPathLocation! + "/secondList.json"
-            if !fileManager.fileExistsAtPath(secondListPath) {
-                fileManager.createFileAtPath(secondListPath, contents: secondList.dataUsingEncoding(NSUTF8StringEncoding), attributes: nil)
-            } else {
-                try! secondList.writeToFile(secondListPath, atomically: true, encoding: NSUTF8StringEncoding)
-            }
-            
-            dispatch_async(dispatch_get_main_queue()) {
-                SFContentBlockerManager.reloadContentBlockerWithIdentifier("AG.Adios.BaseContentBlocker") { (error: NSError?) -> Void in
-                    if error == nil {
-                        SFContentBlockerManager.reloadContentBlockerWithIdentifier("AG.Adios.ContentBlocker") { (otherError: NSError?) -> Void in
-                            if otherError == nil {
-                                self.performSegueWithIdentifier("Done", sender: self)
-                            } else {
-                                self.performSegueWithIdentifier("Done", sender: self)
-                            }
-                        }
+        var whitelistAssembled = ""
+        for domain in self.domains {
+            whitelistAssembled += IgnoringRule(domain: domain).toString()
+        }
+        NSUserDefaults.standardUserDefaults().setObject(self.domains, forKey: "whitelist")
+        NSUserDefaults.standardUserDefaults().synchronize()
+        
+        let fileManager = NSFileManager()
+        let groupUrl = NSFileManager.defaultManager().containerURLForSecurityApplicationGroupIdentifier("group.AG.Adios")
+        let sharedContainerPathLocation = groupUrl?.path
+        
+        var baseList = self.baseListWithoutWhitelist + whitelistAssembled
+        baseList = "[" + baseList.substringToIndex(baseList.endIndex.predecessor()) + "]" // Removing the last coma
+        let baseListPath = sharedContainerPathLocation! + "/baseList.json"
+        if !fileManager.fileExistsAtPath(baseListPath) {
+            fileManager.createFileAtPath(baseListPath, contents: baseList.dataUsingEncoding(NSUTF8StringEncoding), attributes: nil)
+        } else {
+            try! baseList.writeToFile(baseListPath, atomically: true, encoding: NSUTF8StringEncoding)
+        }
+        
+        var secondList = self.secondListWithoutWhitelist + whitelistAssembled
+        secondList = "[" + secondList.substringToIndex(secondList.endIndex.predecessor()) + "]" // Removing the last coma
+        let secondListPath = sharedContainerPathLocation! + "/secondList.json"
+        if !fileManager.fileExistsAtPath(secondListPath) {
+            fileManager.createFileAtPath(secondListPath, contents: secondList.dataUsingEncoding(NSUTF8StringEncoding), attributes: nil)
+        } else {
+            try! secondList.writeToFile(secondListPath, atomically: true, encoding: NSUTF8StringEncoding)
+        }
+        
+        SFContentBlockerManager.reloadContentBlockerWithIdentifier("AG.Adios.BaseContentBlocker") { (error: NSError?) -> Void in
+            if error == nil {
+                SFContentBlockerManager.reloadContentBlockerWithIdentifier("AG.Adios.ContentBlocker") { (otherError: NSError?) -> Void in
+                    if otherError == nil {
+                        self.performSegueWithIdentifier("Done", sender: self)
                     } else {
                         self.performSegueWithIdentifier("Done", sender: self)
                     }
                 }
+            } else {
+                self.performSegueWithIdentifier("Done", sender: self)
             }
         }
     }
