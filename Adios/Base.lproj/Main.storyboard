@@ -898,7 +898,7 @@
                                     <color key="titleColor" red="1" green="0.092578096040000002" blue="0.1144802766" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="apply:" destination="cuN-nr-AuD" eventType="touchUpInside" id="itU-Rp-TN2"/>
+                                    <action selector="apply:" destination="cuN-nr-AuD" eventType="touchUpInside" id="VqP-XR-vuk"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -940,6 +940,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="addButton" destination="dJF-cq-vlA" id="CH7-Sv-3Nk"/>
+                        <outlet property="applyButton" destination="YJN-fg-dNl" id="9dk-kB-yFQ"/>
                         <outlet property="cancelButton" destination="N42-UA-ioG" id="BUx-JK-4xd"/>
                         <outlet property="domainsTableView" destination="ZX8-ba-JHx" id="JfS-fC-wJf"/>
                     </connections>
@@ -1023,8 +1024,8 @@
         <image name="Whitelist" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="W4X-Yh-bgY"/>
+        <segue reference="r3D-EF-dff"/>
         <segue reference="vMf-YT-cxu"/>
-        <segue reference="cHP-U8-PNc"/>
+        <segue reference="2VF-QW-Oym"/>
     </inferredMetricsTieBreakers>
 </document>
