@@ -192,17 +192,6 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wji-Pu-4Xx">
-                                <rect key="frame" x="20" y="502" width="560" height="41"/>
-                                <animations/>
-                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                <state key="normal" title="Configure Adios">
-                                    <color key="titleColor" red="1" green="0.092578096040000002" blue="0.1144802766" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <connections>
-                                    <segue destination="UhJ-fC-jbL" kind="presentation" identifier="Configure" id="cGA-Z8-F0m"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Country lists" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CLg-qg-eZo">
                                 <rect key="frame" x="20" y="289" width="560" height="21"/>
                                 <animations/>
@@ -224,6 +213,18 @@
                                     <color key="titleColor" red="0.87691503763198853" green="0.045341350138187408" blue="0.0014832466840744019" alpha="0.6435614224137931" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wji-Pu-4Xx">
+                                <rect key="frame" x="20" y="510" width="560" height="41"/>
+                                <animations/>
+                                <gestureRecognizers/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <state key="normal" title="Configure Adios">
+                                    <color key="titleColor" red="1" green="0.092578096040000002" blue="0.1144802766" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <segue destination="tpk-3K-YbC" kind="presentation" id="6O9-GB-Ua1"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -238,7 +239,7 @@
                             <constraint firstItem="CLg-qg-eZo" firstAttribute="trailing" secondItem="Vyq-Zz-hAe" secondAttribute="trailingMargin" id="Z6A-aS-SVl"/>
                             <constraint firstItem="CLg-qg-eZo" firstAttribute="centerY" secondItem="Vyq-Zz-hAe" secondAttribute="centerY" id="Zd5-P7-3Ty"/>
                             <constraint firstItem="EUL-vB-PFU" firstAttribute="leading" secondItem="Vyq-Zz-hAe" secondAttribute="leadingMargin" id="l0D-hf-Ko0"/>
-                            <constraint firstItem="Vhk-Ae-hhU" firstAttribute="top" secondItem="Wji-Pu-4Xx" secondAttribute="bottom" constant="8" id="oEe-9Q-Gdx"/>
+                            <constraint firstItem="Vhk-Ae-hhU" firstAttribute="top" secondItem="Wji-Pu-4Xx" secondAttribute="bottom" id="oEe-9Q-Gdx"/>
                             <constraint firstItem="oA2-iG-BeH" firstAttribute="trailing" secondItem="Vyq-Zz-hAe" secondAttribute="trailingMargin" id="pgY-T9-Qbz"/>
                             <constraint firstItem="CLg-qg-eZo" firstAttribute="top" secondItem="EUL-vB-PFU" secondAttribute="bottom" constant="8" id="pjR-lO-IbO"/>
                             <constraint firstItem="Wji-Pu-4Xx" firstAttribute="centerX" secondItem="Vyq-Zz-hAe" secondAttribute="centerX" id="px6-yo-ctL"/>
@@ -259,7 +260,7 @@
                                 <segue destination="l4l-1k-91a" kind="presentation" modalPresentationStyle="fullScreen" modalTransitionStyle="coverVertical" id="Ajv-42-UKu"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" image="InfoOutline" id="cMJ-SP-DUe">
+                        <barButtonItem key="rightBarButtonItem" image="HelpOutline" id="cMJ-SP-DUe">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <segue destination="q7o-K2-NRX" kind="show" id="U6x-aA-afs"/>
@@ -269,19 +270,21 @@
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="configurationState" destination="EUL-vB-PFU" id="ugq-Iq-eHR"/>
+                        <outlet property="configureButton" destination="Wji-Pu-4Xx" id="77U-zV-hcx"/>
                         <outlet property="countries" destination="CLg-qg-eZo" id="r8n-S6-z8D"/>
                         <outlet property="details" destination="z0F-M3-cTY" id="tcG-TA-UvG"/>
                         <outlet property="lastUpdate" destination="oA2-iG-BeH" id="vRh-Xf-Whg"/>
+                        <segue destination="UhJ-fC-jbL" kind="presentation" identifier="Advanced" id="cHP-U8-PNc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Yq2-XX-cgL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="560" y="1230"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Advanced Configuration-->
         <scene sceneID="brt-du-62V">
             <objects>
-                <navigationController id="UhJ-fC-jbL" sceneMemberID="viewController">
+                <navigationController title="Advanced Configuration" id="UhJ-fC-jbL" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="V1w-gY-4HX">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -485,6 +488,12 @@
                     </view>
                     <navigationItem key="navigationItem" title="Configuration" id="3oJ-Tt-tGM">
                         <barButtonItem key="backBarButtonItem" title="Back" id="aV0-V0-54M"/>
+                        <barButtonItem key="leftBarButtonItem" image="Home" id="aZX-DK-2Y8">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <segue destination="iI1-hR-9en" kind="presentation" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="W4X-Yh-bgY"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="countryPickerView" destination="QXy-4R-7ro" id="iCD-VY-opD"/>
@@ -1043,10 +1052,10 @@
             </objects>
             <point key="canvasLocation" x="1323" y="573"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Whitelist-->
         <scene sceneID="GNa-qa-cZW">
             <objects>
-                <navigationController id="l4l-1k-91a" sceneMemberID="viewController">
+                <navigationController title="Whitelist" id="l4l-1k-91a" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="VNR-Me-CZO">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1076,25 +1085,36 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="7V2-hj-dm1">
-                                <rect key="frame" x="20" y="64" width="560" height="536"/>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I9M-Di-G7Q">
+                                <rect key="frame" x="8" y="20" width="584" height="531"/>
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <string key="text">You are using Adios 0.2 Beta, more information will be here with Adios 1. If you need help or found a bug please send a tweet to @Adios_app. Two features that are not working yet: the Safari action extension and the automatic updates. If you see an ad on Safari one week after you applied Adios please repeat the configuration, it will download new filters.</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <color key="tintColor" red="1" green="0.092578096040000002" blue="0.1144802766" alpha="1" colorSpace="calibratedRGB"/>
                                 <dataDetectorType key="dataDetectorTypes" link="YES"/>
-                            </textView>
+                            </webView>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="7V2-hj-dm1" firstAttribute="bottom" secondItem="nb5-GQ-ECO" secondAttribute="bottomMargin" id="33M-ti-jfY"/>
-                            <constraint firstItem="7V2-hj-dm1" firstAttribute="leading" secondItem="nb5-GQ-ECO" secondAttribute="leadingMargin" id="Hmq-lE-8As"/>
-                            <constraint firstItem="7V2-hj-dm1" firstAttribute="trailing" secondItem="nb5-GQ-ECO" secondAttribute="trailingMargin" id="Rdc-Dj-Cji"/>
-                            <constraint firstItem="7V2-hj-dm1" firstAttribute="top" secondItem="BvP-sw-Wdv" secondAttribute="bottom" id="rFh-F1-Ho5"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="I9M-Di-G7Q" secondAttribute="trailing" id="JDt-sh-Ns2"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="I9M-Di-G7Q" secondAttribute="trailing" constant="-12" id="Jja-dy-hgC"/>
+                            <constraint firstItem="I9M-Di-G7Q" firstAttribute="leading" secondItem="nb5-GQ-ECO" secondAttribute="leadingMargin" constant="-12" id="O9X-d6-wyg"/>
+                            <constraint firstItem="I9M-Di-G7Q" firstAttribute="top" secondItem="BvP-sw-Wdv" secondAttribute="bottom" constant="-44" id="WDj-QL-fjt"/>
+                            <constraint firstItem="gjn-tL-uiV" firstAttribute="top" secondItem="I9M-Di-G7Q" secondAttribute="bottom" id="ccT-wf-EX2"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="I9M-Di-G7Q" secondAttribute="leading" id="imy-9U-abN"/>
+                            <constraint firstItem="I9M-Di-G7Q" firstAttribute="top" secondItem="BvP-sw-Wdv" secondAttribute="bottom" id="uKI-QQ-21y"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="JDt-sh-Ns2"/>
+                                <exclude reference="imy-9U-abN"/>
+                                <exclude reference="uKI-QQ-21y"/>
+                            </mask>
+                        </variation>
                     </view>
+                    <connections>
+                        <outlet property="informationWebView" destination="I9M-Di-G7Q" id="Sow-S8-0j5"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rXd-W8-pIX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1102,12 +1122,12 @@
         </scene>
     </scenes>
     <resources>
+        <image name="HelpOutline" width="24" height="24"/>
         <image name="Home" width="24" height="24"/>
-        <image name="InfoOutline" width="24" height="24"/>
         <image name="Whitelist" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="cGA-Z8-F0m"/>
-        <segue reference="q0b-EP-LJj"/>
+        <segue reference="cHP-U8-PNc"/>
+        <segue reference="W4X-Yh-bgY"/>
     </inferredMetricsTieBreakers>
 </document>

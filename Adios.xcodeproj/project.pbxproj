@@ -21,6 +21,9 @@
 		C4316F721B80E074004C047F /* AdiosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4316F711B80E074004C047F /* AdiosViewController.swift */; };
 		C4316F741B80E16D004C047F /* InformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4316F731B80E16D004C047F /* InformationViewController.swift */; };
 		C434CB5B1B879A1800537B55 /* OneMoreThingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C434CB5A1B879A1800537B55 /* OneMoreThingViewController.swift */; };
+		C43D69871B9869F9002829E5 /* fr.html in Resources */ = {isa = PBXBuildFile; fileRef = C43D69861B9869F9002829E5 /* fr.html */; settings = {ASSET_TAGS = (); }; };
+		C43D69891B986CF2002829E5 /* en.html in Resources */ = {isa = PBXBuildFile; fileRef = C43D69881B986CF2002829E5 /* en.html */; settings = {ASSET_TAGS = (); }; };
+		C43D698B1B986EC5002829E5 /* style.css in Resources */ = {isa = PBXBuildFile; fileRef = C43D698A1B986EC5002829E5 /* style.css */; settings = {ASSET_TAGS = (); }; };
 		C4443AE71B8927DB004EE04C /* OnboardManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4443AE61B8927DB004EE04C /* OnboardManager.swift */; };
 		C4443AE91B8932D9004EE04C /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4443AE81B8932D9004EE04C /* DetailsViewController.swift */; };
 		C44B31291B8E32E800E92434 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C44B31281B8E32E800E92434 /* CloudKit.framework */; };
@@ -110,6 +113,9 @@
 		C4316F711B80E074004C047F /* AdiosViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdiosViewController.swift; sourceTree = "<group>"; };
 		C4316F731B80E16D004C047F /* InformationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InformationViewController.swift; sourceTree = "<group>"; };
 		C434CB5A1B879A1800537B55 /* OneMoreThingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OneMoreThingViewController.swift; sourceTree = "<group>"; };
+		C43D69861B9869F9002829E5 /* fr.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = fr.html; sourceTree = "<group>"; };
+		C43D69881B986CF2002829E5 /* en.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = en.html; sourceTree = "<group>"; };
+		C43D698A1B986EC5002829E5 /* style.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = style.css; sourceTree = "<group>"; };
 		C4443AE61B8927DB004EE04C /* OnboardManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardManager.swift; sourceTree = "<group>"; };
 		C4443AE81B8932D9004EE04C /* DetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 		C44B31281B8E32E800E92434 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
@@ -259,6 +265,16 @@
 			name = Models;
 			sourceTree = "<group>";
 		};
+		C43D69851B9869E0002829E5 /* Information */ = {
+			isa = PBXGroup;
+			children = (
+				C43D69861B9869F9002829E5 /* fr.html */,
+				C43D69881B986CF2002829E5 /* en.html */,
+				C43D698A1B986EC5002829E5 /* style.css */,
+			);
+			name = Information;
+			sourceTree = "<group>";
+		};
 		C4E205FF1B773F6B00C280DF = {
 			isa = PBXGroup;
 			children = (
@@ -288,6 +304,7 @@
 		C4E2060A1B773F6B00C280DF /* Adios */ = {
 			isa = PBXGroup;
 			children = (
+				C43D69851B9869E0002829E5 /* Information */,
 				C4E2060B1B773F6B00C280DF /* AppDelegate.swift */,
 				C41CA5C51B8330F2000255F3 /* CloudKitViewController.swift */,
 				C4E2060D1B773F6B00C280DF /* ViewController.swift */,
@@ -522,7 +539,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				C4E206161B773F6B00C280DF /* LaunchScreen.storyboard in Resources */,
+				C43D698B1B986EC5002829E5 /* style.css in Resources */,
+				C43D69871B9869F9002829E5 /* fr.html in Resources */,
 				C4E206131B773F6B00C280DF /* Assets.xcassets in Resources */,
+				C43D69891B986CF2002829E5 /* en.html in Resources */,
 				C4E206111B773F6B00C280DF /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

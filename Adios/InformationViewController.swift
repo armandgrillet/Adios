@@ -10,13 +10,25 @@ import UIKit
 
 class InformationViewController: UIViewController {
     
+    @IBOutlet weak var informationWebView: UIWebView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        let localfilePath = NSBundle.mainBundle().URLForResource(getlocaleWebpage(), withExtension: "html");
+        let myRequest = NSURLRequest(URL: localfilePath!);
+        informationWebView.loadRequest(myRequest);
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func getlocaleWebpage() -> String {
+        switch NSLocale.currentLocale().objectForKey(NSLocaleCountryCode) as! String {
+        case "FR":
+            return "fr"
+        default:
+            return "en"
+        }
     }
 }

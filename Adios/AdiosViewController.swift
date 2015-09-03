@@ -16,8 +16,13 @@ class AdiosViewController: UIViewController {
     @IBOutlet weak var details: UILabel!
     @IBOutlet weak var lastUpdate: UIButton!
     
+    @IBOutlet weak var configureButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: "longPressOnConfigure:")
+        configureButton.addGestureRecognizer(longPressRecognizer)
+        
         // Do any additional setup after loading the view, typically from a nib.
         var followedLists = ListsManager.getFollowedLists()
         if followedLists != [] {
@@ -66,6 +71,10 @@ class AdiosViewController: UIViewController {
             lastUpdate.enabled = false
             lastUpdate.setTitle("", forState: .Disabled)
         }
+    }
+    
+    @IBAction func longPressOnConfigure(sender: UILongPressGestureRecognizer) {
+        self.performSegueWithIdentifier("Advanced", sender: self)
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

@@ -1,0 +1,23 @@
+h1 {
+    font: -apple-system-headline;
+}
+
+p {
+    padding: 0;
+    margin: 0;
+    font: -apple-system-body;
+}
+
+footer {
+	text-align: center;
+	font: -apple-system-subheadline;
+}
+
+a {
+	text-decoration: none;
+	color: #e00b00;
+}
+
+.arabic {
+	text-align: left;
+}
