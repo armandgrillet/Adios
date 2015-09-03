@@ -8,7 +8,6 @@
 
 import UIKit
 import SafariServices
-import SwiftyJSON
 
 class ViewController: UIViewController {
     @IBOutlet weak var followed: UILabel!

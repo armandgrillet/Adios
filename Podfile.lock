@@ -1,34 +1,20 @@
 PODS:
   - Alamofire (2.0.0-beta.3)
-  - MMWormhole (1.2.0):
-    - MMWormhole/Core (= 1.2.0)
-  - MMWormhole/Core (1.2.0)
-  - SwiftyJSON (2.2.1)
 
 DEPENDENCIES:
   - Alamofire (from `https://github.com/Alamofire/Alamofire.git`, branch `swift-2.0`)
-  - MMWormhole (~> 1.2.0)
-  - SwiftyJSON (from `https://github.com/SwiftyJSON/SwiftyJSON.git`, branch `xcode7`)
 
 EXTERNAL SOURCES:
   Alamofire:
     :branch: swift-2.0
     :git: https://github.com/Alamofire/Alamofire.git
-  SwiftyJSON:
-    :branch: xcode7
-    :git: https://github.com/SwiftyJSON/SwiftyJSON.git
 
 CHECKOUT OPTIONS:
   Alamofire:
     :commit: 1bc35abfa7c167ba54af4e87158af7945cc9984e
     :git: https://github.com/Alamofire/Alamofire.git
-  SwiftyJSON:
-    :commit: f269523ac572979245baa99c8475eab73caf1e9b
-    :git: https://github.com/SwiftyJSON/SwiftyJSON.git
 
 SPEC CHECKSUMS:
   Alamofire: 39dddb7d3725d1771b1d2f7099c8bd45bd83ffbb
-  MMWormhole: 696de5a8d2ef93f028ade4cff34958943c3bfa1e
-  SwiftyJSON: ae2d0a3d68025d136602a33c4ee215091ced3e33
 
 COCOAPODS: 0.38.2

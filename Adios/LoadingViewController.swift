@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import MMWormhole
 
 class LoadingViewController: UIViewController {
     @IBOutlet weak var status: UILabel!
@@ -15,7 +14,6 @@ class LoadingViewController: UIViewController {
     let onboardManager = OnboardManager()
     let downloadManager = DownloadManager()
     let listsManager = ListsManager()
-    let wormhole = MMWormhole(applicationGroupIdentifier: "group.AG.Adios", optionalDirectory: "wormhole")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,21 +22,7 @@ class LoadingViewController: UIViewController {
             ListsManager.removeFollowedListsData()
             dispatch_async(dispatch_get_main_queue()) {
                 NSUserDefaults().setObject(self.onboardManager.getRealListsFromChoices(), forKey: "followedLists")
-                
-                // Do any additional setup after loading the view, typically from a nib.
-                self.wormhole.listenForMessageWithIdentifier("updateStatus") { (messageObject: AnyObject?) -> Void in
-                    if let message = messageObject as! String? {
-                        if message == "✅" {
-                            self.performSegueWithIdentifier("Done", sender: self)
-                        } else if message == "❌" {
-                            self.status.text = "Something went wrong!"
-                            self.cancelButton.enabled = true
-                            self.cancelButton.setTitle("Cancel", forState: .Normal)
-                        } else {
-                            self.status.text = message
-                        }
-                    }
-                }
+                NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateNotification:", name: NSUserDefaultsDidChangeNotification, object: nil)
                 self.downloadManager.downloadFollowedLists()
             }
         }
@@ -47,5 +31,22 @@ class LoadingViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func updateNotification(notification:NSNotification?) {
+        let message = NSUserDefaults.standardUserDefaults().stringForKey("updateStatus")
+        if message == "✅" {
+            self.performSegueWithIdentifier("Done", sender: self)
+        } else if message == "❌" {
+            self.status.text = "Something went wrong!"
+            self.cancelButton.enabled = true
+            self.cancelButton.setTitle("Cancel", forState: .Normal)
+        } else {
+            self.status.text = message
+        }
+    }
+    
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: NSUserDefaultsDidChangeNotification, object: nil)
     }
 }
