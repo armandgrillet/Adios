@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8187.4" systemVersion="15A278b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="iI1-hR-9en">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8187.4" systemVersion="15A278b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="tpk-3K-YbC">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8151.3"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -301,6 +301,29 @@
             </objects>
             <point key="canvasLocation" x="560" y="2043"/>
         </scene>
+        <!--Simple configuration-->
+        <scene sceneID="bm8-C2-bKF">
+            <objects>
+                <navigationController title="Simple configuration" id="tpk-3K-YbC" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="XQd-eQ-VYw">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="barTintColor" red="1" green="0.092578096040000002" blue="0.1144802766" alpha="1" colorSpace="calibratedRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="textShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="a7T-0V-eEg" kind="relationship" relationship="rootViewController" id="Nm9-YD-KlF"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oSj-GL-vZI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="560" y="2710"/>
+        </scene>
         <!--Main list-->
         <scene sceneID="m3R-iF-pNn">
             <objects>
@@ -382,6 +405,95 @@
             </objects>
             <point key="canvasLocation" x="1323" y="2043"/>
         </scene>
+        <!--Configuration-->
+        <scene sceneID="uNN-O1-9jT">
+            <objects>
+                <viewController title="Configuration" id="a7T-0V-eEg" customClass="SimpleConfigurationViewController" customModule="Adios" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Uir-xR-zsO"/>
+                        <viewControllerLayoutGuide type="bottom" id="iBE-Zr-9Wd"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="n1v-Yt-CXp">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Where are you from?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S3G-Ar-fVM">
+                                <rect key="frame" x="20" y="163" width="560" height="21"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QXy-4R-7ro">
+                                <rect key="frame" x="0.0" y="192" width="600" height="216"/>
+                                <animations/>
+                                <color key="tintColor" red="1" green="0.092578096040000002" blue="0.1144802766" alpha="1" colorSpace="calibratedRGB"/>
+                                <accessibility key="accessibilityConfiguration" label="Yo"/>
+                            </pickerView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Block social medias buttons?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nu2-S5-lbd">
+                                <rect key="frame" x="20" y="416" width="560" height="21"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1OP-ej-yPP">
+                                <rect key="frame" x="276" y="445" width="51" height="31"/>
+                                <animations/>
+                                <color key="onTintColor" red="1" green="0.092578096040000002" blue="0.1144802766" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="thumbTintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <action selector="setPrivacy:" destination="yvo-86-s2z" eventType="valueChanged" id="IlY-Jd-KJw"/>
+                                </connections>
+                            </switch>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jnb-ug-Q6t">
+                                <rect key="frame" x="0.0" y="551" width="600" height="41"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <state key="normal" title="Apply">
+                                    <color key="titleColor" red="1" green="0.092578096040000002" blue="0.1144802766" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <segue destination="li1-Nl-Cr4" kind="show" id="vMf-YT-cxu"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="1OP-ej-yPP" firstAttribute="centerX" secondItem="n1v-Yt-CXp" secondAttribute="centerX" id="25R-KU-7k0"/>
+                            <constraint firstItem="Jnb-ug-Q6t" firstAttribute="leading" secondItem="n1v-Yt-CXp" secondAttribute="leadingMargin" constant="-20" id="Bto-es-kuj"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Jnb-ug-Q6t" secondAttribute="trailing" constant="-20" id="CAl-4o-n1R"/>
+                            <constraint firstItem="iBE-Zr-9Wd" firstAttribute="top" secondItem="Jnb-ug-Q6t" secondAttribute="bottom" constant="8" symbolic="YES" id="J0e-8g-83L"/>
+                            <constraint firstItem="nu2-S5-lbd" firstAttribute="trailing" secondItem="n1v-Yt-CXp" secondAttribute="trailingMargin" id="RiJ-Ku-0Ox"/>
+                            <constraint firstItem="S3G-Ar-fVM" firstAttribute="leading" secondItem="n1v-Yt-CXp" secondAttribute="leadingMargin" id="WYP-vi-eHc"/>
+                            <constraint firstItem="QXy-4R-7ro" firstAttribute="top" secondItem="S3G-Ar-fVM" secondAttribute="bottom" constant="8" id="amu-LZ-xwg"/>
+                            <constraint firstItem="nu2-S5-lbd" firstAttribute="top" secondItem="QXy-4R-7ro" secondAttribute="bottom" constant="8" id="blZ-Ly-9iy"/>
+                            <constraint firstItem="S3G-Ar-fVM" firstAttribute="trailing" secondItem="n1v-Yt-CXp" secondAttribute="trailingMargin" id="i8H-N1-LBK"/>
+                            <constraint firstItem="QXy-4R-7ro" firstAttribute="centerY" secondItem="n1v-Yt-CXp" secondAttribute="centerY" id="iLK-mw-hOf"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="QXy-4R-7ro" secondAttribute="trailing" constant="-20" id="qJL-1n-YG8"/>
+                            <constraint firstItem="S3G-Ar-fVM" firstAttribute="top" secondItem="Uir-xR-zsO" secondAttribute="bottom" constant="8" symbolic="YES" id="rsh-rq-N3F"/>
+                            <constraint firstItem="nu2-S5-lbd" firstAttribute="leading" secondItem="n1v-Yt-CXp" secondAttribute="leadingMargin" id="t3h-TB-kd6"/>
+                            <constraint firstItem="QXy-4R-7ro" firstAttribute="leading" secondItem="n1v-Yt-CXp" secondAttribute="leadingMargin" constant="-20" id="wLz-6B-onG"/>
+                            <constraint firstItem="1OP-ej-yPP" firstAttribute="top" secondItem="nu2-S5-lbd" secondAttribute="bottom" constant="8" id="zYj-w0-4Rd"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="rsh-rq-N3F"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <navigationItem key="navigationItem" title="Configuration" id="3oJ-Tt-tGM">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="aV0-V0-54M"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="countryPickerView" destination="QXy-4R-7ro" id="iCD-VY-opD"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hlx-LM-vUP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1323" y="2710"/>
+        </scene>
         <!--Optional list - step 2/3-->
         <scene sceneID="GVH-E0-rQz">
             <objects>
@@ -455,6 +567,77 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PMY-I6-fzy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2046" y="2043"/>
+        </scene>
+        <!--Two more things...-->
+        <scene sceneID="5oP-nu-c1h">
+            <objects>
+                <viewController title="Two more things..." id="li1-Nl-Cr4" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="2XB-zV-dnC"/>
+                        <viewControllerLayoutGuide type="bottom" id="xHS-or-U8v"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="IDT-IG-KeP">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mr5-3n-M3H">
+                                <rect key="frame" x="20" y="282" width="560" height="36"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Activate background updates">
+                                    <color key="titleColor" red="1" green="0.092578096040000002" blue="0.1144802766" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="openSettingsActivateBackgroundUpdates:" destination="3Ss-T0-xfU" eventType="touchUpInside" id="9XT-mX-aGp"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To let Adios block ads, you need to check two things: " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6dn-G5-BNs">
+                                <rect key="frame" x="20" y="253" width="560" height="21"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="From the link below, activate Adios in Settings &gt; Safari &gt; Content Blockers" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wr2-JY-l7W">
+                                <rect key="frame" x="20" y="326" width="560" height="41"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lTm-fY-aCV">
+                                <rect key="frame" x="0.0" y="551" width="600" height="41"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <state key="normal" title="Done">
+                                    <color key="titleColor" red="1" green="0.092578096040000002" blue="0.1144802766" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="mr5-3n-M3H" firstAttribute="centerY" secondItem="IDT-IG-KeP" secondAttribute="centerY" id="7C7-Vd-sd8"/>
+                            <constraint firstItem="mr5-3n-M3H" firstAttribute="top" secondItem="6dn-G5-BNs" secondAttribute="bottom" constant="8" symbolic="YES" id="AhL-J9-M06"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="lTm-fY-aCV" secondAttribute="trailing" constant="-20" id="J7C-PO-S9e"/>
+                            <constraint firstItem="mr5-3n-M3H" firstAttribute="trailing" secondItem="IDT-IG-KeP" secondAttribute="trailingMargin" id="KFl-l1-tVV"/>
+                            <constraint firstItem="6dn-G5-BNs" firstAttribute="leading" secondItem="IDT-IG-KeP" secondAttribute="leadingMargin" id="KKl-Xw-qJh"/>
+                            <constraint firstItem="lTm-fY-aCV" firstAttribute="leading" secondItem="IDT-IG-KeP" secondAttribute="leadingMargin" constant="-20" id="Ng0-O7-C17"/>
+                            <constraint firstItem="wr2-JY-l7W" firstAttribute="trailing" secondItem="IDT-IG-KeP" secondAttribute="trailingMargin" id="Pjf-36-DfQ"/>
+                            <constraint firstItem="mr5-3n-M3H" firstAttribute="leading" secondItem="IDT-IG-KeP" secondAttribute="leadingMargin" id="Zlk-2U-uGa"/>
+                            <constraint firstItem="6dn-G5-BNs" firstAttribute="trailing" secondItem="IDT-IG-KeP" secondAttribute="trailingMargin" id="md2-HF-0mN"/>
+                            <constraint firstItem="wr2-JY-l7W" firstAttribute="top" secondItem="mr5-3n-M3H" secondAttribute="bottom" constant="8" id="prW-sY-IrV"/>
+                            <constraint firstItem="mr5-3n-M3H" firstAttribute="centerX" secondItem="IDT-IG-KeP" secondAttribute="centerX" id="uiO-lI-aYz"/>
+                            <constraint firstItem="xHS-or-U8v" firstAttribute="top" secondItem="lTm-fY-aCV" secondAttribute="bottom" constant="8" symbolic="YES" id="v5e-1j-QWb"/>
+                            <constraint firstItem="wr2-JY-l7W" firstAttribute="leading" secondItem="IDT-IG-KeP" secondAttribute="leadingMargin" id="yyo-zW-GM4"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Two more things..." id="h6n-Me-BAw"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fMs-cY-FgJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2046" y="2710"/>
         </scene>
         <!--Details-->
         <scene sceneID="aTw-Ld-F5e">
@@ -925,6 +1108,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="cGA-Z8-F0m"/>
-        <segue reference="r3D-EF-dff"/>
+        <segue reference="q0b-EP-LJj"/>
     </inferredMetricsTieBreakers>
 </document>
