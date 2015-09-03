@@ -36,10 +36,7 @@ class LoadingViewController: UIViewController {
         let message = NSUserDefaults.standardUserDefaults().stringForKey("updateStatus")
         if message == "✅" {
             NSNotificationCenter.defaultCenter().removeObserver(self, name: NSUserDefaultsDidChangeNotification, object: nil) // No infinite loop.
-            let realLists = onboardManager.getRealListsFromChoices()
-            NSUserDefaults.standardUserDefaults().setObject(realLists, forKey: "followedLists")
-            NSUserDefaults.standardUserDefaults().synchronize()
-            NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateNotification:", name: NSUserDefaultsDidChangeNotification, object: nil) // For the deinit
+            NSUserDefaults.standardUserDefaults().setObject(onboardManager.getRealListsFromChoices(), forKey: "followedLists")
             self.performSegueWithIdentifier("Done", sender: self)
         } else if message == "❌" {
             self.status.text = "Something went wrong!"
