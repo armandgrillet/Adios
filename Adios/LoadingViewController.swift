@@ -22,7 +22,7 @@ class LoadingViewController: UIViewController {
             ListsManager.removeFollowedListsData()
             dispatch_async(dispatch_get_main_queue()) {
                 NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateNotification:", name: NSUserDefaultsDidChangeNotification, object: nil)
-                self.downloadManager.downloadLists(self.onboardManager.getRealListsFromChoices())
+                self.downloadManager.downloadLists(self.onboardManager.getRealListsFromChoices(), callback: nil)
             }
         }
     }
@@ -36,6 +36,8 @@ class LoadingViewController: UIViewController {
         let message = NSUserDefaults.standardUserDefaults().stringForKey("updateStatus")
         if message == "✅" {
             NSNotificationCenter.defaultCenter().removeObserver(self, name: NSUserDefaultsDidChangeNotification, object: nil) // No infinite loop.
+            let subscriptionsManager = SubscriptionsManager()
+            subscriptionsManager.subscribeToUpdates()
             NSUserDefaults.standardUserDefaults().setObject(onboardManager.getRealListsFromChoices(), forKey: "followedLists")
             self.performSegueWithIdentifier("Done", sender: self)
         } else if message == "❌" {

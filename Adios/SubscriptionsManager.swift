@@ -18,9 +18,8 @@ class SubscriptionsManager {
         let predicate = NSPredicate(format: "TRUEPREDICATE")
         let silentNotification = CKNotificationInfo()
         silentNotification.shouldSendContentAvailable = true
-        silentNotification.desiredKeys = ["Version"]
         
-        let subscription = CKSubscription(recordType: "Updates", predicate: predicate, options: .FiresOnRecordUpdate)
+        let subscription = CKSubscription(recordType: "Update", predicate: predicate, options: .FiresOnRecordUpdate)
         subscription.notificationInfo = silentNotification
         
         self.saveSubscription(subscription)
@@ -38,10 +37,8 @@ class SubscriptionsManager {
     
     func didReceiveNotification(userInfo: [NSObject : AnyObject], completionHandler: (UIBackgroundFetchResult) -> Void) {
         let notification = CKNotification(fromRemoteNotificationDictionary: userInfo as! [String: NSObject])
-        if notification.notificationType == .Query, let queryNotification = notification as? CKQueryNotification {
-            let update = queryNotification.recordFields!["Version"]! as! Int
-            // downloadManager.getNewRecords()
-            completionHandler(.NewData)
+        if notification.notificationType == .Query {
+            downloadManager.downloadLists(ListsManager.getFollowedLists(), callback: completionHandler)
         }
     }
 }

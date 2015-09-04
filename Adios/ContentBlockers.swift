@@ -29,4 +29,24 @@ public class ContentBlockers {
             }
         }
     }
+    
+    public class func reloadBaseContentBlocker(callback: (UIBackgroundFetchResult) -> Void) {
+        print("Reloading base content blocker")
+        SFContentBlockerManager.reloadContentBlockerWithIdentifier("AG.Adios.BaseContentBlocker") { (error: NSError?) -> Void in
+            if error == nil {
+                print("Success")
+                callback(.NewData)
+            }
+        }
+    }
+    
+    public class func reloadContentBlocker(callback: (UIBackgroundFetchResult) -> Void) {
+        print("Reloading content blocker")
+        SFContentBlockerManager.reloadContentBlockerWithIdentifier("AG.Adios.ContentBlocker") { (error: NSError?) -> Void in
+            if error == nil {
+                print("Success")
+                callback(.NewData)
+            }
+        }
+    }
 }
