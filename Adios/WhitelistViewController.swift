@@ -45,7 +45,12 @@ class WhitelistViewController: UIViewController, UITableViewDataSource, UITableV
         let alertController = UIAlertController(title: "Add domain", message: "Websites in the whitelist are not analyzed by Adios", preferredStyle: .Alert)
         let domainAction = UIAlertAction(title: "Add", style: .Default) { (_) in
             let domainTextField = alertController.textFields![0] as UITextField
-            self.domains.insert(domainTextField.text!, atIndex: 0)
+            var domain = domainTextField.text!
+            domain = domain.substringFromIndex( domain.rangeOfString("://", options: .LiteralSearch, range: nil, locale: nil)?.startIndex.successor().successor().successor() ?? domain.startIndex )
+            if domain.characters.last == "/" {
+                domain = domain.substringToIndex(domain.endIndex.predecessor())
+            }
+            self.domains.insert(domain, atIndex: 0)
             self.domainsTableView.reloadData()
         }
         domainAction.enabled = false
@@ -56,8 +61,14 @@ class WhitelistViewController: UIViewController, UITableViewDataSource, UITableV
             textField.placeholder = "www.igen.fr"
             
             NSNotificationCenter.defaultCenter().addObserverForName(UITextFieldTextDidChangeNotification, object: textField, queue: NSOperationQueue.mainQueue()) { (notification) in
-                if Regex(pattern: "^(?!\\-)(?:[a-zA-Z\\d\\-]{0,62}[a-zA-Z\\d]\\.){1,126}(?!\\d+)[a-zA-Z\\d]{1,63}$").test(textField.text!) { // Real domain.
-                    if self.domains.contains(textField.text!) {
+                var domain = textField.text!
+                domain = domain.substringFromIndex( domain.rangeOfString("://", options: .LiteralSearch, range: nil, locale: nil)?.startIndex.successor().successor().successor() ?? domain.startIndex )
+                if domain.characters.last == "/" {
+                    domain = domain.substringToIndex(domain.endIndex.predecessor())
+                }
+                    
+                if Regex(pattern: "^(?!\\-)(?:[a-zA-Z\\d\\-]{0,62}[a-zA-Z\\d]\\.){1,126}(?!\\d+)[a-zA-Z\\d]{1,63}$").test(domain) { // Real domain.
+                    if self.domains.contains(domain) {
                         domainAction.enabled = false
                     } else {
                        domainAction.enabled = true
