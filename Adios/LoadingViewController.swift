@@ -17,8 +17,7 @@ class LoadingViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
-        dispatch_async(dispatch_get_global_queue(priority, 0)) {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
             ListsManager.removeFollowedListsData()
             dispatch_async(dispatch_get_main_queue()) {
                 NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateNotification:", name: NSUserDefaultsDidChangeNotification, object: nil)
@@ -27,20 +26,17 @@ class LoadingViewController: UIViewController {
         }
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
     func updateNotification(notification:NSNotification?) {
         let message = NSUserDefaults.standardUserDefaults().stringForKey("updateStatus")
-        if message == "✅" {
-            NSNotificationCenter.defaultCenter().removeObserver(self, name: NSUserDefaultsDidChangeNotification, object: nil) // No infinite loop.
+        if message == "success" {
             let subscriptionsManager = SubscriptionsManager()
-            subscriptionsManager.subscribeToUpdates()
-            NSUserDefaults.standardUserDefaults().setObject(onboardManager.getRealListsFromChoices(), forKey: "followedLists")
-            self.performSegueWithIdentifier("Done", sender: self)
-        } else if message == "❌" {
+            subscriptionsManager.subscribeToUpdates({ () -> Void in
+                NSNotificationCenter.defaultCenter().removeObserver(self, name: NSUserDefaultsDidChangeNotification, object: nil) // No loop
+                NSUserDefaults.standardUserDefaults().setObject(self.onboardManager.getRealListsFromChoices(), forKey: "followedLists")
+                NSUserDefaults.standardUserDefaults().synchronize()
+                self.performSegueWithIdentifier("Done", sender: self)
+            })
+        } else if message == "fail" {
             self.status.text = "Something went wrong!"
             self.cancelButton.enabled = true
             self.cancelButton.setTitle("Cancel", forState: .Normal)
@@ -51,5 +47,10 @@ class LoadingViewController: UIViewController {
     
     deinit {
         NSNotificationCenter.defaultCenter().removeObserver(self, name: NSUserDefaultsDidChangeNotification, object: nil)
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
     }
 }

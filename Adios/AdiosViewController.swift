@@ -17,11 +17,13 @@ class AdiosViewController: UIViewController {
     @IBOutlet weak var configureButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "foregroundNotification:", name: UIApplicationWillEnterForegroundNotification, object: nil)
         let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: "longPressOnConfigure:")
         configureButton.addGestureRecognizer(longPressRecognizer)
-        
-        // Do any additional setup after loading the view, typically from a nib.
+        displayAdiosState()
+    }
+    
+    func displayAdiosState() {
         let followedLists = ListsManager.getFollowedLists()
         if followedLists != [] {
             configurationState.text = "Adios is configured"
@@ -40,6 +42,15 @@ class AdiosViewController: UIViewController {
         }
     }
     
+    func foregroundNotification(notification:NSNotification?) {
+        displayAdiosState()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        displayAdiosState()
+    }
+    
     @IBAction func longPressOnConfigure(sender: UILongPressGestureRecognizer) {
         self.performSegueWithIdentifier("Advanced", sender: self)
     }
@@ -53,6 +64,10 @@ class AdiosViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIApplicationWillEnterForegroundNotification, object: nil)
     }
 }
 

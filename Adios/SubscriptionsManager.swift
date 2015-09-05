@@ -11,10 +11,10 @@ import CloudKit
 import UIKit
 
 class SubscriptionsManager {
-    let publicDB = CKContainer.defaultContainer().publicCloudDatabase
     let downloadManager = DownloadManager()
     
-    func subscribeToUpdates() {
+    func subscribeToUpdates(callback: () -> Void) {
+        let publicDB = CKContainer.defaultContainer().publicCloudDatabase
         let predicate = NSPredicate(format: "TRUEPREDICATE")
         let silentNotification = CKNotificationInfo()
         silentNotification.shouldSendContentAvailable = true
@@ -22,23 +22,30 @@ class SubscriptionsManager {
         let subscription = CKSubscription(recordType: "Update", predicate: predicate, options: .FiresOnRecordUpdate)
         subscription.notificationInfo = silentNotification
         
-        self.saveSubscription(subscription)
-    }
-    
-    func saveSubscription(subscription: CKSubscription) {
         publicDB.saveSubscription(subscription, completionHandler: ({returnRecord, error in
             if error != nil {
-                print("Subscription failed \(error!.localizedDescription)")
-            } else {
-                print("Subscription added")
+                print(error!.localizedDescription)
             }
+            callback()
         }))
     }
     
     func didReceiveNotification(userInfo: [NSObject : AnyObject], completionHandler: (UIBackgroundFetchResult) -> Void) {
         let notification = CKNotification(fromRemoteNotificationDictionary: userInfo as! [String: NSObject])
         if notification.notificationType == .Query {
-            downloadManager.downloadLists(ListsManager.getFollowedLists(), callback: completionHandler)
+            print("On a recu une update")
+            let lastUpdateWasForEasyList = NSUserDefaults.standardUserDefaults().boolForKey("lastUpdateWasForEasyList")
+            var listsToUpdate = ListsManager.getFollowedLists()
+            if lastUpdateWasForEasyList == false && listsToUpdate.contains("EasyList") {
+                print("On update EasyList")
+                downloadManager.downloadLists(["EasyList"], callback: completionHandler)
+            } else {
+                if let indexOfEasyList = listsToUpdate.indexOf("EasyList") {
+                    listsToUpdate.removeAtIndex(indexOfEasyList)
+                }
+                print("On update les autres listes")
+                downloadManager.downloadLists(listsToUpdate, callback: completionHandler)
+            }
         }
     }
 }

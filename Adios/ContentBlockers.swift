@@ -10,42 +10,32 @@ import Foundation
 import SafariServices
 
 public class ContentBlockers {
-    public class func reload(goodCompletion: (() -> Void), badCompletion: (() -> Void)) {
+    public class func reload(callback: ((Bool) -> Void)) {
         SFContentBlockerManager.reloadContentBlockerWithIdentifier("AG.Adios.BaseContentBlocker") { (error: NSError?) -> Void in
             if error == nil {
-                print("Le base passe")
                 SFContentBlockerManager.reloadContentBlockerWithIdentifier("AG.Adios.ContentBlocker") { (otherError: NSError?) -> Void in
                     if error == nil {
-                        print("Listes appliquees")
-                        goodCompletion()
+                        callback(true)
                     } else {
                         print(otherError)
-                        badCompletion()
+                        callback(false)
                     }
                 }
             } else {
                 print(error)
-                badCompletion()
+                callback(false)
             }
         }
     }
     
-    public class func reloadBaseContentBlocker(callback: (UIBackgroundFetchResult) -> Void) {
-        print("Reloading base content blocker")
-        SFContentBlockerManager.reloadContentBlockerWithIdentifier("AG.Adios.BaseContentBlocker") { (error: NSError?) -> Void in
+    public class func reloadOneContentBlocker(name: String, callback: (UIBackgroundFetchResult) -> Void) {
+        print("Reloading \(name)")
+        SFContentBlockerManager.reloadContentBlockerWithIdentifier(name) { (error: NSError?) -> Void in
             if error == nil {
                 print("Success")
                 callback(.NewData)
-            }
-        }
-    }
-    
-    public class func reloadContentBlocker(callback: (UIBackgroundFetchResult) -> Void) {
-        print("Reloading content blocker")
-        SFContentBlockerManager.reloadContentBlockerWithIdentifier("AG.Adios.ContentBlocker") { (error: NSError?) -> Void in
-            if error == nil {
-                print("Success")
-                callback(.NewData)
+            } else {
+                print(error)
             }
         }
     }

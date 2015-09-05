@@ -474,7 +474,7 @@
                         <barButtonItem key="leftBarButtonItem" title="Home" id="aZX-DK-2Y8">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
-                                <segue destination="iI1-hR-9en" kind="presentation" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="W4X-Yh-bgY"/>
+                                <segue destination="iI1-hR-9en" kind="presentation" id="W4X-Yh-bgY"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -767,8 +767,8 @@
                                 <animations/>
                                 <color key="color" red="1" green="0.092578096040000002" blue="0.1144802766" alpha="1" colorSpace="calibratedRGB"/>
                             </activityIndicatorView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="usZ-s4-iO1">
-                                <rect key="frame" x="20" y="252" width="560" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="usZ-s4-iO1">
+                                <rect key="frame" x="20" y="273" width="560" height="0.0"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -782,10 +782,10 @@
                                     <color key="titleColor" red="1" green="0.092578096040000002" blue="0.1144802766" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="UhJ-fC-jbL" kind="presentation" id="2VF-QW-Oym"/>
+                                    <segue destination="iI1-hR-9en" kind="presentation" id="7U2-Dj-glf"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="It will take around 1 minute, there are a lot of ads on the Web!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GUq-3M-fxe">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="It will take around 30 seconds, there are a lot of ads on the Web!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GUq-3M-fxe">
                                 <rect key="frame" x="20" y="522" width="560" height="21"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -1030,8 +1030,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Tdo-dp-wz2"/>
         <segue reference="vMf-YT-cxu"/>
-        <segue reference="2VF-QW-Oym"/>
+        <segue reference="Tdo-dp-wz2"/>
     </inferredMetricsTieBreakers>
 </document>
