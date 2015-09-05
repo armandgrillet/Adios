@@ -33,18 +33,19 @@ class SubscriptionsManager {
     func didReceiveNotification(userInfo: [NSObject : AnyObject], completionHandler: (UIBackgroundFetchResult) -> Void) {
         let notification = CKNotification(fromRemoteNotificationDictionary: userInfo as! [String: NSObject])
         if notification.notificationType == .Query {
-            print("On a recu une update")
             let lastUpdateWasForEasyList = NSUserDefaults.standardUserDefaults().boolForKey("lastUpdateWasForEasyList")
             var listsToUpdate = ListsManager.getFollowedLists()
-            if lastUpdateWasForEasyList == false && listsToUpdate.contains("EasyList") {
-                print("On update EasyList")
+            if listsToUpdate == ["EasyList"] { // Just EasyList
                 downloadManager.downloadLists(["EasyList"], callback: completionHandler)
-            } else {
-                if let indexOfEasyList = listsToUpdate.indexOf("EasyList") {
-                    listsToUpdate.removeAtIndex(indexOfEasyList)
-                }
-                print("On update les autres listes")
+            } else if !listsToUpdate.contains("EasyList") { // No EasyList
                 downloadManager.downloadLists(listsToUpdate, callback: completionHandler)
+            } else { // We have EasyList and other lists
+                if lastUpdateWasForEasyList == false {
+                    downloadManager.downloadLists(["EasyList"], callback: completionHandler)
+                } else {
+                    listsToUpdate.removeAtIndex(listsToUpdate.indexOf("EasyList")!)
+                    downloadManager.downloadLists(listsToUpdate, callback: completionHandler)
+                }
             }
         }
     }

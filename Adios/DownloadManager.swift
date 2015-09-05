@@ -19,16 +19,25 @@ class DownloadManager {
             self.userDefaults.synchronize()
             if self.downloadsAppliedCallback != nil { // We're in background.
                 let lastUpdateWasForEasyList = NSUserDefaults.standardUserDefaults().boolForKey("lastUpdateWasForEasyList")
-                print(lastUpdateWasForEasyList)
-                if lastUpdateWasForEasyList == false && ListsManager.getFollowedLists().contains("EasyList") {
-                    self.userDefaults.setBool(true, forKey: "lastUpdateWasForEasyList")
-                    self.userDefaults.synchronize()
-                    ContentBlockers.reloadOneContentBlocker("AG.Adios.BaseContentBlocker", callback: self.downloadsAppliedCallback!)
-                } else { // We had updated EasyList before, today we updated the other lists, we reload ContentBlocker
-                    self.userDefaults.setBool(false, forKey: "lastUpdateWasForEasyList")
-                    self.userDefaults.synchronize()
-                    ContentBlockers.reloadOneContentBlocker("AG.Adios.ContentBlocker", callback: self.downloadsAppliedCallback!)
+                
+                var contentBlockerToUpdate = ""
+                if lastUpdateWasForEasyList == false {
+                    if ListsManager.getFollowedLists().contains("EasyList") { // We have EasyList
+                        self.userDefaults.setBool(true, forKey: "lastUpdateWasForEasyList")
+                        contentBlockerToUpdate = "AG.Adios.BaseContentBlocker"
+                    } else {
+                        contentBlockerToUpdate = "AG.Adios.ContentBlocker"
+                    }
+                } else {
+                    if ListsManager.getFollowedLists() != ["EasyList"] { // Not just EasyList
+                        self.userDefaults.setBool(false, forKey: "lastUpdateWasForEasyList")
+                        contentBlockerToUpdate = "AG.Adios.ContentBlocker"
+                    } else {
+                        contentBlockerToUpdate = "AG.Adios.BaseContentBlocker"
+                    }
                 }
+                self.userDefaults.synchronize()
+                ContentBlockers.reloadOneContentBlocker(contentBlockerToUpdate, callback: self.downloadsAppliedCallback!)
             } else {
                 ContentBlockers.reload({ (success: Bool) -> Void in
                     print(success)
