@@ -36,6 +36,7 @@ class DownloadManager {
                         contentBlockerToUpdate = "AG.Adios.BaseContentBlocker"
                     }
                 }
+                self.userDefaults.setObject(NSDate(), forKey: "lastNotification")
                 self.userDefaults.synchronize()
                 ContentBlockers.reloadOneContentBlocker(contentBlockerToUpdate, callback: self.downloadsAppliedCallback!)
             } else {

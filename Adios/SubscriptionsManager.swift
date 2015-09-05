@@ -30,22 +30,35 @@ class SubscriptionsManager {
         }))
     }
     
+    func applyNotification(completionHandler: (UIBackgroundFetchResult) -> Void) {
+        let lastUpdateWasForEasyList = NSUserDefaults.standardUserDefaults().boolForKey("lastUpdateWasForEasyList")
+        var listsToUpdate = ListsManager.getFollowedLists()
+        if listsToUpdate == ["EasyList"] { // Just EasyList
+            downloadManager.downloadLists(["EasyList"], callback: completionHandler)
+        } else if !listsToUpdate.contains("EasyList") { // No EasyList
+            downloadManager.downloadLists(listsToUpdate, callback: completionHandler)
+        } else { // We have EasyList and other lists
+            if lastUpdateWasForEasyList == false {
+                downloadManager.downloadLists(["EasyList"], callback: completionHandler)
+            } else {
+                listsToUpdate.removeAtIndex(listsToUpdate.indexOf("EasyList")!)
+                downloadManager.downloadLists(listsToUpdate, callback: completionHandler)
+            }
+        }
+    }
+    
     func didReceiveNotification(userInfo: [NSObject : AnyObject], completionHandler: (UIBackgroundFetchResult) -> Void) {
         let notification = CKNotification(fromRemoteNotificationDictionary: userInfo as! [String: NSObject])
         if notification.notificationType == .Query {
-            let lastUpdateWasForEasyList = NSUserDefaults.standardUserDefaults().boolForKey("lastUpdateWasForEasyList")
-            var listsToUpdate = ListsManager.getFollowedLists()
-            if listsToUpdate == ["EasyList"] { // Just EasyList
-                downloadManager.downloadLists(["EasyList"], callback: completionHandler)
-            } else if !listsToUpdate.contains("EasyList") { // No EasyList
-                downloadManager.downloadLists(listsToUpdate, callback: completionHandler)
-            } else { // We have EasyList and other lists
-                if lastUpdateWasForEasyList == false {
-                    downloadManager.downloadLists(["EasyList"], callback: completionHandler)
+            if let lastNotification =  NSUserDefaults.standardUserDefaults().objectForKey("lastNotification") {
+                let lastNotificationDate = lastNotification as! NSDate
+                if !NSCalendar.currentCalendar().isDate(lastNotificationDate, equalToDate: NSDate(), toUnitGranularity: .Day) { // The last update has not been done today
+                    applyNotification(completionHandler)
                 } else {
-                    listsToUpdate.removeAtIndex(listsToUpdate.indexOf("EasyList")!)
-                    downloadManager.downloadLists(listsToUpdate, callback: completionHandler)
+                    completionHandler(.NoData)
                 }
+            } else {
+                applyNotification(completionHandler)
             }
         }
     }

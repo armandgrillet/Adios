@@ -590,13 +590,6 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="From the link below, activate Adios in Settings &gt; Safari &gt; Content Blockers" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wr2-JY-l7W">
-                                <rect key="frame" x="20" y="326" width="560" height="41"/>
-                                <animations/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lTm-fY-aCV">
                                 <rect key="frame" x="0.0" y="551" width="600" height="41"/>
                                 <animations/>
@@ -608,6 +601,20 @@
                                     <segue destination="w34-Gh-7Xl" kind="presentation" modalPresentationStyle="fullScreen" modalTransitionStyle="coverVertical" id="sbh-uc-Dgo"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Adios does background updates to keep the ad filters updated, please do not force-quit Adios once it is configured" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="odv-RL-0jb">
+                                <rect key="frame" x="20" y="355" width="560" height="41"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Activate Adios in Settings &gt; Safari &gt; Content Blockers" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wr2-JY-l7W">
+                                <rect key="frame" x="20" y="326" width="560" height="21"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -615,13 +622,16 @@
                         <constraints>
                             <constraint firstItem="mr5-3n-M3H" firstAttribute="centerY" secondItem="IDT-IG-KeP" secondAttribute="centerY" id="7C7-Vd-sd8"/>
                             <constraint firstItem="mr5-3n-M3H" firstAttribute="top" secondItem="6dn-G5-BNs" secondAttribute="bottom" constant="8" symbolic="YES" id="AhL-J9-M06"/>
+                            <constraint firstItem="odv-RL-0jb" firstAttribute="top" secondItem="wr2-JY-l7W" secondAttribute="bottom" constant="8" id="D7p-LS-68N"/>
                             <constraint firstAttribute="trailingMargin" secondItem="lTm-fY-aCV" secondAttribute="trailing" constant="-20" id="J7C-PO-S9e"/>
                             <constraint firstItem="mr5-3n-M3H" firstAttribute="trailing" secondItem="IDT-IG-KeP" secondAttribute="trailingMargin" id="KFl-l1-tVV"/>
                             <constraint firstItem="6dn-G5-BNs" firstAttribute="leading" secondItem="IDT-IG-KeP" secondAttribute="leadingMargin" id="KKl-Xw-qJh"/>
                             <constraint firstItem="lTm-fY-aCV" firstAttribute="leading" secondItem="IDT-IG-KeP" secondAttribute="leadingMargin" constant="-20" id="Ng0-O7-C17"/>
                             <constraint firstItem="wr2-JY-l7W" firstAttribute="trailing" secondItem="IDT-IG-KeP" secondAttribute="trailingMargin" id="Pjf-36-DfQ"/>
                             <constraint firstItem="mr5-3n-M3H" firstAttribute="leading" secondItem="IDT-IG-KeP" secondAttribute="leadingMargin" id="Zlk-2U-uGa"/>
+                            <constraint firstItem="odv-RL-0jb" firstAttribute="trailing" secondItem="IDT-IG-KeP" secondAttribute="trailingMargin" id="cJq-oJ-ObF"/>
                             <constraint firstItem="6dn-G5-BNs" firstAttribute="trailing" secondItem="IDT-IG-KeP" secondAttribute="trailingMargin" id="md2-HF-0mN"/>
+                            <constraint firstItem="odv-RL-0jb" firstAttribute="leading" secondItem="IDT-IG-KeP" secondAttribute="leadingMargin" id="pk0-Ee-fwj"/>
                             <constraint firstItem="wr2-JY-l7W" firstAttribute="top" secondItem="mr5-3n-M3H" secondAttribute="bottom" constant="8" id="prW-sY-IrV"/>
                             <constraint firstItem="mr5-3n-M3H" firstAttribute="centerX" secondItem="IDT-IG-KeP" secondAttribute="centerX" id="uiO-lI-aYz"/>
                             <constraint firstItem="xHS-or-U8v" firstAttribute="top" secondItem="lTm-fY-aCV" secondAttribute="bottom" constant="8" symbolic="YES" id="v5e-1j-QWb"/>

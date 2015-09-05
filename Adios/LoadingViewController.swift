@@ -34,7 +34,9 @@ class LoadingViewController: UIViewController {
                 NSNotificationCenter.defaultCenter().removeObserver(self, name: NSUserDefaultsDidChangeNotification, object: nil) // No loop
                 NSUserDefaults.standardUserDefaults().setObject(self.onboardManager.getRealListsFromChoices(), forKey: "followedLists")
                 NSUserDefaults.standardUserDefaults().synchronize()
-                self.performSegueWithIdentifier("Done", sender: self)
+                dispatch_async(dispatch_get_main_queue(), {
+                    self.performSegueWithIdentifier("Done", sender: self)
+                })
             })
         } else if message == "fail" {
             self.status.text = "Something went wrong!"
