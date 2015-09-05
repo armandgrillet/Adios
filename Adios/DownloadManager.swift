@@ -53,8 +53,6 @@ class DownloadManager {
     }
     
     func downloadRulesFromList(list: String, nextLists: [String]?, var rulesBaseContentBlocker: String, var rulesContentBlocker: String) {
-        userDefaults.setObject("Downloading \(list)...", forKey: "updateStatus")
-        userDefaults.synchronize()
         Alamofire
         .request(.GET, ListsManager.getUrlOfList(list))
         .responseString { _, _, result in
@@ -109,6 +107,8 @@ class DownloadManager {
             if callback != nil {
                 downloadsAppliedCallback = callback!
             }
+            userDefaults.setObject("Downloading the lists...", forKey: "updateStatus")
+            userDefaults.synchronize()
             downloadRulesFromList(lists[0], nextLists: Array(lists.dropFirst()), rulesBaseContentBlocker: "", rulesContentBlocker: "")
         }
     }
