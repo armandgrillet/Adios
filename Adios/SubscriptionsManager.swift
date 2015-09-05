@@ -12,9 +12,9 @@ import UIKit
 
 class SubscriptionsManager {
     let downloadManager = DownloadManager()
+    let publicDB = CKContainer.defaultContainer().publicCloudDatabase
     
     func subscribeToUpdates(callback: () -> Void) {
-        let publicDB = CKContainer.defaultContainer().publicCloudDatabase
         let predicate = NSPredicate(format: "TRUEPREDICATE")
         let silentNotification = CKNotificationInfo()
         silentNotification.shouldSendContentAvailable = true

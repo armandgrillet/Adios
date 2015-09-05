@@ -145,7 +145,6 @@
                                 </state>
                                 <connections>
                                     <action selector="updateLists:" destination="Zgf-7s-HLh" eventType="touchUpInside" id="gfw-QO-fFc"/>
-                                    <segue destination="Ozf-mW-YGj" kind="presentation" modalPresentationStyle="fullScreen" modalTransitionStyle="coverVertical" id="PxD-z4-1x7"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -194,6 +193,7 @@
                         <outlet property="configureButton" destination="Wji-Pu-4Xx" id="77U-zV-hcx"/>
                         <outlet property="lastUpdateButton" destination="oA2-iG-BeH" id="jcq-N7-zjc"/>
                         <segue destination="UhJ-fC-jbL" kind="presentation" identifier="Advanced" id="cHP-U8-PNc"/>
+                        <segue destination="Ozf-mW-YGj" kind="presentation" identifier="Update" modalPresentationStyle="fullScreen" modalTransitionStyle="coverVertical" id="USd-3D-8OB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Yq2-XX-cgL" userLabel="First Responder" sceneMemberID="firstResponder"/>

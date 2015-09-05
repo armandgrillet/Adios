@@ -59,9 +59,7 @@ class AdiosViewController: UIViewController {
     @IBAction func updateLists(sender: UIButton) {
         let alertController = UIAlertController(title: "Update the lists?", message: "", preferredStyle: .Alert)
         
-        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel) { (action) in
-            // ...
-        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel) { (action) in }
         alertController.addAction(cancelAction)
         
         let OKAction = UIAlertAction(title: "OK", style: .Default) { (action) in
