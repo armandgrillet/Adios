@@ -28,6 +28,7 @@
 		C45356B51B98224700791CDC /* WhitelistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45356B41B98224700791CDC /* WhitelistViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		C45356B71B983F0A00791CDC /* SimpleConfigurationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45356B61B983F0A00791CDC /* SimpleConfigurationViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		C45687241B9595700086DD0E /* IgnoringRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45687231B9595700086DD0E /* IgnoringRule.swift */; settings = {ASSET_TAGS = (); }; };
+		C470BD3C1B9B2F9400D697DF /* UpdateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C470BD3B1B9B2F9400D697DF /* UpdateViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		C47E44231B94A34400DFC55A /* Regex.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47E44221B94A34400DFC55A /* Regex.swift */; settings = {ASSET_TAGS = (); }; };
 		C4C2B1C61B8A2D780099240A /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C2B1C51B8A2D780099240A /* Reachability.swift */; };
 		C4C9667B1B9885A8000278A0 /* french.html in Resources */ = {isa = PBXBuildFile; fileRef = C4C9667A1B9885A8000278A0 /* french.html */; settings = {ASSET_TAGS = (); }; };
@@ -121,6 +122,7 @@
 		C45356B41B98224700791CDC /* WhitelistViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WhitelistViewController.swift; sourceTree = "<group>"; };
 		C45356B61B983F0A00791CDC /* SimpleConfigurationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleConfigurationViewController.swift; sourceTree = "<group>"; };
 		C45687231B9595700086DD0E /* IgnoringRule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IgnoringRule.swift; sourceTree = "<group>"; };
+		C470BD3B1B9B2F9400D697DF /* UpdateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateViewController.swift; sourceTree = "<group>"; };
 		C47E44221B94A34400DFC55A /* Regex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Regex.swift; sourceTree = "<group>"; };
 		C4A6902D1B8CC09D0074E314 /* BaseContentBlocker.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = BaseContentBlocker.entitlements; sourceTree = "<group>"; };
 		C4C2B1C51B8A2D780099240A /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
@@ -227,6 +229,7 @@
 				C434CB5A1B879A1800537B55 /* TwoMoreThingsViewController.swift */,
 				C45356B41B98224700791CDC /* WhitelistViewController.swift */,
 				C45356B61B983F0A00791CDC /* SimpleConfigurationViewController.swift */,
+				C470BD3B1B9B2F9400D697DF /* UpdateViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -660,6 +663,7 @@
 				C4443AE71B8927DB004EE04C /* OnboardManager.swift in Sources */,
 				C4316F741B80E16D004C047F /* HelpViewController.swift in Sources */,
 				C41CA5CC1B83A149000255F3 /* ListsManager.swift in Sources */,
+				C470BD3C1B9B2F9400D697DF /* UpdateViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -31,6 +31,8 @@ class SubscriptionsManager {
     }
     
     func applyNotification(completionHandler: (UIBackgroundFetchResult) -> Void) {
+        NSUserDefaults.standardUserDefaults().setObject(NSDate(), forKey: "lastNotification")
+        NSUserDefaults.standardUserDefaults().synchronize()
         let lastUpdateWasForEasyList = NSUserDefaults.standardUserDefaults().boolForKey("lastUpdateWasForEasyList")
         var listsToUpdate = ListsManager.getFollowedLists()
         if listsToUpdate == ["EasyList"] { // Just EasyList
@@ -52,7 +54,7 @@ class SubscriptionsManager {
         if notification.notificationType == .Query {
             if let lastNotification =  NSUserDefaults.standardUserDefaults().objectForKey("lastNotification") {
                 let lastNotificationDate = lastNotification as! NSDate
-                if !NSCalendar.currentCalendar().isDate(lastNotificationDate, equalToDate: NSDate(), toUnitGranularity: .Day) { // The last update has not been done today
+                if !NSCalendar.currentCalendar().isDate(lastNotificationDate, equalToDate: NSDate(), toUnitGranularity: .Hour) { // The last update has not been done just before
                     applyNotification(completionHandler)
                 } else {
                     completionHandler(.NoData)

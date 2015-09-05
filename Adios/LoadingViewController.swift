@@ -13,7 +13,6 @@ class LoadingViewController: UIViewController {
     @IBOutlet weak var cancelButton: UIButton!
     let onboardManager = OnboardManager()
     let downloadManager = DownloadManager()
-    let listsManager = ListsManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()

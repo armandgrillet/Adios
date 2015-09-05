@@ -32,7 +32,8 @@ class AdiosViewController: UIViewController {
                 let formatter = NSDateFormatter()
                 formatter.timeStyle = .ShortStyle
                 formatter.dateStyle = .ShortStyle
-                lastUpdateButton.setTitle("Last update: " + formatter.stringFromDate(lastUpdateTimestamp as! NSDate), forState: .Normal)
+                lastUpdateButton.setTitle("Last download: " + formatter.stringFromDate(lastUpdateTimestamp as! NSDate), forState: .Normal)
+                lastUpdateButton.enabled = true
             }
             
         } else {
@@ -53,6 +54,22 @@ class AdiosViewController: UIViewController {
     
     @IBAction func longPressOnConfigure(sender: UILongPressGestureRecognizer) {
         self.performSegueWithIdentifier("Advanced", sender: self)
+    }
+    
+    @IBAction func updateLists(sender: UIButton) {
+        let alertController = UIAlertController(title: "Update the lists?", message: "", preferredStyle: .Alert)
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel) { (action) in
+            // ...
+        }
+        alertController.addAction(cancelAction)
+        
+        let OKAction = UIAlertAction(title: "OK", style: .Default) { (action) in
+            self.performSegueWithIdentifier("Update", sender: self)
+        }
+        alertController.addAction(OKAction)
+        
+        self.presentViewController(alertController, animated: true, completion: nil)
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
