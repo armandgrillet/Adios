@@ -52,11 +52,14 @@ class SubscriptionsManager {
     func didReceiveNotification(userInfo: [NSObject : AnyObject], completionHandler: (UIBackgroundFetchResult) -> Void) {
         let notification = CKNotification(fromRemoteNotificationDictionary: userInfo as! [String: NSObject])
         if notification.notificationType == .Query {
+            print("Notification received")
             if let lastNotification =  NSUserDefaults.standardUserDefaults().objectForKey("lastNotification") {
                 let lastNotificationDate = lastNotification as! NSDate
-                if !NSCalendar.currentCalendar().isDate(lastNotificationDate, equalToDate: NSDate(), toUnitGranularity: .Hour) { // The last update has not been done just before
+                if NSCalendar.currentCalendar().isDate(lastNotificationDate, equalToDate: NSDate(), toUnitGranularity: .Hour) { // The last update has not been done just before
+                    print("We update")
                     applyNotification(completionHandler)
                 } else {
+                    print("Same hour")
                     completionHandler(.NoData)
                 }
             } else {
