@@ -37,6 +37,9 @@
                                 <state key="normal">
                                     <color key="titleColor" red="1" green="0.092578096040000002" blue="0.1144802766" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <segue destination="iI1-hR-9en" kind="presentation" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="iXF-Sm-H2P"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="It will take around 30 seconds, there are a lot of ads on the Web!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bAb-sd-BCP">
                                 <rect key="frame" x="20" y="522" width="560" height="21"/>
@@ -52,6 +55,17 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a4c-BN-UvB">
+                                <rect key="frame" x="0.0" y="20" width="600" height="44"/>
+                                <animations/>
+                                <color key="barTintColor" red="1" green="0.092578096040000002" blue="0.1144802766" alpha="1" colorSpace="calibratedRGB"/>
+                                <textAttributes key="titleTextAttributes">
+                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </textAttributes>
+                                <items>
+                                    <navigationItem title="Updating..." id="iv1-0s-LF9"/>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -60,14 +74,17 @@
                             <constraint firstItem="fTs-4Y-YbL" firstAttribute="trailing" secondItem="GB4-4i-dYe" secondAttribute="trailingMargin" id="4GV-q8-6vs"/>
                             <constraint firstItem="bAb-sd-BCP" firstAttribute="trailing" secondItem="GB4-4i-dYe" secondAttribute="trailingMargin" id="82P-ID-QeZ"/>
                             <constraint firstItem="fTs-4Y-YbL" firstAttribute="leading" secondItem="GB4-4i-dYe" secondAttribute="leadingMargin" id="Al1-lV-Lt5"/>
+                            <constraint firstItem="a4c-BN-UvB" firstAttribute="leading" secondItem="GB4-4i-dYe" secondAttribute="leadingMargin" constant="-20" id="Rza-K0-gHx"/>
                             <constraint firstItem="SHZ-cF-Ctn" firstAttribute="top" secondItem="GB4-4i-dYe" secondAttribute="topMargin" id="SV4-jR-6jg"/>
                             <constraint firstItem="Ze4-c4-a2s" firstAttribute="centerY" secondItem="GB4-4i-dYe" secondAttribute="centerY" id="T71-e6-Tra"/>
                             <constraint firstItem="SHZ-cF-Ctn" firstAttribute="leading" secondItem="GB4-4i-dYe" secondAttribute="leadingMargin" constant="-20" id="WaO-rB-dIC"/>
                             <constraint firstItem="fTs-4Y-YbL" firstAttribute="top" secondItem="bAb-sd-BCP" secondAttribute="bottom" constant="8" id="bBm-qB-Tax"/>
                             <constraint firstItem="c5V-Rn-yve" firstAttribute="top" secondItem="fTs-4Y-YbL" secondAttribute="bottom" constant="8" symbolic="YES" id="dpQ-IV-jmm"/>
                             <constraint firstItem="4Nb-Yc-jOb" firstAttribute="trailing" secondItem="GB4-4i-dYe" secondAttribute="trailingMargin" id="eKJ-po-wnv"/>
+                            <constraint firstItem="a4c-BN-UvB" firstAttribute="top" secondItem="SHZ-cF-Ctn" secondAttribute="bottom" id="eoG-6K-eBF"/>
                             <constraint firstItem="Ze4-c4-a2s" firstAttribute="top" secondItem="4Nb-Yc-jOb" secondAttribute="bottom" constant="8" id="oeN-V0-FNe"/>
                             <constraint firstItem="Ze4-c4-a2s" firstAttribute="centerX" secondItem="GB4-4i-dYe" secondAttribute="centerX" id="rEl-gf-Sg4"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="a4c-BN-UvB" secondAttribute="trailing" constant="-20" id="sI7-tM-rNM"/>
                             <constraint firstAttribute="trailingMargin" secondItem="SHZ-cF-Ctn" secondAttribute="trailing" constant="-20" id="syQ-UO-pPH"/>
                             <constraint firstItem="bAb-sd-BCP" firstAttribute="leading" secondItem="GB4-4i-dYe" secondAttribute="leadingMargin" id="uVC-6n-gAp"/>
                         </constraints>
@@ -708,13 +725,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="usZ-s4-iO1">
-                                <rect key="frame" x="20" y="273" width="560" height="0.0"/>
-                                <animations/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uqs-Gr-tQf">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="20"/>
                                 <animations/>
@@ -723,11 +733,25 @@
                                     <constraint firstAttribute="height" constant="20" id="Wno-Nk-Coo"/>
                                 </constraints>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="usZ-s4-iO1">
+                                <rect key="frame" x="20" y="273" width="560" height="0.0"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="CWb-tv-OCa">
                                 <rect key="frame" x="282" y="281" width="37" height="37"/>
                                 <animations/>
                                 <color key="color" red="1" green="0.092578096040000002" blue="0.1144802766" alpha="1" colorSpace="calibratedRGB"/>
                             </activityIndicatorView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="It will take around 30 seconds, there are a lot of ads on the Web!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GUq-3M-fxe">
+                                <rect key="frame" x="20" y="522" width="560" height="21"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2aw-rQ-C7K">
                                 <rect key="frame" x="20" y="551" width="560" height="41"/>
                                 <animations/>
@@ -739,19 +763,25 @@
                                     <segue destination="iI1-hR-9en" kind="presentation" id="7U2-Dj-glf"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="It will take around 30 seconds, there are a lot of ads on the Web!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GUq-3M-fxe">
-                                <rect key="frame" x="20" y="522" width="560" height="21"/>
+                            <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vht-1X-knu">
+                                <rect key="frame" x="0.0" y="20" width="600" height="44"/>
                                 <animations/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                                <color key="barTintColor" red="1" green="0.092578096040000002" blue="0.1144802766" alpha="1" colorSpace="calibratedRGB"/>
+                                <textAttributes key="titleTextAttributes">
+                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="textShadowColor" red="1" green="0.092578096040000002" blue="0.1144802766" alpha="1" colorSpace="calibratedRGB"/>
+                                </textAttributes>
+                                <items>
+                                    <navigationItem title="Loading..." id="vBv-s5-Acf"/>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="2aw-rQ-C7K" firstAttribute="leading" secondItem="aau-lL-jms" secondAttribute="leadingMargin" id="0Jx-YW-lLq"/>
                             <constraint firstItem="CWb-tv-OCa" firstAttribute="centerY" secondItem="aau-lL-jms" secondAttribute="centerY" id="0mw-qn-Luu"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="vht-1X-knu" secondAttribute="trailing" constant="-20" id="GBs-9w-HZS"/>
                             <constraint firstItem="jUU-kE-VSG" firstAttribute="top" secondItem="2aw-rQ-C7K" secondAttribute="bottom" constant="8" symbolic="YES" id="Gib-cg-tof"/>
                             <constraint firstItem="CWb-tv-OCa" firstAttribute="centerX" secondItem="aau-lL-jms" secondAttribute="centerX" id="Mbc-yR-UTP"/>
                             <constraint firstAttribute="trailingMargin" secondItem="uqs-Gr-tQf" secondAttribute="trailing" constant="-20" id="O78-Kr-Hc7"/>
@@ -760,10 +790,12 @@
                             <constraint firstItem="uqs-Gr-tQf" firstAttribute="top" secondItem="aau-lL-jms" secondAttribute="topMargin" id="Q2b-gG-dju"/>
                             <constraint firstItem="GUq-3M-fxe" firstAttribute="leading" secondItem="aau-lL-jms" secondAttribute="leadingMargin" id="Stm-nk-9We"/>
                             <constraint firstItem="CWb-tv-OCa" firstAttribute="top" secondItem="usZ-s4-iO1" secondAttribute="bottom" constant="8" id="XTb-oh-tVx"/>
+                            <constraint firstItem="vht-1X-knu" firstAttribute="leading" secondItem="aau-lL-jms" secondAttribute="leadingMargin" constant="-20" id="Xq1-0n-jWR"/>
                             <constraint firstItem="2aw-rQ-C7K" firstAttribute="top" secondItem="GUq-3M-fxe" secondAttribute="bottom" constant="8" id="Zc7-RU-zmh"/>
                             <constraint firstItem="usZ-s4-iO1" firstAttribute="leading" secondItem="aau-lL-jms" secondAttribute="leadingMargin" id="aKm-fZ-c4M"/>
                             <constraint firstItem="2aw-rQ-C7K" firstAttribute="trailing" secondItem="aau-lL-jms" secondAttribute="trailingMargin" id="b6g-2l-bFi"/>
                             <constraint firstItem="usZ-s4-iO1" firstAttribute="trailing" secondItem="aau-lL-jms" secondAttribute="trailingMargin" id="m1m-tC-wRC"/>
+                            <constraint firstItem="vht-1X-knu" firstAttribute="top" secondItem="mZF-fb-Gld" secondAttribute="bottom" id="wGR-jQ-ISs"/>
                         </constraints>
                     </view>
                     <connections>
@@ -927,7 +959,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="r3D-EF-dff"/>
+        <segue reference="iXF-Sm-H2P"/>
         <segue reference="vMf-YT-cxu"/>
     </inferredMetricsTieBreakers>
 </document>
