@@ -42,8 +42,8 @@ class WhitelistViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     @IBAction func addDomain(sender: UIBarButtonItem) {
-        let alertController = UIAlertController(title: "Add domain", message: "Websites in the whitelist are not analyzed by Adios", preferredStyle: .Alert)
-        let domainAction = UIAlertAction(title: "Add", style: .Default) { (_) in
+        let alertController = UIAlertController(title: NSLocalizedString("Add a website", comment: "Alert label to add a website to the whitelist"), message: NSLocalizedString("Websites in the whitelists are not analyzed by Adios", comment: "Message concerning how the whitelist works"), preferredStyle: .Alert)
+        let domainAction = UIAlertAction(title: NSLocalizedString("Add", comment: "Button label to add a website to the whitelist"), style: .Default) { (_) in
             let domainTextField = alertController.textFields![0] as UITextField
             var domain = domainTextField.text!
             domain = domain.substringFromIndex( domain.rangeOfString("://", options: .LiteralSearch, range: nil, locale: nil)?.startIndex.successor().successor().successor() ?? domain.startIndex )
@@ -55,7 +55,7 @@ class WhitelistViewController: UIViewController, UITableViewDataSource, UITableV
         }
         domainAction.enabled = false
         
-        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel) { (_) in }
+        let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: "Button label to cancel something"), style: .Cancel) { (_) in }
         
         alertController.addTextFieldWithConfigurationHandler { (textField) in
             textField.placeholder = "www.igen.fr"
@@ -88,7 +88,7 @@ class WhitelistViewController: UIViewController, UITableViewDataSource, UITableV
         domainsTableView.userInteractionEnabled = false
         addButton.enabled = false
         cancelButton.enabled = false
-        applyButton.setTitle("Applying...", forState: .Disabled)
+        applyButton.setTitle(NSLocalizedString("Applying...", comment: "Label when applying"), forState: .Disabled)
         applyButton.setTitleColor(UIColor.blackColor(), forState: .Disabled)
         applyButton.enabled = false
         domainsTableView.alpha = 0

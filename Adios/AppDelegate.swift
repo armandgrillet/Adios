@@ -14,7 +14,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let subscriptionsManager = SubscriptionsManager()
     var window: UIWindow?
 
-
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // CloudKit subscriptions
         application.registerForRemoteNotifications()

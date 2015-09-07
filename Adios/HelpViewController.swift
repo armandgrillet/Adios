@@ -25,8 +25,12 @@ class HelpViewController: UIViewController {
     
     func getlocaleWebpage() -> String {
         switch NSLocale.currentLocale().objectForKey(NSLocaleCountryCode) as! String {
+        case "ES":
+            return "spanish"
         case "FR":
             return "french"
+        case "NL":
+            return "dutch"
         default:
             return "english"
         }

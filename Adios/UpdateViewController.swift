@@ -28,9 +28,9 @@ class UpdateViewController: UIViewController {
                 self.performSegueWithIdentifier("Done", sender: self)
             })
         } else if message == "fail" {
-            self.status.text = "Something went wrong!"
+            self.status.text = NSLocalizedString("Something went wrong!", comment: "Alert label when something went wrong")
             self.cancelButton.enabled = true
-            self.cancelButton.setTitle("Cancel", forState: .Normal)
+            self.cancelButton.setTitle(NSLocalizedString("Cancel", comment: "Button label to cancel something"), forState: .Normal)
         } else {
             self.status.text = message
         }

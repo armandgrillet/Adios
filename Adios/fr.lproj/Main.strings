@@ -1,0 +1,145 @@
+/* Class = "UIButton"; normalTitle = "Continue"; ObjectID = "2jo-cS-O7k"; */
+"2jo-cS-O7k.normalTitle" = "Continuer";
+
+/* Class = "UINavigationItem"; title = "Configuration"; ObjectID = "3oJ-Tt-tGM"; */
+"3oJ-Tt-tGM.title" = "Configuration";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "4Nb-Yc-jOb"; */
+"4Nb-Yc-jOb.text" = "Label";
+
+/* Class = "UILabel"; text = "To let Adios block ads, you need to check two things: "; ObjectID = "6dn-G5-BNs"; */
+"6dn-G5-BNs.text" = "Pour permettre à Adios de bloquer les pubs, vérifiez ces deux réglages :";
+
+/* Class = "UIBarButtonItem"; title = "Details"; ObjectID = "6te-lX-HRm"; */
+"6te-lX-HRm.title" = "Détails";
+
+/* Class = "UINavigationItem"; title = "Adios"; ObjectID = "Be0-DD-CIq"; */
+"Be0-DD-CIq.title" = "Adios";
+
+/* Class = "UIBarButtonItem"; title = "Whitelist"; ObjectID = "CQk-8M-wyK"; */
+"CQk-8M-wyK.title" = "Liste blanche";
+
+/* Class = "UILabel"; text = "State of the configuration"; ObjectID = "EUL-vB-PFU"; */
+"EUL-vB-PFU.text" = "État de votre configuration";
+
+/* Class = "UILabel"; text = "It will take around 30 seconds, there are a lot of ads on the Web!"; ObjectID = "GUq-3M-fxe"; */
+"GUq-3M-fxe.text" = "Ceci va prendre 30 secondes, il y a beaucoup de pubs sur le Web !";
+
+/* Class = "UINavigationItem"; title = "Whitelist"; ObjectID = "HT4-OW-Rbr"; */
+"HT4-OW-Rbr.title" = "Liste blanche";
+
+/* Class = "UIBarButtonItem"; title = "Home"; ObjectID = "HvK-dN-7M1"; */
+"HvK-dN-7M1.title" = "Accueil";
+
+/* Class = "UILabel"; text = "Block scripts attempting to access your private data?"; ObjectID = "Ihn-hK-kl0"; */
+"Ihn-hK-kl0.text" = "Bloquer les scripts essayant d'accéder à vos données privées ?";
+
+/* Class = "UILabel"; text = "Hide \"like\" and \"tweet\" buttons on the Web?"; ObjectID = "Jfb-8t-UC5"; */
+"Jfb-8t-UC5.text" = "Cacher les boutons provenant de réseaux sociaux ?";
+
+/* Class = "UIButton"; normalTitle = "Apply"; ObjectID = "Jnb-ug-Q6t"; */
+"Jnb-ug-Q6t.normalTitle" = "Appliquer";
+
+/* Class = "UILabel"; text = "Where are based most of the websites you visit?"; ObjectID = "LaT-ch-xN4"; */
+"LaT-ch-xN4.text" = "Where are based most of the websites you visit?";
+
+/* Class = "UINavigationItem"; title = "Main list - step 1/3"; ObjectID = "NKG-d7-M8x"; */
+"NKG-d7-M8x.title" = "Liste principale - étape 1/3";
+
+/* Class = "UILabel"; text = "Where are you from?"; ObjectID = "S3G-Ar-fVM"; */
+"S3G-Ar-fVM.text" = "Où habitez-vous ?";
+
+/* Class = "UINavigationController"; title = "Advanced Configuration"; ObjectID = "UhJ-fC-jbL"; */
+"UhJ-fC-jbL.title" = "Configuration Avancée";
+
+/* Class = "UIButton"; normalTitle = "Configure Adios"; ObjectID = "Wji-Pu-4Xx"; */
+"Wji-Pu-4Xx.normalTitle" = "Configurer Adios";
+
+/* Class = "UIButton"; normalTitle = "Apply"; ObjectID = "YJN-fg-dNl"; */
+"YJN-fg-dNl.normalTitle" = "Appliquer";
+
+/* Class = "UIBarButtonItem"; title = "1st list"; ObjectID = "ZcC-QV-4Xo"; */
+"ZcC-QV-4Xo.title" = "1ère liste";
+
+/* Class = "UIViewController"; title = "Adios"; ObjectID = "Zgf-7s-HLh"; */
+"Zgf-7s-HLh.title" = "Adios";
+
+/* Class = "UIViewController"; title = "Configuration"; ObjectID = "a7T-0V-eEg"; */
+"a7T-0V-eEg.title" = "Configuration";
+
+/* Class = "UIBarButtonItem"; title = "Back"; ObjectID = "aV0-V0-54M"; */
+"aV0-V0-54M.title" = "Retour";
+
+/* Class = "UIBarButtonItem"; title = "Home"; ObjectID = "aZX-DK-2Y8"; */
+"aZX-DK-2Y8.title" = "Accueil";
+
+/* Class = "UILabel"; text = "It will take around 30 seconds, there are a lot of ads on the Web!"; ObjectID = "bAb-sd-BCP"; */
+"bAb-sd-BCP.text" = "Ceci va prendre 30 secondes, il y a beaucoup de pubs sur le Web !";
+
+/* Class = "UIBarButtonItem"; title = "Help"; ObjectID = "cMJ-SP-DUe"; */
+"cMJ-SP-DUe.title" = "Aide";
+
+/* Class = "UILabel"; text = "Do you visit websites from elsewhere?"; ObjectID = "caq-Yr-v8W"; */
+"caq-Yr-v8W.text" = "Visitez-vous des sites venant d'un autre pays ?";
+
+/* Class = "UIBarButtonItem"; title = "2nd list"; ObjectID = "e0O-bU-QvS"; */
+"e0O-bU-QvS.title" = "2ème liste";
+
+/* Class = "UINavigationItem"; title = "Two more things..."; ObjectID = "h6n-Me-BAw"; */
+"h6n-Me-BAw.title" = "Derniers détails...";
+
+/* Class = "UIButton"; normalTitle = "Continue"; ObjectID = "hAI-WK-QWw"; */
+"hAI-WK-QWw.normalTitle" = "Continuer";
+
+/* Class = "UIButton"; normalTitle = "Apply my choices"; ObjectID = "hIM-01-Ax3"; */
+"hIM-01-Ax3.normalTitle" = "Appliquer mes choix";
+
+/* Class = "UINavigationItem"; title = "Updating..."; ObjectID = "iv1-0s-LF9"; */
+"iv1-0s-LF9.title" = "Mise à jour...";
+
+/* Class = "UINavigationController"; title = "Whitelist"; ObjectID = "l4l-1k-91a"; */
+"l4l-1k-91a.title" = "List";
+
+/* Class = "UIButton"; normalTitle = "Done"; ObjectID = "lTm-fY-aCV"; */
+"lTm-fY-aCV.normalTitle" = "Valider";
+
+/* Class = "UIViewController"; title = "Two more things..."; ObjectID = "li1-Nl-Cr4"; */
+"li1-Nl-Cr4.title" = "Derniers détails...";
+
+/* Class = "UILabel"; text = "Block messages asking you to deactivate your ad blocker?"; ObjectID = "mqw-LG-fEj"; */
+"mqw-LG-fEj.text" = "Bloquer les messages vous demandant de désactiver votre bloqueur de pubs ?";
+
+/* Class = "UIButton"; normalTitle = "Activate background updates"; ObjectID = "mr5-3n-M3H"; */
+"mr5-3n-M3H.normalTitle" = "Activer les mises à jour en arrière-plan";
+
+/* Class = "UILabel"; text = "Block social medias buttons?"; ObjectID = "nu2-S5-lbd"; */
+"nu2-S5-lbd.text" = "Cacher les boutons provenant de réseaux sociaux ?";
+
+/* Class = "UIButton"; normalTitle = "Date"; ObjectID = "oA2-iG-BeH"; */
+"oA2-iG-BeH.normalTitle" = "Date";
+
+/* Class = "UILabel"; text = "Adios does background updates to keep the ad filters updated, please do not force-quit Adios once it is configured"; ObjectID = "odv-RL-0jb"; */
+"odv-RL-0jb.text" = "Adios fait des mises à jour régulières pour bloquer les pubs les plus récentes, laissez Adios en arrière-plan une fois configuré.";
+
+/* Class = "UIViewController"; title = "Help"; ObjectID = "q7o-K2-NRX"; */
+"q7o-K2-NRX.title" = "Aide";
+
+/* Class = "UIViewController"; title = "Main list"; ObjectID = "suD-hM-Er7"; */
+"suD-hM-Er7.title" = "Liste principale";
+
+/* Class = "UINavigationController"; title = "Simple configuration"; ObjectID = "tpk-3K-YbC"; */
+"tpk-3K-YbC.title" = "Configuration simple";
+
+/* Class = "UINavigationItem"; title = "Optional list - step 2/3"; ObjectID = "tsU-wB-ji0"; */
+"tsU-wB-ji0.title" = "Liste optionnelle - étape 2/3";
+
+/* Class = "UINavigationItem"; title = "Loading..."; ObjectID = "vBv-s5-Acf"; */
+"vBv-s5-Acf.title" = "Chargement...";
+
+/* Class = "UINavigationItem"; title = "Details"; ObjectID = "vJj-pk-1f0"; */
+"vJj-pk-1f0.title" = "Détails";
+
+/* Class = "UILabel"; text = "Activate Adios in Settings > Safari > Content Blockers"; ObjectID = "wr2-JY-l7W"; */
+"wr2-JY-l7W.text" = "Activez Adios dans Réglages > Safari > Bloqueurs de contenu";
+
+"RDL-dT-8Vn.text"= "Adios bloque uniquement les pubs dans Safari.";

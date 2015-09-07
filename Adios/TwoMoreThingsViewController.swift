@@ -6,9 +6,12 @@
 //  Copyright © 2015 Armand Grillet. All rights reserved.
 //
 
+import iAd
 import UIKit
 
 class TwoMoreThingsViewController: UIViewController {
+    
+    @IBOutlet weak var adBanner: ADBannerView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,8 +31,8 @@ class TwoMoreThingsViewController: UIViewController {
         if Reachability.isConnectedToNetwork() {
             return true
         } else {
-            let alertController = UIAlertController(title: "Internet is required", message:
-                "Adios needs to download some ad filters for you, please activate your data connection", preferredStyle: UIAlertControllerStyle.Alert)
+            let alertController = UIAlertController(title: NSLocalizedString("Internet is required", comment: "Alert label to signal no internet connection"), message:
+                NSLocalizedString("Adios needs to download some ad filters, please activate your data connection", comment: "Message explaining why we need an internet connection"), preferredStyle: UIAlertControllerStyle.Alert)
             alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default,handler: nil))
             
             self.presentViewController(alertController, animated: true, completion: nil)

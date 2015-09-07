@@ -24,6 +24,8 @@
 		C43D698B1B986EC5002829E5 /* style.css in Resources */ = {isa = PBXBuildFile; fileRef = C43D698A1B986EC5002829E5 /* style.css */; settings = {ASSET_TAGS = (); }; };
 		C4443AE71B8927DB004EE04C /* OnboardManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4443AE61B8927DB004EE04C /* OnboardManager.swift */; };
 		C4443AE91B8932D9004EE04C /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4443AE81B8932D9004EE04C /* DetailsViewController.swift */; };
+		C44ABAAD1B9D97E4008E7CFA /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C44ABAAF1B9D97E4008E7CFA /* Localizable.strings */; };
+		C44ABAB21B9DD66A008E7CFA /* dutch.html in Resources */ = {isa = PBXBuildFile; fileRef = C44ABAB11B9DD66A008E7CFA /* dutch.html */; settings = {ASSET_TAGS = (); }; };
 		C44B31291B8E32E800E92434 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C44B31281B8E32E800E92434 /* CloudKit.framework */; };
 		C45356B51B98224700791CDC /* WhitelistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45356B41B98224700791CDC /* WhitelistViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		C45356B71B983F0A00791CDC /* SimpleConfigurationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45356B61B983F0A00791CDC /* SimpleConfigurationViewController.swift */; settings = {ASSET_TAGS = (); }; };
@@ -118,6 +120,10 @@
 		C43D698A1B986EC5002829E5 /* style.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = style.css; sourceTree = "<group>"; };
 		C4443AE61B8927DB004EE04C /* OnboardManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardManager.swift; sourceTree = "<group>"; };
 		C4443AE81B8932D9004EE04C /* DetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
+		C44ABAAA1B9D7615008E7CFA /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Main.strings; sourceTree = "<group>"; };
+		C44ABAAE1B9D97E4008E7CFA /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		C44ABAB01B9D9809008E7CFA /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		C44ABAB11B9DD66A008E7CFA /* dutch.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = dutch.html; sourceTree = "<group>"; };
 		C44B31281B8E32E800E92434 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		C45356B41B98224700791CDC /* WhitelistViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WhitelistViewController.swift; sourceTree = "<group>"; };
 		C45356B61B983F0A00791CDC /* SimpleConfigurationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleConfigurationViewController.swift; sourceTree = "<group>"; };
@@ -248,6 +254,7 @@
 			isa = PBXGroup;
 			children = (
 				C4E2060F1B773F6B00C280DF /* Main.storyboard */,
+				C44ABAAF1B9D97E4008E7CFA /* Localizable.strings */,
 				C4E206141B773F6B00C280DF /* LaunchScreen.storyboard */,
 			);
 			name = Views;
@@ -277,6 +284,7 @@
 				C4C9667A1B9885A8000278A0 /* french.html */,
 				C4C9667C1B9885BF000278A0 /* english.html */,
 				C4C9667E1B98BF79000278A0 /* spanish.html */,
+				C44ABAB11B9DD66A008E7CFA /* dutch.html */,
 			);
 			name = Information;
 			sourceTree = "<group>";
@@ -544,11 +552,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C44ABAB21B9DD66A008E7CFA /* dutch.html in Resources */,
 				C4E206161B773F6B00C280DF /* LaunchScreen.storyboard in Resources */,
 				C4C9667D1B9885BF000278A0 /* english.html in Resources */,
 				C43D698B1B986EC5002829E5 /* style.css in Resources */,
 				C4E206131B773F6B00C280DF /* Assets.xcassets in Resources */,
 				C4C9667B1B9885A8000278A0 /* french.html in Resources */,
+				C44ABAAD1B9D97E4008E7CFA /* Localizable.strings in Resources */,
 				C4E206111B773F6B00C280DF /* Main.storyboard in Resources */,
 				C4C9667F1B98BF79000278A0 /* spanish.html in Resources */,
 			);
@@ -717,10 +727,20 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		C44ABAAF1B9D97E4008E7CFA /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C44ABAAE1B9D97E4008E7CFA /* fr */,
+				C44ABAB01B9D9809008E7CFA /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		C4E2060F1B773F6B00C280DF /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				C4E206101B773F6B00C280DF /* Base */,
+				C44ABAAA1B9D7615008E7CFA /* fr */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";

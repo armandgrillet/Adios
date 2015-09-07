@@ -1,0 +1,23 @@
+/* 
+  Localizable.strings
+  Adios
+
+  Created by Armand Grillet on 07/09/2015.
+  Copyright © 2015 Armand Grillet. All rights reserved.
+*/
+
+"Configure Adios first" = "Adios doesn't block ads yet! Configure Adios first.";
+"Adios is configured" = "Adios is configured.";
+"Update the lists?" = "Update the lists?";
+"Update" = "Update";
+"Cancel" = "Cancel";
+"Last download:" = "Last download:";
+"Add a website" = "Add a website";
+"Websites in the whitelists are not analyzed by Adios" = "Websites in the whitelists are not analyzed by Adios";
+"Add" = "Add";
+"Applying..." = "Applying...";
+"Internet is required" = "Internet is required";
+"Adios needs to download some ad filters, please activate your data connection" = "Adios needs to download some ad filters, please activate your data connection";
+"Something went wrong!" = "Something went wrong!";
+"Downloading the lists..." = "Downloading the lists...";
+"Applying the rules..." = "Applying the rules...";

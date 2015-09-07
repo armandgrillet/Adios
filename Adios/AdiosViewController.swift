@@ -26,18 +26,19 @@ class AdiosViewController: UIViewController {
     func displayAdiosState() {
         let followedLists = ListsManager.getFollowedLists()
         if followedLists != [] {
-            configurationState.text = "Adios is configured"
+            configurationState.text = NSLocalizedString("Adios is configured", comment: "Adios is configured")
             
             if let lastUpdateTimestamp = NSUserDefaults.standardUserDefaults().objectForKey("lastUpdateTimestamp") {
                 let formatter = NSDateFormatter()
                 formatter.timeStyle = .ShortStyle
                 formatter.dateStyle = .ShortStyle
-                lastUpdateButton.setTitle("Last download: " + formatter.stringFromDate(lastUpdateTimestamp as! NSDate), forState: .Normal)
+                lastUpdateButton.setTitle(NSLocalizedString("Last download:", comment: "Presentation fo the last download") + " " + formatter.stringFromDate(lastUpdateTimestamp as! NSDate), forState: .Normal)
                 lastUpdateButton.enabled = true
             }
             
         } else {
-            configurationState.text = "Adios doesn't block ads yet! Configure Adios first."
+            
+            configurationState.text = NSLocalizedString("Configure Adios first", comment: "Adios doesn't blocks ads, the user needs to configure it first")
             lastUpdateButton.enabled = false
             lastUpdateButton.setTitle("", forState: .Disabled)
         }
@@ -57,13 +58,13 @@ class AdiosViewController: UIViewController {
     }
     
     @IBAction func updateLists(sender: UIButton) {
-        let alertController = UIAlertController(title: "Update the lists?", message: "", preferredStyle: .Alert)
+        let alertController = UIAlertController(title: NSLocalizedString("Update the lists?", comment: "Asking the user if he wants to update the list"), message: "", preferredStyle: .Alert)
         
-        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel) { (action) in }
+        let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: "Button label to cancel something"), style: .Cancel) { (action) in }
         alertController.addAction(cancelAction)
         
         let OKAction = UIAlertAction(title: "OK", style: .Default) { (action) in
-            self.performSegueWithIdentifier("Update", sender: self)
+            self.performSegueWithIdentifier(NSLocalizedString("Update", comment: "Button label to update the list"), sender: self)
         }
         alertController.addAction(OKAction)
         
