@@ -78,6 +78,58 @@ public class ListsManager {
         }
     }
     
+    public class func getRealListFromCountry(country: String) -> String? {
+        switch country {
+        case "Arabic region":
+            return "EasyList_Arabic"
+        case "Bulgaria":
+            return "EasyList_Bulgaria"
+        case "China":
+            return "EasyList_China"
+        case "Czech and Slovak Rep.":
+            return "EasyList_Czechoslovakia"
+        case "Denmark":
+            return "List_Danish"
+        case "France":
+            return "EasyList_France"
+        case "Estonia":
+            return "List_Estonia"
+        case "Germany":
+            return "EasyList_Germany"
+        case "Greece":
+            return "EasyList_Greece"
+        case "Hungary":
+            return "List_Hungary"
+        case "Iceland":
+            return "EasyList_Iceland"
+        case "Indonesia":
+            return "EasyList_Indonesia"
+        case "Italy":
+            return "EasyList_Italy"
+        case "Israel":
+            return "EasyList_Hebrew"
+        case "Japan":
+            return "List_Japan"
+        case "Latvia":
+            return "EasyList_Latvia"
+        case "Netherlands":
+            return "EasyList_Dutch"
+        case "Poland":
+            return "EasyList_Poland"
+        case "Romania":
+            return "EasyList_Romania"
+        case "Russia":
+            return "EasyList_Russia"
+        case "United Kingdom":
+            return "List_England"
+        case "U.S.A":
+            return "EasyList"
+        default:
+            return nil
+        }
+    }
+
+    
     public class func removeFollowedListsData() {
         if let groupUrl = NSFileManager.defaultManager().containerURLForSecurityApplicationGroupIdentifier("group.AG.Adios") {
             if let groupPath = groupUrl.path {

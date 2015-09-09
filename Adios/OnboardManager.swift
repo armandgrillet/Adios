@@ -9,41 +9,42 @@
 import Foundation
 
 class OnboardManager {
-    var mainList: String? {
+    var mainCountry: String? {
         get {
-            if let list = NSUserDefaults.standardUserDefaults().stringForKey("tempMainList") {
-                return list
+            if let country = NSUserDefaults.standardUserDefaults().stringForKey("mainCountry") {
+                return country
             } else {
-                return getLogicCountry()
+                return getCountryFromLocalizedCountry(getLogicLocalizedCountry())
             }
         }
         set {
             if newValue != nil {
-                NSUserDefaults.standardUserDefaults().setValue(newValue, forKey: "tempMainList")
+                NSUserDefaults.standardUserDefaults().setValue(getCountryFromLocalizedCountry(newValue!), forKey: "mainCountry")
             } else {
-                NSUserDefaults.standardUserDefaults().setValue(getLogicCountry(), forKey: "tempMainList")
+                NSUserDefaults.standardUserDefaults().setValue(getCountryFromLocalizedCountry(getLogicLocalizedCountry()), forKey: "mainCountry")
             }
         }
     }
-    var secondList: String? {
+    var secondCountry: String? {
         get {
-            if let list = NSUserDefaults.standardUserDefaults().stringForKey("tempSecondList") {
-                if list == mainList {
-                    return "No"
+            if let country = NSUserDefaults.standardUserDefaults().stringForKey("secondCountry") {
+                if country == "No" {
+                    return NSLocalizedString("No", comment: "Just the word 'no'")
+                } else if country == mainCountry {
+                    return NSLocalizedString("No", comment: "Just the word 'no'")
                 } else {
-                    return list
+                    return country
                 }
             } else {
-                return "No"
+                return NSLocalizedString("No", comment: "Just the word 'no'")
             }
         }
         set {
-            if newValue != nil {
-                NSUserDefaults.standardUserDefaults().setValue(newValue, forKey: "tempSecondList")
+            if newValue != nil && newValue != "No" && newValue != NSLocalizedString("No", comment: "Just the word 'no'") {
+                NSUserDefaults.standardUserDefaults().setValue(getCountryFromLocalizedCountry(newValue!), forKey: "secondCountry")
             } else {
-                NSUserDefaults.standardUserDefaults().setValue("No", forKey: "tempSecondList")
+                NSUserDefaults.standardUserDefaults().setValue("No", forKey: "secondCountry")
             }
-            
         }
     }
     var blockAdblockWarnings: Bool {
@@ -71,192 +72,140 @@ class OnboardManager {
         }
     }
     
-    private let lists = ["Arabic region 🇪🇬", "Bulgaria 🇧🇬", "China 🇨🇳", "Czech and Slovak Rep. 🇸🇰", "Denmark 🇩🇰", "France 🇫🇷", "Estonia 🇪🇪", "Germany 🇩🇪", "Greece 🇬🇷", "Hungary 🇭🇺", "Iceland 🇮🇸", "Indonesia 🇮🇩", "Italy 🇮🇹", "Israel 🇮🇱", "Japan 🇯🇵", "Latvia 🇱🇻", "Netherlands 🇳🇱", "Poland 🇵🇱", "Romania 🇷🇴", "Russia 🇷🇺", "United Kingdom 🇬🇧", "U.S.A 🇺🇸"]
+    func getCountries() -> [String] {
+        let countries = [localized("Arabic region"), localized("Bulgaria"), localized("China"), localized("Czech and Slovak Rep."), localized("Denmark"), localized("France"), localized("Estonia"), localized("Germany"), localized("Greece"), localized("Hungary"), localized("Iceland"), localized("Indonesia"), localized("Italy"), localized("Israel"), localized("Japan"), localized("Latvia"), localized("Netherlands"), localized("Poland"), localized("Romania"), localized("Russia"), localized("United Kingdom"), localized("U.S.A")].sort()
+        return countries
+    }
     
-    func getLogicCountry() -> String {
+    func localized(country: String) -> String {
+        return NSLocalizedString(country, comment: "Country")
+    }
+    
+    func getLogicLocalizedCountry() -> String {
         switch NSLocale.currentLocale().objectForKey(NSLocaleCountryCode) as! String {
         case "EG", "SA":
-            return "Arabic region 🇪🇬"
+            return localized("Arabic region")
         case "BG":
-            return "Bulgaria 🇧🇬"
+            return localized("Bulgaria")
         case "CN":
-            return "China 🇨🇳"
+            return localized("China")
         case "CZ", "SK":
-            return "Czech and Slovak Rep. 🇸🇰"
+            return localized("Czech and Slovak Rep.")
         case "DK":
-            return "Denmark 🇩🇰"
+            return localized("Denmark")
         case "FR":
-            return "France 🇫🇷"
+            return localized("France")
         case "EE":
-            return "Estonia 🇪🇪"
+            return localized("Estonia")
         case "DE":
-            return "Germany 🇩🇪"
+            return localized("Germany")
         case "GR":
-            return "Greece 🇬🇷"
+            return localized("Greece")
         case "HU":
-            return "Hungary 🇭🇺"
+            return localized("Hungary")
         case "IS":
-            return "Iceland 🇮🇸"
+            return localized("Iceland")
         case "ID":
-            return "Indonesia 🇮🇩"
+            return localized("Indonesia")
         case "IT":
-            return "Italy 🇮🇹"
+            return localized("Italy")
         case "IL":
-            return "Israel 🇮🇱"
+            return localized("Israel")
         case "JP":
-            return "Japan 🇯🇵"
+            return localized("Japan")
         case "LV":
-            return "Latvia 🇱🇻"
+            return localized("Latvia")
         case "NL":
-            return "Netherlands 🇳🇱"
+            return localized("Netherlands")
         case "PL":
-            return "Poland 🇵🇱"
+            return localized("Poland")
         case "RO":
-            return "Romania 🇷🇴"
+            return localized("Romania")
         case "RU":
-            return "Russia 🇷🇺"
+            return localized("Russia")
         case "GB":
-            return "United Kingdom 🇬🇧"
+            return localized("United Kingdom")
         default:
-            return "U.S.A 🇺🇸"
+            return localized("U.S.A")
         }
     }
     
-    func getRealList(flag: String) -> String? {
-        switch flag {
-        case "🇪🇬":
-            return "EasyList_Arabic"
-        case "🇧🇬":
-            return "EasyList_Bulgaria"
-        case "🇨🇳":
-            return "EasyList_China"
-        case "🇸🇰":
-            return "EasyList_Czechoslovakia"
-        case "🇩🇰":
-            return "List_Danish"
-        case "🇫🇷":
-            return "EasyList_France"
-        case "🇪🇪":
-            return "List_Estonia"
-        case "🇩🇪":
-            return "EasyList_Germany"
-        case "🇬🇷":
-            return "EasyList_Greece"
-        case "🇭🇺":
-            return "List_Hungary"
-        case "🇮🇸":
-            return "EasyList_Iceland"
-        case "🇮🇩":
-            return "EasyList_Indonesia"
-        case "🇮🇹":
-            return "EasyList_Italy"
-        case "🇮🇱":
-            return "EasyList_Hebrew"
-        case "🇯🇵":
-            return "List_Japan"
-        case "🇱🇻":
-            return "EasyList_Latvia"
-        case "🇳🇱":
-            return "EasyList_Dutch"
-        case "🇵🇱":
-            return "EasyList_Poland"
-        case "🇷🇴":
-            return "EasyList_Romania"
-        case "🇷🇺":
-            return "EasyList_Russia"
-        case "🇬🇧":
-            return "List_England"
-        case "🇺🇸":
-            return "EasyList"
-        default:
-            return nil
-        }
-    }
-    
-    func getCountryFromList(list: String) -> String? {
-        switch list {
-        case "EasyList_Arabic":
-            return "Arabic region 🇪🇬"
-        case "EasyList_Bulgaria":
-            return "Bulgaria 🇧🇬"
-        case "EasyList_China":
-            return "China 🇨🇳"
-        case "EasyList_Czechoslovakia":
-            return "Czech and Slovak Rep. 🇸🇰"
-        case "List_Danish":
-            return "Denmark 🇩🇰"
-        case "EasyList_France":
-            return "France 🇫🇷"
-        case "List_Estonia":
-            return "Estonia 🇪🇪"
-        case "EasyList_Germany":
-            return "Germany 🇩🇪"
-        case "EasyList_Greece":
-            return "Greece 🇬🇷"
-        case "List_Hungary":
-            return "Hungary 🇭🇺"
-        case "EasyList_Iceland":
-            return "Iceland 🇮🇸"
-        case "EasyList_Indonesia":
-            return "Indonesia 🇮🇩"
-        case "EasyList_Italy":
-            return "Italy 🇮🇹"
-        case "EasyList_Hebrew":
-            return "Israel 🇮🇱"
-        case "List_Japan":
-            return "Japan 🇯🇵"
-        case "EasyList_Latvia":
-            return "Latvia 🇱🇻"
-        case "EasyList_Dutch":
-            return "Netherlands 🇳🇱"
-        case "EasyList_Poland":
-            return "Poland 🇵🇱"
-        case "EasyList_Romania":
-            return "Romania 🇷🇴"
-        case "EasyList_Russia":
-            return "Russia 🇷🇺"
-        case "List_England":
-            return "United Kingdom 🇬🇧"
-        case "EasyList":
-            return "U.S.A 🇺🇸"
+    func getCountryFromLocalizedCountry(localizedCountry: String) -> String? {
+        switch localizedCountry {
+        case localized("Arabic region"):
+            return "Arabic region"
+        case localized("Bulgaria"):
+            return "Bulgaria"
+        case localized("China"):
+            return "China"
+        case localized("Czech and Slovak Rep."):
+            return "Czech and Slovak Rep."
+        case localized("Denmark"):
+            return "Denmark"
+        case localized("France"):
+            return "France"
+        case localized("Estonia"):
+            return "Estonia"
+        case localized("Germany"):
+            return "Germany"
+        case localized("Greece"):
+            return "Greece"
+        case localized("Hungary"):
+            return "Hungary"
+        case localized("Iceland"):
+            return "Iceland"
+        case localized("Indonesia"):
+            return "Indonesia"
+        case localized("Italy"):
+            return "Italy"
+        case localized("Israel"):
+            return "Israel"
+        case localized("Japan"):
+            return "Japan"
+        case localized("Latvia"):
+            return "Latvia"
+        case localized("Netherlands"):
+            return "Netherlands"
+        case localized("Poland"):
+            return "Poland"
+        case localized("Romania"):
+            return "Romania"
+        case localized("Russia"):
+            return "Russia"
+        case localized("United Kingdom"):
+            return "United Kingdom"
+        case localized("U.S.A"):
+            return "U.S.A"
         default:
             return nil
         }
     }
     
-    func getMainLists() -> [String] {
-        return lists
+    func getUserCountryPosition() -> Int {
+        return getCountries().indexOf(localized(mainCountry!))!
     }
     
-    func getMainListPosition() -> Int {
-        return lists.indexOf(mainList!)!
-    }
-    
-    func getSecondLists() -> [String] {
-        var secondLists = lists
-        secondLists.removeAtIndex(secondLists.indexOf(mainList!)!)
-        secondLists.insert("No", atIndex: 0)
+    func getSecondaryCountries() -> [String] {
+        var secondLists = getCountries()
+        secondLists.removeAtIndex(secondLists.indexOf(localized(mainCountry!))!)
+        secondLists.insert(NSLocalizedString("No", comment: "Just the word 'no'"), atIndex: 0)
         return secondLists
     }
     
     func getSecondListPosition() -> Int {
-        return getSecondLists().indexOf(secondList!)!
+        return getSecondaryCountries().indexOf(localized(secondCountry!))!
     }
     
     func getRealListsFromChoices() -> [String] {
         var realLists: [String] = []
         
-        let mainListFlag = mainList!.substringFromIndex(mainList!.endIndex.predecessor())
-        if let realMainList = getRealList(mainListFlag) {
+        if let realMainList = ListsManager.getRealListFromCountry(mainCountry!) {
             realLists.append(realMainList)
         }
         
-        if secondList! != "No" {
-            if secondList != mainList {
-                let secondListFlag = secondList!.substringFromIndex(secondList!.endIndex.predecessor())
-                if let realSecondList = getRealList(secondListFlag) {
-                    realLists.append(realSecondList)
-                }
+        if let realSecondList = ListsManager.getRealListFromCountry(secondCountry!) {
+            if realSecondList != realLists.first {
+                realLists.append(realSecondList)
             }
         }
         
@@ -274,8 +223,8 @@ class OnboardManager {
     }
     
     func reset() {
-        mainList = nil
-        secondList = nil
+        mainCountry = nil
+        secondCountry = nil
         blockAdblockWarnings = true
         antisocial = true
         privacy = true

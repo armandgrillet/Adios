@@ -31,14 +31,14 @@ class SecondListViewController: UIViewController, UIPickerViewDataSource, UIPick
     }
     
     func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return onboardManager.getSecondLists().count
+        return onboardManager.getSecondaryCountries().count
     }
     
     func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return onboardManager.getSecondLists()[row]
+        return onboardManager.getSecondaryCountries()[row]
     }
     
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        onboardManager.secondList = onboardManager.getSecondLists()[row]
+        onboardManager.secondCountry = onboardManager.getSecondaryCountries()[row]
     }
 }

@@ -150,7 +150,7 @@
                                     <color key="titleColor" red="1" green="0.092578096040000002" blue="0.1144802766" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="tpk-3K-YbC" kind="presentation" modalPresentationStyle="fullScreen" id="6O9-GB-Ua1"/>
+                                    <segue destination="tpk-3K-YbC" kind="presentation" identifier="Configure" modalPresentationStyle="fullScreen" id="6O9-GB-Ua1"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oA2-iG-BeH">
@@ -568,37 +568,21 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <adBannerView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="UWz-yo-kDc">
-                                <rect key="frame" x="140" y="64" width="320" height="66"/>
-                                <animations/>
-                            </adBannerView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Adios only blocks ads in Safari." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RDL-dT-8Vn">
-                                <rect key="frame" x="20" y="138" width="560" height="21"/>
-                                <animations/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="mr5-3n-M3H" firstAttribute="centerY" secondItem="IDT-IG-KeP" secondAttribute="centerY" id="7C7-Vd-sd8"/>
-                            <constraint firstItem="UWz-yo-kDc" firstAttribute="top" secondItem="2XB-zV-dnC" secondAttribute="bottom" id="8Q0-Sc-9nP"/>
                             <constraint firstItem="mr5-3n-M3H" firstAttribute="top" secondItem="6dn-G5-BNs" secondAttribute="bottom" constant="8" symbolic="YES" id="AhL-J9-M06"/>
-                            <constraint firstItem="RDL-dT-8Vn" firstAttribute="trailing" secondItem="IDT-IG-KeP" secondAttribute="trailingMargin" id="C59-ob-3gQ"/>
                             <constraint firstItem="odv-RL-0jb" firstAttribute="top" secondItem="wr2-JY-l7W" secondAttribute="bottom" constant="8" id="D7p-LS-68N"/>
                             <constraint firstAttribute="trailingMargin" secondItem="lTm-fY-aCV" secondAttribute="trailing" constant="-20" id="J7C-PO-S9e"/>
                             <constraint firstItem="mr5-3n-M3H" firstAttribute="trailing" secondItem="IDT-IG-KeP" secondAttribute="trailingMargin" id="KFl-l1-tVV"/>
                             <constraint firstItem="6dn-G5-BNs" firstAttribute="leading" secondItem="IDT-IG-KeP" secondAttribute="leadingMargin" id="KKl-Xw-qJh"/>
-                            <constraint firstItem="RDL-dT-8Vn" firstAttribute="leading" secondItem="IDT-IG-KeP" secondAttribute="leadingMargin" id="Lqs-dJ-bWh"/>
                             <constraint firstItem="lTm-fY-aCV" firstAttribute="leading" secondItem="IDT-IG-KeP" secondAttribute="leadingMargin" constant="-20" id="Ng0-O7-C17"/>
                             <constraint firstItem="wr2-JY-l7W" firstAttribute="trailing" secondItem="IDT-IG-KeP" secondAttribute="trailingMargin" id="Pjf-36-DfQ"/>
-                            <constraint firstItem="UWz-yo-kDc" firstAttribute="centerX" secondItem="IDT-IG-KeP" secondAttribute="centerX" id="QPm-jb-nDH"/>
                             <constraint firstItem="mr5-3n-M3H" firstAttribute="leading" secondItem="IDT-IG-KeP" secondAttribute="leadingMargin" id="Zlk-2U-uGa"/>
                             <constraint firstItem="odv-RL-0jb" firstAttribute="trailing" secondItem="IDT-IG-KeP" secondAttribute="trailingMargin" id="cJq-oJ-ObF"/>
-                            <constraint firstItem="RDL-dT-8Vn" firstAttribute="top" secondItem="UWz-yo-kDc" secondAttribute="bottom" constant="8" id="hzJ-Oq-24I"/>
                             <constraint firstItem="6dn-G5-BNs" firstAttribute="trailing" secondItem="IDT-IG-KeP" secondAttribute="trailingMargin" id="md2-HF-0mN"/>
                             <constraint firstItem="odv-RL-0jb" firstAttribute="leading" secondItem="IDT-IG-KeP" secondAttribute="leadingMargin" id="pk0-Ee-fwj"/>
                             <constraint firstItem="wr2-JY-l7W" firstAttribute="top" secondItem="mr5-3n-M3H" secondAttribute="bottom" constant="8" id="prW-sY-IrV"/>
@@ -608,9 +592,6 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Two more things..." id="h6n-Me-BAw"/>
-                    <connections>
-                        <outlet property="adBanner" destination="UWz-yo-kDc" id="NPH-tv-axz"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fMs-cY-FgJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -6,16 +6,15 @@
 //  Copyright © 2015 Armand Grillet. All rights reserved.
 //
 
-import iAd
 import UIKit
 
 class TwoMoreThingsViewController: UIViewController {
     
-    @IBOutlet weak var adBanner: ADBannerView!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        let onBoardManager = OnboardManager()
+        print(onBoardManager.getRealListsFromChoices())
     }
     
     override func didReceiveMemoryWarning() {

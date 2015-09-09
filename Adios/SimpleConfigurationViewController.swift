@@ -1,5 +1,5 @@
 //
-//  MainListViewController.swift
+//  SimpleConfigurationViewController.swift
 //  Adios
 //
 //  Created by Armand Grillet on 17/08/2015.
@@ -18,10 +18,11 @@ class SimpleConfigurationViewController: UIViewController, UIPickerViewDataSourc
         // Do any additional setup after loading the view, typically from a nib.
         countryPickerView.dataSource = self
         countryPickerView.delegate = self
-        countryPickerView.selectRow(onboardManager.getMainListPosition(), inComponent: 0, animated: false)
+        countryPickerView.selectRow(onboardManager.getUserCountryPosition(), inComponent: 0, animated: false)
         
         // Standard configuration.
-        onboardManager.secondList = "U.S.A 🇺🇸"
+        onboardManager.secondCountry = NSLocalizedString("U.S.A", comment: "Country")
+        onboardManager.antisocial = false
         onboardManager.blockAdblockWarnings = true
         onboardManager.privacy = true
     }
@@ -40,14 +41,14 @@ class SimpleConfigurationViewController: UIViewController, UIPickerViewDataSourc
     }
     
     func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return onboardManager.getMainLists().count
+        return onboardManager.getCountries().count
     }
     
     func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return onboardManager.getMainLists()[row]
+        return onboardManager.getCountries()[row]
     }
     
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        onboardManager.mainList = onboardManager.getMainLists()[row]
+        onboardManager.mainCountry = onboardManager.getCountries()[row]
     }
 }

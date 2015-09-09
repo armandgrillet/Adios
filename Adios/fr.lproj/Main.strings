@@ -119,7 +119,7 @@
 "oA2-iG-BeH.normalTitle" = "Date";
 
 /* Class = "UILabel"; text = "Adios does background updates to keep the ad filters updated, please do not force-quit Adios once it is configured"; ObjectID = "odv-RL-0jb"; */
-"odv-RL-0jb.text" = "Adios fait des mises à jour régulières pour bloquer les pubs les plus récentes, laissez Adios en arrière-plan une fois configuré.";
+"odv-RL-0jb.text" = "Adios fait des mises à jour régulières pour bloquer de nouvelles pubs, laissez Adios en arrière-plan une fois configuré.";
 
 /* Class = "UIViewController"; title = "Help"; ObjectID = "q7o-K2-NRX"; */
 "q7o-K2-NRX.title" = "Aide";
