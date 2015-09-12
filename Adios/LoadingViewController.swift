@@ -32,6 +32,7 @@ class LoadingViewController: UIViewController {
             subscriptionsManager.subscribeToUpdates({ () -> Void in
                 NSNotificationCenter.defaultCenter().removeObserver(self, name: NSUserDefaultsDidChangeNotification, object: nil) // No loop
                 NSUserDefaults.standardUserDefaults().setObject(self.onboardManager.getRealListsFromChoices(), forKey: "followedLists")
+                NSUserDefaults.standardUserDefaults().setObject(NSDate(), forKey: "lastUpdateTimestamp")
                 NSUserDefaults.standardUserDefaults().synchronize()
                 dispatch_async(dispatch_get_main_queue(), {
                     self.performSegueWithIdentifier("Done", sender: self)

@@ -27,17 +27,18 @@ class AdiosViewController: UIViewController {
         let followedLists = ListsManager.getFollowedLists()
         if followedLists != [] {
             configurationState.text = NSLocalizedString("Adios is configured", comment: "Adios is configured")
-            
             if let lastUpdateTimestamp = NSUserDefaults.standardUserDefaults().objectForKey("lastUpdateTimestamp") {
                 let formatter = NSDateFormatter()
                 formatter.timeStyle = .ShortStyle
                 formatter.dateStyle = .ShortStyle
                 lastUpdateButton.setTitle(NSLocalizedString("Last download:", comment: "Presentation fo the last download") + " " + formatter.stringFromDate(lastUpdateTimestamp as! NSDate), forState: .Normal)
                 lastUpdateButton.enabled = true
+            } else {
+                configurationState.text = NSLocalizedString("Error timestamp", comment: "Weird error due to the use of 3G instead of Wifi")
+                lastUpdateButton.enabled = false
+                lastUpdateButton.setTitle("", forState: .Disabled)
             }
-            
         } else {
-            
             configurationState.text = NSLocalizedString("Configure Adios first", comment: "Adios doesn't blocks ads, the user needs to configure it first")
             lastUpdateButton.enabled = false
             lastUpdateButton.setTitle("", forState: .Disabled)
