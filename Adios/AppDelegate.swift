@@ -11,17 +11,10 @@ import CloudKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-    let subscriptionsManager = SubscriptionsManager()
     var window: UIWindow?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // CloudKit subscriptions
-        application.registerForRemoteNotifications()
         return true
-    }
-    
-    func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject], fetchCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
-        subscriptionsManager.didReceiveNotification(userInfo, completionHandler: completionHandler)
     }
 
     func applicationWillResignActive(application: UIApplication) {

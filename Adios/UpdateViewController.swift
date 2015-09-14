@@ -18,7 +18,7 @@ class UpdateViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateNotification:", name: NSUserDefaultsDidChangeNotification, object: nil)
-        self.downloadManager.downloadLists(ListsManager.getFollowedLists(), callback: nil)
+        self.downloadManager.downloadLists(ListsManager.getFollowedLists())
     }
     
     func updateNotification(notification:NSNotification?) {

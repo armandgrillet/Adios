@@ -9,12 +9,12 @@
 import Foundation
 
 public class Parser {
-    public class func isReadableRule(line: String) -> Bool {
-        if line.stringByReplacingOccurrencesOfString("\r", withString: "").characters.count > 0
-            && line.canBeConvertedToEncoding(NSASCIIStringEncoding)
-            && line.characters.first != "!" {
-                if let indexOfDollar = line.characters.indexOf("$") {
-                    let options = line.substringFromIndex(indexOfDollar.successor()).componentsSeparatedByString(",")
+    public class func isAllowed(rule: String) -> Bool {
+        if rule.stringByReplacingOccurrencesOfString("\r", withString: "").characters.count > 0
+            && rule.canBeConvertedToEncoding(NSASCIIStringEncoding)
+            && rule.characters.first != "!" {
+                if let indexOfDollar = rule.characters.indexOf("$") {
+                    let options = rule.substringFromIndex(indexOfDollar.successor()).componentsSeparatedByString(",")
                     let allowedResourceTypes = [ // No 'object' because iOS devices don't manage Java or Flash.
                         "document", "script", "image", "stylesheet", "xmlhttprequest", "subdocument",
                         "~document", "~script", "~image", "~stylesheet", "~xmlhttprequest", "~object", "~object-subrequest", "~subdocument"
@@ -34,105 +34,117 @@ public class Parser {
         return false
     }
     
-    public class func getRulesFromLine(var line: String) -> [String] {
-        var rule = Rule()
-        if !line.containsString("##") && !line.containsString("#@#") {
-            rule = addTriggerToRule(rule, line: line)
-            if Regex(pattern: "^[ -~]+$").test(rule.triggerUrlFilter) {
-                rule = addActionToRule(rule, line: line)
-            }
-            return [rule.toString()]
-        } else { // This is element hiding
-            if line.containsString("#@#") { // Exception rule syntax, we transform the rule for a standard syntax
-                let indexOfHashtag = line.rangeOfString("#@#")!.startIndex
-                let domains = line.substringToIndex(indexOfHashtag).componentsSeparatedByString(",")
-                var newDomains = [String]()
-                for domain in domains {
-                    if domain.characters.first == "~" {
-                        newDomains.append(domain.stringByReplacingOccurrencesOfString("~", withString: ""))
-                    } else {
-                        newDomains.append("~" + domain)
-                    }
+    public class func parseRules(rules: [String]) -> [String] {
+        var parsedRules = [String]();
+        for rule in rules {
+            parsedRules += parseRule(rule)
+        }
+        return parsedRules;
+    }
+    
+    public class func parseRule(var rule: String) -> [String] {
+        if isAllowed(rule) {
+            var parsedRule = Rule()
+            if !rule.containsString("##") && !rule.containsString("#@#") {
+                parsedRule = addTriggerToRule(parsedRule, rule: rule)
+                if Regex(pattern: "^[ -~]+$").test(parsedRule.triggerUrlFilter) {
+                    parsedRule = addActionToRule(parsedRule, rule: rule)
                 }
-                line = newDomains.joinWithSeparator(",") + "##" + line.substringFromIndex(indexOfHashtag.successor().successor().successor())
-            }
-            
-            // Trigger
-            rule.triggerUrlFilter = ".*"
-            let indexOfHashtag = line.rangeOfString("##")!.startIndex
-            var hasIfDomain = false
-            var hasUnlessDomain = false
-            
-            if line.substringToIndex(indexOfHashtag).containsString("~") {
-                hasUnlessDomain = true
-                var ifDomains = [String]()
-                var unlessDomains = [String]()
-                
-                for domain in line.substringToIndex(indexOfHashtag).componentsSeparatedByString(",") {
-                    if domain.characters.first == "~" {
-                        unlessDomains.append(domain.stringByReplacingOccurrencesOfString("~", withString: ""))
-                    } else {
-                        hasIfDomain = true
-                        ifDomains.append(domain)
-                    }
-                }
-                
-                if ifDomains.count > 0 {
-                    rule.triggerIfDomain = ifDomains
-                }
-                
-                if unlessDomains.count > 0 {
-                    rule.triggerUnlessDomain = unlessDomains
-                }
-            } else {
-                if line.substringToIndex(indexOfHashtag).componentsSeparatedByString(",") != [""] {
-                    rule.triggerIfDomain = line.substringToIndex(indexOfHashtag).componentsSeparatedByString(",")
-                }
-            }
-            
-            // Action
-            rule.actionType = "css-display-none"
-            rule.actionSelector = escapeSelector(line.substringFromIndex(indexOfHashtag.successor().successor()))
-            
-            if hasIfDomain && hasUnlessDomain {
-                if rule.triggerIfDomain!.count == 1 { // Only one if, we can manage that.
-                    rule.triggerUrlFilter = "^(?:[^:/?#]+:)?(?://(?:[^/?#]*\\\\.)?)?" + escapeSpecialCharacters(rule.triggerIfDomain!.first!) + "[^a-z\\\\-A-Z0-9._.%]"
-                    rule.triggerIfDomain = nil
-                    rule.triggerUnlessDomain = rule.triggerUnlessDomain!.map({ "*" + $0 })
-                    return [rule.toString()]
-                } else {
-                    let indexOfHashtag = line.rangeOfString("##")!.startIndex
-                    let domains = line.substringFromIndex(indexOfHashtag.successor().successor())
-                    var regularDomains = [String]()
-                    var rules = [String]()
-                    for ifDomain in rule.triggerIfDomain! {
-                        var ifUnlessDomains = [String]()
-                        for unlessDomain in rule.triggerUnlessDomain! {
-                            if unlessDomain.rangeOfString(ifDomain) != nil {
-                                ifUnlessDomains.append(unlessDomain)
-                            }
-                        }
-                        
-                        if ifUnlessDomains.count > 0 {
-                            let newLine = ifDomain + ",~" + ifUnlessDomains.joinWithSeparator(",~") + "##" + domains
-                            rules.append(getRulesFromLine(newLine).first!)
+                return [parsedRule.toString()]
+            } else { // This is element hiding
+                if rule.containsString("#@#") { // Exception parsedRule syntax, we transform the parsedRule for a standard syntax
+                    let indexOfHashtag = rule.rangeOfString("#@#")!.startIndex
+                    let domains = rule.substringToIndex(indexOfHashtag).componentsSeparatedByString(",")
+                    var newDomains = [String]()
+                    for domain in domains {
+                        if domain.characters.first == "~" {
+                            newDomains.append(domain.stringByReplacingOccurrencesOfString("~", withString: ""))
                         } else {
-                            regularDomains.append(ifDomain)
+                            newDomains.append("~" + domain)
+                        }
+                    }
+                    rule = newDomains.joinWithSeparator(",") + "##" + rule.substringFromIndex(indexOfHashtag.successor().successor().successor())
+                }
+                
+                // Trigger
+                parsedRule.triggerUrlFilter = ".*"
+                let indexOfHashtag = rule.rangeOfString("##")!.startIndex
+                var hasIfDomain = false
+                var hasUnlessDomain = false
+                
+                if rule.substringToIndex(indexOfHashtag).containsString("~") {
+                    hasUnlessDomain = true
+                    var ifDomains = [String]()
+                    var unlessDomains = [String]()
+                    
+                    for domain in rule.substringToIndex(indexOfHashtag).componentsSeparatedByString(",") {
+                        if domain.characters.first == "~" {
+                            unlessDomains.append(domain.stringByReplacingOccurrencesOfString("~", withString: ""))
+                        } else {
+                            hasIfDomain = true
+                            ifDomains.append(domain)
                         }
                     }
                     
-                    let lastLine = regularDomains.joinWithSeparator(",") + "##" + domains
-                    rules.append(getRulesFromLine(lastLine).first!)
-                    return rules
+                    if ifDomains.count > 0 {
+                        parsedRule.triggerIfDomain = ifDomains
+                    }
+                    
+                    if unlessDomains.count > 0 {
+                        parsedRule.triggerUnlessDomain = unlessDomains
+                    }
+                } else {
+                    if rule.substringToIndex(indexOfHashtag).componentsSeparatedByString(",") != [""] {
+                        parsedRule.triggerIfDomain = rule.substringToIndex(indexOfHashtag).componentsSeparatedByString(",")
+                    }
                 }
-            } else {
-                if rule.triggerIfDomain != nil {
-                    rule.triggerIfDomain = rule.triggerIfDomain!.map({ "*" + $0 })
-                } else if rule.triggerUnlessDomain != nil {
-                    rule.triggerUnlessDomain = rule.triggerUnlessDomain!.map({ "*" + $0 })
+                
+                // Action
+                parsedRule.actionType = "css-display-none"
+                parsedRule.actionSelector = escapeSelector(rule.substringFromIndex(indexOfHashtag.successor().successor()))
+                
+                if hasIfDomain && hasUnlessDomain {
+                    if parsedRule.triggerIfDomain!.count == 1 { // Only one if, we can manage that.
+                        parsedRule.triggerUrlFilter = "^(?:[^:/?#]+:)?(?://(?:[^/?#]*\\\\.)?)?" + escapeSpecialCharacters(parsedRule.triggerIfDomain!.first!) + "[^a-z\\\\-A-Z0-9._.%]"
+                        parsedRule.triggerIfDomain = nil
+                        parsedRule.triggerUnlessDomain = parsedRule.triggerUnlessDomain!.map({ "*" + $0 })
+                        return [parsedRule.toString()]
+                    } else {
+                        let indexOfHashtag = rule.rangeOfString("##")!.startIndex
+                        let domains = rule.substringFromIndex(indexOfHashtag.successor().successor())
+                        var regularDomains = [String]()
+                        var parsedRules = [String]()
+                        for ifDomain in parsedRule.triggerIfDomain! {
+                            var ifUnlessDomains = [String]()
+                            for unlessDomain in parsedRule.triggerUnlessDomain! {
+                                if unlessDomain.rangeOfString(ifDomain) != nil {
+                                    ifUnlessDomains.append(unlessDomain)
+                                }
+                            }
+                            
+                            if ifUnlessDomains.count > 0 {
+                                let newRule = ifDomain + ",~" + ifUnlessDomains.joinWithSeparator(",~") + "##" + domains
+                                parsedRules += parseRule(newRule)
+                            } else {
+                                regularDomains.append(ifDomain)
+                            }
+                        }
+                        
+                        let lastRule = regularDomains.joinWithSeparator(",") + "##" + domains
+                        parsedRules += parseRule(lastRule)
+                        return parsedRules
+                    }
+                } else {
+                    if parsedRule.triggerIfDomain != nil {
+                        parsedRule.triggerIfDomain = parsedRule.triggerIfDomain!.map({ "*" + $0 })
+                    } else if parsedRule.triggerUnlessDomain != nil {
+                        parsedRule.triggerUnlessDomain = parsedRule.triggerUnlessDomain!.map({ "*" + $0 })
+                    }
+                    return [parsedRule.toString()]
                 }
-                return [rule.toString()]
             }
+        } else {
+            return []
         }
     }
     
@@ -162,12 +174,12 @@ public class Parser {
         return escapedString
     }
     
-    class func addTriggerToRule(rule: Rule, line: String) -> Rule {
+    class func addTriggerToRule(parsedRule: Rule, rule: String) -> Rule {
         ////////////////////////////
         // Getting the URL filter //
         ////////////////////////////
         
-        var urlFilter = line
+        var urlFilter = rule
         
         // Removing additional info
         if let indexOfDollar = urlFilter.characters.indexOf("$") {
@@ -211,18 +223,18 @@ public class Parser {
         // other | symbols should be escaped, we have '|$' in our regexp - do not touch it
         urlFilter = urlFilter.stringByReplacingOccurrencesOfString("|", withString: "\\\\|")
         
-        rule.triggerUrlFilter = urlFilter
+        parsedRule.triggerUrlFilter = urlFilter
         
         /////////////////////////
         // Getting the options //
         /////////////////////////
         
-        if let indexOfDollar = line.characters.indexOf("$") { // There is options
-            let options = line.substringFromIndex(indexOfDollar.successor()).componentsSeparatedByString(",")
+        if let indexOfDollar = rule.characters.indexOf("$") { // There is options
+            let options = rule.substringFromIndex(indexOfDollar.successor()).componentsSeparatedByString(",")
             
             // Case sensitivity
             if options.indexOf("match-case") != nil {
-                rule.triggerUrlFilterIsCaseSensitive = true
+                parsedRule.triggerUrlFilterIsCaseSensitive = true
             }
             
             // Resource types
@@ -265,16 +277,16 @@ public class Parser {
                             }
                         }
                     }
-                    rule.triggerResourceType = resourceTypes
+                    parsedRule.triggerResourceType = resourceTypes
                     allowedResourceTypes.removeAll() // End of the loop
                 }
             }
             
             // Load type
             if options.indexOf("third-party") != nil {
-                rule.triggerLoadType = ["third-party"]
+                parsedRule.triggerLoadType = ["third-party"]
             } else if options.indexOf("~third-party") != nil {
-                rule.triggerLoadType = ["first-party"]
+                parsedRule.triggerLoadType = ["first-party"]
             }
             
             // Domains
@@ -283,29 +295,29 @@ public class Parser {
                     if option.substringToIndex(option.startIndex.advancedBy("domain=".characters.count)) == "domain=" {
                         let domains = option.substringFromIndex(option.startIndex.advancedBy("domain=".characters.count))
                         if domains.characters.first == "~" {
-                            rule.triggerUnlessDomain = domains.stringByReplacingOccurrencesOfString("~", withString: "").componentsSeparatedByString("|").map({ "*" + $0 })
+                            parsedRule.triggerUnlessDomain = domains.stringByReplacingOccurrencesOfString("~", withString: "").componentsSeparatedByString("|").map({ "*" + $0 })
                         } else {
-                            rule.triggerIfDomain = domains.componentsSeparatedByString("|").map({ "*" + $0 })
+                            parsedRule.triggerIfDomain = domains.componentsSeparatedByString("|").map({ "*" + $0 })
                         }
                     }
                 }
             }
         }
         
-        return rule
+        return parsedRule
     }
     
-    class func addActionToRule(rule: Rule, line:String) -> Rule {
-        if line.characters.count > 1 {
-            let startString = line.substringToIndex(line.startIndex.successor().successor())
+    class func addActionToRule(parsedRule: Rule, rule: String) -> Rule {
+        if rule.characters.count > 1 {
+            let startString = rule.substringToIndex(rule.startIndex.successor().successor())
             if startString == "@@" {
-                rule.actionType = "ignore-previous-rules"
+                parsedRule.actionType = "ignore-previous-rules"
             } else {
-                rule.actionType = "block"
+                parsedRule.actionType = "block"
             }
         } else {
-            rule.actionType = "block"
+            parsedRule.actionType = "block"
         }
-        return rule
+        return parsedRule
     }
 }

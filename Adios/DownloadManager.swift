@@ -11,57 +11,42 @@ import Foundation
 
 class DownloadManager {
     let userDefaults = NSUserDefaults.standardUserDefaults()
-    var downloadsAppliedCallback: ((UIBackgroundFetchResult) -> Void)?
     
     func applyDownloads() {
         ListsManager.applyLists { () -> Void in
             self.userDefaults.setObject("Applying the rules...", forKey: "updateStatus")
             self.userDefaults.synchronize()
-            if self.downloadsAppliedCallback != nil { // We're in background.
-                let lastUpdateWasForEasyList = NSUserDefaults.standardUserDefaults().boolForKey("lastUpdateWasForEasyList")
-                
-                var contentBlockerToUpdate = ""
-                if lastUpdateWasForEasyList == false {
-                    if ListsManager.getFollowedLists().contains("EasyList") { // We have EasyList
-                        self.userDefaults.setBool(true, forKey: "lastUpdateWasForEasyList")
-                        contentBlockerToUpdate = "AG.Adios.BaseContentBlocker"
-                    } else {
-                        contentBlockerToUpdate = "AG.Adios.ContentBlocker"
-                    }
+            ContentBlockers.reload({ (success: Bool) -> Void in
+                if success {
+                    self.userDefaults.setObject("success", forKey: "updateStatus")
                 } else {
-                    if ListsManager.getFollowedLists() != ["EasyList"] { // Not just EasyList
-                        self.userDefaults.setBool(false, forKey: "lastUpdateWasForEasyList")
-                        contentBlockerToUpdate = "AG.Adios.ContentBlocker"
-                    } else {
-                        contentBlockerToUpdate = "AG.Adios.BaseContentBlocker"
-                    }
+                    self.userDefaults.setObject("fail", forKey: "updateStatus")
                 }
                 self.userDefaults.synchronize()
-                ContentBlockers.reloadOneContentBlocker(contentBlockerToUpdate, callback: self.downloadsAppliedCallback!)
-            } else {
-                ContentBlockers.reload({ (success: Bool) -> Void in
-                    print(success)
-                    if success {
-                        self.userDefaults.setObject("success", forKey: "updateStatus")
-                    } else {
-                        self.userDefaults.setObject("fail", forKey: "updateStatus")
-                    }
-                    self.userDefaults.synchronize()
-                })
-            }
+            })
         }
     }
     
     func downloadRulesFromList(list: String, nextLists: [String]?, var rulesBaseContentBlocker: String, var rulesContentBlocker: String) {
+        print("Downloading \(list)")
         Alamofire
-        .request(.GET, ListsManager.getUrlOfList(list))
+        .request(.GET, ListsManager.getUrlOfList(list)!)
         .responseString { _, _, result in
             if result.isSuccess {
-                if list == "EasyList" {
-                    rulesBaseContentBlocker += result.value!
-                } else {
-                    rulesContentBlocker += result.value!
+                var rules = ""
+                var downloadedList = result.value!.componentsSeparatedByString("\n")
+                downloadedList.removeFirst() // Remove the [AdBlock] stuff.
+                
+                for rule in Parser.parseRules(downloadedList) {
+                    rules += rule
                 }
+                
+                if list == "EasyList" {
+                    rulesBaseContentBlocker += rules
+                } else {
+                    rulesContentBlocker += rules
+                }
+                
                 if nextLists != nil && nextLists!.count > 0 { // Other lists need to be downloaded
                     self.downloadRulesFromList(nextLists![0], nextLists: Array(nextLists!.dropFirst()), rulesBaseContentBlocker: rulesBaseContentBlocker, rulesContentBlocker: rulesContentBlocker)
                 } else {
@@ -102,11 +87,8 @@ class DownloadManager {
         }
     }
     
-    func downloadLists(lists: [String], callback: ((UIBackgroundFetchResult) -> Void)?) {
+    func downloadLists(lists: [String]) {
         if lists.count > 0 {
-            if callback != nil {
-                downloadsAppliedCallback = callback!
-            }
             userDefaults.setObject("Downloading the lists...", forKey: "updateStatus")
             userDefaults.synchronize()
             downloadRulesFromList(lists[0], nextLists: Array(lists.dropFirst()), rulesBaseContentBlocker: "", rulesContentBlocker: "")
@@ -114,6 +96,6 @@ class DownloadManager {
     }
     
     func downloadFollowedLists() {
-        downloadLists(ListsManager.getFollowedLists(), callback: nil)
+        downloadLists(ListsManager.getFollowedLists())
     }
 }

@@ -20,7 +20,7 @@ class LoadingViewController: UIViewController {
             ListsManager.removeFollowedListsData()
             dispatch_async(dispatch_get_main_queue()) {
                 NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateNotification:", name: NSUserDefaultsDidChangeNotification, object: nil)
-                self.downloadManager.downloadLists(self.onboardManager.getRealListsFromChoices(), callback: nil)
+                self.downloadManager.downloadLists(self.onboardManager.getRealListsFromChoices())
             }
         }
     }
@@ -28,15 +28,12 @@ class LoadingViewController: UIViewController {
     func updateNotification(notification:NSNotification?) {
         let message = NSUserDefaults.standardUserDefaults().stringForKey("updateStatus")
         if message == "success" {
-            let subscriptionsManager = SubscriptionsManager()
-            subscriptionsManager.subscribeToUpdates({ () -> Void in
-                NSNotificationCenter.defaultCenter().removeObserver(self, name: NSUserDefaultsDidChangeNotification, object: nil) // No loop
-                NSUserDefaults.standardUserDefaults().setObject(self.onboardManager.getRealListsFromChoices(), forKey: "followedLists")
-                NSUserDefaults.standardUserDefaults().setObject(NSDate(), forKey: "lastUpdateTimestamp")
-                NSUserDefaults.standardUserDefaults().synchronize()
-                dispatch_async(dispatch_get_main_queue(), {
-                    self.performSegueWithIdentifier("Done", sender: self)
-                })
+            NSNotificationCenter.defaultCenter().removeObserver(self, name: NSUserDefaultsDidChangeNotification, object: nil) // No loop
+            NSUserDefaults.standardUserDefaults().setObject(self.onboardManager.getRealListsFromChoices(), forKey: "followedLists")
+            NSUserDefaults.standardUserDefaults().setObject(NSDate(), forKey: "lastUpdateTimestamp")
+            NSUserDefaults.standardUserDefaults().synchronize()
+            dispatch_async(dispatch_get_main_queue(), {
+                self.performSegueWithIdentifier("Done", sender: self)
             })
         } else if message == "fail" {
             self.status.text = NSLocalizedString("Something went wrong!", comment: "Alert label when something went wrong")
