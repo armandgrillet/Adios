@@ -13,6 +13,9 @@ Adios is the first ad blocker for iOS devices. It offers all the features of an 
 tl;dr Adios is offering you the next Web. You don't want to be tracked, you don't want to see silly ads. 
 You deserve a fast and readable Web that is not killing your data quota. You deserve Adios.
 
+## How to install it
+Download the branch `without-cloudkit` and the Adios' dependencies using [cocoapods](https://cocoapods.org). Adios needs Xcode 7 or newer.
+
 ## What should I do with it?
 
 Adios is an open-source base for an ad-blocker. The code has been developed in one month so some parts are quite messy. I encourage you to fork this project and start your own content-blocker using the good parts of Adios (the parser for example).
