@@ -24,11 +24,7 @@ class UpdateViewController: UIViewController {
     func updateNotification(notification:NSNotification?) {
         let message = NSUserDefaults.standardUserDefaults().stringForKey("updateStatus")
         if message == "success" {
-            dispatch_async(dispatch_get_main_queue(), {
-                NSUserDefaults.standardUserDefaults().setObject(NSDate(), forKey: "lastUpdateTimestamp")
-                NSUserDefaults.standardUserDefaults().synchronize()
-                self.performSegueWithIdentifier("Done", sender: self)
-            })
+            self.performSegueWithIdentifier("Done", sender: self)
         } else if message == "fail" {
             self.status.text = NSLocalizedString("Something went wrong!", comment: "Alert label when something went wrong")
             self.cancelButton.enabled = true
