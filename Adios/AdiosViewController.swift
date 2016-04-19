@@ -17,8 +17,8 @@ class AdiosViewController: UIViewController {
     @IBOutlet weak var configureButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "foregroundNotification:", name: UIApplicationWillEnterForegroundNotification, object: nil)
-        let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: "longPressOnConfigure:")
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(AdiosViewController.foregroundNotification(_:)), name: UIApplicationWillEnterForegroundNotification, object: nil)
+        let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(AdiosViewController.longPressOnConfigure(_:)))
         configureButton.addGestureRecognizer(longPressRecognizer)
         displayAdiosState()
     }

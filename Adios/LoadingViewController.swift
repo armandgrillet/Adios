@@ -19,7 +19,7 @@ class LoadingViewController: UIViewController {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
             ListsManager.removeFollowedListsData()
             dispatch_async(dispatch_get_main_queue()) {
-                NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateNotification:", name: NSUserDefaultsDidChangeNotification, object: nil)
+                NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(LoadingViewController.updateNotification(_:)), name: NSUserDefaultsDidChangeNotification, object: nil)
                 self.downloadManager.downloadLists(self.onboardManager.getRealListsFromChoices())
             }
         }
