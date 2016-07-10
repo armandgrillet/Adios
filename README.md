@@ -1,6 +1,8 @@
 [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/ArmandGrillet/Adios?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
 # Adios
+
+[![Join the chat at https://gitter.im/ArmandGrillet/Adios](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/ArmandGrillet/Adios?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 <p align="center">
 <img src="https://raw.githubusercontent.com/ArmandGrillet/Adios/without-cloudkit/Adios/Assets.xcassets/AppIcon.appiconset/Icon-60%403x.png">
 </p>
